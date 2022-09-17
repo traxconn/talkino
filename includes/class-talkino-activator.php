@@ -127,9 +127,8 @@ class Talkino_Activator {
 	 *
 	 * Validates the $_REQUESTed data is matching this plugin and action.
 	 *
-	 * @since    1.0.0
-	 * @param    string    $plugin    The Plugin folder/name.php.
-	 * 
+	 * @since     1.0.0
+	 * @param     string    $plugin    The Plugin folder/name.php.
 	 * @return    bool      false if either plugin or action does not match, else true.
 	 */
 	private static function validate_request( $plugin ) {

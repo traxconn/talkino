@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Talkino\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-09 05:36+0000\n"
+"POT-Creation-Date: 2022-09-17 04:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -28,21 +28,24 @@ msgid ""
 "you want to deactivate it."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2418
+#: includes/admin/class-talkino-settings.php:2672
+#: includes/admin/class-talkino-settings.php:2678
 msgid "Activate Google reCAPTCHA (v3) on contact form."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:825
+#: includes/admin/class-talkino-settings.php:836
 msgid "Activate Google reCaptcha v3:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2267
+#: includes/admin/class-talkino-settings.php:2445
+#: includes/admin/class-talkino-settings.php:2451
 msgid ""
 "Activate the contact form for allowing users to email to admin when the "
 "Talkino chatbox is offline."
 msgstr ""
 
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:49
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:48
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:199
 msgid "Activate the time schedule feature for agent"
 msgstr ""
 
@@ -55,7 +58,7 @@ msgid "Add New Agent"
 msgstr ""
 
 #: includes/admin/class-talkino-settings.php:64
-#: includes/admin/class-talkino-settings.php:272
+#: includes/admin/class-talkino-settings.php:283
 msgid "Advanced"
 msgstr ""
 
@@ -67,11 +70,11 @@ msgstr ""
 msgid "Agent image"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:388
+#: includes/admin/class-talkino-settings.php:399
 msgid "Agent Not Available Message:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:652
+#: includes/admin/class-talkino-settings.php:663
 msgid "Agent Ordering:"
 msgstr ""
 
@@ -79,60 +82,61 @@ msgstr ""
 msgid "All Agents"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1114
+#: includes/admin/class-talkino-settings.php:1134
 msgid "Away"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:577
+#: includes/admin/class-talkino-settings.php:588
 msgid "Background Color for Chatbox:"
 msgstr ""
 
-#: templates/chatbox-online.php:17 templates/chatbox-offline.php:17
-#: templates/chatbox-away.php:17
+#: templates/contact-form.php:17 templates/chatbox-online.php:17
+#: templates/chatbox-offline.php:17 templates/chatbox-away.php:17
 msgid "Chat Now"
 msgstr ""
 
-#: includes/frontend/class-talkino-agent-manager.php:285
+#: includes/frontend/class-talkino-agent-manager.php:308
 msgid "Chat on Email"
 msgstr ""
 
-#: includes/frontend/class-talkino-agent-manager.php:177
+#: includes/frontend/class-talkino-agent-manager.php:200
 msgid "Chat on Facebook"
 msgstr ""
 
-#: includes/frontend/class-talkino-agent-manager.php:249
+#: includes/frontend/class-talkino-agent-manager.php:272
 msgid "Chat on Phone"
 msgstr ""
 
-#: includes/frontend/class-talkino-agent-manager.php:213
+#: includes/frontend/class-talkino-agent-manager.php:236
 msgid "Chat on Telegram"
 msgstr ""
 
-#: includes/frontend/class-talkino-agent-manager.php:141
+#: includes/frontend/class-talkino-agent-manager.php:164
 msgid "Chat on WhatsApp"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:632
+#: includes/admin/class-talkino-settings.php:643
 msgid "Chatbox Height (px):"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:216
+#: includes/admin/class-talkino-settings.php:227
 msgid "Chatbox Online Status"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:447
+#: includes/admin/class-talkino-settings.php:458
 msgid "Chatbox Position:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:428
+#: includes/admin/class-talkino-settings.php:439
 msgid "Chatbox Style:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:224
+#: includes/admin/class-talkino-settings.php:235
 msgid "Chatbox Text"
 msgstr ""
 
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:39
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:42
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:189
 msgid ""
 "Configure the online time schedule for the agent. Please be noted that "
 "global online schedule in Talkino Settings will override the online time "
@@ -140,20 +144,20 @@ msgid ""
 msgstr ""
 
 #: includes/admin/class-talkino-settings.php:62
-#: includes/admin/class-talkino-settings.php:248
+#: includes/admin/class-talkino-settings.php:259
 msgid "Contact Form"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:643
+#: includes/admin/class-talkino-settings.php:654
 msgid "Contact Ordering:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1012
+#: includes/admin/class-talkino-settings.php:1023
 msgid "Customize the style of the chatbox."
 msgstr ""
 
 #: includes/admin/class-talkino-settings.php:63
-#: includes/admin/class-talkino-settings.php:264
+#: includes/admin/class-talkino-settings.php:275
 msgid "Display"
 msgstr ""
 
@@ -161,15 +165,15 @@ msgstr ""
 msgid "Edit Agent"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:998
+#: includes/admin/class-talkino-settings.php:1009
 msgid "Edit the text of chatbox and its display."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:692
+#: includes/admin/class-talkino-settings.php:703
 msgid "Email Recipient:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:711
+#: includes/admin/class-talkino-settings.php:722
 msgid "Email Subject:"
 msgstr ""
 
@@ -177,33 +181,36 @@ msgstr ""
 msgid "Email:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1060
+#: includes/admin/class-talkino-settings.php:1075
 msgid "Enable Google reCaptcha v3 on the contact form."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2546
+#: includes/admin/class-talkino-settings.php:2854
+#: includes/admin/class-talkino-settings.php:2860
 msgid "Enable Talkino chatbox to show on blog and post pages."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1885
+#: includes/admin/class-talkino-settings.php:2051
 msgid "Enable Talkino chatbox to show on desktop."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1934
+#: includes/admin/class-talkino-settings.php:2100
 msgid "Enable Talkino chatbox to show on mobile."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2595
+#: includes/admin/class-talkino-settings.php:2915
+#: includes/admin/class-talkino-settings.php:2921
 msgid "Enable Talkino chatbox to show on search page."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2644
+#: includes/admin/class-talkino-settings.php:2976
+#: includes/admin/class-talkino-settings.php:2982
 msgid ""
 "Enable Talkino chatbox to show on WooCommerce shop, product, product "
 "category and tag pages."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2695
+#: includes/admin/class-talkino-settings.php:3035
 msgid ""
 "Enable Talkino plugin to completely remove all of its data when the plugin "
 "is uninstalled."
@@ -217,7 +224,19 @@ msgstr ""
 msgid "Enter Telegram username. Leave it empty if you want to deactivate it."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:883
+#: templates/contact-form.php:37
+msgid "Enter your email"
+msgstr ""
+
+#: templates/contact-form.php:40
+msgid "Enter your message"
+msgstr ""
+
+#: templates/contact-form.php:34
+msgid "Enter your name"
+msgstr ""
+
+#: includes/admin/class-talkino-settings.php:894
 msgid "Exclude Pages from Chatbox Display:"
 msgstr ""
 
@@ -225,11 +244,11 @@ msgstr ""
 msgid "Facebook Username/ Page Name:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:806
+#: includes/admin/class-talkino-settings.php:817
 msgid "Failed Email Sent Message:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1041
+#: includes/admin/class-talkino-settings.php:1052
 #, php-format
 msgid ""
 "For the fields of \"Sender's Message\", \"Sender's Name\" and \"Sender's "
@@ -237,28 +256,30 @@ msgid ""
 "represents sender's email and %%message%% represents message."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1302
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:126
+#: includes/admin/class-talkino-settings.php:1319
+#: includes/admin/class-talkino-settings.php:1462
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:125
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:276
 msgid "Friday"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:293
+#: includes/admin/class-talkino-settings.php:304
 msgid "Global Online Status:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:984
+#: includes/admin/class-talkino-settings.php:995
 msgid "Global settings to handle online status and schedule of chatbox."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:256
+#: includes/admin/class-talkino-settings.php:267
 msgid "Google reCaptcha v3"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:863
+#: includes/admin/class-talkino-settings.php:874
 msgid "Google reCaptcha v3 Secret Key:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:844
+#: includes/admin/class-talkino-settings.php:855
 msgid "Google reCaptcha v3 Site Key:"
 msgstr ""
 
@@ -274,11 +295,15 @@ msgstr ""
 msgid "Insert into agent"
 msgstr ""
 
+#: includes/frontend/class-talkino-frontend.php:109
+msgid "Invalid Google reCaptcha v3 site key!"
+msgstr ""
+
 #: includes/admin/meta-boxes/views/html-meta-box-contact.php:15
 msgid "Job Title:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1026
+#: includes/admin/class-talkino-settings.php:1037
 msgid ""
 "Just drag and drop to arrange the ordering of contact and agent. It will be "
 "saved automatically."
@@ -290,18 +315,20 @@ msgid ""
 "Only shown on mobile or tablet devices."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1830
+#: includes/admin/class-talkino-settings.php:1996
 msgid "Left Position"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1076
+#: includes/admin/class-talkino-settings.php:1091
 msgid ""
 "Manage the pages, post, search and WooCommerce pages to display or hide "
 "chatbox."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1227
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:58
+#: includes/admin/class-talkino-settings.php:1244
+#: includes/admin/class-talkino-settings.php:1387
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:57
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:208
 msgid "Monday"
 msgstr ""
 
@@ -327,96 +354,96 @@ msgstr ""
 msgid "No Agents found in Trash"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1115
+#: includes/admin/class-talkino-settings.php:1135
 msgid "Offline"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:407
+#: includes/admin/class-talkino-settings.php:418
 msgid "Offline Message:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1113
+#: includes/admin/class-talkino-settings.php:1133
 msgid "Online"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:312
+#: includes/admin/class-talkino-settings.php:323
 msgid "Online Schedule:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1976
+#: includes/admin/class-talkino-settings.php:2142
 msgid "Oops, you have inserted invalid input of chatbox height field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1863
+#: includes/admin/class-talkino-settings.php:2029
 msgid "Oops, you have inserted invalid input of chatbox position field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1809
+#: includes/admin/class-talkino-settings.php:1975
 msgid "Oops, you have inserted invalid input of chatbox style field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2294
+#: includes/admin/class-talkino-settings.php:2480
 msgid "Oops, you have inserted invalid input of contact form field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2722
+#: includes/admin/class-talkino-settings.php:3062
 msgid "Oops, you have inserted invalid input of data removing field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1135
+#: includes/admin/class-talkino-settings.php:1155
 msgid "Oops, you have inserted invalid input of global online status field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1410
-#: includes/admin/class-talkino-settings.php:1429
-#: includes/admin/class-talkino-settings.php:1448
-#: includes/admin/class-talkino-settings.php:1467
-#: includes/admin/class-talkino-settings.php:1486
-#: includes/admin/class-talkino-settings.php:1505
-#: includes/admin/class-talkino-settings.php:1524
+#: includes/admin/class-talkino-settings.php:1576
+#: includes/admin/class-talkino-settings.php:1595
+#: includes/admin/class-talkino-settings.php:1614
+#: includes/admin/class-talkino-settings.php:1633
+#: includes/admin/class-talkino-settings.php:1652
+#: includes/admin/class-talkino-settings.php:1671
+#: includes/admin/class-talkino-settings.php:1690
 msgid "Oops, you have inserted invalid input of online schedule field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2445
+#: includes/admin/class-talkino-settings.php:2707
 msgid "Oops, you have inserted invalid input of recaptcha field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1912
+#: includes/admin/class-talkino-settings.php:2078
 msgid "Oops, you have inserted invalid input of show on desktop field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2153
+#: includes/admin/class-talkino-settings.php:2328
 msgid "Oops, you have inserted invalid input of show on mobile field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2573
+#: includes/admin/class-talkino-settings.php:2889
 msgid "Oops, you have inserted invalid input of show on post field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2622
+#: includes/admin/class-talkino-settings.php:2950
 msgid "Oops, you have inserted invalid input of show on search page field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2671
+#: includes/admin/class-talkino-settings.php:3011
 msgid ""
 "Oops, you have inserted invalid input of show on woocommerce shop and "
 "product pages field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1174
+#: includes/admin/class-talkino-settings.php:1194
 msgid "Oops, you have inserted invalid input of start chatting method field!"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1153
+#: includes/admin/class-talkino-settings.php:1173
 msgid "Open in new window or tab"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1154
+#: includes/admin/class-talkino-settings.php:1174
 msgid "Open in same window or tab"
 msgstr ""
 
 #: includes/admin/class-talkino-settings.php:61
-#: includes/admin/class-talkino-settings.php:240
+#: includes/admin/class-talkino-settings.php:251
 msgid "Ordering"
 msgstr ""
 
@@ -430,20 +457,20 @@ msgstr ""
 msgid "Phone Number:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1061
+#: includes/admin/class-talkino-settings.php:1076
 msgid "Please refer"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1045
-#: includes/admin/class-talkino-settings.php:1080
-#: includes/admin/class-talkino-settings.php:1222
-#: includes/admin/class-talkino-settings.php:2003
-#: includes/admin/class-talkino-settings.php:2070
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:44
+#: includes/admin/class-talkino-settings.php:1059
+#: includes/admin/class-talkino-settings.php:1098
+#: includes/admin/class-talkino-settings.php:1382
+#: includes/admin/class-talkino-settings.php:2169
+#: includes/admin/class-talkino-settings.php:2242
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:194
 msgid "Premium Features"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1781
+#: includes/admin/class-talkino-settings.php:1947
 msgid "Rectangle style"
 msgstr ""
 
@@ -451,26 +478,30 @@ msgstr ""
 msgid "Remove agent image"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:965
+#: includes/admin/class-talkino-settings.php:976
 msgid "Remove Data on Uninstall:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1835
+#: includes/admin/class-talkino-settings.php:2001
 msgid "Right Position"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1776
+#: includes/admin/class-talkino-settings.php:1942
 msgid "Round style"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1321
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:143
+#: includes/admin/class-talkino-settings.php:1338
+#: includes/admin/class-talkino-settings.php:1481
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:142
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:293
 msgid "Saturday"
 msgstr ""
 
 #: includes/admin/class-talkino-settings.php:85
-#: includes/admin/class-talkino-settings.php:165
-#: includes/admin/class-talkino-settings.php:187
+#: includes/admin/class-talkino-settings.php:128
+#: includes/admin/class-talkino-settings.php:153
+#: includes/admin/class-talkino-settings.php:176
+#: includes/admin/class-talkino-settings.php:198
 msgid "Save Settings"
 msgstr ""
 
@@ -478,24 +509,27 @@ msgstr ""
 msgid "Search Agents"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1358
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:177
+#: includes/admin/class-talkino-settings.php:1375
+#: includes/admin/class-talkino-settings.php:1518
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:176
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:327
 msgid "Select all days"
 msgstr ""
 
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:53
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:52
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:203
 msgid "Select the day and time for online schedule of agent:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:768
+#: includes/admin/class-talkino-settings.php:779
 msgid "Sender's Email:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:730
+#: includes/admin/class-talkino-settings.php:741
 msgid "Sender's Message:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:749
+#: includes/admin/class-talkino-settings.php:760
 msgid "Sender's Name:"
 msgstr ""
 
@@ -508,65 +542,71 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1040
+#: includes/admin/class-talkino-settings.php:1051
 msgid "Settings to activate and handle contact form when chatbox is offline."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:673
+#: includes/admin/class-talkino-settings.php:684
 msgid "Show Contact Form When Offline:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:902
+#: includes/admin/class-talkino-settings.php:913
 msgid "Show on Blog and Post Pages:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:466
+#: includes/admin/class-talkino-settings.php:477
 msgid "Show on Desktop:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:485
+#: includes/admin/class-talkino-settings.php:496
 msgid "Show on Mobile:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:921
+#: includes/admin/class-talkino-settings.php:932
 msgid "Show on Search Page:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:943
+#: includes/admin/class-talkino-settings.php:954
 msgid "Show on Woocommerce Pages:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:505
+#: includes/admin/class-talkino-settings.php:516
 msgid "Start Chatting Method:"
 msgstr ""
 
 #: includes/admin/class-talkino-settings.php:60
-#: includes/admin/class-talkino-settings.php:232
+#: includes/admin/class-talkino-settings.php:243
 msgid "Styles"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:613
+#: templates/contact-form.php:60
+msgid "Submit"
+msgstr ""
+
+#: includes/admin/class-talkino-settings.php:624
 msgid "Subtitle Color for Chatbox:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:350
+#: includes/admin/class-talkino-settings.php:361
 msgid "Subtitle Text for Away Status:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:369
+#: includes/admin/class-talkino-settings.php:380
 msgid "Subtitle Text for Offline Status:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:331
+#: includes/admin/class-talkino-settings.php:342
 msgid "Subtitle Text for Online Status:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:787
+#: includes/admin/class-talkino-settings.php:798
 msgid "Successful Email Sent Message:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1340
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:160
+#: includes/admin/class-talkino-settings.php:1357
+#: includes/admin/class-talkino-settings.php:1500
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:159
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:310
 msgid "Sunday"
 msgstr ""
 
@@ -591,7 +631,7 @@ msgstr ""
 msgid "Telegram Username:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1095
+#: includes/admin/class-talkino-settings.php:1115
 msgid "The advanced settings to control the option of uninstallation."
 msgstr ""
 
@@ -599,36 +639,39 @@ msgstr ""
 msgid "The job position of the agent."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:541
+#: includes/admin/class-talkino-settings.php:552
 msgid "Theme Color for Away Status:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:559
+#: includes/admin/class-talkino-settings.php:570
 msgid "Theme Color for Offline Status:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:523
+#: includes/admin/class-talkino-settings.php:534
 msgid "Theme Color for Online Status:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:2106
+#: includes/admin/class-talkino-settings.php:2281
 msgid "There is currently no agent."
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1283
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:109
+#: includes/admin/class-talkino-settings.php:1300
+#: includes/admin/class-talkino-settings.php:1443
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:108
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:259
 msgid "Thursday"
 msgstr ""
 
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:37
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:40
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:187
 msgid "Time Schedule:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:595
+#: includes/admin/class-talkino-settings.php:606
 msgid "Title Color for Chatbox:"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1061
+#: includes/admin/class-talkino-settings.php:1076
 msgid "to create Google reCaptcha v3 site key and secret key."
 msgstr ""
 
@@ -636,8 +679,10 @@ msgstr ""
 msgid "Traxconn"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1245
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:75
+#: includes/admin/class-talkino-settings.php:1262
+#: includes/admin/class-talkino-settings.php:1405
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:74
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:225
 msgid "Tuesday"
 msgstr ""
 
@@ -663,8 +708,10 @@ msgstr ""
 msgid "View Agents"
 msgstr ""
 
-#: includes/admin/class-talkino-settings.php:1264
-#: includes/admin/meta-boxes/views/html-meta-box-options.php:92
+#: includes/admin/class-talkino-settings.php:1281
+#: includes/admin/class-talkino-settings.php:1424
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:91
+#: includes/admin/meta-boxes/views/html-meta-box-options.php:242
 msgid "Wednesday"
 msgstr ""
 

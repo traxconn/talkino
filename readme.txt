@@ -1,12 +1,12 @@
-=== Talkino - Click to Chat for Social Messengers ===
+=== Talkino - Click to Chat for Multi Social Messengers ===
 Author URI: https://traxconn.com/
 Plugin URI: https://traxconn.com/plugins/talkino/
 Contributors: traxconn, yipchunmun, leesuijen
 Donate link: https://traxconn.com/
-Tags: click to chat, social messengers, whatsapp, facebook messenger, telegram
+Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.0.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -44,11 +44,11 @@ Mobile responsive for the chatbox.
 
 Talkino supports most plugins which includes [WooCommerce](https://wordpress.org/plugins/woocommerce/), [WPML](https://wpml.org/), [Polylang](https://wordpress.org/plugins/polylang/), [Loco Translate](https://wordpress.org/plugins/loco-translate/) and more.
 
-**Premium Version of Talkino**
+**Talkino Bundle**
 
-Let's check out our [Talkino Premium](https://traxconn.com/plugins/talkino/) for more advanced features as below!
+Let's check out our [Talkino Bundle](https://traxconn.com/plugins/talkino/) for more advanced features as below!
 
-- **All features of Talkino free version.**
+- **All features of Talkino.**
 - **Online time schedule** - Online time schedule of chatbox and able to cater for different agents and global business opening hours.
 - **Ordering list** - Drag and drop to arrange the ordering of contact methods and agents.
 - **Contact form** - Support contact form to let users email to admin when chatbox is under offline mode.
@@ -61,6 +61,10 @@ Let's check out our [Talkino Premium](https://traxconn.com/plugins/talkino/) for
 **Contribute to Talkino**
 
 We welcome you to contribute to Talkino by participating in the development of Talkino in the GitHub repository. If you have a suggestion, problem, pull request, or bug to report, please share it [here](https://github.com/Traxconn/talkino).
+
+**Support Us**
+
+If you enjoy using Talkino, we would appreciate it if you could leave us a review. Your reviews help encourage us to keep developing new features for the plugin. If you encounter any problems or bugs while using Talkino, please report them [here](https://github.com/traxconn/talkino/issues?state=open) or [contact us](https://traxconn.com/contact/) directly so we can help resolve the issue.
 
 == Installation ==
 
@@ -88,7 +92,7 @@ Talkino is a plugin that allows you to integrate multi social messengers and con
 
 = Where can I find the complete documentation?  =
 
-We have prepared the full documentation which includes the free and premium versions of Talkino. Kindly please refer [here](https://traxconn.com/plugins/talkino/docs/) for more information. 
+We have prepared the full documentation which includes the basic and bundle versions of Talkino. Kindly please refer [here](https://traxconn.com/plugins/talkino/docs/) for more information. 
 
 = What is an agent and how can I add an agent's information?  =
 
@@ -138,29 +142,33 @@ Yes, Talkino is GDPR compliant. Talkino does not collect any personal data about
 
 You can get in touch with us through our contact page [here](https://traxconn.com/contact/) or submit a support ticket to us (for premium users only) to get support.
 
-= How can I get the premium features of Talkino? =
+= How can I get the advanced features of Talkino Bundle? =
 
-The premium version of Talkino has more advanced features for advanced users.
-Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Talkino Premium. Just drop a us message here if you have any presale questions.
+Talkino Bundle has more advanced features for advanced users.
+Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Talkino Bundle. Just drop a us message here if you have any presale questions.
 
 == Screenshots ==
 
 1. Chatbox of Talkino
 2. List of Support Agents
 3. Agent's Contact Details
-4. Premium Feature of Time Schedule for Agents
-5. Chatbox Online Status and Premium Feature of Global Online Schedule
+4. Talkino Bundle's Feature of Time Schedule for Agents
+5. Chatbox Online Status and Talkino Bundle's Feature of Global Online Schedule
 6. Editable Text of Chatbox
 7. Customizable Styles of Chatbox
-8. Premium Feature of Ordering for Agents, Social Messengers and Contact Methods
-9. Premium Feature of Contact Form when Chatbox is Offline
-10. Premium Feature of Google reCaptcha v3 to Prevent Spam of Contact Form
-11. Premium Feature to Display or Hide the Chatbox on Pages
+8. Talkino Bundle's Feature of Ordering for Agents, Social Messengers and Contact Methods
+9. Talkino Bundle's Feature of Contact Form when Chatbox is Offline
+10. Talkino Bundle's Feature of Google reCaptcha v3 to Prevent Spam of Contact Form
+11. Talkino Bundle's Feature to Display or Hide the Chatbox on Pages
 12. Advanced Setting to Control the Option of Uninstallation 
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.1, Sep 17, 2022=
+* Improvement: Restructure to be compatible with Talkino Bundle.
+* Fixed: Security issue of escaping.
+
+= 1.0.0, Sep 13, 2022=
 * Initial release.
 
 == Upgrade Notice ==

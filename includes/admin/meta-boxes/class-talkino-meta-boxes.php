@@ -210,7 +210,7 @@ class Talkino_Meta_Boxes {
         $telegram_id = ( isset( $_POST['talkino_telegram_id'] ) ) ? sanitize_text_field( $_POST['talkino_telegram_id'] ): '';
         $phone_number = ( isset( $_POST['talkino_phone_number'] ) ) ? $talkino_sanitizer->sanitize_phone_number( $_POST['talkino_phone_number'] ): '';
         $email = ( isset( $_POST['talkino_email'] ) ) ? sanitize_email( $_POST['talkino_email'] ): '';
-
+        
         // Sanitize the options data.
         $agent_schedule_activate_status = ( isset( $_POST['talkino_agent_schedule_activate_status'] ) ) ? $talkino_sanitizer->sanitize_agent_schedule_online_status( $_POST['talkino_agent_schedule_activate_status'] ) : 'off';
 
