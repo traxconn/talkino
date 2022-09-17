@@ -1,0 +1,61 @@
+/* 
+** Property Ordering **
+1) Colors and Typography 
+2) Box model
+3) Border
+4) Positioning
+5) Display
+6) Other
+*/
+
+ #talkino_contact_ordering_list, #talkino_agent_ordering_list {
+    background-color: #fff;
+    width: 200px; 
+    border: 1px solid #b2b2b2; 
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    margin: 10px 10px 10px 0px;
+    padding: 5px 10px 5px 10px;
+    list-style: none;
+}
+
+li.talkino_lineitem {
+    background-color: #abc5ee;
+    color: #000;
+    font-size: 13px;
+    border:1px solid #b2b2b2;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;  
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 2px 5px 2px 5px;
+    height: 1.5em;
+    line-height: 1.5em;
+    cursor: move;
+}   
+    
+.talkino_sortable_placeholder{ 
+    border: 1px dashed #b2b2b2;
+    margin-top: 5px;
+    margin-bottom: 5px; 
+    padding: 2px 5px 2px 5px;
+    height: 1.5em;
+    line-height: 1.5em;  
+}
+
+.badge-pro-btn {
+    background-color: DodgerBlue;
+    color: white;
+    font-weight: bold;
+    border: none;
+    margin-bottom: 15px;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.badge-pro-btn:hover {
+    background-color: blue;
+}
