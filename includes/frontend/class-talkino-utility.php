@@ -27,7 +27,7 @@ class Talkino_Utility {
      * Check whether is blog page.
      * 
      * @since    1.0.0
-     * @return   boolean    true or false    The result of whether is blog page.
+     * @return   bool    true or false    The result of whether is blog page.
      */
     public function is_blog() {
 
@@ -39,7 +39,7 @@ class Talkino_Utility {
      * Check whether woocommerce is activated.
      * 
      * @since    1.0.0
-     * @return   boolean    true or false    The result of whether woocommerce is activated.
+     * @return   bool    true or false    The result of whether woocommerce is activated.
      */
     public function is_woocommerce_activated() {
         if ( class_exists( 'WooCommerce' ) ) {

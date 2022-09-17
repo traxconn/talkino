@@ -36,7 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
             ?>
                 <div class="talkino-notice"><i> <?php esc_html_e( get_option( 'talkino_agent_not_available_message' ), 'talkino' );?> </i></div>
             <?php
-        
+            
         }
         else {
 

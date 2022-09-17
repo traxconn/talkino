@@ -97,10 +97,6 @@ class Talkino_Admin {
         // Make sure to add the wp-color-picker dependecy to js file
         wp_enqueue_script( 'color_picker_js', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/color-picker.js', array( 'jquery', 'wp-color-picker' ), '', true  );
 	
-		// Pass $php_vars array to javascript as php object for contact ordering.
-		$ajax_url = array( 'ajax_url' => admin_url( 'admin-ajax.php' ) );
-		wp_localize_script( $this->plugin_name, 'ajax_object', $ajax_url );
-
 	}
 
 }

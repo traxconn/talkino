@@ -91,6 +91,26 @@ class Talkino_Frontend {
 	 */
 	public function enqueue_scripts() {
 
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/talkino-frontend.js', array( 'jquery' ), $this->version, true );
+
+		// Enqueue the google recaptcha script if google recaptcha settings are activated.
+		if( get_option( 'talkino_recaptcha_status' ) == 'on' && get_option( 'talkino_recaptcha_site_key' ) != '' && get_option( 'talkino_recaptcha_secret_key' ) != '' ) {
+
+			wp_enqueue_script( 'google-recaptcha-js', '//www.google.com/recaptcha/api.js?render=' . get_option( 'talkino_recaptcha_site_key' ) );
+		
+		}
+		
+		// Pass $php_vars array to javascript as php object for contact form.
+		$ajax_url = array( 
+							'ajax_url' => admin_url( 'admin-ajax.php' ),
+							'activate_recaptcha_status' => get_option( 'talkino_recaptcha_status' ),
+							'recaptcha_site_key' => get_option( 'talkino_recaptcha_site_key' ),
+							'recaptcha_secret_key' => get_option( 'talkino_recaptcha_secret_key' ),
+							'invalid_site_key_message' => esc_html__('Invalid Google reCaptcha v3 site key!', 'talkino')
+						);
+						
+		wp_localize_script( $this->plugin_name, 'ajax_object', $ajax_url );
+
 	}
 
 }

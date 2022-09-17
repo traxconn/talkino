@@ -136,6 +136,16 @@ class Talkino {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-agent-manager.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-utility.php';
 
+		// The class responsible for defining all bundle actions that occur in the frontend side of the site. 
+		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
+
+			require_once( ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-scheduler.php' );
+			require_once( ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-contact-form-handler.php' );
+			require_once( ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-email-manager.php' );
+			require_once( ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-display-controller.php' );
+			
+		}
+
 		$this->loader = new Talkino_Loader();
 
 	}
@@ -224,13 +234,22 @@ class Talkino {
 
 		$talkino_frontend = new Talkino_Frontend( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
 		$talkino_chatbox = new Talkino_Chatbox();
-
+		
 		$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_scripts' );
 
 		// Register hook to initialize chatbox.
 		$this->loader->add_filter( 'wp_head', $talkino_chatbox, 'chatbox_init' );
 
+		// Register bundle hook to initialize contact form
+		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { 
+			$talkino_contact_form_handler = new Talkino_Contact_Form_Handler();
+
+			// Register hook to process contact form submission via ajax actions.
+			$this->loader->add_action( 'wp_ajax_submit_talkino_contact_form', $talkino_contact_form_handler, 'submit_talkino_contact_form' ); 
+			$this->loader->add_action( 'wp_ajax_nopriv_submit_talkino_contact_form', $talkino_contact_form_handler, 'submit_talkino_contact_form' ); 
+	
+		}
 	}
 
 	/**

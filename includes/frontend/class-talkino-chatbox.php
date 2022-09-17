@@ -33,7 +33,16 @@ class Talkino_Chatbox {
         // Declare the class to load html to render chatbox.
         $talkino_file_loader = new Talkino_File_Loader();
 		$talkino_agent_manager = new Talkino_Agent_Manager();
-        $talkino_utility = new Talkino_Utility();
+        
+        $is_global_schedule_online_status = false;
+        
+        // Declare the bundle class to load html to render chatbox.
+        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
+		    $talkino_scheduler = new Talkino_Scheduler();
+
+            // Call the function to check schedule online status via current weekday and time. 
+		    $is_global_schedule_online_status = $talkino_scheduler->check_global_schedule_online_status();
+        }
 
 		// Call to query agent data.
         $talkino_agent_manager->query_agent_data();
@@ -234,19 +243,27 @@ class Talkino_Chatbox {
             }
 
         }
+
+        // Check whether to display or hide chatbox on pages
+        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
+
+            $talkino_display_controller = new Talkino_Display_Controller();
+            $show_chatbox = $talkino_display_controller->is_page_display( $show_chatbox );
+        
+        }
 		
         // Ensure that it is show on chatbox.
         if ( $show_chatbox == true ) {
 
             // Global online status is online and schedule is available.
-            if( get_option( 'talkino_global_online_status' ) == 'Online' ) {
+            if( ( ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) == 'Online') || ( get_option( 'talkino_global_online_status' ) == 'Online' && $is_global_schedule_online_status == true ) ) {
 
                 $talkino_file_loader->load_chatbox_template_file( 'chatbox-online.php', $data );
 
             } 
 
             // Global online status is away and schedule is available.
-            elseif( get_option( 'talkino_global_online_status' ) == 'Away' ) { 
+            elseif( ( ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) == 'Away') || ( get_option( 'talkino_global_online_status' ) == 'Away' && $is_global_schedule_online_status == true ) ) { 
                 
                 $talkino_file_loader->load_chatbox_template_file( 'chatbox-away.php', $data );    
             
@@ -254,9 +271,19 @@ class Talkino_Chatbox {
 
             // Global online status if offline or schedule is not available.
             else {
-   
-                $talkino_file_loader->load_chatbox_template_file( 'chatbox-offline.php', $data ); 
 
+                // Function to show contact form when offline.
+                if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_contact_form_status' ) == 'on' ) { 
+                
+                    $talkino_file_loader->load_chatbox_template_file( 'contact-form.php', $data );    
+                
+                }
+                else {
+                    
+                    $talkino_file_loader->load_chatbox_template_file( 'chatbox-offline.php', $data ); 
+
+                }
+            
             }   
 
             // Call the function to render chatbox style.
