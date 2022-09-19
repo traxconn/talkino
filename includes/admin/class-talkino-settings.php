@@ -59,8 +59,8 @@ class Talkino_Settings {
                 <a href="?post_type=talkino_agents&page=talkino_settings_page" class="nav-tab <?php if( $tab===null ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Settings', 'talkino' )?></a>
                 <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=styles" class="nav-tab <?php if( $tab==='styles' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Styles', 'talkino' )?></a>
                 <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=ordering" class="nav-tab <?php if( $tab==='ordering' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Ordering', 'talkino' )?></a>
-                <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=contact-form" class="nav-tab <?php if( $tab==='contact-form' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Contact Form', 'talkino' )?></a>
                 <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=display" class="nav-tab <?php if( $tab==='display' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Display', 'talkino' )?></a>
+                <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=contact-form" class="nav-tab <?php if( $tab==='contact-form' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Contact Form', 'talkino' )?></a>
                 <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=advanced" class="nav-tab <?php if( $tab==='advanced' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Advanced', 'talkino' )?></a>
             </nav>
             
@@ -109,6 +109,29 @@ class Talkino_Settings {
                         <?php
                         break;
 
+                    case 'display':
+                        ?>
+                        <div class="wrap">
+                            <form action="options.php" method="post">
+                                <?php
+                                // Show error or update message.
+                                settings_errors();
+    
+                                // Output security fields for the registered advanced page.
+                                settings_fields( 'talkino_display_page' );
+                                
+                                // Output advanced sections and fields.
+                                do_settings_sections( 'talkino_display_page' );
+                                
+                                // Output save settings button.
+                                submit_button( esc_html__( 'Save Settings', 'talkino' ) );
+                                
+                                ?>
+                            </form>
+                        </div>
+                        <?php
+                        break;
+
                     case 'contact-form':
                     ?>
                     <div class="wrap">
@@ -123,31 +146,6 @@ class Talkino_Settings {
                             // Output contact form sections and fields.
                             do_settings_sections( 'talkino_contact_form_page' );
                             
-                            if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { 
-                                // Output save settings button.
-                                submit_button( esc_html__( 'Save Settings', 'talkino' ) );
-                            }
-                            ?>
-                        </form>
-                    </div>
-                    <?php
-                    break;
-
-                    case 'display':
-                    ?>
-                    <div class="wrap">
-                        <form action="options.php" method="post">
-                            <?php
-                            // Show error or update message.
-                            settings_errors();
-
-                            // Output security fields for the registered advanced page.
-                            settings_fields( 'talkino_display_page' );
-                            
-                            // Output advanced sections and fields.
-                            do_settings_sections( 'talkino_display_page' );
-                            
-                            // Output save settings button.
                             if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { 
                                 // Output save settings button.
                                 submit_button( esc_html__( 'Save Settings', 'talkino' ) );
@@ -253,6 +251,14 @@ class Talkino_Settings {
             'talkino_ordering_page'
         );
 
+        // Register display section in the talkino page.
+        add_settings_section(
+            'talkino_display_section',
+            esc_html__( 'Display', 'talkino' ), 
+            array( $this, 'display_section_callback' ),
+            'talkino_display_page'
+        );
+
         // Register contact form section in the talkino contact form page.
         add_settings_section(
             'talkino_contact_form_section',
@@ -267,14 +273,6 @@ class Talkino_Settings {
             esc_html__( 'Google reCaptcha v3', 'talkino' ), 
             array( $this, 'google_recaptcha_section_callback' ),
             'talkino_contact_form_page'
-        );
-
-        // Register display section in the talkino page.
-        add_settings_section(
-            'talkino_display_section',
-            esc_html__( 'Display', 'talkino' ), 
-            array( $this, 'display_section_callback' ),
-            'talkino_display_page'
         );
 
         // Register advanced section in the talkino advanced page.
@@ -651,7 +649,7 @@ class Talkino_Settings {
         // Add contact ordering option field.
         add_settings_field(
             'contact_ordering_id',
-            esc_html__( 'Contact Ordering:', 'talkino' ),
+            esc_html__( 'Ordering of Chat Channels:', 'talkino' ),
             array( $this, 'contact_ordering_field_callback' ),
             'talkino_ordering_page',
             'talkino_ordering_section'
@@ -660,11 +658,92 @@ class Talkino_Settings {
         // Add agent ordering option field.
         add_settings_field(
             'agent_ordering_id',
-            esc_html__( 'Agent Ordering:', 'talkino' ),
+            esc_html__( 'Ordering of Agents:', 'talkino' ),
             array( $this, 'agent_ordering_field_callback' ),
             'talkino_ordering_page',
             'talkino_ordering_section'
         );
+
+        /********************************* Page *********************************/
+    
+        // Register checkbox exclude pages option field.
+        register_setting(
+            'talkino_display_page',
+            'talkino_chatbox_exclude_pages',
+            array(
+                'type' => 'array'
+            )
+        );
+
+        // Add checkbox exclude pages option field
+        add_settings_field(
+            'chatbox_exclude_pages_id',
+            esc_html__( 'Exclude Pages from Chatbox Display:', 'talkino' ),
+            array( $this, 'chatbox_exclude_pages_field_callback' ),
+            'talkino_display_page',
+            'talkino_display_section'
+        );
+
+        // Register show on post option field.
+        register_setting(
+            'talkino_display_page',
+            'talkino_show_on_post',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => array( $this, 'sanitize_show_on_post' )
+            )
+        );
+
+        // Add show on post option field.
+        add_settings_field(
+            'show_on_post_id',
+            esc_html__( 'Show on Blog and Post Pages:', 'talkino' ),
+            array( $this, 'show_on_post_field_callback' ),
+            'talkino_display_page',
+            'talkino_display_section'
+        );
+
+        // Register show on search option field.
+        register_setting(
+            'talkino_display_page',
+            'talkino_show_on_search',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => array( $this, 'sanitize_show_on_search' )
+            )
+        );
+
+        // Add show on search option field.
+        add_settings_field(
+            'show_on_search_id',
+            esc_html__( 'Show on Search Page:', 'talkino' ),
+            array( $this, 'show_on_search_field_callback' ),
+            'talkino_display_page',
+            'talkino_display_section'
+        );
+
+        // Check whether woocommerce is activated.
+        if ( $talkino_utility->is_woocommerce_activated() ) {
+
+            // Register show on woocommerce shop, product, product category and tag pages option field.
+            register_setting(
+                'talkino_display_page',
+                'talkino_show_on_woocommerce_pages',
+                array(
+                    'type' => 'string',
+                    'sanitize_callback' => array( $this, 'sanitize_show_on_woocommerce_pages' )
+                )
+            );
+
+            // Add show on woocommerce shop, product, product category and tag pages option field.
+            add_settings_field(
+                'show_on_woocommerce_pages_id',
+                esc_html__( 'Show on Woocommerce Pages:', 'talkino' ),
+                array( $this, 'show_on_woocommerce_pages_field_callback' ),
+                'talkino_display_page',
+                'talkino_display_section'
+            );
+        }
 
         /********************************* Contact Form *********************************/
 
@@ -876,87 +955,6 @@ class Talkino_Settings {
             'talkino_contact_form_page',
             'talkino_google_recaptcha_section'
         );
-    
-        /********************************* Page *********************************/
-    
-        // Register checkbox exclude pages option field.
-        register_setting(
-            'talkino_display_page',
-            'talkino_chatbox_exclude_pages',
-            array(
-                'type' => 'array'
-            )
-        );
-
-        // Add checkbox exclude pages option field
-        add_settings_field(
-            'chatbox_exclude_pages_id',
-            esc_html__( 'Exclude Pages from Chatbox Display:', 'talkino' ),
-            array( $this, 'chatbox_exclude_pages_field_callback' ),
-            'talkino_display_page',
-            'talkino_display_section'
-        );
-
-        // Register show on post option field.
-        register_setting(
-            'talkino_display_page',
-            'talkino_show_on_post',
-            array(
-                'type' => 'string',
-                'sanitize_callback' => array( $this, 'sanitize_show_on_post' )
-            )
-        );
-
-        // Add show on post option field.
-        add_settings_field(
-            'show_on_post_id',
-            esc_html__( 'Show on Blog and Post Pages:', 'talkino' ),
-            array( $this, 'show_on_post_field_callback' ),
-            'talkino_display_page',
-            'talkino_display_section'
-        );
-
-        // Register show on search option field.
-        register_setting(
-            'talkino_display_page',
-            'talkino_show_on_search',
-            array(
-                'type' => 'string',
-                'sanitize_callback' => array( $this, 'sanitize_show_on_search' )
-            )
-        );
-
-        // Add show on search option field.
-        add_settings_field(
-            'show_on_search_id',
-            esc_html__( 'Show on Search Page:', 'talkino' ),
-            array( $this, 'show_on_search_field_callback' ),
-            'talkino_display_page',
-            'talkino_display_section'
-        );
-
-        // Check whether woocommerce is activated.
-        if ( $talkino_utility->is_woocommerce_activated() ) {
-
-            // Register show on woocommerce shop, product, product category and tag pages option field.
-            register_setting(
-                'talkino_display_page',
-                'talkino_show_on_woocommerce_pages',
-                array(
-                    'type' => 'string',
-                    'sanitize_callback' => array( $this, 'sanitize_show_on_woocommerce_pages' )
-                )
-            );
-
-            // Add show on woocommerce shop, product, product category and tag pages option field.
-            add_settings_field(
-                'show_on_woocommerce_pages_id',
-                esc_html__( 'Show on Woocommerce Pages:', 'talkino' ),
-                array( $this, 'show_on_woocommerce_pages_field_callback' ),
-                'talkino_display_page',
-                'talkino_display_section'
-            );
-        }
 
         /********************************* Advanced *********************************/
 
@@ -1034,7 +1032,21 @@ class Talkino_Settings {
     function ordering_section_callback( $args ) {
 
         ?>
-        <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Just drag and drop to arrange the ordering of contact and agent. It will be saved automatically.', 'talkino' ); ?></p>
+        <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Just drag and drop to arrange the ordering of chat channels and agents. It will be saved automatically.', 'talkino' ); ?></p>
+        <?php
+
+    }
+
+    /**
+     * Callback function to render the display section.
+     * 
+     * @since    1.0.0
+     * @param    array    $args    The arguments of display section.
+     */
+    function display_section_callback( $args ) {
+
+        ?>
+        <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Manage the pages, post, search and WooCommerce pages to display or hide chatbox.', 'talkino' ); ?></p>
         <?php
 
     }
@@ -1076,30 +1088,6 @@ class Talkino_Settings {
         <?php esc_html_e( 'Please refer', 'talkino' ); ?><a href="https://www.google.com/recaptcha/admin/create" target=”_blank” > here </a><?php esc_html_e( 'to create Google reCaptcha v3 site key and secret key.', 'talkino' ); ?>  
         </p>
         <?php
-
-    }
-
-    /**
-     * Callback function to render the display section.
-     * 
-     * @since    1.0.0
-     * @param    array    $args    The arguments of display section.
-     */
-    function display_section_callback( $args ) {
-
-        ?>
-        <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Manage the pages, post, search and WooCommerce pages to display or hide chatbox.', 'talkino' ); ?></p>
-        
-        <?php
-        if ( ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-
-            <!-- Badge Pro -->
-            <div class="badge-pro">
-                <input type="button" class="badge-pro-btn" value="<?php esc_html_e( 'Premium Features', 'talkino') ?> &#x27A4;" onClick="window.open('https://traxconn.com/plugins/talkino/');">
-            </div>
-
-        <?php
-        }
 
     }
 
@@ -1534,6 +1522,14 @@ class Talkino_Settings {
         if ( ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
 
             // Declare the default values of disabled input fields.
+            $global_schedule_online_status['monday_online_status'] = 'on';
+            $global_schedule_online_status['tuesday_online_status'] = 'on';
+            $global_schedule_online_status['wednesday_online_status'] = 'on';
+            $global_schedule_online_status['thursday_online_status'] = 'on';
+            $global_schedule_online_status['friday_online_status'] = 'on';
+            $global_schedule_online_status['saturday_online_status'] = 'on';
+            $global_schedule_online_status['sunday_online_status'] = 'on';
+
             $global_schedule_online_status['monday_start_time'] = '00:00';
             $global_schedule_online_status['monday_end_time'] = '23:30';
             $global_schedule_online_status['tuesday_start_time'] = '00:00';
@@ -2163,17 +2159,7 @@ class Talkino_Settings {
      */
     function contact_ordering_field_callback() {
 
-        if ( !is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-        <!-- Badge Pro -->
-        <div class="badge-pro">
-            <input type="button" class="badge-pro-btn" value="<?php esc_html_e( 'Premium Features', 'talkino') ?> &#x27A4;" onClick="window.open('https://traxconn.com/plugins/talkino/');">
-        </div>
-        <?php
-
-        }
-
         ?>
-
         <div class='wrap'>
             <form name="talkino_contact_ordering_form" method="post" action=""> 
                 <ul id="talkino_contact_ordering_list">
@@ -2234,17 +2220,6 @@ class Talkino_Settings {
             'orderby'    => 'meta_value_num',
             'order'      => 'ASC'
         );
-
-        if ( !is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-
-        <!-- Badge Pro -->
-        <div class="badge-pro">
-            <input type="button" class="badge-pro-btn" value="<?php esc_html_e( 'Premium Features', 'talkino') ?> &#x27A4;" onClick="window.open('https://traxconn.com/plugins/talkino/');">
-        </div>
-
-        <?php
-
-        }
 
         // Declare query object.
         $loop = new WP_Query( $args );
@@ -2422,6 +2397,202 @@ class Talkino_Settings {
         ?>
         <input type="text" name="talkino_chatbox_subtitle_color" class="color-picker" value="<?php echo isset( $chatbox_subtitle_color_field ) ? esc_attr( $chatbox_subtitle_color_field ) : '#000'; ?>"/>
         <?php
+
+    }
+
+    /********************************* Page *********************************/
+
+     /**
+     * Callback function to render chatbox exclude pages field.
+     * 
+     * @since    1.0.0
+     */
+    function chatbox_exclude_pages_field_callback() {
+
+        $chatbox_exclude_pages = get_option( 'talkino_chatbox_exclude_pages' );
+         
+        $pages = get_pages(); ?>
+
+        <?php foreach( $pages as $page ) { ?>
+            <?php 
+            $is_checked = ( ! empty( $chatbox_exclude_pages ) && in_array( $page->ID, $chatbox_exclude_pages ) ) ? 'checked' : ''; 
+            
+            $talkino_utility = new Talkino_Utility();
+
+            // If woocommerce is active, exclude the page that is set as blog page on theme and woocommerce shop page.
+            if ($talkino_utility->is_woocommerce_activated()) {
+
+                if ( $page->ID != get_option( 'page_for_posts' ) &&  $page->ID != get_option( 'woocommerce_shop_page_id' ) ) {
+                ?>
+                    <p>
+                        <input name="talkino_chatbox_exclude_pages[]" type="checkbox" <?php echo esc_attr( $is_checked )?> value='<?php echo esc_attr( $page->ID ); ?>' /> <?php echo esc_attr( $page->post_title ); ?>
+                    </p>
+                <?php
+
+                } 
+
+            }
+            else { // If woocommerce is not active, exclude the page that is set as blog page on theme.
+
+                if ( $page->ID != get_option( 'page_for_posts' ) ) {
+
+                ?>
+                    <p>
+                        <input name="talkino_chatbox_exclude_pages[]" type="checkbox" <?php echo esc_attr( $is_checked )?> value='<?php echo esc_attr( $page->ID ); ?>' /> <?php echo esc_attr( $page->post_title ); ?>
+                    </p>
+                <?php
+
+                } 
+
+            }
+
+        }; 
+    }
+
+    /**
+     * Callback function to render show on post field.
+     * 
+     * @since    1.0.0
+     */
+    function show_on_post_field_callback() {
+
+        $show_on_post_field = get_option( 'talkino_show_on_post' );
+        $is_show_on_post_checked = ( ! empty ( $show_on_post_field ) && $show_on_post_field == 'on' ) ? 'checked' : '';
+        
+        ?>
+        <input name="talkino_show_on_post" type="hidden" value='off'/>
+        <input name="talkino_show_on_post" type="checkbox" <?php echo esc_attr( $is_show_on_post_checked )?> value='on' /> <?php esc_html_e( 'Enable Talkino chatbox to show on blog and post pages.', 'talkino' ); ?>
+        <?php
+
+    }
+
+    /**
+     * Sanitize function to validate the show on post field.
+     * 
+     * @since     1.0.0
+     * @param     string    $show_on_post    The show on post value.
+     * @return    string    $show_on_post    The validated value of show on post.
+     */
+    function sanitize_show_on_post( $show_on_post ) {
+        
+        // Sanitize the checkbox 
+        if ( ! empty ( $show_on_post ) ) {
+            
+            if ( $show_on_post == 'on' || $show_on_post == 'off' ) {
+
+                $show_on_post = $show_on_post;
+            
+            }
+            else {
+            
+                $show_on_post = 'off';
+
+                // Notify the user on invalid input.
+                add_settings_error( 'talkino_show_on_post', 'invalid_show_on_post_value', esc_html__( 'Oops, you have inserted invalid input of show on post field!', 'talkino' ), 'error' );
+
+            }
+
+        }
+
+        return $show_on_post;
+
+    }
+
+    /**
+     * Callback function to render show on search field.
+     * 
+     * @since    1.0.0
+     */
+    function show_on_search_field_callback() {
+
+        $show_on_search_field = get_option( 'talkino_show_on_search' );
+        $is_show_on_search_checked = ( ! empty ( $show_on_search_field ) && $show_on_search_field == 'on' ) ? 'checked' : '';
+        
+        ?>
+        <input name="talkino_show_on_search" type="hidden" value='off'/>
+        <input name="talkino_show_on_search" type="checkbox" <?php echo esc_attr( $is_show_on_search_checked )?> value='on' /> <?php esc_html_e( 'Enable Talkino chatbox to show on search page.', 'talkino' ); ?>
+        <?php  
+
+    }
+
+    /**
+     * Sanitize function to validate the show on search field.
+     * 
+     * @since     1.0.0
+     * @param     string    $show_on_search    The show on search value.
+     * @return    string    $show_on_search    The validated value of show on search.
+     */
+    function sanitize_show_on_search( $show_on_search ) {
+        
+        // Sanitize the checkbox 
+        if ( ! empty ( $show_on_search ) ) {
+            
+            if ( $show_on_search == 'on' || $show_on_search == 'off' ) {
+
+                $show_on_search = $show_on_search;
+            
+            }
+            else {
+            
+                $show_on_search = 'off';
+
+                // Notify the user on invalid input.
+                add_settings_error( 'talkino_show_on_search', 'invalid_show_on_search_value', esc_html__( 'Oops, you have inserted invalid input of show on search page field!', 'talkino' ), 'error' );
+
+            }
+
+        }
+
+        return $show_on_search;
+
+    }
+
+    /**
+     * Callback function to render show on woocommerce shop and product pages field.
+     * 
+     * @since    1.0.0
+     */
+    function show_on_woocommerce_pages_field_callback() {
+
+        $show_on_woocommerce_pages_field = get_option( 'talkino_show_on_woocommerce_pages' );
+        $is_show_on_woocommerce_pages_checked = ( ! empty ( $show_on_woocommerce_pages_field ) && $show_on_woocommerce_pages_field == 'on' ) ? 'checked' : '';
+        
+        ?>
+        <input name="talkino_show_on_woocommerce_pages" type="hidden" value='off'/>
+        <input name="talkino_show_on_woocommerce_pages" type="checkbox" <?php echo esc_attr( $is_show_on_woocommerce_pages_checked )?> value='on' /> <?php esc_html_e( 'Enable Talkino chatbox to show on WooCommerce shop, product, product category and tag pages.', 'talkino' ); ?>
+        <?php
+        
+    }
+
+    /**
+     * Sanitize function to validate the show on woocommerce shop, product, product category and tag pages field.
+     * 
+     * @since     1.0.0
+     * @param     string    $show_on_woocommerce_pages_field    The show on woocommerce shop and product pages value.
+     * @return    string    $show_on_woocommerce_pages_field    The validated value of show on woocommerce shop and product pages.
+     */
+    function sanitize_show_on_woocommerce_pages( $show_on_woocommerce_pages_field ) {
+        
+        // Sanitize the checkbox 
+        if ( ! empty ( $show_on_woocommerce_pages_field ) ) {
+            
+            if ( $show_on_woocommerce_pages_field == 'on' || $show_on_woocommerce_pages_field == 'off' ) {
+
+                $show_on_woocommerce_pages_field = $show_on_woocommerce_pages_field;
+            
+            }
+            else {
+            
+                $show_on_woocommerce_pages_field = 'off';
+
+                // Notify the user on invalid input.
+                add_settings_error( 'talkino_show_on_woocommerce_pages', 'invalid_show_on_woocommerce_pages_value', esc_html__( 'Oops, you have inserted invalid input of show on woocommerce shop and product pages field!', 'talkino' ), 'error' );
+
+            }
+
+        }
+
+        return $show_on_woocommerce_pages_field;
 
     }
 
@@ -2759,262 +2930,6 @@ class Talkino_Settings {
             
         <?php
         }
-
-    }
-
-    /********************************* Page *********************************/
-
-     /**
-     * Callback function to render chatbox exclude pages field.
-     * 
-     * @since    1.0.0
-     */
-    function chatbox_exclude_pages_field_callback() {
-
-        $chatbox_exclude_pages = get_option( 'talkino_chatbox_exclude_pages' );
-         
-        $pages = get_pages(); ?>
-
-        <?php foreach( $pages as $page ) { ?>
-            <?php 
-            $is_checked = ( ! empty( $chatbox_exclude_pages ) && in_array( $page->ID, $chatbox_exclude_pages ) ) ? 'checked' : ''; 
-            
-            $talkino_utility = new Talkino_Utility();
-
-            // If woocommerce is active, exclude the page that is set as blog page on theme and woocommerce shop page.
-            if ($talkino_utility->is_woocommerce_activated()) {
-
-                if ( $page->ID != get_option( 'page_for_posts' ) &&  $page->ID != get_option( 'woocommerce_shop_page_id' ) ) {
-                ?>
-                    <p>
-                        <?php
-                        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-
-                            <input name="talkino_chatbox_exclude_pages[]" type="checkbox" <?php echo esc_attr( $is_checked )?> value='<?php echo esc_attr( $page->ID ); ?>' /> <?php echo esc_attr( $page->post_title ); ?>
-                        
-                        <?php 
-                        } 
-                        else { ?>
-
-                            <input name="talkino_chatbox_exclude_pages[]" type="checkbox" <?php echo esc_attr( $is_checked )?> value='<?php echo esc_attr( $page->ID ); ?>' disabled /> <?php echo esc_attr( $page->post_title ); ?>
-                        
-                        <?php
-                        } ?>
-                    </p>
-                <?php
-
-                } 
-
-            }
-            else { // If woocommerce is not active, exclude the page that is set as blog page on theme.
-
-                if ( $page->ID != get_option( 'page_for_posts' ) ) {
-
-                ?>
-                    <p>
-                    <?php
-                        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-                        
-                            <input name="talkino_chatbox_exclude_pages[]" type="checkbox" <?php echo esc_attr( $is_checked )?> value='<?php echo esc_attr( $page->ID ); ?>' /> <?php echo esc_attr( $page->post_title ); ?>
-                        
-                        <?php 
-                        }  
-                        else { ?>
-
-                            <input name="talkino_chatbox_exclude_pages[]" type="checkbox" <?php echo esc_attr( $is_checked )?> value='<?php echo esc_attr( $page->ID ); ?>' disabled /> <?php echo esc_attr( $page->post_title ); ?>
-                            
-                        <?php
-                        } ?>
-                    </p>
-                <?php
-
-                } 
-
-            }
-
-        }; 
-    }
-
-    /**
-     * Callback function to render show on post field.
-     * 
-     * @since    1.0.0
-     */
-    function show_on_post_field_callback() {
-
-        $show_on_post_field = get_option( 'talkino_show_on_post' );
-        $is_show_on_post_checked = ( ! empty ( $show_on_post_field ) && $show_on_post_field == 'on' ) ? 'checked' : '';
-        
-        ?>
-        <input name="talkino_show_on_post" type="hidden" value='off'/>
-
-        <?php
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-        
-            <input name="talkino_show_on_post" type="checkbox" <?php echo esc_attr( $is_show_on_post_checked )?> value='on' /> <?php esc_html_e( 'Enable Talkino chatbox to show on blog and post pages.', 'talkino' ); ?>
-        
-        <?php 
-        }
-        else { ?>
-        
-            <input name="talkino_show_on_post" type="checkbox" <?php echo esc_attr( $is_show_on_post_checked )?> value='on' disabled /> <?php esc_html_e( 'Enable Talkino chatbox to show on blog and post pages.', 'talkino' ); ?>
-            
-        <?php
-        }
-
-    }
-
-    /**
-     * Sanitize function to validate the show on post field.
-     * 
-     * @since     1.0.0
-     * @param     string    $show_on_post    The show on post value.
-     * @return    string    $show_on_post    The validated value of show on post.
-     */
-    function sanitize_show_on_post( $show_on_post ) {
-        
-        // Sanitize the checkbox 
-        if ( ! empty ( $show_on_post ) ) {
-            
-            if ( $show_on_post == 'on' || $show_on_post == 'off' ) {
-
-                $show_on_post = $show_on_post;
-            
-            }
-            else {
-            
-                $show_on_post = 'off';
-
-                // Notify the user on invalid input.
-                add_settings_error( 'talkino_show_on_post', 'invalid_show_on_post_value', esc_html__( 'Oops, you have inserted invalid input of show on post field!', 'talkino' ), 'error' );
-
-            }
-
-        }
-
-        return $show_on_post;
-
-    }
-
-    /**
-     * Callback function to render show on search field.
-     * 
-     * @since    1.0.0
-     */
-    function show_on_search_field_callback() {
-
-        $show_on_search_field = get_option( 'talkino_show_on_search' );
-        $is_show_on_search_checked = ( ! empty ( $show_on_search_field ) && $show_on_search_field == 'on' ) ? 'checked' : '';
-        
-        ?>
-        <input name="talkino_show_on_search" type="hidden" value='off'/>
-
-        <?php
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-        
-            <input name="talkino_show_on_search" type="checkbox" <?php echo esc_attr( $is_show_on_search_checked )?> value='on' /> <?php esc_html_e( 'Enable Talkino chatbox to show on search page.', 'talkino' ); ?>
-            
-        <?php 
-        }
-        else { ?>
-        
-            <input name="talkino_show_on_search" type="checkbox" <?php echo esc_attr( $is_show_on_search_checked )?> value='on' disabled /> <?php esc_html_e( 'Enable Talkino chatbox to show on search page.', 'talkino' ); ?>
-                    
-        <?php
-        }
-
-    }
-
-    /**
-     * Sanitize function to validate the show on search field.
-     * 
-     * @since     1.0.0
-     * @param     string    $show_on_search    The show on search value.
-     * @return    string    $show_on_search    The validated value of show on search.
-     */
-    function sanitize_show_on_search( $show_on_search ) {
-        
-        // Sanitize the checkbox 
-        if ( ! empty ( $show_on_search ) ) {
-            
-            if ( $show_on_search == 'on' || $show_on_search == 'off' ) {
-
-                $show_on_search = $show_on_search;
-            
-            }
-            else {
-            
-                $show_on_search = 'off';
-
-                // Notify the user on invalid input.
-                add_settings_error( 'talkino_show_on_search', 'invalid_show_on_search_value', esc_html__( 'Oops, you have inserted invalid input of show on search page field!', 'talkino' ), 'error' );
-
-            }
-
-        }
-
-        return $show_on_search;
-
-    }
-
-    /**
-     * Callback function to render show on woocommerce shop and product pages field.
-     * 
-     * @since    1.0.0
-     */
-    function show_on_woocommerce_pages_field_callback() {
-
-        $show_on_woocommerce_pages_field = get_option( 'talkino_show_on_woocommerce_pages' );
-        $is_show_on_woocommerce_pages_checked = ( ! empty ( $show_on_woocommerce_pages_field ) && $show_on_woocommerce_pages_field == 'on' ) ? 'checked' : '';
-        
-        ?>
-        <input name="talkino_show_on_woocommerce_pages" type="hidden" value='off'/>
-
-        <?php
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-
-            <input name="talkino_show_on_woocommerce_pages" type="checkbox" <?php echo esc_attr( $is_show_on_woocommerce_pages_checked )?> value='on' /> <?php esc_html_e( 'Enable Talkino chatbox to show on WooCommerce shop, product, product category and tag pages.', 'talkino' ); ?>
-        
-        <?php
-        }
-        else { ?>
-
-            <input name="talkino_show_on_woocommerce_pages" type="checkbox" <?php echo esc_attr( $is_show_on_woocommerce_pages_checked )?> value='on' disabled /> <?php esc_html_e( 'Enable Talkino chatbox to show on WooCommerce shop, product, product category and tag pages.', 'talkino' ); ?>
-        
-        <?php 
-        }
-
-    }
-
-    /**
-     * Sanitize function to validate the show on woocommerce shop, product, product category and tag pages field.
-     * 
-     * @since     1.0.0
-     * @param     string    $show_on_woocommerce_pages_field    The show on woocommerce shop and product pages value.
-     * @return    string    $show_on_woocommerce_pages_field    The validated value of show on woocommerce shop and product pages.
-     */
-    function sanitize_show_on_woocommerce_pages( $show_on_woocommerce_pages_field ) {
-        
-        // Sanitize the checkbox 
-        if ( ! empty ( $show_on_woocommerce_pages_field ) ) {
-            
-            if ( $show_on_woocommerce_pages_field == 'on' || $show_on_woocommerce_pages_field == 'off' ) {
-
-                $show_on_woocommerce_pages_field = $show_on_woocommerce_pages_field;
-            
-            }
-            else {
-            
-                $show_on_woocommerce_pages_field = 'off';
-
-                // Notify the user on invalid input.
-                add_settings_error( 'talkino_show_on_woocommerce_pages', 'invalid_show_on_woocommerce_pages_value', esc_html__( 'Oops, you have inserted invalid input of show on woocommerce shop and product pages field!', 'talkino' ), 'error' );
-
-            }
-
-        }
-
-        return $show_on_woocommerce_pages_field;
 
     }
 

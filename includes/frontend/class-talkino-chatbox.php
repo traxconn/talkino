@@ -33,6 +33,7 @@ class Talkino_Chatbox {
         // Declare the class to load html to render chatbox.
         $talkino_file_loader = new Talkino_File_Loader();
 		$talkino_agent_manager = new Talkino_Agent_Manager();
+        $talkino_utility = new Talkino_Utility();
         
         $is_global_schedule_online_status = false;
         
@@ -245,13 +246,35 @@ class Talkino_Chatbox {
         }
 
         // Check whether to display or hide chatbox on pages
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
+		// Get the page id.
+		$page_id = get_queried_object_id();
 
-            $talkino_display_controller = new Talkino_Display_Controller();
-            $show_chatbox = $talkino_display_controller->is_page_display( $show_chatbox );
-        
-        }
+		if ( !empty( get_option('talkino_chatbox_exclude_pages') ) && in_array( $page_id, get_option('talkino_chatbox_exclude_pages') ) ) {
+
+			$show_chatbox = false;
+
+		}
+
+		if ( get_option('talkino_show_on_post') == 'off' && $talkino_utility->is_blog() ) {
+
+			$show_chatbox = false;
+			
+		}
+
+		// Check whether woocommerce is activated and whether is woocommerce page.
+		if ( $talkino_utility->is_woocommerce_activated() && get_option( 'talkino_show_on_woocommerce_pages' ) == 'off' && is_woocommerce() ){
+
+			$show_chatbox = false;
+
+		}
 		
+		// Check whether is search page.
+		if ( is_search() && get_option( 'talkino_show_on_search' ) == 'off' ) {
+
+			$show_chatbox = false;
+
+		}
+
         // Ensure that it is show on chatbox.
         if ( $show_chatbox == true ) {
 

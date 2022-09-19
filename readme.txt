@@ -6,7 +6,7 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.0.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -25,6 +25,12 @@ Integrate multiple social messengers and contact methods such as [WhatsApp](http
 - **Unlimited agents' accounts**
 Support unlimited agents with multiple social messengers and contacts.
 
+- **Ordering list** 
+Drag and drop to arrange the ordering of chat channels and agents.
+
+- **Display or hide chatbox on any pages** 
+Manage the pages, post, search and WooCommerce pages to display or hide chatbox.
+
 - **Online modes**
 Changing your online status is all about setting the right expectation for your customers. Talkino provides 3 default modes which include Online, Away, and Offline modes for the chatbox.
 
@@ -34,6 +40,9 @@ Enable you to edit the text of Talkino's chatbox in different modes. These inclu
 - **Fully customizable style**
 Customize the theme color, styles, text color, background and position of chatbox to meet your favorite style or theme design.
 
+- **WooCommerce compatible**
+Talkino is fully compatible with WooCommerce store.
+
 - **Translation ready**
 Talkino is open to translating into any language by using a plugin.
 
@@ -42,7 +51,7 @@ Mobile responsive for the chatbox.
 
 **Compatible Plugins**
 
-Talkino supports most plugins which includes [WooCommerce](https://wordpress.org/plugins/woocommerce/), [WPML](https://wpml.org/), [Polylang](https://wordpress.org/plugins/polylang/), [Loco Translate](https://wordpress.org/plugins/loco-translate/) and more.
+Talkino supports most plugins which includes [WooCommerce](https://wordpress.org/plugins/woocommerce/), [WPML](https://wpml.org/), [Polylang](https://wordpress.org/plugins/polylang/) and more.
 
 **Talkino Bundle**
 
@@ -50,10 +59,8 @@ Let's check out our [Talkino Bundle](https://traxconn.com/plugins/talkino/) for 
 
 - **All features of Talkino.**
 - **Online time schedule** - Online time schedule of chatbox and able to cater for different agents and global business opening hours.
-- **Ordering list** - Drag and drop to arrange the ordering of contact methods and agents.
 - **Contact form** - Support contact form to let users email to admin when chatbox is under offline mode.
 - **Google reCaptcha v3** - Support Google reCaptcha v3 for the contact form to protect the form from spam.
-- **Display or hide chatbox on any pages you like** - Manage the pages, post, search and WooCommerce pages to display or hide chatbox.
 - **And many more!**
 
 [Demo](https://talkino.traxconn.com/)  |  [Documentation](https://traxconn.com/plugins/talkino/docs/)  |  [Support](https://traxconn.com/contact/)
@@ -156,19 +163,24 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 5. Chatbox Online Status and Talkino Bundle's Feature of Global Online Schedule
 6. Editable Text of Chatbox
 7. Customizable Styles of Chatbox
-8. Talkino Bundle's Feature of Ordering for Agents, Social Messengers and Contact Methods
-9. Talkino Bundle's Feature of Contact Form when Chatbox is Offline
-10. Talkino Bundle's Feature of Google reCaptcha v3 to Prevent Spam of Contact Form
-11. Talkino Bundle's Feature to Display or Hide the Chatbox on Pages
+8. Feature of Ordering for Chat Channels and Agents
+9. Feature to Display or Hide the Chatbox on Pages
+10. Talkino Bundle's Feature of Contact Form when Chatbox is Offline
+11. Talkino Bundle's Feature of Google reCaptcha v3 to Prevent Spam of Contact Form 
 12. Advanced Setting to Control the Option of Uninstallation 
 
 == Changelog ==
 
-= 1.0.1, Sep 17, 2022=
+= 1.0.2, Sep 19, 2022 =
+* Added: Ordering feature to arrange ordering of chat channels and agents.
+* Added: Display feature to display or hide chatbox on any pages including WooCommerce, search page, and blog page.
+* Fixed: Issue of saving an empty value of global online schedule field. 
+
+= 1.0.1, Sep 17, 2022 =
 * Improvement: Restructure to be compatible with Talkino Bundle.
 * Fixed: Security issue of escaping.
 
-= 1.0.0, Sep 13, 2022=
+= 1.0.0, Sep 13, 2022 =
 * Initial release.
 
 == Upgrade Notice ==
