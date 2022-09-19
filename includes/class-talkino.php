@@ -142,7 +142,6 @@ class Talkino {
 			require_once( ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-scheduler.php' );
 			require_once( ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-contact-form-handler.php' );
 			require_once( ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-email-manager.php' );
-			require_once( ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-display-controller.php' );
 			
 		}
 
