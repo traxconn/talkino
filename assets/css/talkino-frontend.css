@@ -105,7 +105,7 @@ Offline color: #aec6cf;
 }
 
 .talkino-information-wrapper {
-    /* max-height: 280px; */
+    max-height: 295px;
     overflow-y: scroll;
 }
 
@@ -120,7 +120,7 @@ Offline color: #aec6cf;
     border-radius: 100%;
 }
 
-.talkino-contact-icon {
+.talkino-channel-icon {
     top: 22px;
     left: 15px;
     padding: 14px;
@@ -142,6 +142,7 @@ a.talkino-chat-information {
     border-width: 1px;
     padding: 7.5px 10px;
     margin: 10px 10px;
+    height: 85px;
     display: block;
     overflow: hidden;
 }
@@ -154,22 +155,26 @@ a.talkino-chat-information:hover {
     display: block;
 }
 
-span.talkino-chat-job-title {
-    color: #888;
-    font-size: 12px;
-}
-
-span.talkino-chat-contact {
-    color: #888;
-    font-size: 12px;
-}
-
 span.talkino-chat-name {
     color: #222;
     font-size: 15px;
     font-weight: 700;
     margin: 5px 0 0;
+    height: 20px;
 }
+
+span.talkino-chat-job-title {
+    color: #888;
+    font-size: 12px;
+    height: 15px;
+}
+
+span.talkino-chat-channel {
+    color: #888;
+    font-size: 12px;
+    height: 30px;
+}
+
 
 #talkino_contact_form {
     padding: 0 10px 3px 10px;

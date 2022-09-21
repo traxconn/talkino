@@ -625,32 +625,13 @@ class Talkino_Settings {
             'talkino_styles_section'
         );
 
-        // Register chatbox height option field.
-        register_setting(
-            'talkino_styles_page',
-            'talkino_chatbox_height',
-            array(
-                'type' => 'string',
-                'sanitize_callback' => array( $this, 'sanitize_chatbox_height' )
-            )
-        );
-
-        // Add chatbox height option field.
-        add_settings_field(
-            'talkino_chatbox_height_id',
-            esc_html__( 'Chatbox Height (px):', 'talkino' ),
-            array( $this, 'chatbox_height_field_callback' ),
-            'talkino_styles_page',
-            'talkino_styles_section'
-        );
-
         /********************************* Ordering *********************************/
 
-        // Add contact ordering option field.
+        // Add channel ordering option field.
         add_settings_field(
-            'contact_ordering_id',
+            'channel_ordering_id',
             esc_html__( 'Ordering of Chat Channels:', 'talkino' ),
-            array( $this, 'contact_ordering_field_callback' ),
+            array( $this, 'channel_ordering_field_callback' ),
             'talkino_ordering_page',
             'talkino_ordering_section'
         );
@@ -2098,90 +2079,75 @@ class Talkino_Settings {
 
     }
 
-    /**
-     * Callback function to render text field of chatbox height.
-     * 
-     * @since    1.0.0
-     */
-    function chatbox_height_field_callback() {
-
-        $chatbox_height = get_option( 'talkino_chatbox_height' );
-        
-        ?>
-        <input type="number" name="talkino_chatbox_height" class="regular-text" min="100" max="400" value="<?php echo isset( $chatbox_height ) ? esc_attr( $chatbox_height ) : ''; ?>" />
-        <?php 
-
-    }
-
-    /**
-     * Sanitize function to validate the chatbox height field.
-     * 
-     * @since     1.0.0
-     * @param     string    $chatbox_height    The chatbox height.
-     * @return    string    $chatbox_height    The validated value of chatbox height.
-     */
-    function sanitize_chatbox_height( $chatbox_height ) {
-
-        // Sanitize the checkbox 
-        if ( ! empty ( $chatbox_height ) ) {
-            
-            if ( is_numeric ( $chatbox_height ) ) {
-
-                $chatbox_height = $chatbox_height;
-            
-            }
-            else {
-            
-                $chatbox_height = '280';
-
-                // Notify the user on invalid input.
-                add_settings_error( 'talkino_chatbox_height', 'invalid_chatbox_height_value', esc_html__( 'Oops, you have inserted invalid input of chatbox height field!', 'talkino' ), 'error' );
-
-            }
-
-        }
-        else {
-
-            $chatbox_height = '280';
-            
-        }
-
-        return $chatbox_height;
-
-    }
-
     /********************************* Ordering *********************************/
 
     /**
-     * Callback function to render contact ordering field.
+     * Callback function to render channel ordering field.
      * 
      * @since    1.0.0
      */
-    function contact_ordering_field_callback() {
+    function channel_ordering_field_callback() {
 
         ?>
         <div class='wrap'>
-            <form name="talkino_contact_ordering_form" method="post" action=""> 
-                <ul id="talkino_contact_ordering_list">
+            <form name="talkino_channel_ordering_form" method="post" action=""> 
+                <ul id="talkino_channel_ordering_list">
                 <?php
-                $order = explode(',', get_option( 'talkino_contact_ordering' ) );
+                $order = explode(',', get_option( 'talkino_channel_ordering' ) );
 
-                if ( empty ( get_option( 'talkino_contact_ordering' ) ) ) {
+                if ( empty ( get_option( 'talkino_channel_ordering' ) ) ) {
                 ?>
 
-                    <li id='Whatsapp' class='talkino_lineitem'>Whatsapp</li>
-                    <li id='Facebook' class='talkino_lineitem'>Facebook</li>
-                    <li id='Telegram' class='talkino_lineitem'>Telegram</li>
-                    <li id='Phone' class='talkino_lineitem'>Phone</li>
-                    <li id='Email' class='talkino_lineitem'>Email</li>
+                    <li id='talkino_whatsapp' class='talkino_lineitem'>Whatsapp</li>
+                    <li id='talkino_facebook' class='talkino_lineitem'>Facebook</li>
+                    <li id='talkino_telegram' class='talkino_lineitem'>Telegram</li>
+                    <li id='talkino_phone' class='talkino_lineitem'>Phone</li>
+                    <li id='talkino_email' class='talkino_lineitem'>Email</li>
 
                 <?php
                 }
                 else {
 
                     foreach ($order as $id) {
+
+                        $chat_channel = '';
+                        $channel_icon = '';
+
+                        switch ( $id ) {
+
+                            case "talkino_whatsapp":
+                                $chat_channel = 'WhatsApp';
+                                $channel_icon = '<i class="fab fa-whatsapp fa-xl talkino"></i>';
+                                break;
+            
+                            case "talkino_facebook":
+                                $chat_channel = 'Facebook';
+                                $channel_icon = '<i class="fab fa-facebook fa-xl talkino"></i>';
+                                break;
+            
+                            case "talkino_telegram":
+                                $chat_channel = 'Telegram';
+                                $channel_icon = '<i class="fab fa-telegram fa-xl talkino"></i>';
+                                break;
+            
+                            case "talkino_phone":
+                                $chat_channel = 'Phone';
+                                $channel_icon = '<i class="fa fa-phone fa-lg talkino"></i>';
+                                break;
+            
+                            case "talkino_email":
+                                $chat_channel = 'Email';
+                                $channel_icon = '<i class="fa fa-envelope fa-xl talkino"></i>';
+                                break;
+            
+                            default:
+                                $chat_channel = 'WhatsApp';
+                                $channel_icon = '<i class="fab fa-whatsapp fa-xl talkino"></i>';
+                                
+                        }
+
                     ?>
-                        <li id='<?php echo esc_attr( $id )?>' class='talkino_lineitem'><?php echo esc_attr( $id )?></li>
+                        <li id='<?php echo esc_attr( $id )?>' class='talkino_lineitem'><?php echo wp_kses_post( $channel_icon )?><?php echo esc_attr( $chat_channel )?></li>
                     <?php 
                     }
 
@@ -2194,13 +2160,13 @@ class Talkino_Settings {
     }
 
     /**
-     * Action function to sort contact order list.
+     * Action function to sort channel order list.
      * 
      * @since    1.0.0
      */
-    public function talkino_update_contact_order_list() {
+    public function talkino_update_channel_order_list() {
 
-        update_option( 'talkino_contact_ordering', sanitize_text_field( $_POST['order'] ) );
+        update_option( 'talkino_channel_ordering', sanitize_text_field( $_POST['order'] ) );
 
     }
 
@@ -2238,7 +2204,8 @@ class Talkino_Settings {
                         // Retrieve and restrict the agent name to 20 characters.
                         $name= strlen( get_the_title() ) > 20 ? substr( get_the_title(), 0, 20 )."..." : get_the_title();
             
-                        echo "<li id='". esc_attr( $post_id )."' class='talkino_lineitem'>" . esc_attr( $name ) . "</li>";
+                        echo "<li id='". esc_attr( $post_id )."' class='talkino_lineitem'><i class='fa fa-user fa-xl talkino'></i>
+                        " . esc_attr( $name ) . "</li>";
                         
                     endwhile;
                     

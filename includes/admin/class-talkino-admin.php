@@ -78,7 +78,7 @@ class Talkino_Admin {
 	public function enqueue_styles( $hook_suffix ) {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/css/talkino-admin.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style( 'font-awesome-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-free-6.2.0-web/css/all.min.css' );
 	}
 
 	/**
@@ -100,7 +100,7 @@ class Talkino_Admin {
 		// Enqueue jquery for sorting.
 		wp_enqueue_script( 'jquery-ui-sortable', false, array( 'jquery-ui-core', 'jquery' ) );
 	
-		// Pass $php_vars array to javascript as php object for contact ordering.
+		// Pass $php_vars array to javascript as php object for channel ordering.
 		$ajax_url = array( 'ajax_url' => admin_url( 'admin-ajax.php' ) );
 		wp_localize_script( $this->plugin_name, 'ajax_object', $ajax_url );
 	}

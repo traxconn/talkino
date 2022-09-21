@@ -24,6 +24,36 @@ if ( ! defined( 'WPINC' ) ) {
 class Talkino_Tools {
 
     /**
+     * The function to upgrade plugin data.
+     * 
+     * @since    1.0.3
+     */
+    public function upgrade_plugin_data() {
+
+        // Remove deprecated data of chatbox height.
+        if ( get_option( 'talkino_chatbox_height' ) == true ) {
+            
+            delete_option( 'talkino_chatbox_height' );
+		
+		}  
+        
+        // Remove deprecated data of contact ordering.
+        if ( get_option( 'talkino_contact_ordering' ) == true ) {
+            
+            delete_option( 'talkino_contact_ordering' );
+
+            if ( get_option( 'talkino_channel_ordering' ) == false ) {
+			
+                // Add a new option of channel ordering.
+                add_option( 'talkino_channel_ordering', 'talkino_whatsapp,talkino_facebook,talkino_telegram,talkino_phone,talkino_email' );
+            
+            }
+            
+		}  
+    
+    }
+
+    /**
      * The function to generate time selector.
      * 
      * @since    1.0.0

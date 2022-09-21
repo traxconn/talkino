@@ -180,14 +180,14 @@ class Talkino_Activator {
 		/************* Settings *************/
 
 		// Add global online status if it does not exist. 
-		if ( get_option( 'talkino_global_online_status' ) === false ) {
+		if ( get_option( 'talkino_global_online_status' ) == false ) {
 			
 			add_option( 'talkino_global_online_status', 'Online' );
 		
 		}
 
 		// Add global schedule data if they do not exist.
-		if ( get_option( 'talkino_global_schedule_online_status' ) === false ) {
+		if ( get_option( 'talkino_global_schedule_online_status' ) == false ) {
 			
 			$global_schedule_online_status_data = array(
 				'monday_online_status' => 'on',
@@ -218,56 +218,56 @@ class Talkino_Activator {
 		}
 
 		// Add chatbox online subtitle if it does not exist. 
-		if ( get_option( 'talkino_chatbox_online_subtitle' ) === false ) {
+		if ( get_option( 'talkino_chatbox_online_subtitle' ) == false ) {
 			
 			add_option( 'talkino_chatbox_online_subtitle', 'Let\'s get started to chat with us!' );
 		
 		}
 
 		// Add chatbox away subtitle if it does not exist. 
-		if ( get_option( 'talkino_chatbox_away_subtitle' ) === false ) {
+		if ( get_option( 'talkino_chatbox_away_subtitle' ) == false ) {
 			
 			add_option( 'talkino_chatbox_away_subtitle', 'We are currently away!' );
 		
 		}
 
 		// Add chatbox offline subtitle if it does not exist. 
-		if ( get_option( 'talkino_chatbox_offline_subtitle' ) === false ) {
+		if ( get_option( 'talkino_chatbox_offline_subtitle' ) == false ) {
 			
 			add_option( 'talkino_chatbox_offline_subtitle', 'Kindly please drop us a message and we will get back to you soon!' );
 		
 		}
 
 		// Add agent not available message if it does not exist. 
-		if ( get_option( 'talkino_agent_not_available_message' ) === false ) {
+		if ( get_option( 'talkino_agent_not_available_message' ) == false ) {
 			
 			add_option( 'talkino_agent_not_available_message', 'All agents are not available.' );
 		
 		}
 
 		// Add offline message if it does not exist. 
-		if ( get_option( 'talkino_offline_message' ) === false ) {
+		if ( get_option( 'talkino_offline_message' ) == false ) {
 			
 			add_option( 'talkino_offline_message', 'Sorry, we are currently offline.' );
 		
 		}
 
 		// Add show on post data if it does not exist. 
-		if ( get_option( 'talkino_show_on_post' ) === false ) {
+		if ( get_option( 'talkino_show_on_post' ) == false ) {
 			
 			add_option( 'talkino_show_on_post', 'on' );
 		
 		}
 
 		// Add show on search data if it does not exist. 
-		if ( get_option( 'talkino_show_on_search' ) === false ) {
+		if ( get_option( 'talkino_show_on_search' ) == false ) {
 			
 			add_option( 'talkino_show_on_search', 'on' );
 		
 		}
 
 		// Add show on woocommerce shop, product, product category and tag pages data if it does not exist. 
-		if ( get_option( 'talkino_show_on_woocommerce_pages' ) === false ) {
+		if ( get_option( 'talkino_show_on_woocommerce_pages' ) == false ) {
 			
 			add_option( 'talkino_show_on_woocommerce_pages', 'on' );
 		
@@ -276,171 +276,164 @@ class Talkino_Activator {
 		/************* Styles *************/
 
 		// Add chatbox style data if it does not exist. 
-		if ( get_option( 'talkino_chatbox_style' ) === false ) {
+		if ( get_option( 'talkino_chatbox_style' ) == false ) {
 			
 			add_option( 'talkino_chatbox_style', 'round' );
 		
 		}
 
 		// Add chatbox position data if it does not exist. 
-		if ( get_option( 'talkino_chatbox_position' ) === false ) {
+		if ( get_option( 'talkino_chatbox_position' ) == false ) {
 			
 			add_option( 'talkino_chatbox_position', 'right' );
 		
 		}
 
 		// Add show on desktop data if it does not exist. 
-		if ( get_option( 'talkino_show_on_desktop' ) === false ) {
+		if ( get_option( 'talkino_show_on_desktop' ) == false ) {
 			
 			add_option( 'talkino_show_on_desktop', 'on' );
 		
 		}
 
 		// Add start chat method if it does not exist. 
-		if ( get_option( 'talkino_start_chat_method' ) === false ) {
+		if ( get_option( 'talkino_start_chat_method' ) == false ) {
 			
 			add_option( 'talkino_start_chat_method', '_blank' );
 		
 		}
 
 		// Add show on mobile data if it does not exist. 
-		if ( get_option( 'talkino_show_on_mobile' ) === false ) {
+		if ( get_option( 'talkino_show_on_mobile' ) == false ) {
 			
 			add_option( 'talkino_show_on_mobile', 'on' );
 		
 		}
 
 		// Add chatbox theme color for online status if it does not exist. 
-		if ( get_option( 'talkino_chatbox_online_theme_color' ) === false ) {
+		if ( get_option( 'talkino_chatbox_online_theme_color' ) == false ) {
 			
 			add_option( 'talkino_chatbox_online_theme_color', '#1e73be' );
 		
 		}
 
 		// Add chatbox theme color for away status if it does not exist. 
-		if ( get_option( 'talkino_chatbox_away_theme_color' ) === false ) {
+		if ( get_option( 'talkino_chatbox_away_theme_color' ) == false ) {
 			
 			add_option( 'talkino_chatbox_away_theme_color', '#ffa500' );
 		
 		}
 
 		// Add chatbox theme color for offline status if it does not exist. 
-		if ( get_option( 'talkino_chatbox_offline_theme_color' ) === false ) {
+		if ( get_option( 'talkino_chatbox_offline_theme_color' ) == false ) {
 			
 			add_option( 'talkino_chatbox_offline_theme_color', '#aec6cf' );
 		
 		}
 
 		// Add chatbox background color if it does not exist. 
-		if ( get_option( 'talkino_chatbox_background_color' ) === false ) {
+		if ( get_option( 'talkino_chatbox_background_color' ) == false ) {
 			
 			add_option( 'talkino_chatbox_background_color', '#fff' );
 		
 		}
 
 		// Add chatbox title color if it does not exist. 
-		if ( get_option( 'talkino_chatbox_title_color' ) === false ) {
+		if ( get_option( 'talkino_chatbox_title_color' ) == false ) {
 			
 			add_option( 'talkino_chatbox_title_color', '#fff' );
 		
 		}
 
 		// Add chatbox subtitle color if it does not exist. 
-		if ( get_option( 'talkino_chatbox_subtitle_color' ) === false ) {
+		if ( get_option( 'talkino_chatbox_subtitle_color' ) == false ) {
 			
 			add_option( 'talkino_chatbox_subtitle_color', '#000' );
 		
 		}
 
-		// Add chatbox height if it does not exist. 
-		if ( get_option( 'talkino_chatbox_height' ) === false ) {
-			
-			add_option( 'talkino_chatbox_height', '280' );
-		
-		}
-
 		/************* Ordering *************/
 		// Add agent ordering if it does not exist. 
-		if ( get_option( 'talkino_contact_ordering' ) === false ) {
+		if ( get_option( 'talkino_channel_ordering' ) == false ) {
 			
-			add_option( 'talkino_contact_ordering', 'Whatsapp,Facebook,Telegram,Phone,Email' );
+			add_option( 'talkino_channel_ordering', 'talkino_whatsapp,talkino_facebook,talkino_telegram,talkino_phone,talkino_email' );
 		
 		}
 		
 		/************* Contact Form *************/
 
 		// Add contact form status if it does not exist. 
-		if ( get_option( 'talkino_contact_form_status' ) === false ) {
+		if ( get_option( 'talkino_contact_form_status' ) == false ) {
 			
 			add_option( 'talkino_contact_form_status', 'off' );
 		
 		}
 
 		// Add email recipient if it does not exist. 
-		if ( get_option( 'talkino_email_recipient' ) === false ) {
+		if ( get_option( 'talkino_email_recipient' ) == false ) {
 			
 			add_option( 'talkino_email_recipient', get_option( 'admin_email' ) );
 		
 		}
 
 		// Add email subject if it does not exist. 
-		if ( get_option( 'talkino_email_subject' ) === false ) {
+		if ( get_option( 'talkino_email_subject' ) == false ) {
 			
 			add_option( 'talkino_email_subject', 'Message from Contact Form' );
 		
 		}
 
 		// Add sender message if it does not exist. 
-		if ( get_option( 'talkino_sender_message' ) === false ) {
+		if ( get_option( 'talkino_sender_message' ) == false ) {
 			
 			add_option( 'talkino_sender_message', '%%message%%' );
 		
 		}
 
 		// Add sender name if it does not exist. 
-		if ( get_option( 'talkino_sender_name' ) === false ) {
+		if ( get_option( 'talkino_sender_name' ) == false ) {
 			
 			add_option( 'talkino_sender_name', 'From: %%sender_name%%' );
 		
 		}
 
 		// Add sender email if it does not exist. 
-		if ( get_option( 'talkino_sender_email' ) === false ) {
+		if ( get_option( 'talkino_sender_email' ) == false ) {
 			
 			add_option( 'talkino_sender_email', 'Sender\'s Email: %%sender_email%%' );
 		
 		}
 
 		// Add successful email sent message if it does not exist. 
-		if ( get_option( 'talkino_success_email_message' ) === false ) {
+		if ( get_option( 'talkino_success_email_message' ) == false ) {
 			
 			add_option( 'talkino_success_email_message', 'Email has been successfully sent out.' );
 		
 		}
 
 		// Add failed email sent message if it does not exist. 
-		if ( get_option( 'talkino_fail_email_message' ) === false ) {
+		if ( get_option( 'talkino_fail_email_message' ) == false ) {
 			
 			add_option( 'talkino_fail_email_message', 'Email has been failed to sent out.' );
 		
 		}
 
 		// Add recaptcha status if it does not exist. 
-		if ( get_option( 'talkino_recaptcha_status' ) === false ) {
+		if ( get_option( 'talkino_recaptcha_status' ) == false ) {
 			
 			add_option( 'talkino_recaptcha_status', 'off' );
 		
 		}
 
 		// Add recaptcha site key if it does not exist. 
-		if ( get_option( 'talkino_recaptcha_site_key' ) === false ) {
+		if ( get_option( 'talkino_recaptcha_site_key' ) == false ) {
 			
 			add_option( 'talkino_recaptcha_site_key', '' );
 		
 		}
 
 		// Add recaptcha secret key if it does not exist. 
-		if ( get_option( 'talkino_recaptcha_secret_key' ) === false ) {
+		if ( get_option( 'talkino_recaptcha_secret_key' ) == false ) {
 			
 			add_option( 'talkino_recaptcha_secret_key', '' );
 		
@@ -449,7 +442,7 @@ class Talkino_Activator {
 		/************* Advanced *************/
 
 		// Add data uninstall status if it does not exist. 
-		if ( get_option( 'talkino_data_uninstall_status' ) === false ) {
+		if ( get_option( 'talkino_data_uninstall_status' ) == false ) {
 			
 			add_option( 'talkino_data_uninstall_status', 'off' );
 		

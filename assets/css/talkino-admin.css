@@ -8,7 +8,95 @@
 6) Other
 */
 
- #talkino_contact_ordering_list, #talkino_agent_ordering_list {
+.talkino-contact-details-section {
+    background: #f5f5f5;
+    border-radius: 5px;
+}
+
+.talkino-admin-channel-icon {
+    width: 40px;
+    padding: 10px 0 0 10px;
+}
+
+.talkino-job-title {
+    font-size: 15px;
+    margin-bottom: 20px;
+    padding: 10px 0 10px 10px;
+}
+
+.talkino-whatsapp-title {
+    font-size: 15px;
+    margin-top: 0;
+    padding: 0 0 0 10px;
+}  
+
+.talkino-whatsapp-prefilled-message-title {
+    font-size: 15px;
+    margin-bottom: 20px;
+    padding: 0 0 10px 10px;
+}
+
+.talkino-facebook-title {
+    font-size: 14px;
+    margin-top: 0;
+    padding: 0 0 10px 10px;
+}
+
+.talkino-telegram-title {
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 0 0 10px 10px;
+}
+
+.talkino-phone-title {
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 0 0 10px 10px;
+}
+
+.talkino-email-title {
+    font-size: 14px;
+    margin-top: 0;
+    padding: 0 0 10px 10px;
+}
+
+.talkino-job-title-input {
+    width: 40%;
+}
+
+.talkino-whatsapp-input {
+    width: 30%;
+}
+
+.talkino-whatsapp-prefilled-message-input {
+    width: 80%;
+}
+
+.talkino-facebook-input {
+    width: 40%;
+}
+
+.talkino-telegram-input {
+    width: 40%;
+}
+
+.talkino-phone-input {
+    width: 30%;
+}
+
+.talkino-email-input {
+    width: 40%;
+}
+
+@media (max-width: 1024px) {
+    .talkino-job-title-input,.talkino-whatsapp-input,.talkino-whatsapp-prefilled-message-input,.talkino-facebook-input,.talkino-telegram-input,.talkino-phone-input,.talkino-email-input {
+        width: 90%;
+    }
+}
+
+ #talkino_channel_ordering_list, #talkino_agent_ordering_list {
     background-color: #fff;
     width: 200px; 
     border: 1px solid #b2b2b2; 
@@ -21,21 +109,67 @@
 }
 
 li.talkino_lineitem {
-    background-color: #abc5ee;
-    color: #000;
-    font-size: 13px;
+    background-color: #7b68ee;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
     border:1px solid #b2b2b2;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;  
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;  
     margin-top: 5px;
     margin-bottom: 5px;
-    padding: 2px 5px 2px 5px;
+    padding: 15px 5px 15px 5px;
     height: 1.5em;
     line-height: 1.5em;
     cursor: move;
+
 }   
-    
+
+#talkino_whatsapp {
+    background: #47c357;
+}
+
+#talkino_facebook {
+    background: #1877f2;
+}
+
+#talkino_telegram {
+    background: #33a8d9;
+}
+
+#talkino_phone {
+    background: #696969;
+}
+
+#talkino_email {
+    background: #a9a9a9;
+}
+
+.fab.fa-whatsapp.fa-xl.talkino {
+    padding: 0 5px 0 5px;
+}
+
+.fab.fa-facebook.fa-xl.talkino {
+    padding: 0 5px 0 5px;
+}
+
+.fab.fa-telegram.fa-xl.talkino {
+    padding: 0 5px 0 5px;
+}
+
+.fa.fa-phone.fa-lg.talkino {
+    padding: 0 5px 0 5px;
+}
+
+.fa.fa-envelope.fa-xl.talkino {
+    padding: 0 5px 0 5px;
+}
+
+.fa.fa-user.fa-xl.talkino {
+    padding: 0 5px 0 5px;
+}
+
 .talkino_sortable_placeholder{ 
     border: 1px dashed #b2b2b2;
     margin-top: 5px;
