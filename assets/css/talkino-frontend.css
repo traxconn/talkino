@@ -88,7 +88,7 @@ Offline color: #aec6cf;
     position: fixed;
     display: none;
     transition: all 0.4s;
-    z-index: 100;
+    z-index: 9999999 !important;
 }
 
 .talkino-chat-title {
@@ -135,7 +135,7 @@ Offline color: #aec6cf;
 }
 
 a.talkino-chat-information {
-    text-decoration: none;
+    text-decoration: none !important;
     border-style: solid;
     border-color: darkgray;
     border-radius: 3px;
