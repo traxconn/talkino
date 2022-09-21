@@ -48,7 +48,7 @@ class Talkino_Chatbox {
 		// Call to query agent data.
         $talkino_agent_manager->query_agent_data();
 
-		// Retrieve the contact output from agents.
+		// Retrieve the channel output from agents.
 		$whatsapp_output = $talkino_agent_manager->get_whatsapp_output();
         $facebook_output = $talkino_agent_manager->get_facebook_output();
         $telegram_output = $talkino_agent_manager->get_telegram_output();
@@ -58,7 +58,7 @@ class Talkino_Chatbox {
         $show_chatbox = false; 
         $data = array();
 
-        if ( empty ( get_option( 'talkino_contact_ordering' ) ) ) {
+        if ( empty ( get_option( 'talkino_channel_ordering' ) ) ) {
 
             // Assign the data from agents and pass it to html rendering file.
             $data = array(
@@ -71,7 +71,7 @@ class Talkino_Chatbox {
         } 
         else {
 
-            $order = explode(',', get_option( 'talkino_contact_ordering' ) );
+            $order = explode(',', get_option( 'talkino_channel_ordering' ) );
 
             $first_output = '';
             $second_output = '';
@@ -81,23 +81,23 @@ class Talkino_Chatbox {
 
             switch ( $order[0] ) {
                 
-                case "Whatsapp":
+                case "talkino_whatsapp":
                     $first_output = $whatsapp_output;
                     break;
 
-                case "Facebook":
+                case "talkino_facebook":
                     $first_output = $facebook_output;
                     break;
 
-                case "Telegram":
+                case "talkino_telegram":
                     $first_output = $telegram_output;
                     break;
 
-                case "Phone":
+                case "talkino_phone":
                     $first_output = $phone_output;
                     break;
 
-                case "Email":
+                case "talkino_email":
                     $first_output = $email_output;
                     break;
 
@@ -109,23 +109,23 @@ class Talkino_Chatbox {
 
             switch ( $order[1] ) {
 
-                case "Whatsapp":
+                case "talkino_whatsapp":
                     $second_output = $whatsapp_output;
                     break;
 
-                case "Facebook":
+                case "talkino_facebook":
                     $second_output = $facebook_output;
                     break;
 
-                case "Telegram":
+                case "talkino_telegram":
                     $second_output = $telegram_output;
                     break;
 
-                case "Phone":
+                case "talkino_phone":
                     $second_output = $phone_output;
                     break;
 
-                case "Email":
+                case "talkino_email":
                     $second_output = $email_output;
                     break;
                         
@@ -136,23 +136,23 @@ class Talkino_Chatbox {
 
             switch ( $order[2] ) {
 
-                case "Whatsapp":
+                case "talkino_whatsapp":
                     $third_output = $whatsapp_output;
                     break;
 
-                case "Facebook":
+                case "talkino_facebook":
                     $third_output = $facebook_output;
                     break;
 
-                case "Telegram":
+                case "talkino_telegram":
                     $third_output = $telegram_output;
                     break;
 
-                case "Phone":
+                case "talkino_phone":
                     $third_output = $phone_output;
                     break;
 
-                case "Email":
+                case "talkino_email":
                     $third_output = $email_output;
                     break;
 
@@ -163,23 +163,23 @@ class Talkino_Chatbox {
 
             switch ( $order[3] ) {
 
-                case "Whatsapp":
+                case "talkino_whatsapp":
                     $fourth_output = $whatsapp_output;
                     break;
 
-                case "Facebook":
+                case "talkino_facebook":
                     $fourth_output = $facebook_output;
                     break;
 
-                case "Telegram":
+                case "talkino_telegram":
                     $fourth_output = $telegram_output;
                     break;
 
-                case "Phone":
+                case "talkino_phone":
                     $fourth_output = $phone_output;
                     break;
 
-                case "Email":
+                case "talkino_email":
                     $fourth_output = $email_output;
                     break;
 
@@ -190,23 +190,23 @@ class Talkino_Chatbox {
 
             switch ( $order[4] ) {
 
-                case "Whatsapp":
+                case "talkino_whatsapp":
                     $fifth_output = $whatsapp_output;
                     break;
 
-                case "Facebook":
+                case "talkino_facebook":
                     $fifth_output = $facebook_output;
                     break;
 
-                case "Telegram":
+                case "talkino_telegram":
                     $fifth_output = $telegram_output;
                     break;
 
-                case "Phone":
+                case "talkino_phone":
                     $fifth_output = $phone_output;
                     break;
 
-                case "Email":
+                case "talkino_email":
                     $fifth_output = $email_output;
                     break;
 
@@ -360,9 +360,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
                 
                 }
@@ -398,9 +395,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
 
                 } 
@@ -436,9 +430,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
 
                 }
@@ -478,9 +469,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
                 
                 }
@@ -516,9 +504,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
 
                 } 
@@ -554,9 +539,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
 
                 }
@@ -602,9 +584,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
 
                 }
@@ -640,9 +619,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
 
                 } 
@@ -678,9 +654,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
 
                 }
@@ -719,9 +692,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
 
                 }
@@ -757,9 +727,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
 
                 } 
@@ -795,9 +762,6 @@ class Talkino_Chatbox {
                         color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ). ';
                     }
 
-                    .talkino-information-wrapper {
-                        max-height: ' . esc_attr( get_option( 'talkino_chatbox_height' ) ) . 'px;
-                    }
                     </style>';
 
                 }

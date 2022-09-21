@@ -176,6 +176,7 @@ class Talkino {
 
 		// Declare all the classes objects.
 		$talkino_admin = new Talkino_Admin( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
+		$talkino_tools = new Talkino_Tools();
 		$talkino_post_type = new Talkino_Post_Type();
 		$talkino_meta_boxes = new Talkino_Meta_Boxes();
 		$talkino_customizer = new Talkino_Customizer();
@@ -185,6 +186,9 @@ class Talkino {
 		$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_scripts' );
 
+		// Register hook to upgrade plugin data.
+		$this->loader->add_action( 'init', $talkino_tools, 'upgrade_plugin_data' );
+		
 		// Register hook to create custom post type.
 		$this->loader->add_action( 'init', $talkino_post_type, 'create_custom_post_type' );
 
@@ -215,8 +219,8 @@ class Talkino {
         // Register settings section and fields
 		$this->loader->add_action( 'admin_init', $talkino_settings, 'settings_init' );
 
-		// Register hook to process contact ordering via ajax actions.
-		$this->loader->add_action( 'wp_ajax_talkino_update_contact_order_list', $talkino_settings, 'talkino_update_contact_order_list' ); 
+		// Register hook to process channel ordering via ajax actions.
+		$this->loader->add_action( 'wp_ajax_talkino_update_channel_order_list', $talkino_settings, 'talkino_update_channel_order_list' ); 
 
 		// Register hook to process agent ordering via ajax actions.
 		$this->loader->add_action( 'wp_ajax_talkino_update_agent_order_list', $talkino_settings, 'talkino_update_agent_order_list' ); 

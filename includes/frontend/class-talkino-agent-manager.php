@@ -155,13 +155,13 @@ class Talkino_Agent_Manager {
                             
                         $whatsapp_data .= "
 
-                            <img class='talkino-contact-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/whatsapp-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/whatsapp-icon.png' . "' />
                         </div>
 
                         <div class='talkino-chat-info'>
                             <span class='talkino-chat-name'>" . $name . "</span>
                             <span class='talkino-chat-job-title'>" . $job_title . "</span>
-                            <span class='talkino-chat-contact'>" . esc_html__( 'Chat on WhatsApp', 'talkino' ) . "</span>
+                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on WhatsApp', 'talkino' ) . "</span>
                         </div>
                     </a>
                     ";
@@ -191,13 +191,13 @@ class Talkino_Agent_Manager {
                             
                         $facebook_data .= "
                         
-                            <img class='talkino-contact-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/facebook-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/facebook-icon.png' . "' />
                         </div>
 
                         <div class='talkino-chat-info'>
                             <span class='talkino-chat-name'>" . $name . "</span>
                             <span class='talkino-chat-job-title'>" . $job_title . "</span>
-                            <span class='talkino-chat-contact'>" . esc_html__( 'Chat on Facebook', 'talkino' ) . "</span>
+                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Facebook', 'talkino' ) . "</span>
                         </div>
                     </a>
                     ";
@@ -227,13 +227,13 @@ class Talkino_Agent_Manager {
                             
                         $telegram_data .= "
 
-                            <img class='talkino-contact-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/telegram-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/telegram-icon.png' . "' />
                         </div>
 
                         <div class='talkino-chat-info'>
                             <span class='talkino-chat-name'>" . $name . "</span>
                             <span class='talkino-chat-job-title'>" . $job_title . "</span>
-                            <span class='talkino-chat-contact'>" . esc_html__( 'Chat on Telegram', 'talkino' ) . "</span>
+                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Telegram', 'talkino' ) . "</span>
                         </div>
                     </a>
                     ";
@@ -263,13 +263,13 @@ class Talkino_Agent_Manager {
                             
                         $phone_data .= "
 
-                            <img class='talkino-contact-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/phone-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/phone-icon.png' . "' />
                         </div>
 
                         <div class='talkino-chat-info'>
                             <span class='talkino-chat-name'>" . $name . "</span>
                             <span class='talkino-chat-job-title'>" . $job_title . "</span>
-                            <span class='talkino-chat-contact'>" . esc_html__( 'Chat on Phone', 'talkino' ) . "</span>
+                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Phone', 'talkino' ) . "</span>
                         </div>
                     </a>
                     ";
@@ -299,13 +299,13 @@ class Talkino_Agent_Manager {
                             
                         $email_data .= "
 
-                            <img class='talkino-contact-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/email-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/email-icon.png' . "' />
                         </div>
 
                         <div class='talkino-chat-info'>
                             <span class='talkino-chat-name'>" . $name . "</span>
                             <span class='talkino-chat-job-title'>" . $job_title . "</span>
-                            <span class='talkino-chat-contact'>" . esc_html__( 'Chat on Email', 'talkino' ) . "</span>
+                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Email', 'talkino' ) . "</span>
                         </div>
                     </a>
                     ";

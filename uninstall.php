@@ -98,10 +98,9 @@ function remove_plugin_data() {
 		delete_option( 'talkino_chatbox_background_color' );
 		delete_option( 'talkino_chatbox_title_color' );
 		delete_option( 'talkino_chatbox_subtitle_color' );
-		delete_option( 'talkino_chatbox_height' );
 
 		/************* Ordering *************/
-		delete_option( 'talkino_contact_ordering' );
+		delete_option( 'talkino_channel_ordering' );
 
 		/************* Contact Form *************/
 		delete_option( 'talkino_contact_form_status' );

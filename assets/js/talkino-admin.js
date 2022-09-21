@@ -1,20 +1,20 @@
 jQuery( document ).ready( function( $ ) {
 
-	/******************** Contact order list ********************/
+	/******************** Channel order list ********************/
 	// Action url for ajax.
-	var wpajax_url_sort_contact = ajax_object.ajax_url + '?action=talkino_update_contact_order_list';
+	var wpajax_url_sort_channel = ajax_object.ajax_url + '?action=talkino_update_channel_order_list';
 
-	$( '#talkino_contact_ordering_list' ).sortable({
+	$( '#talkino_channel_ordering_list' ).sortable({
         update: function( event, ui ) {
 
-			var list_data = $( "#talkino_contact_ordering_list" ).sortable( 'toArray' ).toString();
+			var list_data = $( "#talkino_channel_ordering_list" ).sortable( 'toArray' ).toString();
 
 			$.ajax( {
 				data: {
 					order: list_data
 				},
 				method: 'POST',
-				url: wpajax_url_sort_contact,
+				url: wpajax_url_sort_channel,
 
 				'error': function( error ) {
 
@@ -63,7 +63,7 @@ jQuery( document ).ready( function( $ ) {
 // Drag and drop event
 function ordering_list_event() {
 
-	jQuery( "#talkino_contact_ordering_list" ).sortable( { 
+	jQuery( "#talkino_channel_ordering_list" ).sortable( { 
 
 		placeholder: "talkino_sortable_placeholder", 
 		revert: false,
