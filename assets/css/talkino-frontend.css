@@ -42,7 +42,7 @@ Offline color: #aec6cf;
     border: none;
     /* border-radius: 50px; */
     position: fixed;
-    z-index: 100;
+    z-index: 9999999 !important;
     cursor: pointer;
 }
 
