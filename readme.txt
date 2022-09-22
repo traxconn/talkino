@@ -159,19 +159,20 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 1. Chatbox of Talkino
 2. List of Support Agents
 3. Agent's Contact Details
-4. Talkino Bundle's Feature of Time Schedule for Agents
-5. Chatbox Online Status and Talkino Bundle's Feature of Global Online Schedule
-6. Editable Text of Chatbox
-7. Customizable Styles of Chatbox
-8. Feature of Ordering for Chat Channels and Agents
-9. Feature to Display or Hide the Chatbox on Pages
-10. Talkino Bundle's Feature of Contact Form when Chatbox is Offline
-11. Talkino Bundle's Feature of Google reCaptcha v3 to Prevent Spam of Contact Form 
-12. Advanced Setting to Control the Option of Uninstallation 
+4. Agent's Contact Details
+5. Talkino Bundle's Feature of Time Schedule for Agents
+6. Chatbox Online Status and Talkino Bundle's Feature of Global Online Schedule
+7. Editable Text of Chatbox
+8. Customizable Styles of Chatbox
+9. Feature of Ordering for Chat Channels and Agents
+10. Feature to Display or Hide the Chatbox on Pages
+11. Talkino Bundle's Feature of Contact Form when Chatbox is Offline
+12. Talkino Bundle's Feature of Google reCaptcha v3 to Prevent Spam of Contact Form 
+13. Advanced Setting to Control the Option of Uninstallation 
 
 == Changelog ==
 
-= 1.1.0, Sep 22, 2022 =
+= 1.1.0, Sep 21, 2022 =
 * Added: New interface for post type of agents and ordering setting.
 * Fixed: Issue of chatbox CSS.
 * Removed: The deprecated functions and data of plugin.  
