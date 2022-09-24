@@ -23,8 +23,8 @@ if ( ! defined( 'WPINC' ) ) {
  */
 class Talkino_Notifier {
 
-    private string $message;
-    private string $class;
+    public $message;
+    public $class;
 
 	/**
 	 * Initialize class.

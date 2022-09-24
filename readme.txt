@@ -1,4 +1,4 @@
-=== Talkino - Click to Chat for Multi Chat Channels ===
+=== Talkino - Click to Chat for Multi Channels ===
 Author URI: https://traxconn.com/
 Plugin URI: https://traxconn.com/plugins/talkino/
 Contributors: traxconn, yipchunmun, leesuijen
@@ -6,7 +6,7 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.0.2
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -15,7 +15,9 @@ Click to chat plugin to show your agents’ multiple messengers, phone and email
 
 == Description ==
 
-Talkino is the best click to chat plugin to show your agents’ multiple social messengers, phone and emails on the chatbox of your site. It provides a way for your customers to reach you or different support agents through different social media channels such as [WhatsApp](https://www.whatsapp.com/), [Facebook Messenger](https://www.messenger.com/) and [Telegram](https://web.telegram.org/k/).  This will help you keep in touch with your customers and provide them with the best possible customer service. 
+It's time to let your customers reach you via different chat channels such as [WhatsApp](https://www.whatsapp.com/), [Facebook Messenger](https://www.messenger.com/) and [Telegram](https://web.telegram.org/k/) on WordPress site or WooCommerce online store by using Talkino! 
+
+Talkino is the best click to chat plugin to show your agents’ multiple social messengers, phone and emails on the chatbox of your site. With a single click, customers can connect with you in their preferred way. It's indeed an effective way for you to increase engagement between you and your customers.
 
 Here are some of the supported features:
 
@@ -164,9 +166,12 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 6. Customizable Styles of Chatbox
 7. Feature of Ordering for Chat Channels and Agents
 8. Feature to Display or Hide the Chatbox on Pages
-9. Advanced Setting to Control the Option of Uninstallation 
+9. Advanced Setting to Control the Options of Reset Settings and Uninstallation 
 
 == Changelog ==
+
+= 1.1.2, Sep 24, 2022 =
+* Fixed: Fatal error that happens in PHP 7.3.
 
 = 1.1.1, Sep 24, 2022 =
 * Added: New feature to reset all data of settings.
