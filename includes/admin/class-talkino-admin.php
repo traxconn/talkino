@@ -78,7 +78,10 @@ class Talkino_Admin {
 	public function enqueue_styles( $hook_suffix ) {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/css/talkino-admin.css', array(), $this->version, 'all' );
+		
+		// Enqueue bootstrap and font awesome css for chatbox
 		wp_enqueue_style( 'font-awesome-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-free-6.2.0-web/css/all.min.css' );
+	
 	}
 
 	/**

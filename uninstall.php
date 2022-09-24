@@ -116,6 +116,7 @@ function remove_plugin_data() {
 		delete_option( 'talkino_recaptcha_secret_key' );
 
 		/************* Advanced *************/
+		delete_option( 'talkino_reset_settings_status' );
 		delete_option( 'talkino_data_uninstall_status' );
 		
 	}

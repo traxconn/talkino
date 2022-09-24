@@ -31,6 +31,7 @@ class Talkino_Settings {
     function create_settings_submenu_page() {
 
         add_submenu_page( 'edit.php?post_type=talkino_agents', esc_html__( 'Talkino Settings', 'talkino'), esc_html__( 'Settings', 'talkino'), 'manage_options', 'talkino_settings_page', array( $this, 'settings_page_callback' ) );
+        add_submenu_page( 'edit.php?post_type=talkino_agents', esc_html__( 'Extensions', 'talkino'), '<span style="color:coral">' . esc_html__( 'Extensions', 'talkino') . '</span>', 'manage_options', 'talkino_extensions_page', array( $this, 'extensions_page_callback' ) );
        
     }
 
@@ -60,115 +61,146 @@ class Talkino_Settings {
                 <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=styles" class="nav-tab <?php if( $tab==='styles' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Styles', 'talkino' )?></a>
                 <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=ordering" class="nav-tab <?php if( $tab==='ordering' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Ordering', 'talkino' )?></a>
                 <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=display" class="nav-tab <?php if( $tab==='display' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Display', 'talkino' )?></a>
-                <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=contact-form" class="nav-tab <?php if( $tab==='contact-form' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Contact Form', 'talkino' )?></a>
+                
+                <?php
+                // Display contact form tab for talkino bundle.
+                if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
+                    <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=contact-form" class="nav-tab <?php if( $tab==='contact-form' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Contact Form', 'talkino' )?></a>
+                <?php
+                }
+                ?>
+
                 <a href="?post_type=talkino_agents&page=talkino_settings_page&tab=advanced" class="nav-tab <?php if( $tab==='advanced' ):?>nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Advanced', 'talkino' )?></a>
             </nav>
             
             <div class="tab-content">
                 <?php 
-                switch( $tab ):
-                    case 'styles':
-                    ?>
-                    <div class="wrap">
-                        <form action="options.php" method="post">
-                            <?php
-                            // Show error or update message.
-                            settings_errors();
 
-                            // Output security fields for the registered styles page.
-                            settings_fields( 'talkino_styles_page' );
-                            
-                            // Output styles sections and fields.
-                            do_settings_sections( 'talkino_styles_page' );
-                            
-                            // Output save settings button.
-                            submit_button( esc_html__( 'Save Settings', 'talkino' ) );
-                            ?>
-                        </form>
-                    </div>
-                    <?php
-                    break;
+                // Display all tabs for talkino bundle.
+                if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
 
-                    case 'ordering':
+                    switch( $tab ):
+                        case 'styles':
                         ?>
                         <div class="wrap">
                             <form action="options.php" method="post">
                                 <?php
                                 // Show error or update message.
                                 settings_errors();
-    
+
                                 // Output security fields for the registered styles page.
-                                settings_fields( 'talkino_ordering_page' );
+                                settings_fields( 'talkino_styles_page' );
                                 
                                 // Output styles sections and fields.
-                                do_settings_sections( 'talkino_ordering_page' );
+                                do_settings_sections( 'talkino_styles_page' );
                                 
+                                // Output save settings button.
+                                submit_button( esc_html__( 'Save Settings', 'talkino' ) );
                                 ?>
                             </form>
                         </div>
                         <?php
                         break;
 
-                    case 'display':
-                        ?>
-                        <div class="wrap">
-                            <form action="options.php" method="post">
-                                <?php
-                                // Show error or update message.
-                                settings_errors();
-    
-                                // Output security fields for the registered advanced page.
-                                settings_fields( 'talkino_display_page' );
-                                
-                                // Output advanced sections and fields.
-                                do_settings_sections( 'talkino_display_page' );
-                                
-                                // Output save settings button.
-                                submit_button( esc_html__( 'Save Settings', 'talkino' ) );
-                                
-                                ?>
-                            </form>
-                        </div>
-                        <?php
-                        break;
-
-                    case 'contact-form':
-                    ?>
-                    <div class="wrap">
-                        <form action="options.php" method="post">
-                            <?php
-                            // Show error or update message.
-                            settings_errors();
-
-                            // Output security fields for the registered contact form page.
-                            settings_fields( 'talkino_contact_form_page' );
-                            
-                            // Output contact form sections and fields.
-                            do_settings_sections( 'talkino_contact_form_page' );
-                            
-                            if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { 
-                                // Output save settings button.
-                                submit_button( esc_html__( 'Save Settings', 'talkino' ) );
-                            }
+                        case 'ordering':
                             ?>
-                        </form>
-                    </div>
-                    <?php
-                    break;
+                            <div class="wrap">
+                                <form action="options.php" method="post">
+                                    <?php
+                                    // Show error or update message.
+                                    settings_errors();
+        
+                                    // Output security fields for the registered styles page.
+                                    settings_fields( 'talkino_ordering_page' );
+                                    
+                                    // Output styles sections and fields.
+                                    do_settings_sections( 'talkino_ordering_page' );
+                                    
+                                    ?>
+                                </form>
+                            </div>
+                            <?php
+                            break;
 
-                    case 'advanced':
+                        case 'display':
+                            ?>
+                            <div class="wrap">
+                                <form action="options.php" method="post">
+                                    <?php
+                                    // Show error or update message.
+                                    settings_errors();
+        
+                                    // Output security fields for the registered advanced page.
+                                    settings_fields( 'talkino_display_page' );
+                                    
+                                    // Output advanced sections and fields.
+                                    do_settings_sections( 'talkino_display_page' );
+                                    
+                                    // Output save settings button.
+                                    submit_button( esc_html__( 'Save Settings', 'talkino' ) );
+                                    
+                                    ?>
+                                </form>
+                            </div>
+                            <?php
+                            break;
+
+                        case 'contact-form':
                         ?>
                         <div class="wrap">
                             <form action="options.php" method="post">
                                 <?php
                                 // Show error or update message.
                                 settings_errors();
-    
-                                // Output security fields for the registered advanced page.
-                                settings_fields( 'talkino_advanced_page' );
+
+                                // Output security fields for the registered contact form page.
+                                settings_fields( 'talkino_contact_form_page' );
                                 
-                                // Output advanced sections and fields.
-                                do_settings_sections( 'talkino_advanced_page' );
+                                // Output contact form sections and fields.
+                                do_settings_sections( 'talkino_contact_form_page' );
+                                submit_button( esc_html__( 'Save Settings', 'talkino' ) );
+                                
+                                ?>
+                            </form>
+                        </div>
+                        <?php
+                        break;
+
+                        case 'advanced':
+                            ?>
+                            <div class="wrap">
+                                <form action="options.php" method="post">
+                                    <?php
+                                    // Show error or update message.
+                                    settings_errors();
+        
+                                    // Output security fields for the registered advanced page.
+                                    settings_fields( 'talkino_advanced_page' );
+                                    
+                                    // Output advanced sections and fields.
+                                    do_settings_sections( 'talkino_advanced_page' );
+                                    
+                                    // Output save settings button.
+                                    submit_button( esc_html__( 'Save Settings', 'talkino' ) );
+                                    ?>
+                                </form>
+                            </div>
+                            <?php
+                            break;
+                    
+                        default:
+                        ?>
+                        <div class="wrap">
+                            <form action="options.php" method="post">
+                                <?php
+                                // Show error or update message.
+                                settings_errors();
+
+                                // Output security fields for the registered setting page.
+                                settings_fields( 'talkino_settings_page' );
+                                
+                                // Output setting sections and fields.
+                                do_settings_sections( 'talkino_settings_page' );
                                 
                                 // Output save settings button.
                                 submit_button( esc_html__( 'Save Settings', 'talkino' ) );
@@ -177,34 +209,146 @@ class Talkino_Settings {
                         </div>
                         <?php
                         break;
+                    endswitch; 
                 
-                    default:
-                    ?>
-                    <div class="wrap">
-                        <form action="options.php" method="post">
-                            <?php
-                            // Show error or update message.
-                            settings_errors();
+                }
+                else { // Display the basic tabs for talkino.
+                    switch( $tab ):
+                        case 'styles':
+                        ?>
+                        <div class="wrap">
+                            <form action="options.php" method="post">
+                                <?php
+                                // Show error or update message.
+                                settings_errors();
 
-                            // Output security fields for the registered setting page.
-                            settings_fields( 'talkino_settings_page' );
-                            
-                            // Output setting sections and fields.
-                            do_settings_sections( 'talkino_settings_page' );
-                            
-                            // Output save settings button.
-                            submit_button( esc_html__( 'Save Settings', 'talkino' ) );
+                                // Output security fields for the registered styles page.
+                                settings_fields( 'talkino_styles_page' );
+                                
+                                // Output styles sections and fields.
+                                do_settings_sections( 'talkino_styles_page' );
+                                
+                                // Output save settings button.
+                                submit_button( esc_html__( 'Save Settings', 'talkino' ) );
+                                ?>
+                            </form>
+                        </div>
+                        <?php
+                        break;
+
+                        case 'ordering':
                             ?>
-                        </form>
-                    </div>
-                    <?php
-                    break;
-                endswitch; 
+                            <div class="wrap">
+                                <form action="options.php" method="post">
+                                    <?php
+                                    // Show error or update message.
+                                    settings_errors();
+        
+                                    // Output security fields for the registered styles page.
+                                    settings_fields( 'talkino_ordering_page' );
+                                    
+                                    // Output styles sections and fields.
+                                    do_settings_sections( 'talkino_ordering_page' );
+                                    
+                                    ?>
+                                </form>
+                            </div>
+                            <?php
+                            break;
+
+                        case 'display':
+                            ?>
+                            <div class="wrap">
+                                <form action="options.php" method="post">
+                                    <?php
+                                    // Show error or update message.
+                                    settings_errors();
+        
+                                    // Output security fields for the registered advanced page.
+                                    settings_fields( 'talkino_display_page' );
+                                    
+                                    // Output advanced sections and fields.
+                                    do_settings_sections( 'talkino_display_page' );
+                                    
+                                    // Output save settings button.
+                                    submit_button( esc_html__( 'Save Settings', 'talkino' ) );
+                                    
+                                    ?>
+                                </form>
+                            </div>
+                            <?php
+                            break;
+
+                        case 'advanced':
+                            ?>
+                            <div class="wrap">
+                                <form action="options.php" method="post">
+                                    <?php
+                                    // Show error or update message.
+                                    settings_errors();
+        
+                                    // Output security fields for the registered advanced page.
+                                    settings_fields( 'talkino_advanced_page' );
+                                    
+                                    // Output advanced sections and fields.
+                                    do_settings_sections( 'talkino_advanced_page' );
+                                    
+                                    // Output save settings button.
+                                    submit_button( esc_html__( 'Save Settings', 'talkino' ) );
+                                    ?>
+                                </form>
+                            </div>
+                            <?php
+                            break;
+                    
+                        default:
+                        ?>
+                        <div class="wrap">
+                            <form action="options.php" method="post">
+                                <?php
+                                // Show error or update message.
+                                settings_errors();
+
+                                // Output security fields for the registered setting page.
+                                settings_fields( 'talkino_settings_page' );
+                                
+                                // Output setting sections and fields.
+                                do_settings_sections( 'talkino_settings_page' );
+                                
+                                // Output save settings button.
+                                submit_button( esc_html__( 'Save Settings', 'talkino' ) );
+                                ?>
+                            </form>
+                        </div>
+                        <?php
+                        break;
+                    endswitch; 
+                }
                 ?>
             </div>
         </div>
         <?php
         
+    }
+
+    /**
+     * Render the extensions page.
+     * 
+     * @since    1.1.1
+     */
+    function extensions_page_callback() {
+
+        // Check user capabilities.
+        if ( !current_user_can( 'manage_options' ) ) {
+            return;
+        }
+        
+        // Call the class to load html to render extension page.
+        $talkino_file_loader = new Talkino_File_Loader();
+
+        // Load html to render extension page.
+        $talkino_file_loader->load_extensions_template_file( 'html-extensions.php' );
+
     }
 
     /**
@@ -305,24 +449,29 @@ class Talkino_Settings {
             'talkino_global_online_status_section'
         );
 
-        // Register global schedule online status option field.
-        register_setting(
-            'talkino_settings_page',
-            'talkino_global_schedule_online_status',
-            array(
-                'type' => 'array',
-                'sanitize_callback' => array( $this, 'sanitize_global_schedule_online_status' )
-            )
-        );
+        // Display global schedule online status field for talkino bundle.
+        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
+            
+            // Register global schedule online status option field.
+            register_setting(
+                'talkino_settings_page',
+                'talkino_global_schedule_online_status',
+                array(
+                    'type' => 'array',
+                    'sanitize_callback' => array( $this, 'sanitize_global_schedule_online_status' )
+                )
+            );
 
-        // Add global schedule online status option field.
-        add_settings_field(
-            'global_schedule_id',
-            esc_html__( 'Online Schedule:', 'talkino' ),
-            array( $this, 'global_schedule_online_status_field_callback' ),
-            'talkino_settings_page',
-            'talkino_global_online_status_section'
-        );
+            // Add global schedule online status option field.
+            add_settings_field(
+                'global_schedule_id',
+                esc_html__( 'Online Schedule:', 'talkino' ),
+                array( $this, 'global_schedule_online_status_field_callback' ),
+                'talkino_settings_page',
+                'talkino_global_online_status_section'
+            );
+
+        }
 
         // Register chatbox online subtitle field.
         register_setting(
@@ -939,6 +1088,25 @@ class Talkino_Settings {
 
         /********************************* Advanced *********************************/
 
+        // Register reset settings status option field.
+        register_setting(
+            'talkino_advanced_page',
+            'talkino_reset_settings_status',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => array( $this, 'sanitize_reset_settings_status' )
+            )
+        );
+
+        // Add reset settings status option field.
+        add_settings_field(
+            'reset_settings_status_id',
+            esc_html__( 'Reset Settings:', 'talkino' ),
+            array( $this, 'reset_settings_status_field_callback' ),
+            'talkino_advanced_page',
+            'talkino_advanced_section'
+        );
+
         // Register data uninstall status option field.
         register_setting(
             'talkino_advanced_page',
@@ -1043,16 +1211,7 @@ class Talkino_Settings {
         ?>
         <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Settings to activate and handle contact form when chatbox is offline.', 'talkino' ); ?></p>
         <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'For the fields of "Sender\'s Message", "Sender\'s Name" and "Sender\'s Email", %%sender_name%% represents sender\'s name, %%sender_email%% represents sender\'s email and %%message%% represents message.', 'talkino' ); ?></p>
-        
         <?php
-        if ( ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
-        ?>
-            <!-- Badge Pro -->
-            <div class="badge-pro">
-                <input type="button" class="badge-pro-btn" value="<?php esc_html_e( 'Premium Features', 'talkino') ?> &#x27A4;" onClick="window.open('https://traxconn.com/plugins/talkino/');">
-            </div>
-        <?php 
-        }
 
     }
 
@@ -1081,7 +1240,7 @@ class Talkino_Settings {
     function advanced_section_callback( $args ) {
 
         ?>
-        <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'The advanced settings to control the option of uninstallation.', 'talkino' ); ?></p>
+        <p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'The advanced settings to control the option of reset settings and uninstallation.', 'talkino' ); ?></p>
         <?php
 
     }
@@ -1205,289 +1364,142 @@ class Talkino_Settings {
         $global_online_schedule_field['sunday_end_time'] = ( ! empty ( $global_online_schedule_field['sunday_end_time'] ) ) ? $global_online_schedule_field['sunday_end_time'] : '23:30';
        
         ?>
+     
+        <!-- Monday field -->
+        <input name="talkino_global_schedule_online_status[monday_online_status]" type="hidden" value='off' />
+        <input id="talkino_global_schedule_monday_online_status" name="talkino_global_schedule_online_status[monday_online_status]" type="checkbox" <?php echo esc_attr( $is_monday_checked )?> value='on' /> <?php esc_html_e( 'Monday', 'talkino' ); ?>
+            <p>
+                <select name="talkino_global_schedule_online_status[monday_start_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['monday_start_time'] );
+                ?>
+                </select>
+
+                <select name="talkino_global_schedule_online_status[monday_end_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['monday_end_time'] );
+                ?>
+                </select>
+            </p>
+        
+        <!-- Tuesday field -->
+        <p>
+        <input name="talkino_global_schedule_online_status[tuesday_online_status]" type="hidden" value='off' />
+        <input id="talkino_global_schedule_tuesday_online_status" name="talkino_global_schedule_online_status[tuesday_online_status]" type="checkbox" <?php echo esc_attr( $is_tuesday_checked )?> value='on' /> <?php esc_html_e( 'Tuesday', 'talkino' ); ?>
+            <p>
+                <select name="talkino_global_schedule_online_status[tuesday_start_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['tuesday_start_time'] );
+                ?>
+                </select>
+
+                <select name="talkino_global_schedule_online_status[tuesday_end_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['tuesday_end_time'] );
+                ?>
+                </select>
+            </p>
+        </p>
+
+        <!-- Wednesday field -->
+        <p>
+        <input name="talkino_global_schedule_online_status[wednesday_online_status]" type="hidden" value='off' />
+        <input id="talkino_global_schedule_wednesday_online_status" name="talkino_global_schedule_online_status[wednesday_online_status]" type="checkbox" <?php echo esc_attr( $is_wednesday_checked )?> value='on' /> <?php esc_html_e( 'Wednesday', 'talkino' ); ?>
+            <p>
+                <select name="talkino_global_schedule_online_status[wednesday_start_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['wednesday_start_time'] );
+                ?>
+                </select>
+
+                <select name="talkino_global_schedule_online_status[wednesday_end_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['wednesday_end_time'] );
+                ?>
+                </select>
+            </p>
+        </p>
+
+        <!-- Thursday field -->
+        <p>
+        <input name="talkino_global_schedule_online_status[thursday_online_status]" type="hidden" value='off' />
+        <input id="talkino_global_schedule_thursday_online_status" name="talkino_global_schedule_online_status[thursday_online_status]" type="checkbox" <?php echo esc_attr( $is_thursday_checked )?> value='on' /> <?php esc_html_e( 'Thursday', 'talkino' ); ?>
+            <p>
+                <select name="talkino_global_schedule_online_status[thursday_start_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['thursday_start_time'] );
+                ?>
+                </select>
+
+                <select name="talkino_global_schedule_online_status[thursday_end_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['thursday_end_time'] );
+                ?>
+                </select>
+            </p>
+        </p>
+
+        <!-- Friday field -->
+        <p>
+        <input name="talkino_global_schedule_online_status[friday_online_status]" type="hidden" value='off' />
+        <input id="talkino_global_schedule_friday_online_status" name="talkino_global_schedule_online_status[friday_online_status]" type="checkbox" <?php echo esc_attr( $is_friday_checked )?> value='on' /> <?php esc_html_e( 'Friday', 'talkino' ); ?>
+            <p>
+                <select name="talkino_global_schedule_online_status[friday_start_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['friday_start_time'] );
+                ?>
+                </select>
+
+                <select name="talkino_global_schedule_online_status[friday_end_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['friday_end_time'] );
+                ?>
+                </select>
+            </p>
+        </p>
+
+        <!-- Saturday field -->
+        <p>
+        <input name="talkino_global_schedule_online_status[saturday_online_status]" type="hidden" value='off' />
+        <input id="talkino_global_schedule_saturday_online_status" name="talkino_global_schedule_online_status[saturday_online_status]" type="checkbox" <?php echo esc_attr( $is_saturday_checked )?> value='on' /> <?php esc_html_e( 'Saturday', 'talkino' ); ?>
+            <p>
+                <select name="talkino_global_schedule_online_status[saturday_start_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['saturday_start_time'] );
+                ?>
+                </select>
+
+                <select name="talkino_global_schedule_online_status[saturday_end_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['saturday_end_time'] );
+                ?>
+                </select>
+            </p>
+        </p>
+
+        <!-- Sunday field -->
+        <p>
+        <input name="talkino_global_schedule_online_status[sunday_online_status]" type="hidden" value='off' />
+        <input id="talkino_global_schedule_sunday_online_status" name="talkino_global_schedule_online_status[sunday_online_status]" type="checkbox" <?php echo esc_attr( $is_sunday_checked )?> value='on' /> <?php esc_html_e( 'Sunday', 'talkino' ); ?>
+            <p>
+                <select name="talkino_global_schedule_online_status[sunday_start_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['sunday_start_time'] );
+                ?>
+                </select>
+
+                <select name="talkino_global_schedule_online_status[sunday_end_time]">
+                <?php
+                    $talkino_tools->select_time( $global_online_schedule_field['sunday_end_time'] );
+                ?>
+                </select>
+            </p>
+        </p>
+
+        <!-- Button to select all boxes -->
+        <br>
+        <button type="button" class="button button-primary" name="talkino_global_schedule_selector" id="talkino_global_schedule_selector" /><?php esc_html_e( 'Select all days', 'talkino' )?></button>
         <?php
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-
-            <!-- Monday field -->
-            <input name="talkino_global_schedule_online_status[monday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_monday_online_status" name="talkino_global_schedule_online_status[monday_online_status]" type="checkbox" <?php echo esc_attr( $is_monday_checked )?> value='on' /> <?php esc_html_e( 'Monday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[monday_start_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['monday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[monday_end_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['monday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            
-            <!-- Tuesday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[tuesday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_tuesday_online_status" name="talkino_global_schedule_online_status[tuesday_online_status]" type="checkbox" <?php echo esc_attr( $is_tuesday_checked )?> value='on' /> <?php esc_html_e( 'Tuesday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[tuesday_start_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['tuesday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[tuesday_end_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['tuesday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Wednesday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[wednesday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_wednesday_online_status" name="talkino_global_schedule_online_status[wednesday_online_status]" type="checkbox" <?php echo esc_attr( $is_wednesday_checked )?> value='on' /> <?php esc_html_e( 'Wednesday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[wednesday_start_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['wednesday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[wednesday_end_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['wednesday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Thursday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[thursday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_thursday_online_status" name="talkino_global_schedule_online_status[thursday_online_status]" type="checkbox" <?php echo esc_attr( $is_thursday_checked )?> value='on' /> <?php esc_html_e( 'Thursday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[thursday_start_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['thursday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[thursday_end_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['thursday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Friday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[friday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_friday_online_status" name="talkino_global_schedule_online_status[friday_online_status]" type="checkbox" <?php echo esc_attr( $is_friday_checked )?> value='on' /> <?php esc_html_e( 'Friday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[friday_start_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['friday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[friday_end_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['friday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Saturday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[saturday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_saturday_online_status" name="talkino_global_schedule_online_status[saturday_online_status]" type="checkbox" <?php echo esc_attr( $is_saturday_checked )?> value='on' /> <?php esc_html_e( 'Saturday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[saturday_start_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['saturday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[saturday_end_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['saturday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Sunday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[sunday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_sunday_online_status" name="talkino_global_schedule_online_status[sunday_online_status]" type="checkbox" <?php echo esc_attr( $is_sunday_checked )?> value='on' /> <?php esc_html_e( 'Sunday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[sunday_start_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['sunday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[sunday_end_time]">
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['sunday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Button to select all boxes -->
-            <br>
-            <button type="button" name="talkino_global_schedule_selector" id="talkino_global_schedule_selector" /><?php esc_html_e( 'Select all days', 'talkino' )?></button>
-            <?php
-        }
-        else {
-        ?>
-            <!-- Badge Pro -->
-            <div class="badge-pro">
-                <input type="button" class="badge-pro-btn" value="<?php esc_html_e( 'Premium Features', 'talkino') ?> &#x27A4;" onClick="window.open('https://traxconn.com/plugins/talkino/');">
-            </div>
-
-            <!-- Monday field -->  
-            <input name="talkino_global_schedule_online_status[monday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_monday_online_status" name="talkino_global_schedule_online_status[monday_online_status]" type="checkbox" <?php echo esc_attr( $is_monday_checked )?> value='on' disabled /> <?php esc_html_e( 'Monday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[monday_start_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['monday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[monday_end_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['monday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            
-            <!-- Tuesday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[tuesday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_tuesday_online_status" name="talkino_global_schedule_online_status[tuesday_online_status]" type="checkbox" <?php echo esc_attr( $is_tuesday_checked )?> value='on' disabled /> <?php esc_html_e( 'Tuesday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[tuesday_start_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['tuesday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[tuesday_end_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['tuesday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Wednesday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[wednesday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_wednesday_online_status" name="talkino_global_schedule_online_status[wednesday_online_status]" type="checkbox" <?php echo esc_attr( $is_wednesday_checked )?> value='on' disabled /> <?php esc_html_e( 'Wednesday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[wednesday_start_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['wednesday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[wednesday_end_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['wednesday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Thursday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[thursday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_thursday_online_status" name="talkino_global_schedule_online_status[thursday_online_status]" type="checkbox" <?php echo esc_attr( $is_thursday_checked )?> value='on' disabled /> <?php esc_html_e( 'Thursday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[thursday_start_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['thursday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[thursday_end_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['thursday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Friday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[friday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_friday_online_status" name="talkino_global_schedule_online_status[friday_online_status]" type="checkbox" <?php echo esc_attr( $is_friday_checked )?> value='on' disabled /> <?php esc_html_e( 'Friday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[friday_start_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['friday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[friday_end_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['friday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Saturday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[saturday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_saturday_online_status" name="talkino_global_schedule_online_status[saturday_online_status]" type="checkbox" <?php echo esc_attr( $is_saturday_checked )?> value='on' disabled /> <?php esc_html_e( 'Saturday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[saturday_start_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['saturday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[saturday_end_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['saturday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Sunday field -->
-            <p>
-            <input name="talkino_global_schedule_online_status[sunday_online_status]" type="hidden" value='off' />
-            <input id="talkino_global_schedule_sunday_online_status" name="talkino_global_schedule_online_status[sunday_online_status]" type="checkbox" <?php echo esc_attr( $is_sunday_checked )?> value='on' disabled /> <?php esc_html_e( 'Sunday', 'talkino' ); ?>
-                <p>
-                    <select name="talkino_global_schedule_online_status[sunday_start_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['sunday_start_time'] );
-                    ?>
-                    </select>
-
-                    <select name="talkino_global_schedule_online_status[sunday_end_time]" disabled>
-                    <?php
-                        $talkino_tools->select_time( $global_online_schedule_field['sunday_end_time'] );
-                    ?>
-                    </select>
-                </p>
-            </p>
-
-            <!-- Button to select all boxes -->
-            <br>
-            <button type="button" name="talkino_global_schedule_selector" id="talkino_global_schedule_selector" disabled /><?php esc_html_e( 'Select all days', 'talkino' )?></button>
-        <?php
-
-        }   
 
     }
 
@@ -1499,34 +1511,6 @@ class Talkino_Settings {
      * @return    string    $global_schedule_online_status    The validated value of global schedule online status.
      */
     function sanitize_global_schedule_online_status( $global_schedule_online_status ) {
-
-        if ( ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
-
-            // Declare the default values of disabled input fields.
-            $global_schedule_online_status['monday_online_status'] = 'on';
-            $global_schedule_online_status['tuesday_online_status'] = 'on';
-            $global_schedule_online_status['wednesday_online_status'] = 'on';
-            $global_schedule_online_status['thursday_online_status'] = 'on';
-            $global_schedule_online_status['friday_online_status'] = 'on';
-            $global_schedule_online_status['saturday_online_status'] = 'on';
-            $global_schedule_online_status['sunday_online_status'] = 'on';
-
-            $global_schedule_online_status['monday_start_time'] = '00:00';
-            $global_schedule_online_status['monday_end_time'] = '23:30';
-            $global_schedule_online_status['tuesday_start_time'] = '00:00';
-            $global_schedule_online_status['tuesday_end_time'] = '23:30';
-            $global_schedule_online_status['wednesday_start_time'] = '00:00';
-            $global_schedule_online_status['wednesday_end_time'] = '23:30';
-            $global_schedule_online_status['thursday_start_time'] = '00:00';
-            $global_schedule_online_status['thursday_end_time'] = '23:30';
-            $global_schedule_online_status['friday_start_time'] = '00:00';
-            $global_schedule_online_status['friday_end_time'] = '23:30';
-            $global_schedule_online_status['saturday_start_time'] = '00:00';
-            $global_schedule_online_status['saturday_end_time'] = '23:30';
-            $global_schedule_online_status['sunday_start_time'] = '00:00';
-            $global_schedule_online_status['sunday_end_time'] = '23:30';
-
-        }
 
         $start_time_value = "00:00";
         $end_time_value = "23:30";
@@ -2577,19 +2561,8 @@ class Talkino_Settings {
         
         ?>
         <input name="talkino_contact_form_status" type="hidden" value='off'/>
+        <input name="talkino_contact_form_status" type="checkbox" <?php echo esc_attr( $is_contact_form_status_checked )?> value='on' /> <?php esc_html_e( 'Activate the contact form for allowing users to email to admin when the Talkino chatbox is offline.', 'talkino' ); ?>
         <?php
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-
-            <input name="talkino_contact_form_status" type="checkbox" <?php echo esc_attr( $is_contact_form_status_checked )?> value='on' /> <?php esc_html_e( 'Activate the contact form for allowing users to email to admin when the Talkino chatbox is offline.', 'talkino' ); ?>
-        
-        <?php
-        }
-        else { ?>
-
-            <input name="talkino_contact_form_status" type="checkbox" <?php echo esc_attr( $is_contact_form_status_checked )?> value='on' disabled /> <?php esc_html_e( 'Activate the contact form for allowing users to email to admin when the Talkino chatbox is offline.', 'talkino' ); ?>
-        
-        <?php
-        }
 
     }
 
@@ -2634,18 +2607,9 @@ class Talkino_Settings {
 
         $email_recipient = get_option( 'talkino_email_recipient' );
      
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-        
-            <input type="text" name="talkino_email_recipient" class="regular-text" value="<?php echo isset( $email_recipient ) ? esc_attr( $email_recipient ) : ''; ?>" />
-        
+        ?>
+        <input type="text" name="talkino_email_recipient" class="regular-text" value="<?php echo isset( $email_recipient ) ? esc_attr( $email_recipient ) : ''; ?>" />
         <?php 
-        }
-        else { ?>
-
-            <input type="text" name="talkino_email_recipient" class="regular-text" value="<?php echo isset( $email_recipient ) ? esc_attr( $email_recipient ) : ''; ?>" disabled />
-
-        <?php
-        }
 
     }
 
@@ -2658,19 +2622,10 @@ class Talkino_Settings {
 
         $email_subject = get_option( 'talkino_email_subject' );
 
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-        
-            <input type="text" name="talkino_email_subject" class="regular-text" value="<?php echo isset( $email_subject ) ? esc_attr( $email_subject ) : ''; ?>" />
-        
+        ?>
+        <input type="text" name="talkino_email_subject" class="regular-text" value="<?php echo isset( $email_subject ) ? esc_attr( $email_subject ) : ''; ?>" />
         <?php 
-        }
-        else { ?>
-
-            <input type="text" name="talkino_email_subject" class="regular-text" value="<?php echo isset( $email_subject ) ? esc_attr( $email_subject ) : ''; ?>" disabled />
         
-        <?php
-        }
-
     }
 
     /**
@@ -2679,22 +2634,13 @@ class Talkino_Settings {
      * @since    1.0.0
      */
     function sender_message_field_callback() {
+
         $sender_message = get_option( 'talkino_sender_message' );
 
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-        
-            <textarea name="talkino_sender_message" class="large-text" maxlength="100" rows="2"><?php echo isset( $sender_message ) ? esc_textarea( $sender_message ) : ''; ?></textarea>
-       
-    
-        <?php 
-        }
-        else { ?>
-    
-            <textarea name="talkino_sender_message" class="large-text" maxlength="100" rows="2" disabled><?php echo isset( $sender_message ) ? esc_textarea( $sender_message ) : ''; ?></textarea>            
-
+        ?>
+        <textarea name="talkino_sender_message" class="large-text" maxlength="100" rows="2"><?php echo isset( $sender_message ) ? esc_textarea( $sender_message ) : ''; ?></textarea>
         <?php
-        }
-
+  
     }
 
     /**
@@ -2706,19 +2652,10 @@ class Talkino_Settings {
 
         $sender_name = get_option( 'talkino_sender_name' );
         
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-
-            <input type="text" name="talkino_sender_name" class="regular-text" value="<?php echo isset( $sender_name ) ? esc_attr( $sender_name ) : ''; ?>" />
-          
+        ?>
+        <input type="text" name="talkino_sender_name" class="regular-text" value="<?php echo isset( $sender_name ) ? esc_attr( $sender_name ) : ''; ?>" />
         <?php 
-        }
-        else { ?>
         
-            <input type="text" name="talkino_sender_name" class="regular-text" value="<?php echo isset( $sender_name ) ? esc_attr( $sender_name ) : ''; ?>" disabled />
-            
-        <?php
-        }
-
     }
 
     /**
@@ -2729,19 +2666,11 @@ class Talkino_Settings {
     function sender_email_field_callback() {
 
         $sender_email = get_option( 'talkino_sender_email' );
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
         
-            <input type="text" name="talkino_sender_email" class="regular-text" value="<?php echo isset( $sender_email ) ? esc_attr( $sender_email ) : ''; ?>" />
-        
+        ?>
+        <input type="text" name="talkino_sender_email" class="regular-text" value="<?php echo isset( $sender_email ) ? esc_attr( $sender_email ) : ''; ?>" />
         <?php 
-        }
-        else { ?>
         
-            <input type="text" name="talkino_sender_email" class="regular-text" value="<?php echo isset( $sender_email ) ? esc_attr( $sender_email ) : ''; ?>" disabled />
-        
-        <?php
-        }
-
     }
 
     /**
@@ -2753,19 +2682,10 @@ class Talkino_Settings {
 
         $success_email_message = get_option( 'talkino_success_email_message' );
         
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-        
-            <input type="text" name="talkino_success_email_message" class="regular-text" value="<?php echo isset( $success_email_message ) ? esc_attr( $success_email_message ) : ''; ?>" />
-        
+        ?>
+        <input type="text" name="talkino_success_email_message" class="regular-text" value="<?php echo isset( $success_email_message ) ? esc_attr( $success_email_message ) : ''; ?>" />
         <?php 
-        }
-        else { ?>
         
-            <input type="text" name="talkino_success_email_message" class="regular-text" value="<?php echo isset( $success_email_message ) ? esc_attr( $success_email_message ) : ''; ?>" disabled />
-                    
-        <?php
-        }
-
     }
 
     /**
@@ -2777,18 +2697,9 @@ class Talkino_Settings {
 
         $fail_email_message = get_option( 'talkino_fail_email_message' );
 
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-        
-            <input type="text" name="talkino_fail_email_message" class="regular-text" value="<?php echo isset( $fail_email_message ) ? esc_attr( $fail_email_message ) : ''; ?>" />
-        
+        ?>
+        <input type="text" name="talkino_fail_email_message" class="regular-text" value="<?php echo isset( $fail_email_message ) ? esc_attr( $fail_email_message ) : ''; ?>" />
         <?php 
-        }
-        else { ?>
-        
-            <input type="text" name="talkino_fail_email_message" class="regular-text" value="<?php echo isset( $fail_email_message ) ? esc_attr( $fail_email_message ) : ''; ?>" disabled />
-        
-        <?php
-        }
 
     }
 
@@ -2804,19 +2715,8 @@ class Talkino_Settings {
         
         ?>
         <input name="talkino_recaptcha_status" type="hidden" value='off'/>
+        <input name="talkino_recaptcha_status" type="checkbox" <?php echo esc_attr( $is_recaptcha_status_checked )?> value='on' /> <?php esc_html_e( 'Activate Google reCAPTCHA (v3) on contact form.', 'talkino' ); ?>
         <?php
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-        
-            <input name="talkino_recaptcha_status" type="checkbox" <?php echo esc_attr( $is_recaptcha_status_checked )?> value='on' /> <?php esc_html_e( 'Activate Google reCAPTCHA (v3) on contact form.', 'talkino' ); ?>
-    
-        <?php 
-        }
-        else { ?>
-        
-            <input name="talkino_recaptcha_status" type="checkbox" <?php echo esc_attr( $is_recaptcha_status_checked )?> value='on' disabled /> <?php esc_html_e( 'Activate Google reCAPTCHA (v3) on contact form.', 'talkino' ); ?>
-            
-        <?php
-        }
 
     }
 
@@ -2861,18 +2761,9 @@ class Talkino_Settings {
 
         $recaptcha_site_key = get_option( 'talkino_recaptcha_site_key' );
         
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-        
-            <input type="text" name="talkino_recaptcha_site_key" class="regular-text" value="<?php echo isset( $recaptcha_site_key ) ? esc_attr( $recaptcha_site_key ) : ''; ?>" />
-    
-        <?php 
-        }
-        else { ?>
-        
-            <input type="text" name="talkino_recaptcha_site_key" class="regular-text" value="<?php echo isset( $recaptcha_site_key ) ? esc_attr( $recaptcha_site_key ) : ''; ?>" disabled />
-
+        ?>
+        <input type="text" name="talkino_recaptcha_site_key" class="regular-text" value="<?php echo isset( $recaptcha_site_key ) ? esc_attr( $recaptcha_site_key ) : ''; ?>" />
         <?php
-        }
 
     }
 
@@ -2885,23 +2776,63 @@ class Talkino_Settings {
 
         $recaptcha_secret_key = get_option( 'talkino_recaptcha_secret_key' );
         
-        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { ?>
-        
-            <input type="text" name="talkino_recaptcha_secret_key" class="regular-text" value="<?php echo isset( $recaptcha_secret_key ) ? esc_attr( $recaptcha_secret_key ) : ''; ?>" />
-       
+        ?>
+        <input type="text" name="talkino_recaptcha_secret_key" class="regular-text" value="<?php echo isset( $recaptcha_secret_key ) ? esc_attr( $recaptcha_secret_key ) : ''; ?>" />
         <?php 
-        }
-        else { ?>
         
-            <input type="text" name="talkino_recaptcha_secret_key" class="regular-text" value="<?php echo isset( $recaptcha_secret_key ) ? esc_attr( $recaptcha_secret_key ) : ''; ?>" disabled />
-            
-        <?php
-        }
-
     }
 
     /********************************* Advanced *********************************/
     
+    /**
+     * Callback function to render reset settings status field.
+     * 
+     * @since    1.1.1
+     */
+    function reset_settings_status_field_callback() {
+
+        $reset_settings_status_field = get_option( 'talkino_reset_settings_status' );
+        $is_reset_settings_status_checked = ( ! empty ( $reset_settings_status_field ) && $reset_settings_status_field == 'on' ) ? 'checked' : '';
+        
+        ?>
+        <input name="talkino_reset_settings_status" type="hidden" value='off'/>
+        <input name="talkino_reset_settings_status" type="checkbox" <?php echo esc_attr( $is_reset_settings_status_checked )?> value='on' /> <?php esc_html_e( 'Enable Talkino plugin to reset all data of settings to default.', 'talkino' ); ?>
+        <?php
+
+    }
+
+    /**
+     * Sanitize function to validate the reset settings status field.
+     * 
+     * @since     1.1.1
+     * @param     string    $reset_settings_status    The reset settings status.
+     * @return    string    $reset_settings_status    The validated value of reset settings status.
+     */
+    function sanitize_reset_settings_status( $reset_settings_status ) {
+        
+        // Sanitize the checkbox 
+        if ( ! empty ( $reset_settings_status ) ) {
+            
+            if ( $reset_settings_status == 'on' || $reset_settings_status == 'off' ) {
+
+                $reset_settings_status = $reset_settings_status;
+            
+            }
+            else {
+            
+                $reset_settings_status = 'off';
+
+                // Notify the user on invalid input.
+                add_settings_error( 'talkino_reset_settings_status', 'invalid_reset_settings_status_value', esc_html__( 'Oops, you have inserted invalid input of reset settings field!', 'talkino' ), 'error' );
+
+            }
+
+        }
+
+        return $reset_settings_status;
+
+    }
+
     /**
      * Callback function to render data uninstall status field.
      * 

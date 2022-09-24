@@ -129,6 +129,7 @@ class Talkino {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-settings.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-tools.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-sanitizer.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-notifier.php';
 		
 		// The class responsible for defining all actions that occur in the frontend side of the site.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-frontend.php';
@@ -188,6 +189,9 @@ class Talkino {
 
 		// Register hook to upgrade plugin data.
 		$this->loader->add_action( 'init', $talkino_tools, 'upgrade_plugin_data' );
+
+		// Register hook to reset plugin data of settings.
+		$this->loader->add_action( 'init', $talkino_tools, 'reset_settings' );
 		
 		// Register hook to create custom post type.
 		$this->loader->add_action( 'init', $talkino_post_type, 'create_custom_post_type' );

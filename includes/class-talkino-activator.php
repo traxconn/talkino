@@ -442,6 +442,13 @@ class Talkino_Activator {
 		/************* Advanced *************/
 
 		// Add data uninstall status if it does not exist. 
+		if ( get_option( 'talkino_reset_settings_status' ) == false ) {
+			
+			add_option( 'talkino_reset_settings_status', 'off' );
+		
+		}
+
+		// Add data uninstall status if it does not exist. 
 		if ( get_option( 'talkino_data_uninstall_status' ) == false ) {
 			
 			add_option( 'talkino_data_uninstall_status', 'off' );

@@ -39,14 +39,16 @@ class Talkino_Meta_Boxes {
             'default'
         );
 
-        add_meta_box(
-            'talkino_options',
-            'Options',
-            array( $this, 'options_meta_box_callback' ),
-            'talkino_agents',
-            'normal',
-            'default'
-        );
+        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
+            add_meta_box(
+                'talkino_options',
+                'Options',
+                array( $this, 'options_meta_box_callback' ),
+                'talkino_agents',
+                'normal',
+                'default'
+            );
+        }
         
     }
 
