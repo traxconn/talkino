@@ -1,4 +1,4 @@
-=== Talkino - Click to Chat for Multi Social Messengers ===
+=== Talkino - Click to Chat for Multi Chat Channels ===
 Author URI: https://traxconn.com/
 Plugin URI: https://traxconn.com/plugins/talkino/
 Contributors: traxconn, yipchunmun, leesuijen
@@ -6,7 +6,7 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.0.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -160,17 +160,20 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 2. List of Support Agents
 3. Agent's Contact Details
 4. Agent's Contact Details
-5. Talkino Bundle's Feature of Time Schedule for Agents
-6. Chatbox Online Status and Talkino Bundle's Feature of Global Online Schedule
-7. Editable Text of Chatbox
-8. Customizable Styles of Chatbox
-9. Feature of Ordering for Chat Channels and Agents
-10. Feature to Display or Hide the Chatbox on Pages
-11. Talkino Bundle's Feature of Contact Form when Chatbox is Offline
-12. Talkino Bundle's Feature of Google reCaptcha v3 to Prevent Spam of Contact Form 
-13. Advanced Setting to Control the Option of Uninstallation 
+5. Chatbox Online Status and Editable Text of Chatbox
+6. Customizable Styles of Chatbox
+7. Feature of Ordering for Chat Channels and Agents
+8. Feature to Display or Hide the Chatbox on Pages
+9. Advanced Setting to Control the Option of Uninstallation 
 
 == Changelog ==
+
+= 1.1.1, Sep 24, 2022 =
+* Added: New feature to reset all data of settings.
+* Added: New extension page to introduce Talkino Bundle and its premium features. 
+* Improvement: Enhance the user experience by removing the display of Talkino Bundle features which are global online schedule, online schedule for agents, and contact form. 
+* Improvement: New style of button in settings for online schedule.
+* Removed: The deprecated CSS.
 
 = 1.1.0, Sep 21, 2022 =
 * Added: New interface for post type of agents and ordering setting.

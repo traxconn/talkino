@@ -37,6 +37,19 @@ class Talkino_File_Loader {
     }
 
 	/**
+	 * Load the external extensions template file for the admin area.
+	 *
+	 * @since    1.0.0
+     * @param    string    $template_file    The file name of template.
+     * @param    array     $data             The data of extensions.
+	 */
+    public function load_extensions_template_file( $template_file ) {
+
+	    include plugin_dir_path( __FILE__ ) . 'admin/extensions/views/' . $template_file;
+		
+    }
+
+	/**
 	 * Load the external chatbox template file for the frontend.
 	 *
 	 * @since    1.0.0
