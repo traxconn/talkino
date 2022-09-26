@@ -6,7 +6,7 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.0.2
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -169,6 +169,9 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 9. Advanced Setting to Control the Options of Reset Settings and Uninstallation 
 
 == Changelog ==
+
+= 1.1.3, Sep 26, 2022 =
+* Improvement: Updated the notification message after added, edited, and removed agent.
 
 = 1.1.2, Sep 24, 2022 =
 * Fixed: Fatal error that happens in PHP 7.3.
