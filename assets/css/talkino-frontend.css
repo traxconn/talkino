@@ -84,7 +84,7 @@ Offline color: #aec6cf;
     width: 300px;
     /* right: 20px; */
     /* bottom: 100px; */
-    border-radius: 5px;
+    /* border-radius: 5px; */
     position: fixed;
     display: none;
     transition: all 0.4s;
@@ -107,6 +107,16 @@ Offline color: #aec6cf;
 .talkino-information-wrapper {
     max-height: 295px;
     overflow-y: scroll;
+}
+
+.talkino-information-wrapper::-webkit-scrollbar {
+    height: 12px;
+    width: 5px;
+    background: #f1f1f1;
+}
+
+.talkino-information-wrapper::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
 }
 
 .talkino-chat-avatar {

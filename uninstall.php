@@ -73,6 +73,9 @@ function remove_plugin_data() {
 
 	    // Remove plugin settings.
 
+		/************* Global *************/
+		delete_option( 'talkino_version' );
+
 		/************* Settings *************/
 		delete_option( 'talkino_global_online_status' );
 		delete_option( 'talkino_global_schedule_online_status' );
@@ -89,6 +92,7 @@ function remove_plugin_data() {
 		/************* Styles *************/
 		delete_option( 'talkino_chatbox_style' );
 		delete_option( 'talkino_chatbox_position' );
+		delete_option( 'talkino_chatbox_icon' );
 		delete_option( 'talkino_show_on_desktop' );
 		delete_option( 'talkino_show_on_mobile' );
 		delete_option( 'talkino_start_chat_method' );

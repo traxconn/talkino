@@ -77,11 +77,18 @@ class Talkino_Admin {
 	 */
 	public function enqueue_styles( $hook_suffix ) {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/css/talkino-admin.css', array(), $this->version, 'all' );
+		global $current_screen;
 		
-		// Enqueue bootstrap and font awesome css for chatbox
-		wp_enqueue_style( 'font-awesome-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-free-6.2.0-web/css/all.min.css' );
-	
+        if ( 'talkino_agents' == $current_screen->post_type ) {
+
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/css/talkino-admin.css', array(), $this->version, 'all' );
+			
+			// Enqueue font awesome css for admin area.
+			wp_enqueue_style( 'fontawesome-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-free-6.2.0-web/css/all.min.css' );
+			wp_enqueue_style( 'fontawesome-browser-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-icon-browser-picker/fontawesome-browser.css' );
+		
+		}
+
 	}
 
 	/**
@@ -92,20 +99,29 @@ class Talkino_Admin {
 	 */
 	public function enqueue_scripts( $hook_suffix ) {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/talkino-admin.js', array( 'jquery' ), $this->version, false );
+		global $current_screen;
 
-		// Add the color picker css file       
-        wp_enqueue_style( 'wp-color-picker' ); 
+        if ( 'talkino_agents' == $current_screen->post_type ) {
+		
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/talkino-admin.js', array( 'jquery' ), $this->version, false );
 
-        // Make sure to add the wp-color-picker dependecy to js file
-        wp_enqueue_script( 'color_picker_js', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/color-picker.js', array( 'jquery', 'wp-color-picker' ), '', true  );
-	
-		// Enqueue jquery for sorting.
-		wp_enqueue_script( 'jquery-ui-sortable', false, array( 'jquery-ui-core', 'jquery' ) );
-	
-		// Pass $php_vars array to javascript as php object for channel ordering.
-		$ajax_url = array( 'ajax_url' => admin_url( 'admin-ajax.php' ) );
-		wp_localize_script( $this->plugin_name, 'ajax_object', $ajax_url );
+			// Add the color picker css file       
+			wp_enqueue_style( 'wp-color-picker' ); 
+
+			// Make sure to add the wp-color-picker dependecy to js file
+			wp_enqueue_script( 'color-picker-js', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/color-picker.js', array( 'jquery', 'wp-color-picker' ), '', true  );
+		
+			// Enqueue jquery for sorting.
+			wp_enqueue_script( 'jquery-ui-sortable', false, array( 'jquery-ui-core', 'jquery' ) );
+			
+			// Enqueue jquery for picking icon.
+			wp_enqueue_script( 'icon_picker_js', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/icon-picker.js', '', true  );
+			wp_enqueue_script( 'fontawesome-browser-js', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-icon-browser-picker/fontawesome-browser.js', '', true  );
+
+			// Pass $php_vars array to javascript as php object for channel ordering.
+			$ajax_url = array( 'ajax_url' => admin_url( 'admin-ajax.php' ) );
+			wp_localize_script( $this->plugin_name, 'ajax_object', $ajax_url );
+		
+		}
 	}
-
 }

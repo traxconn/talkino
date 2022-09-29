@@ -1,0 +1,74 @@
+/* 
+** Property Ordering **
+1) Colors and Typography 
+2) Box model
+3) Border
+4) Positioning
+5) Display
+6) Other
+*/
+
+.fa-browser-container {
+    background: rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    display: flex;
+}
+
+.fa-browser-container > .window {
+    background: white;
+    box-sizing: border-box;
+    border-width: 10px;
+    border-style: solid;
+    border-radius: 10px;
+    position: relative;
+    max-width: 800px;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fa-browser-container > .close {
+    color: white;
+    text-shadow: 0 0 10px black;
+    font-size: 36px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.fa-browser-container .icon {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 1rem;
+    flex: 0 0 10%;
+    cursor: pointer
+}
+
+.fa-browser-container .icon:hover {
+    color: #8f8f8f;
+}
+
+/* xs */
+@media (max-width: 575px){
+    .fa-browser-container .icon {
+        flex: 0 0 20%;   
+    }
+    .fa-browser-container > .close {
+        top: .5rem;
+        right: .5rem;
+    }
+}

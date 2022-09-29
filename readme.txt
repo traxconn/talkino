@@ -6,8 +6,8 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.0.2
-Stable tag: 1.1.3
-Requires PHP: 5.6
+Stable tag: 1.1.4
+Requires PHP: 7.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -40,7 +40,7 @@ Changing your online status is all about setting the right expectation for your 
 Enable you to edit the text of Talkino's chatbox in different modes. These include online, away and offline modes.
 
 - **Fully customizable style**
-Customize the theme color, styles, text color, background and position of chatbox to meet your favorite style or theme design.
+Customize the theme color, icon, styles, text color, background and position of chatbox to meet your favorite style or theme design.
 
 - **WooCommerce compatible**
 Talkino is fully compatible with WooCommerce store.
@@ -169,6 +169,12 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 9. Advanced Setting to Control the Options of Reset Settings and Uninstallation 
 
 == Changelog ==
+
+= 1.1.4, Sep 29, 2022 =
+* Added: New feature to select Font Awesome icon to chatbox button included round and rectangle styles. 
+* Improvement: Update the styles of chatbox.
+* Improvement: Reduce the width of scrollbar on the chatbox when using Chromium based web browser.
+* Improvement: Only enqueue the required JavaScript and CSS files when on the pages of Talkino.
 
 = 1.1.3, Sep 26, 2022 =
 * Improvement: Updated the notification message after added, edited, and removed agent.

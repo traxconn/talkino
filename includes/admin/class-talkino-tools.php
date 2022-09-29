@@ -49,7 +49,21 @@ class Talkino_Tools {
             
             }
             
-		}  
+		}
+        
+        // Add talkino version data if it does not exist when upgrade from old version. 
+		if ( get_option( 'talkino_version' ) == false ) {
+			
+			add_option( 'talkino_version', '1.1' );
+		
+		}
+        
+        // Add chatbox icon data if it does not exist when upgrade from old version. 
+		if ( get_option( 'talkino_chatbox_icon' ) == false ) {
+			
+			add_option( 'talkino_chatbox_icon', 'fa fa-comment' );
+		
+		}
     
     }
 
@@ -128,6 +142,9 @@ class Talkino_Tools {
             
             // Reset chatbox position data. 
             update_option( 'talkino_chatbox_position', 'right' );
+
+            // Reset chatbox icon data.
+            update_option( 'talkino_chatbox_icon', 'fa fa-comment' );
             
             // Reset show on desktop data. 
             update_option( 'talkino_show_on_desktop', 'on' );

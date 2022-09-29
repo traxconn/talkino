@@ -608,6 +608,26 @@ class Talkino_Settings {
             'talkino_styles_section'
         );
 
+        // Register chatbox icon option field.
+        register_setting(
+            'talkino_styles_page',
+            'talkino_chatbox_icon',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => 'sanitize_text_field',
+                'default' => ''
+            )
+        );
+
+        // Add chatbox icon option field.
+        add_settings_field(
+            'start_chatbox_icon_id',
+            esc_html__( 'Chatbox Icon:', 'talkino' ),
+            array( $this, 'chatbox_icon_field_callback' ),
+            'talkino_styles_page',
+            'talkino_styles_section'
+        );
+
         // Register show on desktop option field.
         register_setting(
             'talkino_styles_page',
@@ -1994,6 +2014,27 @@ class Talkino_Settings {
         }
 
         return $chatbox_position;
+
+    }
+
+    /**
+     * Callback function to render chatbox icon field.
+     * 
+     * @since    1.1.4
+     */
+    function chatbox_icon_field_callback() {
+
+        $chatbox_icon_field = get_option( 'talkino_chatbox_icon' );
+
+        ?>
+        <i id="talkino-icon-preview" class="<?php echo esc_html( get_option( 'talkino_chatbox_icon' ) );?> fa-xl"></i>
+        <input id="talkino-chatbox-icon" type="text" name="talkino_chatbox_icon" placeholder="Select icon" data-fa-browser value="<?php echo isset( $chatbox_icon_field ) ? esc_attr( $chatbox_icon_field ) : 'fa fa-comment'; ?>" />
+        
+        <p>
+            <i><?php esc_html_e( 'Please click to select the Font Awesome icon of chatbox.', 'talkino') ?></i>
+        </p>
+       
+        <?php
 
     }
 
