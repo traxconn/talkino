@@ -12,9 +12,9 @@ if ( ! defined( 'WPINC' ) ) {
 <input type="checkbox" id="check"> 
 <label class="talkino-chat-btn" for="check"> 
     <div class="talkino-icon">
-        <i class="fa-solid fa-comment"></i>
+        <i class="<?php echo esc_html( get_option( 'talkino_chatbox_icon' ) );?> round"></i>
     </div>
-    <div class="talkino-rectangle-label"><?php esc_html_e( 'Chat Now', 'talkino' ) ?></div>
+    <div class="talkino-rectangle-label"><i class="<?php echo esc_html( get_option( 'talkino_chatbox_icon' ) );?> rectangle fa-xl"></i> <?php esc_html_e( 'Chat Now', 'talkino' ) ?></div>
     <i class="fa fa-close talkino-close"></i> 
 </label>
 

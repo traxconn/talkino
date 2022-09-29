@@ -349,11 +349,13 @@ class Talkino_Chatbox {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
                         bottom: 100px;
+                        border-radius: 10px;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_online_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 10px 10px 0 0;
                     }
 
                     .talkino-chat-subtitle {
@@ -384,11 +386,13 @@ class Talkino_Chatbox {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
                         bottom: 100px;
+                        border-radius: 10px;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_away_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 10px 10px 0 0;
                     }
 
                     .talkino-chat-subtitle {
@@ -419,11 +423,13 @@ class Talkino_Chatbox {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
                         bottom: 100px;
+                        border-radius: 10px;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_offline_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 10px 10px 0 0;
                     }
 
                     .talkino-chat-subtitle {
@@ -458,11 +464,13 @@ class Talkino_Chatbox {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
                         bottom: 100px;
+                        border-radius: 10px;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_online_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 10px 10px 0 0;
                     }
 
                     .talkino-chat-subtitle {
@@ -493,11 +501,13 @@ class Talkino_Chatbox {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
                         bottom: 100px;
+                        border-radius: 10px;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_away_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 10px 10px 0 0;
                     }
 
                     .talkino-chat-subtitle {
@@ -528,11 +538,13 @@ class Talkino_Chatbox {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
                         bottom: 100px;
+                        border-radius: 10px;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_offline_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 10px 10px 0 0;
                     }
 
                     .talkino-chat-subtitle {
@@ -565,19 +577,25 @@ class Talkino_Chatbox {
                         border-radius: 0;
                     }
 
-                    .fa-solid.fa-comment {
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.round {
                         display: none;
+                    }
+
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.rectangle {
+                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
                         bottom: 60px;
+                        border-radius: 0;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_online_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 0;
                     }
 
                     .talkino-chat-subtitle {
@@ -600,19 +618,25 @@ class Talkino_Chatbox {
                         border-radius: 0;
                     }
 
-                    .fa-solid.fa-comment {
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.round {
                         display: none;
+                    }
+
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.rectangle {
+                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
                         bottom: 60px;
+                        border-radius: 0;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_away_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 0;
                     }
 
                     .talkino-chat-subtitle {
@@ -635,19 +659,25 @@ class Talkino_Chatbox {
                         border-radius: 0;
                     }
 
-                    .fa-solid.fa-comment {
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.round {
                         display: none;
+                    }
+
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.rectangle {
+                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
                         bottom: 60px;
+                        border-radius: 0;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_offline_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 0;
                     }
 
                     .talkino-chat-subtitle {
@@ -673,19 +703,25 @@ class Talkino_Chatbox {
                         border-radius: 0;
                     }
 
-                    .fa-solid.fa-comment {
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.round {
                         display: none;
+                    }
+
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.rectangle {
+                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
                         bottom: 60px;
+                        border-radius: 0;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_online_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 0;
                     }
 
                     .talkino-chat-subtitle {
@@ -708,19 +744,25 @@ class Talkino_Chatbox {
                         border-radius: 0;
                     }
 
-                    .fa-solid.fa-comment {
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.round {
                         display: none;
+                    }
+
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.rectangle {
+                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
                         bottom: 60px;
+                        border-radius: 0;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_away_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 0;
                     }
 
                     .talkino-chat-subtitle {
@@ -743,19 +785,25 @@ class Talkino_Chatbox {
                         border-radius: 0;
                     }
 
-                    .fa-solid.fa-comment {
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.round {
                         display: none;
+                    }
+
+                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ). '.rectangle {
+                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
                         bottom: 60px;
+                        border-radius: 0;
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_offline_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+                        border-radius: 0;
                     }
 
                     .talkino-chat-subtitle {

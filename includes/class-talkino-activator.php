@@ -177,6 +177,14 @@ class Talkino_Activator {
 	 */
 	private static function add_plugin_default_data() {
 
+		/************* Global *************/
+		// Add talkino version if it does not exist. 
+		if ( get_option( 'talkino_version' ) == false ) {
+			
+			add_option( 'talkino_version', '1.1' );
+		
+		}
+
 		/************* Settings *************/
 
 		// Add global online status if it does not exist. 
@@ -286,6 +294,13 @@ class Talkino_Activator {
 		if ( get_option( 'talkino_chatbox_position' ) == false ) {
 			
 			add_option( 'talkino_chatbox_position', 'right' );
+		
+		}
+
+		// Add chatbox icon data if it does not exist. 
+		if ( get_option( 'talkino_chatbox_icon' ) == false ) {
+			
+			add_option( 'talkino_chatbox_icon', 'fa fa-comment' );
 		
 		}
 

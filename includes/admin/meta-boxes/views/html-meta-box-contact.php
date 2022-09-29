@@ -21,7 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
     <div class="talkino-contact-details-section">
         <img class="talkino-admin-channel-icon" src="<?php echo esc_url( plugin_dir_url( TALKINO_BASE_NAME ) ) ?>assets/images/whatsapp-icon.png" />
         <p class="talkino-whatsapp-title">
-            <label><b><?php esc_html_e( 'WhatsApp ID:', 'talkino' ) ?></b></label><br>
+            <label><b><?php esc_html_e( 'WhatsApp/ WhatsApp Business ID:', 'talkino' ) ?></b></label><br>
             <input type="tel" name="talkino_whatsapp_id" class="talkino-whatsapp-input" value="<?php echo esc_attr( $data['whatsapp_id'] ) ?>" /><br>
             <label><i><?php esc_html_e( 'Use full phone number in international format or leave it empty to deactivate WhatsApp.', 'talkino' ) ?></i></label>
         </p>

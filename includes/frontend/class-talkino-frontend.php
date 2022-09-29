@@ -80,7 +80,7 @@ class Talkino_Frontend {
 
 		// Enqueue bootstrap and font awesome css for chatbox
 		wp_enqueue_style( 'bootstrap-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/bootstrap-5.2.1-dist/css/bootstrap.min.css' );
-		wp_enqueue_style( 'font-awesome-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-free-6.2.0-web/css/all.min.css' );
+		wp_enqueue_style( 'fontawesome-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-free-6.2.0-web/css/all.min.css' );
 		
 	}
 
