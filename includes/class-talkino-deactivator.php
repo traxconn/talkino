@@ -4,7 +4,6 @@
  *
  * @link       https://traxconn.com
  * @since      1.0.0
- *
  * @package    Talkino
  * @subpackage Talkino/includes
  */
@@ -55,10 +54,7 @@ class Talkino_Deactivator {
 	 */
 	public static function deactivate() {
 
-		if ( false === self::get_request()
-			|| false === self::validate_request( self::$plugin )
-			|| false === self::check_caps()
-		) {
+		if ( false === self::get_request() || false === self::validate_request( self::$plugin ) || false === self::check_caps() ) {
 			if ( isset( $_REQUEST['plugin'] ) ) {
 				if ( ! check_admin_referer( 'deactivate-plugin_' . self::$request['plugin'] ) ) {
 					exit;
@@ -86,16 +82,13 @@ class Talkino_Deactivator {
 	 * Gets the $_REQUEST array and checks if necessary keys are set.
 	 * Populates self::request with necessary and sanitized values.
 	 *
-	 * @since    1.0.0
-	 * 
-	 * @return    bool|array    false or self::$request array.
+	 * @since     1.0.0
+	 *
+	 * @return    bool|array    Return false or self::$request array.
 	 */
 	private static function get_request() {
 
-		if ( ! empty( $_REQUEST )
-			&& isset( $_REQUEST['_wpnonce'] )
-			&& isset( $_REQUEST['action'] )
-		) {
+		if ( ! empty( $_REQUEST ) && isset( $_REQUEST['_wpnonce'] ) && isset( $_REQUEST['action'] ) ) {
 			if ( isset( $_REQUEST['plugin'] ) ) {
 				if ( false !== wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'deactivate-plugin_' . sanitize_text_field( wp_unslash( $_REQUEST['plugin'] ) ) ) ) {
 
@@ -108,7 +101,7 @@ class Talkino_Deactivator {
 			} elseif ( isset( $_REQUEST['checked'] ) ) {
 				if ( false !== wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'bulk-plugins' ) ) {
 
-					self::$request['action'] = sanitize_text_field( wp_unslash( $_REQUEST['action'] ) );
+					self::$request['action']  = sanitize_text_field( wp_unslash( $_REQUEST['action'] ) );
 					self::$request['plugins'] = array_map( 'sanitize_text_field', wp_unslash( $_REQUEST['checked'] ) );
 
 					return self::$request;
@@ -116,7 +109,6 @@ class Talkino_Deactivator {
 				}
 			}
 		} else {
-
 			return false;
 		}
 
@@ -127,24 +119,17 @@ class Talkino_Deactivator {
 	 *
 	 * Validates the $_REQUESTed data is matching this plugin and action.
 	 *
-	 * @since    1.0.0
-	 * @param    string    $plugin    The Plugin folder/name.php.
-	 * 
-	 * @return    bool    false if either plugin or action does not match, else true.
+	 * @since     1.0.0
+	 * @param     string $plugin The Plugin folder/name.php.
+	 *
+	 * @return    bool    Return false if either plugin or action does not match, else true.
 	 */
 	private static function validate_request( $plugin ) {
 
-		if ( isset( self::$request['plugin'] )
-			&& $plugin === self::$request['plugin']
-			&& 'deactivate' === self::$request['action']
-		) {
-
+		if ( isset( self::$request['plugin'] ) && $plugin === self::$request['plugin'] && 'deactivate' === self::$request['action'] ) {
 			return true;
 
-		} elseif ( isset( self::$request['plugins'] )
-			&& 'deactivate-selected' === self::$request['action']
-			&& in_array( $plugin, self::$request['plugins'] )
-		) {
+		} elseif ( isset( self::$request['plugins'] ) && 'deactivate-selected' === self::$request['action'] && in_array( $plugin, self::$request['plugins'], true ) ) {
 			return true;
 		}
 
@@ -158,8 +143,8 @@ class Talkino_Deactivator {
 	 * Ensure no one else but users with activate_plugins or above to be able to active this plugin.
 	 *
 	 * @since    1.0.0
-	 * 
-	 * @return    bool    false if no caps, else true.
+	 *
+	 * @return    bool    Return false if no caps, else true.
 	 */
 	private static function check_caps() {
 

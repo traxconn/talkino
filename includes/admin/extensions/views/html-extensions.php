@@ -1,6 +1,11 @@
 <?php
 /**
  * Displays the messenger metabox.
+ *
+ * @link       https://traxconn.com
+ * @since      1.0.0
+ * @package    Talkino
+ * @subpackage Talkino/admin/extensions/views
  */
 
 // If this file is called directly, abort.
@@ -8,6 +13,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// phpcs:disable
 ?>
 <link href="/wp-content/plugins/talkino/assets/bootstrap-5.2.1-dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -17,7 +23,6 @@ if ( ! defined( 'WPINC' ) ) {
       <a href="https://traxconn.com/plugins/talkino/" class="d-flex align-items-center text-dark text-decoration-none talkino">
         <span class="fs-4 talkino">Talkino Bundle</span>
       </a>
-
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto talkino">
         <a class="me-3 py-2 text-dark text-decoration-none talkino" href="https://traxconn.com">Official Site</a>
         <a class="me-3 py-2 text-dark text-decoration-none talkino" href="https://traxconn.com/plugins/talkino/docs/">Documentation</a>
@@ -25,14 +30,12 @@ if ( ! defined( 'WPINC' ) ) {
         <a class="py-2 text-dark text-decoration-none talkino" href="https://traxconn.com/blog/">Blog</a>
       </nav>
     </div>
-
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center talkino">
       <h1 class="display-4 fw-normal talkino">Talkino Bundle</h1>
       <p class="fs-5 text-muted talkino">Bring your Talkino to the next level through the advanced features of the Talkino Bundle!</p>
       <p class="fs-5 text-muted talkino">Don't miss the limited time <b class="dicsount talkino">25% discount</b> offer.</p>
     </div>
   </header>
-
   <main>
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 talkino">
       <div class="col d-flex align-items-start talkino">
@@ -110,3 +113,6 @@ if ( ! defined( 'WPINC' ) ) {
     </div>
   </main>
 </div>
+<?php
+// phpcs:enable
+?>

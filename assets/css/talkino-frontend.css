@@ -6,12 +6,9 @@
 4) Positioning
 5) Display
 6) Other
-
-Online color: #0e86d4;
-Away color: #ffa500;
-Offline color: #aec6cf;
 */
 
+/********** Chatbox **********/
 #check {
     display: none !important;
 }
@@ -33,14 +30,8 @@ Offline color: #aec6cf;
 }
 
 .talkino-chat-btn {
-    /* background-color: #25d366; */
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    /* width: 50px; */
-    /* height: 50px; */
-    /* right: 15px; */
-    /* bottom: 30px; */
     border: none;
-    /* border-radius: 50px; */
     position: fixed;
     z-index: 9999999 !important;
     cursor: pointer;
@@ -79,12 +70,8 @@ Offline color: #aec6cf;
 }
 
 .talkino-chat-wrapper {
-    /* background-color: #fff; */
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     width: 300px;
-    /* right: 20px; */
-    /* bottom: 100px; */
-    /* border-radius: 5px; */
     position: fixed;
     display: none;
     transition: all 0.4s;
@@ -92,8 +79,6 @@ Offline color: #aec6cf;
 }
 
 .talkino-chat-title {
-    /* background-color: #25d366; */
-    /* color: #fff; */
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 15px;
@@ -106,7 +91,7 @@ Offline color: #aec6cf;
 
 .talkino-information-wrapper {
     max-height: 295px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .talkino-information-wrapper::-webkit-scrollbar {
@@ -185,7 +170,7 @@ span.talkino-chat-channel {
     height: 30px;
 }
 
-
+/********** Contact Form **********/
 #talkino_contact_form {
     padding: 0 10px 3px 10px;
 }
