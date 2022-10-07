@@ -6,7 +6,7 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.0.2
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 Requires PHP: 7.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -53,7 +53,7 @@ Mobile responsive for the chatbox.
 
 **Compatible Plugins**
 
-Talkino supports most plugins which includes [WooCommerce](https://wordpress.org/plugins/woocommerce/), [WPML](https://wpml.org/), [Polylang](https://wordpress.org/plugins/polylang/) and more.
+Talkino supports most plugins which includes [WooCommerce](https://wordpress.org/plugins/woocommerce/), [WPML](https://wpml.org/) and more.
 
 **Talkino Bundle**
 
@@ -69,7 +69,7 @@ Let's check out our [Talkino Bundle](https://traxconn.com/plugins/talkino/) for 
 
 **Contribute to Talkino**
 
-We welcome you to contribute to Talkino by participating in the development of Talkino in the GitHub repository. If you have a suggestion, problem, pull request, or bug to report, please share it [here](https://github.com/Traxconn/talkino).
+We welcome you to contribute to Talkino by participating in the development of Talkino in the GitHub repository. If you have a suggestion, problem, pull request, or bug to report, please share it [here](https://github.com/traxconn/talkino).
 
 **Support Us**
 
@@ -79,7 +79,7 @@ If you enjoy using Talkino, we would appreciate it if you could leave us a revie
 
 **Minimum Requirements**
 
-* PHP version 5.6 or greater (PHP 5.6 or greater is recommended)
+* PHP version 7.3 or greater (PHP 7.3 or greater is recommended)
 * MySQL version 5.0 or greater (MySQL 5.6 or greater is recommended)
 * WordPress 4.9+
 
@@ -137,7 +137,7 @@ Since the phone number can only be called on mobile, therefore our team has hidd
 
 = Can I translate Talkino to another language? =
 
-Yes, Talkino is fully translate-ready by using the famous translation plugin such as WPML, Loco Translate and Polylang.
+Yes, Talkino is fully translate-ready by using the famous translation plugin such as WPML and Loco Translate.
 
 = How can I request a new social messenger if it is not available yet on Talkino? =
 
@@ -169,6 +169,15 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 9. Advanced Setting to Control the Options of Reset Settings and Uninstallation 
 
 == Changelog ==
+
+= 1.1.5, Oct 06, 2022 =
+* Improvement: Beautify the icon picker of chatbox.
+* Improvement: Use the WordPress core function to remove custom post type instead of direct call by SQL statement when performing uninstallation.
+* Improvement: Increase the security for comparison of values using Yoda standard.
+* Improvement: Boost the security for date which has been changed to gmdate. 
+* Updated: Pot file.
+* Fixed: Compatibility issue with WPML on editable text of chatbox.
+* Removed: The deprecated data of plugin.
 
 = 1.1.4, Sep 29, 2022 =
 * Added: New feature to select Font Awesome icon to chatbox button included round and rectangle styles. 

@@ -44,9 +44,7 @@ function tkn_uninstall() {
 		|| ! check_ajax_referer( 'updates', '_ajax_nonce' )
 		|| ! current_user_can( 'activate_plugins' )
 	) {
-
 		exit;
-
 	}
 
 	/**
@@ -63,20 +61,25 @@ function tkn_uninstall() {
  */
 function remove_plugin_data() {
 
-	if ( get_option( 'talkino_data_uninstall_status' ) == 'on' ) {
+	if ( get_option( 'talkino_data_uninstall_status' ) === 'on' ) {
 
 		// Remove plugin custom post type and post meta.
-		global $wpdb;
-		$wpdb->query( "DELETE post, postmeta FROM {$wpdb->prefix}posts post
-					INNER JOIN {$wpdb->prefix}postmeta postmeta ON postmeta.post_id = post.ID
-					WHERE post.post_type= 'talkino_agents'" );
+		$all_agents = get_posts(
+			array(
+				'post_type'   => 'talkino_agents',
+				'numberposts' => -1,
+			)
+		);
 
-	    // Remove plugin settings.
+		foreach ( $all_agents as $each_agent ) {
+			wp_delete_post( $each_agent->ID, true );
+		}
 
-		/************* Global *************/
+		// Remove plugin settings.
+		// Global options.
 		delete_option( 'talkino_version' );
 
-		/************* Settings *************/
+		// Settings options.
 		delete_option( 'talkino_global_online_status' );
 		delete_option( 'talkino_global_schedule_online_status' );
 		delete_option( 'talkino_chatbox_online_subtitle' );
@@ -88,8 +91,8 @@ function remove_plugin_data() {
 		delete_option( 'talkino_show_on_post' );
 		delete_option( 'talkino_show_on_search' );
 		delete_option( 'talkino_show_on_woocommerce_pages' );
-		
-		/************* Styles *************/
+
+		// Styles options.
 		delete_option( 'talkino_chatbox_style' );
 		delete_option( 'talkino_chatbox_position' );
 		delete_option( 'talkino_chatbox_icon' );
@@ -103,10 +106,10 @@ function remove_plugin_data() {
 		delete_option( 'talkino_chatbox_title_color' );
 		delete_option( 'talkino_chatbox_subtitle_color' );
 
-		/************* Ordering *************/
+		// Ordering options.
 		delete_option( 'talkino_channel_ordering' );
 
-		/************* Contact Form *************/
+		// Contact Form options.
 		delete_option( 'talkino_contact_form_status' );
 		delete_option( 'talkino_email_recipient' );
 		delete_option( 'talkino_email_subject' );
@@ -119,12 +122,16 @@ function remove_plugin_data() {
 		delete_option( 'talkino_recaptcha_site_key' );
 		delete_option( 'talkino_recaptcha_secret_key' );
 
-		/************* Advanced *************/
+		// Advanced options.
 		delete_option( 'talkino_reset_settings_status' );
 		delete_option( 'talkino_data_uninstall_status' );
-		
+
+		// Admin plugin review notice options.
+		delete_option( 'talkino_activation_time' );
+		delete_option( 'talkino_dismiss_plugin_review_notice' );
+
 	}
-	
+
 }
 
 tkn_uninstall();

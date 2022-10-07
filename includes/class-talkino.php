@@ -7,7 +7,6 @@
  *
  * @link       https://traxconn.com
  * @since      1.0.0
- *
  * @package    Talkino
  * @subpackage Talkino/includes
  */
@@ -39,7 +38,7 @@ class Talkino {
 	 *
 	 * @since     1.0.0
 	 * @access    protected
-	 * @var       Talkino_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var       object    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -82,16 +81,13 @@ class Talkino {
 	public function __construct() {
 
 		if ( defined( 'TALKINO_VERSION' ) ) {
-
 			$this->version = TALKINO_VERSION;
 
 		} else {
-
 			$this->version = '1.0.0';
-
 		}
 
-		$this->plugin_name = 'talkino';
+		$this->plugin_name   = 'talkino';
 		$this->plugin_prefix = 'tkn_';
 
 		$this->load_dependencies();
@@ -117,11 +113,9 @@ class Talkino {
 
 		// The class responsible for loading template file of the plugin.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-talkino-file-loader.php';
-		
-		// The class to handle log of the plugin.
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-talkino-logger.php';
 
 		// The class responsible for defining all actions that occur in the admin area.
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-upgrader.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-admin.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-post-type.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/meta-boxes/class-talkino-meta-boxes.php';
@@ -130,20 +124,20 @@ class Talkino {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-tools.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-sanitizer.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-notifier.php';
-		
+
 		// The class responsible for defining all actions that occur in the frontend side of the site.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-frontend.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-chatbox.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-agent-manager.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-utility.php';
 
-		// The class responsible for defining all bundle actions that occur in the frontend side of the site. 
+		// The class responsible for defining all bundle actions that occur in the frontend side of the site.
 		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
 
-			require_once( ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-scheduler.php' );
-			require_once( ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-contact-form-handler.php' );
-			require_once( ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-email-manager.php' );
-			
+			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-scheduler.php';
+			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-contact-form-handler.php';
+			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-email-manager.php';
+
 		}
 
 		$this->loader = new Talkino_Loader();
@@ -162,8 +156,12 @@ class Talkino {
 	private function set_locale() {
 
 		$plugin_i18n = new Talkino_I18n();
-
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+
+		// Register string translation for wpml.
+		if ( is_plugin_active( 'wpml-string-translation/plugin.php' ) ) {
+			$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'register_wpml_string_translation' );
+		}
 
 	}
 
@@ -176,25 +174,29 @@ class Talkino {
 	private function define_admin_hooks() {
 
 		// Declare all the classes objects.
-		$talkino_admin = new Talkino_Admin( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
-		$talkino_tools = new Talkino_Tools();
-		$talkino_post_type = new Talkino_Post_Type();
+		$talkino_admin      = new Talkino_Admin( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
+		$talkino_upgrader   = new Talkino_Upgrader();
+		$talkino_tools      = new Talkino_Tools();
+		$talkino_post_type  = new Talkino_Post_Type();
 		$talkino_meta_boxes = new Talkino_Meta_Boxes();
 		$talkino_customizer = new Talkino_Customizer();
-		$talkino_settings = new Talkino_Settings();
+		$talkino_settings   = new Talkino_Settings();
 
 		// Enqueue all the scripts and stylesheets.
 		$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_scripts' );
 
 		// Register hook to upgrade plugin data.
-		$this->loader->add_action( 'init', $talkino_tools, 'upgrade_plugin_data' );
+		$this->loader->add_action( 'init', $talkino_upgrader, 'upgrade_plugin_data' );
 
-		// Register hook to reset plugin data of settings.
-		$this->loader->add_action( 'init', $talkino_tools, 'reset_settings' );
-		
 		// Register hook to create custom post type.
 		$this->loader->add_action( 'init', $talkino_post_type, 'create_custom_post_type' );
+
+		// Register hook to check plugin installation time. (Not ready yet!).
+		// $this->loader->add_action( 'admin_init', $talkino_tools, 'request_plugin_review' );.
+
+		// Register hook to dismiss plugin notice for review. (Not ready yet!).
+		// $this->loader->add_action( 'admin_init', $talkino_tools, 'dismiss_plugin_review_notice', 5 );.
 
 		// Register hook to create meta boxes.
 		$this->loader->add_action( 'add_meta_boxes_talkino_agents', $talkino_meta_boxes, 'add_meta_boxes' );
@@ -203,9 +205,9 @@ class Talkino {
 		$this->loader->add_action( 'save_post', $talkino_meta_boxes, 'save_meta_box', 10, 2 );
 
 		// Register hook to hide 'save draft', 'preview button', 'visibility field', 'quick edit' and 'view' for agent post type.
-        $this->loader->add_action( 'admin_head', $talkino_customizer, 'hide_buttons_on_post_type' );
+		$this->loader->add_action( 'admin_head', $talkino_customizer, 'hide_buttons_on_post_type' );
 
-        // Register hook to remove 'quick edit' and 'view' for agent post type at the list.
+		// Register hook to remove 'quick edit' and 'view' for agent post type at the list.
 		$this->loader->add_filter( 'post_row_actions', $talkino_customizer, 'remove_actions_on_post_type', 10, 2 );
 
 		// Register hook to change the title's placeholder of custom post type.
@@ -217,17 +219,20 @@ class Talkino {
 		// Register hook to change the notification message on bulk of custom post type.
 		$this->loader->add_filter( 'bulk_post_updated_messages', $talkino_customizer, 'edit_bulk_post_updated_messages', 10, 2 );
 
-		// Register hook to create settings of submenu page 
+		// Register hook to create settings of submenu page.
 		$this->loader->add_action( 'admin_menu', $talkino_settings, 'create_settings_submenu_page' );
 
-        // Register settings section and fields
+		// Register settings section and fields.
 		$this->loader->add_action( 'admin_init', $talkino_settings, 'settings_init' );
 
+		// Register hook to reset plugin data of settings.
+		$this->loader->add_action( 'init', $talkino_settings, 'reset_settings' );
+
 		// Register hook to process channel ordering via ajax actions.
-		$this->loader->add_action( 'wp_ajax_talkino_update_channel_order_list', $talkino_settings, 'talkino_update_channel_order_list' ); 
+		$this->loader->add_action( 'wp_ajax_talkino_update_channel_order_list', $talkino_settings, 'talkino_update_channel_order_list' );
 
 		// Register hook to process agent ordering via ajax actions.
-		$this->loader->add_action( 'wp_ajax_talkino_update_agent_order_list', $talkino_settings, 'talkino_update_agent_order_list' ); 
+		$this->loader->add_action( 'wp_ajax_talkino_update_agent_order_list', $talkino_settings, 'talkino_update_agent_order_list' );
 
 	}
 
@@ -240,23 +245,25 @@ class Talkino {
 	private function define_frontend_hooks() {
 
 		$talkino_frontend = new Talkino_Frontend( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
-		$talkino_chatbox = new Talkino_Chatbox();
-		
+		$talkino_chatbox  = new Talkino_Chatbox();
+
 		$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_scripts' );
 
 		// Register hook to initialize chatbox.
 		$this->loader->add_filter( 'wp_head', $talkino_chatbox, 'chatbox_init' );
 
-		// Register bundle hook to initialize contact form
-		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) { 
+		// Register bundle hook to initialize contact form.
+		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
+
 			$talkino_contact_form_handler = new Talkino_Contact_Form_Handler();
 
 			// Register hook to process contact form submission via ajax actions.
-			$this->loader->add_action( 'wp_ajax_submit_talkino_contact_form', $talkino_contact_form_handler, 'submit_talkino_contact_form' ); 
-			$this->loader->add_action( 'wp_ajax_nopriv_submit_talkino_contact_form', $talkino_contact_form_handler, 'submit_talkino_contact_form' ); 
-	
+			$this->loader->add_action( 'wp_ajax_submit_talkino_contact_form', $talkino_contact_form_handler, 'submit_talkino_contact_form' );
+			$this->loader->add_action( 'wp_ajax_nopriv_submit_talkino_contact_form', $talkino_contact_form_handler, 'submit_talkino_contact_form' );
+
 		}
+
 	}
 
 	/**
@@ -272,8 +279,8 @@ class Talkino {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since    1.0.0
-	 * 
+	 * @since     1.0.0
+	 *
 	 * @return    string    The name of the plugin.
 	 */
 	public function get_plugin_name() {
@@ -283,8 +290,8 @@ class Talkino {
 	/**
 	 * The unique prefix of the plugin used to uniquely prefix technical functions.
 	 *
-	 * @since    1.0.0
-	 * 
+	 * @since     1.0.0
+	 *
 	 * @return    string    The prefix of the plugin.
 	 */
 	public function get_plugin_prefix() {
@@ -294,9 +301,9 @@ class Talkino {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @since    1.0.0
-	 * 
-	 * @return    Talkino_Loader    Orchestrates the hooks of the plugin.
+	 * @since     1.0.0
+	 *
+	 * @return    object    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
@@ -305,8 +312,8 @@ class Talkino {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since    1.0.0
-	 * 
+	 * @since     1.0.0
+	 *
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {
