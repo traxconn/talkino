@@ -54,6 +54,16 @@ class Talkino_Upgrader {
 			add_option( 'talkino_chatbox_icon', 'fa fa-comment' );
 		}
 
+		// Add chatbox button text if it does not exist when upgrade from old version.
+		if ( get_option( 'talkino_chatbox_button_text' ) === false ) {
+			add_option( 'talkino_chatbox_button_text', 'Chat Now' );
+		}
+
+		// Add load font awesome deferred data if it does not exist when upgrade from old version.
+		if ( get_option( 'talkino_load_font_awesome_deferred' ) === false ) {
+			add_option( 'talkino_load_font_awesome_deferred', 'on' );
+		}
+
 	}
 
 }

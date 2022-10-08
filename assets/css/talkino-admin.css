@@ -251,6 +251,11 @@ li.talkino_lineitem {
     background: bottom;
 }
 
+.fa-2xl.talkino {
+    font-size: 2em;
+    line-height: 0.3125em;
+}
+
 /* xs */
 @media (max-width: 575px){
     .talkino-fa-browser-container .talkino-icon {

@@ -573,6 +573,25 @@ class Talkino_Settings {
 			'talkino_text_section'
 		);
 
+		// Register chatbox button text option field.
+		register_setting(
+			'talkino_settings_page',
+			'talkino_chatbox_button_text',
+			array(
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_textarea_field',
+			)
+		);
+
+		// Add chatbox button text option field.
+		add_settings_field(
+			'chatbox_button_text_message_id',
+			esc_html__( 'Chatbox Button Text:', 'talkino' ),
+			array( $this, 'chatbox_button_text_field_callback' ),
+			'talkino_settings_page',
+			'talkino_text_section'
+		);
+
 		/** Styles */
 		// Register chatbox style option field.
 		register_setting(
@@ -628,6 +647,25 @@ class Talkino_Settings {
 			'start_chatbox_icon_id',
 			esc_html__( 'Chatbox Icon:', 'talkino' ),
 			array( $this, 'chatbox_icon_field_callback' ),
+			'talkino_styles_page',
+			'talkino_styles_section'
+		);
+
+		// Register chatbox icon option field.
+		register_setting(
+			'talkino_styles_page',
+			'talkino_load_font_awesome_deferred',
+			array(
+				'type'              => 'string',
+				'sanitize_callback' => array( $this, 'sanitize_load_font_awesome_deferred' ),
+			)
+		);
+
+		// Add chatbox icon option field.
+		add_settings_field(
+			'load_font_awesome_deferred_id',
+			esc_html__( 'Load Font Awesome Deferred:', 'talkino' ),
+			array( $this, 'load_font_awesome_deferred_field_callback' ),
 			'talkino_styles_page',
 			'talkino_styles_section'
 		);
@@ -1835,6 +1873,20 @@ class Talkino_Settings {
 
 	}
 
+	/**
+	 * Callback function to render text area field of chatbox button field.
+	 *
+	 * @since    1.0.0
+	 */
+	public function chatbox_button_text_field_callback() {
+
+		$chatbox_button_text = get_option( 'talkino_chatbox_button_text' );
+		?>
+		<textarea name="talkino_chatbox_button_text" class="large-text" maxlength="50" rows="2"><?php echo isset( $chatbox_button_text ) ? esc_textarea( $chatbox_button_text ) : ''; ?></textarea>
+		<?php
+
+	}
+
 	/********************************* Styles *********************************/
 	/**
 	 * Callback function to render chatbox style field.
@@ -1952,10 +2004,59 @@ class Talkino_Settings {
 		?>
 		<input type="hidden" id="talkino-chatbox-icon" type="text" name="talkino_chatbox_icon" placeholder="Select icon" data-fa-browser value="<?php echo isset( $chatbox_icon_field ) ? esc_attr( $chatbox_icon_field ) : 'fa fa-comment'; ?>" />
 		<span id="talkino-icon-container">
-			<i id="talkino-icon-preview" class="<?php echo esc_html( get_option( 'talkino_chatbox_icon' ) ); ?> fa-2xl"></i>
+			<i id="talkino-icon-preview" class="<?php echo esc_html( get_option( 'talkino_chatbox_icon' ) ); ?> fa-2xl talkino"></i>
 		</span>
 		<i><?php esc_html_e( 'Please click on the icon to select the Font Awesome icon of chatbox.', 'talkino' ); ?></i>
 		<?php
+
+	}
+
+	/**
+	 * Callback function to load font awesome deferred field.
+	 *
+	 * @since    1.0.0
+	 */
+	public function load_font_awesome_deferred_field_callback() {
+
+		$load_font_awesome_deferred    = get_option( 'talkino_load_font_awesome_deferred' );
+		$is_load_font_awesome_deferred = ( ! empty( $load_font_awesome_deferred ) && 'on' === $load_font_awesome_deferred ) ? 'checked' : '';
+
+		?>
+		<input name="talkino_load_font_awesome_deferred" type="hidden" value='off'/>
+		<input name="talkino_load_font_awesome_deferred" type="checkbox" <?php echo esc_attr( $is_load_font_awesome_deferred ); ?> value='on' /> <?php esc_html_e( 'Enable Talkino to load the latest version of Font Awesome at highest priority.', 'talkino' ); ?>
+		<p>
+			<i><?php esc_html_e( 'Recommended to enable this feature to load the latest version of Font Awesome at higest priority or turn it off if the latest version of Font Awesome affects your theme.', 'talkino' ); ?></i>
+		</p>
+		<?php
+
+	}
+
+	/**
+	 * Sanitize function to validate the load font awesome deferred field.
+	 *
+	 * @since     1.0.0
+	 * @param     string $load_font_awesome_deferred    The load font awesome deferred value.
+	 *
+	 * @return    string    The validated value of load font awesome deferred.
+	 */
+	public function sanitize_load_font_awesome_deferred( $load_font_awesome_deferred ) {
+
+		// Sanitize the checkbox.
+		if ( ! empty( $load_font_awesome_deferred ) ) {
+			if ( 'on' === $load_font_awesome_deferred || 'off' === $load_font_awesome_deferred ) {
+				$load_font_awesome_deferred = $load_font_awesome_deferred;
+
+			} else {
+
+				$load_font_awesome_deferred = 'on';
+
+				// Notify the user on invalid input.
+				add_settings_error( 'talkino_load_font_awesome_deferred', 'invalid_load_font_awesome_deferred_value', esc_html__( 'Oops, you have inserted invalid input of load font awesome deferred field!', 'talkino' ), 'error' );
+
+			}
+		}
+
+		return $load_font_awesome_deferred;
 
 	}
 
@@ -2858,6 +2959,9 @@ class Talkino_Settings {
 
 			// Reset offline message.
 			update_option( 'talkino_offline_message', 'Sorry, we are currently offline.' );
+
+			// Reset chatbox button text.
+			update_option( 'talkino_chatbox_button_text', 'Chat Now' );
 
 			// Delete to reset exclude pages.
 			delete_option( 'talkino_chatbox_exclude_pages' );

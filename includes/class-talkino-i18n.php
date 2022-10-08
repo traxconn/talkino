@@ -57,6 +57,7 @@ class Talkino_I18n {
 		do_action( 'wpml_register_single_string', 'talkino', 'Chatbox Offline Subtitle', get_option( 'talkino_chatbox_offline_subtitle' ) );
 		do_action( 'wpml_register_single_string', 'talkino', 'Agent Not Available Message', get_option( 'talkino_agent_not_available_message' ) );
 		do_action( 'wpml_register_single_string', 'talkino', 'Offline Message', get_option( 'talkino_offline_message' ) );
+		do_action( 'wpml_register_single_string', 'talkino', 'Chatbox Button Text', get_option( 'talkino_chatbox_button_text' ) );
 
 	}
 

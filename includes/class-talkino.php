@@ -183,7 +183,12 @@ class Talkino {
 		$talkino_settings   = new Talkino_Settings();
 
 		// Enqueue all the scripts and stylesheets.
-		$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_styles' );
+		if ( get_option( 'talkino_load_font_awesome_deferred' ) === 'on' ) {
+			$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_styles', 999 );
+		} else {
+			$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_styles' );
+		}
+
 		$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_scripts' );
 
 		// Register hook to upgrade plugin data.
@@ -247,7 +252,12 @@ class Talkino {
 		$talkino_frontend = new Talkino_Frontend( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
 		$talkino_chatbox  = new Talkino_Chatbox();
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_styles' );
+		if ( get_option( 'talkino_load_font_awesome_deferred' ) === 'on' ) {
+			$this->loader->add_action( 'get_footer', $talkino_frontend, 'enqueue_styles', 100 );
+		} else {
+			$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_styles' );
+		}
+
 		$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_scripts' );
 
 		// Register hook to initialize chatbox.

@@ -75,11 +75,11 @@ class Talkino_Frontend {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/css/talkino-frontend.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'talkino-frontend-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/css/talkino-frontend.css', array(), $this->version, 'all' );
 
 		// Enqueue bootstrap and font awesome css for chatbox.
-		wp_enqueue_style( 'bootstrap-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/bootstrap-5.2.1-dist/css/bootstrap.min.css', array(), $this->version, 'all' );
-		wp_enqueue_style( 'fontawesome-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-free-6.2.0-web/css/all.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'bootstrap-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/bootstrap-5.2.1-dist/css/bootstrap.min.css', array(), '5.2.1', 'all' );
+		wp_enqueue_style( 'font-awesome-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-free-6.2.0-web/css/all.min.css', array(), '6.2.0', 'all' );
 
 	}
 

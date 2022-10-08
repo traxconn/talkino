@@ -80,10 +80,10 @@ class Talkino_Admin {
 
 		if ( 'talkino_agents' === $current_screen->post_type ) {
 
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/css/talkino-admin.css', array(), $this->version, 'all' );
+			wp_enqueue_style( 'talkino-admin-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/css/talkino-admin.css', array(), $this->version, 'all' );
 
 			// Enqueue font awesome css for admin area.
-			wp_enqueue_style( 'fontawesome-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-free-6.2.0-web/css/all.min.css', array(), '6.2.0', 'all' );
+			wp_enqueue_style( 'font-awesome-min-css', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-free-6.2.0-web/css/all.min.css', array(), '6.2.0', 'all' );
 
 		}
 
@@ -101,7 +101,7 @@ class Talkino_Admin {
 
 		if ( 'talkino_agents' === $current_screen->post_type ) {
 
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/talkino-admin.js', array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( 'talkino-admin-js', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/talkino-admin.js', array( 'jquery' ), $this->version, false );
 
 			// Add the color picker css file.
 			wp_enqueue_style( 'wp-color-picker' );
@@ -113,7 +113,7 @@ class Talkino_Admin {
 			wp_enqueue_script( 'jquery-ui-sortable', false, array( 'jquery-ui-core', 'jquery' ), $this->version, true );
 
 			// Enqueue jquery for picking icon.
-			wp_enqueue_script( 'icon_picker_js', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/icon-picker.js', array( 'jquery' ), $this->version, true );
+			wp_enqueue_script( 'icon-picker-js', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/icon-picker.js', array( 'jquery' ), $this->version, true );
 
 			// Pass $php_vars array to javascript as php object for channel ordering.
 			$ajax_url = array( 'ajax_url' => admin_url( 'admin-ajax.php' ) );
