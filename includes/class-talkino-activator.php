@@ -233,19 +233,9 @@ class Talkino_Activator {
 			add_option( 'talkino_offline_message', 'Sorry, we are currently offline.' );
 		}
 
-		// Add show on post data if it does not exist.
-		if ( get_option( 'talkino_show_on_post' ) === false ) {
-			add_option( 'talkino_show_on_post', 'on' );
-		}
-
-		// Add show on search data if it does not exist.
-		if ( get_option( 'talkino_show_on_search' ) === false ) {
-			add_option( 'talkino_show_on_search', 'on' );
-		}
-
-		// Add show on woocommerce shop, product, product category and tag pages data if it does not exist.
-		if ( get_option( 'talkino_show_on_woocommerce_pages' ) === false ) {
-			add_option( 'talkino_show_on_woocommerce_pages', 'on' );
+		// Add chatbox button text if it does not exist.
+		if ( get_option( 'talkino_chatbox_button_text' ) === false ) {
+			add_option( 'talkino_chatbox_button_text', 'Chat Now' );
 		}
 
 		// Styles options.
@@ -262,6 +252,11 @@ class Talkino_Activator {
 		// Add chatbox icon data if it does not exist.
 		if ( get_option( 'talkino_chatbox_icon' ) === false ) {
 			add_option( 'talkino_chatbox_icon', 'fa fa-comment' );
+		}
+
+		// Add load font awesome deferred data if it does not exist.
+		if ( get_option( 'talkino_load_font_awesome_deferred' ) === false ) {
+			add_option( 'talkino_load_font_awesome_deferred', 'on' );
 		}
 
 		// Add show on desktop data if it does not exist.
@@ -313,6 +308,22 @@ class Talkino_Activator {
 		// Add agent ordering if it does not exist.
 		if ( get_option( 'talkino_channel_ordering' ) === false ) {
 			add_option( 'talkino_channel_ordering', 'talkino_whatsapp,talkino_facebook,talkino_telegram,talkino_phone,talkino_email' );
+		}
+
+		// Display options.
+		// Add show on post data if it does not exist.
+		if ( get_option( 'talkino_show_on_post' ) === false ) {
+			add_option( 'talkino_show_on_post', 'on' );
+		}
+
+		// Add show on search data if it does not exist.
+		if ( get_option( 'talkino_show_on_search' ) === false ) {
+			add_option( 'talkino_show_on_search', 'on' );
+		}
+
+		// Add show on woocommerce shop, product, product category and tag pages data if it does not exist.
+		if ( get_option( 'talkino_show_on_woocommerce_pages' ) === false ) {
+			add_option( 'talkino_show_on_woocommerce_pages', 'on' );
 		}
 
 		// Contact Form options.

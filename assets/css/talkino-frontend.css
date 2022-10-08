@@ -69,6 +69,11 @@
     transform: translate(-50%, -50%);
 }
 
+label.talkino-chat-btn {
+    padding: 0 !important;
+    margin-bottom: 0;
+}
+
 .talkino-chat-wrapper {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     width: 300px;
@@ -168,6 +173,10 @@ span.talkino-chat-channel {
     color: #888;
     font-size: 12px;
     height: 30px;
+}
+
+.rectangle.fa-xl.talkino{
+    font-size: 1.5em;
 }
 
 /********** Contact Form **********/

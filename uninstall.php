@@ -87,15 +87,14 @@ function remove_plugin_data() {
 		delete_option( 'talkino_chatbox_offline_subtitle' );
 		delete_option( 'talkino_agent_not_available_message' );
 		delete_option( 'talkino_offline_message' );
+		delete_option( 'talkino_chatbox_button_text' );
 		delete_option( 'talkino_chatbox_exclude_pages' );
-		delete_option( 'talkino_show_on_post' );
-		delete_option( 'talkino_show_on_search' );
-		delete_option( 'talkino_show_on_woocommerce_pages' );
 
 		// Styles options.
 		delete_option( 'talkino_chatbox_style' );
 		delete_option( 'talkino_chatbox_position' );
 		delete_option( 'talkino_chatbox_icon' );
+		delete_option( 'talkino_load_font_awesome_deferred' );
 		delete_option( 'talkino_show_on_desktop' );
 		delete_option( 'talkino_show_on_mobile' );
 		delete_option( 'talkino_start_chat_method' );
@@ -108,6 +107,11 @@ function remove_plugin_data() {
 
 		// Ordering options.
 		delete_option( 'talkino_channel_ordering' );
+
+		// Display options.
+		delete_option( 'talkino_show_on_post' );
+		delete_option( 'talkino_show_on_search' );
+		delete_option( 'talkino_show_on_woocommerce_pages' );
 
 		// Contact Form options.
 		delete_option( 'talkino_contact_form_status' );

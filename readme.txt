@@ -6,7 +6,7 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.0.2
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 Requires PHP: 7.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -169,6 +169,11 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 9. Advanced Setting to Control the Options of Reset Settings and Uninstallation 
 
 == Changelog ==
+
+= 1.1.6, Oct 08, 2022 =
+* Added: New feature to edit the text of chatbox button(Rectangle style).
+* Added: New setting to allow users to load Font Awesome deffered.
+* Fixed: The conflict of Font Awesome version 4.7 for some themes when browsing chatbox icons on settings.
 
 = 1.1.5, Oct 06, 2022 =
 * Improvement: Beautify the icon picker of chatbox.
