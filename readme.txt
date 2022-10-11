@@ -6,7 +6,7 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.0.2
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 Requires PHP: 7.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -169,6 +169,9 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 9. Advanced Setting to Control the Options of Reset Settings and Uninstallation 
 
 == Changelog ==
+
+= 1.1.8, Oct 10, 2022 =
+* Fixed: The bug of ordering for chat channels and agents.
 
 = 1.1.7, Oct 08, 2022 =
 * Fixed: The conflict of Font Awesome on some themes.
