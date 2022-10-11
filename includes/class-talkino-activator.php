@@ -264,14 +264,14 @@ class Talkino_Activator {
 			add_option( 'talkino_show_on_desktop', 'on' );
 		}
 
-		// Add start chat method if it does not exist.
-		if ( get_option( 'talkino_start_chat_method' ) === false ) {
-			add_option( 'talkino_start_chat_method', '_blank' );
-		}
-
 		// Add show on mobile data if it does not exist.
 		if ( get_option( 'talkino_show_on_mobile' ) === false ) {
 			add_option( 'talkino_show_on_mobile', 'on' );
+		}
+
+		// Add start chat method if it does not exist.
+		if ( get_option( 'talkino_start_chat_method' ) === false ) {
+			add_option( 'talkino_start_chat_method', '_blank' );
 		}
 
 		// Add chatbox theme color for online status if it does not exist.
