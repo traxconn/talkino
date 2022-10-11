@@ -253,7 +253,7 @@ class Talkino {
 		$talkino_chatbox  = new Talkino_Chatbox();
 
 		if ( get_option( 'talkino_load_font_awesome_deferred' ) === 'on' ) {
-			$this->loader->add_action( 'get_footer', $talkino_frontend, 'enqueue_styles', 100 );
+			$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_styles', 9999 );
 		} else {
 			$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_styles' );
 		}

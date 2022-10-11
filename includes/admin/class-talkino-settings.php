@@ -651,7 +651,7 @@ class Talkino_Settings {
 			'talkino_styles_section'
 		);
 
-		// Register chatbox icon option field.
+		// Register load font awesome deferred option field.
 		register_setting(
 			'talkino_styles_page',
 			'talkino_load_font_awesome_deferred',
@@ -661,7 +661,7 @@ class Talkino_Settings {
 			)
 		);
 
-		// Add chatbox icon option field.
+		// Add load font awesome deferred option field.
 		add_settings_field(
 			'load_font_awesome_deferred_id',
 			esc_html__( 'Load Font Awesome Deferred:', 'talkino' ),
@@ -1346,47 +1346,6 @@ class Talkino_Settings {
 	}
 
 	/**
-	 * Callback function to render start chat method field.
-	 *
-	 * @since    1.0.0
-	 */
-	public function start_chat_method_field_callback() {
-
-		$start_chat_method_field = get_option( 'talkino_start_chat_method' );
-
-		?>
-		<select name="talkino_start_chat_method" class="regular-text">
-			<option value="_blank" <?php selected( '_blank', $start_chat_method_field ); ?>><?php esc_html_e( 'Open in new window or tab', 'talkino' ); ?></option>
-			<option value="_self" <?php selected( '_self', $start_chat_method_field ); ?>><?php esc_html_e( 'Open in same window or tab', 'talkino' ); ?></option>
-		</select>
-		<?php
-
-	}
-
-	/**
-	 * Sanitize function to validate the start chat method field.
-	 *
-	 * @since     1.0.0
-	 * @param     string $start_chat_method    The start chat method.
-	 *
-	 * @return    string    The validated value of start chat method.
-	 */
-	public function sanitize_start_chat_method( $start_chat_method ) {
-
-		if ( '_blank' !== $start_chat_method && '_self' !== $start_chat_method ) {
-
-			$start_chat_method = '_blank';
-
-			// Notify the user on invalid input.
-			add_settings_error( 'talkino_start_chat_method', 'invalid_start_chat_method_value', esc_html__( 'Oops, you have inserted invalid input of start chatting method field!', 'talkino' ), 'error' );
-
-		}
-
-		return $start_chat_method;
-
-	}
-
-	/**
 	 * Callback function to render global schedule field.
 	 *
 	 * @since    1.0.0
@@ -2014,7 +1973,7 @@ class Talkino_Settings {
 	/**
 	 * Callback function to load font awesome deferred field.
 	 *
-	 * @since    1.0.0
+	 * @since    1.1.6
 	 */
 	public function load_font_awesome_deferred_field_callback() {
 
@@ -2034,7 +1993,7 @@ class Talkino_Settings {
 	/**
 	 * Sanitize function to validate the load font awesome deferred field.
 	 *
-	 * @since     1.0.0
+	 * @since     1.1.6
 	 * @param     string $load_font_awesome_deferred    The load font awesome deferred value.
 	 *
 	 * @return    string    The validated value of load font awesome deferred.
@@ -2119,6 +2078,166 @@ class Talkino_Settings {
 		?>
 		<input name="talkino_show_on_mobile" type="hidden" value='off'/>
 		<input name="talkino_show_on_mobile" type="checkbox" <?php echo esc_attr( $is_show_on_mobile_checked ); ?> value='on' /> <?php esc_html_e( 'Enable Talkino chatbox to show on mobile.', 'talkino' ); ?>
+		<?php
+
+	}
+
+	/**
+	 * Sanitize function to validate the show on mobile field.
+	 *
+	 * @since     1.0.0
+	 * @param     string $show_on_mobile    The show on mobile value.
+	 *
+	 * @return    string    The validated value of show on mobile.
+	 */
+	public function sanitize_show_on_mobile( $show_on_mobile ) {
+
+		// Sanitize the checkbox.
+		if ( ! empty( $show_on_mobile ) ) {
+			if ( 'on' === $show_on_mobile || 'off' === $show_on_mobile ) {
+				$show_on_mobile = $show_on_mobile;
+
+			} else {
+
+				$show_on_mobile = 'off';
+
+				// Notify the user on invalid input.
+				add_settings_error( 'talkino_show_on_mobile', 'invalid_show_on_mobile_value', esc_html__( 'Oops, you have inserted invalid input of show on mobile field!', 'talkino' ), 'error' );
+
+			}
+		}
+
+		return $show_on_mobile;
+
+	}
+
+	/**
+	 * Callback function to render start chat method field.
+	 *
+	 * @since    1.0.0
+	 */
+	public function start_chat_method_field_callback() {
+
+		$start_chat_method_field = get_option( 'talkino_start_chat_method' );
+
+		?>
+		<select name="talkino_start_chat_method" class="regular-text">
+			<option value="_blank" <?php selected( '_blank', $start_chat_method_field ); ?>><?php esc_html_e( 'Open in new window or tab', 'talkino' ); ?></option>
+			<option value="_self" <?php selected( '_self', $start_chat_method_field ); ?>><?php esc_html_e( 'Open in same window or tab', 'talkino' ); ?></option>
+		</select>
+		<?php
+
+	}
+
+	/**
+	 * Sanitize function to validate the start chat method field.
+	 *
+	 * @since     1.0.0
+	 * @param     string $start_chat_method    The start chat method.
+	 *
+	 * @return    string    The validated value of start chat method.
+	 */
+	public function sanitize_start_chat_method( $start_chat_method ) {
+
+		if ( '_blank' !== $start_chat_method && '_self' !== $start_chat_method ) {
+
+			$start_chat_method = '_blank';
+
+			// Notify the user on invalid input.
+			add_settings_error( 'talkino_start_chat_method', 'invalid_start_chat_method_value', esc_html__( 'Oops, you have inserted invalid input of start chatting method field!', 'talkino' ), 'error' );
+
+		}
+
+		return $start_chat_method;
+
+	}
+
+	/**
+	 * Callback function to render chatbox theme color for online status.
+	 *
+	 * @since    1.0.0
+	 */
+	public function chatbox_online_theme_color_field_callback() {
+
+		$chatbox_online_theme_color_field = get_option( 'talkino_chatbox_online_theme_color' );
+
+		?>
+		<input type="text" name="talkino_chatbox_online_theme_color" class="color-picker" value="<?php echo isset( $chatbox_online_theme_color_field ) ? esc_attr( $chatbox_online_theme_color_field ) : '#1e73be'; ?>"/>
+		<?php
+
+	}
+
+	/**
+	 * Callback function to render chatbox theme color for away status.
+	 *
+	 * @since    1.0.0
+	 */
+	public function chatbox_away_theme_color_field_callback() {
+
+		$chatbox_away_theme_color_field = get_option( 'talkino_chatbox_away_theme_color' );
+
+		?>
+		<input type="text" name="talkino_chatbox_away_theme_color" class="color-picker" value="<?php echo isset( $chatbox_away_theme_color_field ) ? esc_attr( $chatbox_away_theme_color_field ) : '#ffa500'; ?>"/>
+		<?php
+
+	}
+
+	/**
+	 * Callback function to render chatbox theme color for offline status.
+	 *
+	 * @since    1.0.0
+	 */
+	public function chatbox_offline_theme_color_field_callback() {
+
+		$chatbox_offline_theme_color_field = get_option( 'talkino_chatbox_offline_theme_color' );
+
+		?>
+		<input type="text" name="talkino_chatbox_offline_theme_color" class="color-picker" value="<?php echo isset( $chatbox_offline_theme_color_field ) ? esc_attr( $chatbox_offline_theme_color_field ) : '#aec6cf'; ?>"/>
+		<?php
+
+	}
+
+	/**
+	 * Callback function to render chatbox background color.
+	 *
+	 * @since    1.0.0
+	 */
+	public function chatbox_background_color_field_callback() {
+
+		$chatbox_background_color_field = get_option( 'talkino_chatbox_background_color' );
+
+		?>
+		<input type="text" name="talkino_chatbox_background_color" class="color-picker" value="<?php echo isset( $chatbox_background_color_field ) ? esc_attr( $chatbox_background_color_field ) : '#fff'; ?>"/>
+		<?php
+
+	}
+
+	/**
+	 * Callback function to render chatbox title color.
+	 *
+	 * @since    1.0.0
+	 */
+	public function chatbox_title_color_field_callback() {
+
+		$chatbox_title_color_field = get_option( 'talkino_chatbox_title_color' );
+
+		?>
+		<input type="text" name="talkino_chatbox_title_color" class="color-picker" value="<?php echo isset( $chatbox_title_color_field ) ? esc_attr( $chatbox_title_color_field ) : '#fff'; ?>"/>
+		<?php
+
+	}
+
+	/**
+	 * Callback function to render chatbox subtitle color.
+	 *
+	 * @since    1.0.0
+	 */
+	public function chatbox_subtitle_color_field_callback() {
+
+		$chatbox_subtitle_color_field = get_option( 'talkino_chatbox_subtitle_color' );
+
+		?>
+		<input type="text" name="talkino_chatbox_subtitle_color" class="color-picker" value="<?php echo isset( $chatbox_subtitle_color_field ) ? esc_attr( $chatbox_subtitle_color_field ) : '#000'; ?>"/>
 		<?php
 
 	}
@@ -2281,125 +2400,6 @@ class Talkino_Settings {
 			$counter ++;
 
 		}
-
-	}
-
-	/**
-	 * Sanitize function to validate the show on mobile field.
-	 *
-	 * @since     1.0.0
-	 * @param     string $show_on_mobile    The show on mobile value.
-	 *
-	 * @return    string    The validated value of show on mobile.
-	 */
-	public function sanitize_show_on_mobile( $show_on_mobile ) {
-
-		// Sanitize the checkbox.
-		if ( ! empty( $show_on_mobile ) ) {
-			if ( 'on' === $show_on_mobile || 'off' === $show_on_mobile ) {
-				$show_on_mobile = $show_on_mobile;
-
-			} else {
-
-				$show_on_mobile = 'off';
-
-				// Notify the user on invalid input.
-				add_settings_error( 'talkino_show_on_mobile', 'invalid_show_on_mobile_value', esc_html__( 'Oops, you have inserted invalid input of show on mobile field!', 'talkino' ), 'error' );
-
-			}
-		}
-
-		return $show_on_mobile;
-
-	}
-
-	/**
-	 * Callback function to render chatbox theme color for online status.
-	 *
-	 * @since    1.0.0
-	 */
-	public function chatbox_online_theme_color_field_callback() {
-
-		$chatbox_online_theme_color_field = get_option( 'talkino_chatbox_online_theme_color' );
-
-		?>
-		<input type="text" name="talkino_chatbox_online_theme_color" class="color-picker" value="<?php echo isset( $chatbox_online_theme_color_field ) ? esc_attr( $chatbox_online_theme_color_field ) : '#1e73be'; ?>"/>
-		<?php
-
-	}
-
-	/**
-	 * Callback function to render chatbox theme color for away status.
-	 *
-	 * @since    1.0.0
-	 */
-	public function chatbox_away_theme_color_field_callback() {
-
-		$chatbox_away_theme_color_field = get_option( 'talkino_chatbox_away_theme_color' );
-
-		?>
-		<input type="text" name="talkino_chatbox_away_theme_color" class="color-picker" value="<?php echo isset( $chatbox_away_theme_color_field ) ? esc_attr( $chatbox_away_theme_color_field ) : '#ffa500'; ?>"/>
-		<?php
-
-	}
-
-	/**
-	 * Callback function to render chatbox theme color for offline status.
-	 *
-	 * @since    1.0.0
-	 */
-	public function chatbox_offline_theme_color_field_callback() {
-
-		$chatbox_offline_theme_color_field = get_option( 'talkino_chatbox_offline_theme_color' );
-
-		?>
-		<input type="text" name="talkino_chatbox_offline_theme_color" class="color-picker" value="<?php echo isset( $chatbox_offline_theme_color_field ) ? esc_attr( $chatbox_offline_theme_color_field ) : '#aec6cf'; ?>"/>
-		<?php
-
-	}
-
-	/**
-	 * Callback function to render chatbox background color.
-	 *
-	 * @since    1.0.0
-	 */
-	public function chatbox_background_color_field_callback() {
-
-		$chatbox_background_color_field = get_option( 'talkino_chatbox_background_color' );
-
-		?>
-		<input type="text" name="talkino_chatbox_background_color" class="color-picker" value="<?php echo isset( $chatbox_background_color_field ) ? esc_attr( $chatbox_background_color_field ) : '#fff'; ?>"/>
-		<?php
-
-	}
-
-	/**
-	 * Callback function to render chatbox title color.
-	 *
-	 * @since    1.0.0
-	 */
-	public function chatbox_title_color_field_callback() {
-
-		$chatbox_title_color_field = get_option( 'talkino_chatbox_title_color' );
-
-		?>
-		<input type="text" name="talkino_chatbox_title_color" class="color-picker" value="<?php echo isset( $chatbox_title_color_field ) ? esc_attr( $chatbox_title_color_field ) : '#fff'; ?>"/>
-		<?php
-
-	}
-
-	/**
-	 * Callback function to render chatbox subtitle color.
-	 *
-	 * @since    1.0.0
-	 */
-	public function chatbox_subtitle_color_field_callback() {
-
-		$chatbox_subtitle_color_field = get_option( 'talkino_chatbox_subtitle_color' );
-
-		?>
-		<input type="text" name="talkino_chatbox_subtitle_color" class="color-picker" value="<?php echo isset( $chatbox_subtitle_color_field ) ? esc_attr( $chatbox_subtitle_color_field ) : '#000'; ?>"/>
-		<?php
 
 	}
 
@@ -2966,16 +2966,7 @@ class Talkino_Settings {
 			// Delete to reset exclude pages.
 			delete_option( 'talkino_chatbox_exclude_pages' );
 
-			// Reset show on post data.
-			update_option( 'talkino_show_on_post', 'on' );
-
-			// Reset show on search data.
-			update_option( 'talkino_show_on_search', 'on' );
-
-			// Reset show on woocommerce shop, product, product category and tag pages data.
-			update_option( 'talkino_show_on_woocommerce_pages', 'on' );
-
-			/************* Styles */
+			/** Styles */
 			// Reset chatbox style data.
 			update_option( 'talkino_chatbox_style', 'round' );
 
@@ -2985,14 +2976,17 @@ class Talkino_Settings {
 			// Reset chatbox icon data.
 			update_option( 'talkino_chatbox_icon', 'fa fa-comment' );
 
+			// Reset load font awesome deferred data.
+			update_option( 'talkino_load_font_awesome_deferred', 'on' );
+
 			// Reset show on desktop data.
 			update_option( 'talkino_show_on_desktop', 'on' );
 
-			// Reset start chat method.
-			update_option( 'talkino_start_chat_method', '_blank' );
-
 			// Reset show on mobile data.
 			update_option( 'talkino_show_on_mobile', 'on' );
+
+			// Reset start chat method.
+			update_option( 'talkino_start_chat_method', '_blank' );
 
 			// Reset chatbox theme color for online status.
 			update_option( 'talkino_chatbox_online_theme_color', '#1e73be' );
@@ -3012,11 +3006,21 @@ class Talkino_Settings {
 			// Reset chatbox subtitle color.
 			update_option( 'talkino_chatbox_subtitle_color', '#000' );
 
-			/************* Ordering */
+			/** Ordering */
 			// Reset agent ordering.
 			update_option( 'talkino_channel_ordering', 'talkino_whatsapp,talkino_facebook,talkino_telegram,talkino_phone,talkino_email' );
 
-			/************* Contact Form */
+			/** Display */
+			// Reset show on post data.
+			update_option( 'talkino_show_on_post', 'on' );
+
+			// Reset show on search data.
+			update_option( 'talkino_show_on_search', 'on' );
+
+			// Reset show on woocommerce shop, product, product category and tag pages data.
+			update_option( 'talkino_show_on_woocommerce_pages', 'on' );
+
+			/** Contact Form */
 			// Reset contact form status.
 			update_option( 'talkino_contact_form_status', 'off' );
 
@@ -3050,7 +3054,7 @@ class Talkino_Settings {
 			// Reset recaptcha secret key.
 			update_option( 'talkino_recaptcha_secret_key', '' );
 
-			/************* Advanced */
+			/** Advanced */
 			// Reset data uninstall status.
 			update_option( 'talkino_reset_settings_status', 'off' );
 
