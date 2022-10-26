@@ -193,7 +193,7 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 * Added: New settings of chatbox z-index field.
 * Added: New feature to display or hide credit of Talkino.
 * Fixed: Display chatbox under offline mode when all agents are not available or global schedule is offline.
-* Fixed: Scollbar background color on certain versions of web browsers.
+* Fixed: Scrollbar background color on certain versions of web browsers.
 * Removed: Font Awesome icon for chatbox to prevent theme conflict in future.
 * Removed: The deprecated data of Font Awesome.
 
