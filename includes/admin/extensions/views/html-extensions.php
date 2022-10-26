@@ -10,10 +10,9 @@
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-	die;
+    die;
 }
 
-// phpcs:disable
 ?>
 <link href="/wp-content/plugins/talkino/assets/bootstrap-5.2.1-dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -114,5 +113,4 @@ if ( ! defined( 'WPINC' ) ) {
   </main>
 </div>
 <?php
-// phpcs:enable
 ?>

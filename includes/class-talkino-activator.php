@@ -59,6 +59,7 @@ class Talkino_Activator {
 				if ( ! check_admin_referer( 'activate-plugin_' . self::$request['plugin'] ) ) {
 					exit;
 				}
+
 			} elseif ( isset( $_REQUEST['checked'] ) ) {
 				if ( ! check_admin_referer( 'bulk-plugins' ) ) {
 					exit;
@@ -101,6 +102,7 @@ class Talkino_Activator {
 					return self::$request;
 
 				}
+
 			} elseif ( isset( $_REQUEST['checked'] ) ) {
 				if ( false !== wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'bulk-plugins' ) ) {
 
@@ -108,8 +110,10 @@ class Talkino_Activator {
 					self::$request['plugins'] = array_map( 'sanitize_text_field', wp_unslash( $_REQUEST['checked'] ) );
 
 					return self::$request;
+					
 				}
 			}
+
 		} else {
 			return false;
 		}
@@ -168,13 +172,18 @@ class Talkino_Activator {
 		// Global options.
 		// Add talkino version if it does not exist.
 		if ( get_option( 'talkino_version' ) === false ) {
-			add_option( 'talkino_version', '1.1' );
+			add_option( 'talkino_version', '1.2' );
 		}
 
 		// Settings options.
+		// Add chatbox activation if it does not exist.
+		if ( get_option( 'talkino_chatbox_activation' ) === false ) {
+			add_option( 'talkino_chatbox_activation', 'active' );
+		}
+
 		// Add global online status if it does not exist.
 		if ( get_option( 'talkino_global_online_status' ) === false ) {
-			add_option( 'talkino_global_online_status', 'Online' );
+			add_option( 'talkino_global_online_status', 'online' );
 		}
 
 		// Add global schedule data if they do not exist.
@@ -220,17 +229,12 @@ class Talkino_Activator {
 
 		// Add chatbox offline subtitle if it does not exist.
 		if ( get_option( 'talkino_chatbox_offline_subtitle' ) === false ) {
-			add_option( 'talkino_chatbox_offline_subtitle', 'Kindly please drop us a message and we will get back to you soon!' );
-		}
-
-		// Add agent not available message if it does not exist.
-		if ( get_option( 'talkino_agent_not_available_message' ) === false ) {
-			add_option( 'talkino_agent_not_available_message', 'All agents are not available.' );
+			add_option( 'talkino_chatbox_offline_subtitle', 'Thank you for getting in touch. We are currently out of the office.' );
 		}
 
 		// Add offline message if it does not exist.
 		if ( get_option( 'talkino_offline_message' ) === false ) {
-			add_option( 'talkino_offline_message', 'Sorry, we are currently offline.' );
+			add_option( 'talkino_offline_message', 'Sorry, there is no agent available.' );
 		}
 
 		// Add chatbox button text if it does not exist.
@@ -251,22 +255,12 @@ class Talkino_Activator {
 
 		// Add chatbox icon data if it does not exist.
 		if ( get_option( 'talkino_chatbox_icon' ) === false ) {
-			add_option( 'talkino_chatbox_icon', 'fa fa-comment' );
+			add_option( 'talkino_chatbox_icon', 'dashicons-format-chat' );
 		}
 
-		// Add load font awesome deferred data if it does not exist.
-		if ( get_option( 'talkino_load_font_awesome_deferred' ) === false ) {
-			add_option( 'talkino_load_font_awesome_deferred', 'on' );
-		}
-
-		// Add show on desktop data if it does not exist.
-		if ( get_option( 'talkino_show_on_desktop' ) === false ) {
-			add_option( 'talkino_show_on_desktop', 'on' );
-		}
-
-		// Add show on mobile data if it does not exist.
-		if ( get_option( 'talkino_show_on_mobile' ) === false ) {
-			add_option( 'talkino_show_on_mobile', 'on' );
+		// Add chatbox animation data if it does not exist.
+		if ( get_option( 'talkino_chatbox_animation' ) === false ) {
+			add_option( 'talkino_chatbox_animation', 'fadein' );
 		}
 
 		// Add start chat method if it does not exist.
@@ -274,24 +268,44 @@ class Talkino_Activator {
 			add_option( 'talkino_start_chat_method', '_blank' );
 		}
 
+		// Add chatbox z-index if it does not exist.
+		if ( get_option( 'talkino_chatbox_z_index' ) === false ) {
+			add_option( 'talkino_chatbox_z_index', '9999999' );
+		}
+
 		// Add chatbox theme color for online status if it does not exist.
 		if ( get_option( 'talkino_chatbox_online_theme_color' ) === false ) {
 			add_option( 'talkino_chatbox_online_theme_color', '#1e73be' );
 		}
 
+		// Add chatbox icon color for online status if it does not exist.
+		if ( get_option( 'talkino_chatbox_online_icon_color' ) === false ) {
+			add_option( 'talkino_chatbox_online_icon_color', '#fff' );
+		}
+
 		// Add chatbox theme color for away status if it does not exist.
 		if ( get_option( 'talkino_chatbox_away_theme_color' ) === false ) {
-			add_option( 'talkino_chatbox_away_theme_color', '#ffa500' );
+			add_option( 'talkino_chatbox_away_theme_color', '#ff6000' );
+		}
+
+		// Add chatbox icon color for away status if it does not exist.
+		if ( get_option( 'talkino_chatbox_away_icon_color' ) === false ) {
+			add_option( 'talkino_chatbox_away_icon_color', '#fff' );
 		}
 
 		// Add chatbox theme color for offline status if it does not exist.
 		if ( get_option( 'talkino_chatbox_offline_theme_color' ) === false ) {
-			add_option( 'talkino_chatbox_offline_theme_color', '#aec6cf' );
+			add_option( 'talkino_chatbox_offline_theme_color', '#727779' );
+		}
+
+		// Add chatbox icon color for offline status if it does not exist.
+		if ( get_option( 'talkino_chatbox_offline_icon_color' ) === false ) {
+			add_option( 'talkino_chatbox_offline_icon_color', '#fff' );
 		}
 
 		// Add chatbox background color if it does not exist.
 		if ( get_option( 'talkino_chatbox_background_color' ) === false ) {
-			add_option( 'talkino_chatbox_background_color', '#fff' );
+			add_option( 'talkino_chatbox_background_color', '#f0f0f1' );
 		}
 
 		// Add chatbox title color if it does not exist.
@@ -304,6 +318,41 @@ class Talkino_Activator {
 			add_option( 'talkino_chatbox_subtitle_color', '#000' );
 		}
 
+		// Add chatbox button color if it does not exist.
+		if ( get_option( 'talkino_chatbox_button_color' ) === false ) {
+			add_option( 'talkino_chatbox_button_color', '#727779' );
+		}
+
+		// Add chatbox button text color if it does not exist.
+		if ( get_option( 'talkino_chatbox_button_text_color' ) === false ) {
+			add_option( 'talkino_chatbox_button_text_color', '#fff' );
+		}
+
+		// Add agent field background color if it does not exist.
+		if ( get_option( 'talkino_agent_field_background_color' ) === false ) {
+			add_option( 'talkino_agent_field_background_color', '#fff' );
+		}
+
+		// Add agent field hover background color if it does not exist.
+		if ( get_option( 'talkino_agent_field_hover_background_color' ) === false ) {
+			add_option( 'talkino_agent_field_hover_background_color', '#dfdfdf' );
+		}
+		
+		// Add agent name text color if it does not exist.
+		if ( get_option( 'talkino_agent_name_text_color' ) === false ) {
+			add_option( 'talkino_agent_name_text_color', '#222' );
+		}
+
+		// Add agent job title text color if it does not exist.
+		if ( get_option( 'talkino_agent_job_title_text_color' ) === false ) {
+			add_option( 'talkino_agent_job_title_text_color', '#888' );
+		}
+
+		// Add agent channel text color if it does not exist.
+		if ( get_option( 'talkino_agent_channel_text_color' ) === false ) {
+			add_option( 'talkino_agent_channel_text_color', '#888' );
+		}
+				
 		// Ordering options.
 		// Add agent ordering if it does not exist.
 		if ( get_option( 'talkino_channel_ordering' ) === false ) {
@@ -321,9 +370,29 @@ class Talkino_Activator {
 			add_option( 'talkino_show_on_search', 'on' );
 		}
 
+		// Add show on 404 data if it does not exist.
+		if ( get_option( 'talkino_show_on_404' ) === false ) {
+			add_option( 'talkino_show_on_404', 'on' );
+		}
+
 		// Add show on woocommerce shop, product, product category and tag pages data if it does not exist.
 		if ( get_option( 'talkino_show_on_woocommerce_pages' ) === false ) {
 			add_option( 'talkino_show_on_woocommerce_pages', 'on' );
+		}
+
+		// Add show on desktop data if it does not exist.
+		if ( get_option( 'talkino_show_on_desktop' ) === false ) {
+			add_option( 'talkino_show_on_desktop', 'on' );
+		}
+
+		// Add show on mobile data if it does not exist.
+		if ( get_option( 'talkino_show_on_mobile' ) === false ) {
+			add_option( 'talkino_show_on_mobile', 'on' );
+		}
+
+		// Add user visibility data if it does not exist.
+		if ( get_option( 'talkino_user_visibility' ) === false ) {
+			add_option( 'talkino_user_visibility', 'all' );
 		}
 
 		// Contact Form options.
@@ -382,8 +451,14 @@ class Talkino_Activator {
 			add_option( 'talkino_recaptcha_secret_key', '' );
 		}
 
+		// Credit options.
+		// Add credit data if it does not exist.
+		if ( get_option( 'talkino_credit' ) === false ) {
+			add_option( 'talkino_credit', 'on' );
+		}
+
 		// Advanced options.
-		// Add data uninstall status if it does not exist.
+		// Add reset settings status data if it does not exist.
 		if ( get_option( 'talkino_reset_settings_status' ) === false ) {
 			add_option( 'talkino_reset_settings_status', 'off' );
 		}

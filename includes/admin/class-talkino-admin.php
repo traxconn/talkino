@@ -82,8 +82,8 @@ class Talkino_Admin {
 
 			wp_enqueue_style( 'talkino-admin', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/css/talkino-admin.css', array(), $this->version, 'all' );
 
-			// Enqueue font awesome css for admin area.
-			wp_enqueue_style( 'font-awesome-min', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/fontawesome-free-6.2.0-web/css/all.min.css', array(), '6.2.0', 'all' );
+			// Enqueue dashicons picker for admin area.
+			wp_enqueue_style( 'dashicons-picker', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/css/dashicons-picker.css', array( 'dashicons' ), $this->version, 'all' );
 
 		}
 
@@ -112,8 +112,8 @@ class Talkino_Admin {
 			// Enqueue jquery for sorting.
 			wp_enqueue_script( 'jquery-ui-sortable', false, array( 'jquery-ui-core', 'jquery' ), $this->version, true );
 
-			// Enqueue jquery for picking icon.
-			wp_enqueue_script( 'icon-picker', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/icon-picker.js', array( 'jquery' ), $this->version, true );
+			// Enqueue jquery for dashicons picker.
+			wp_enqueue_script( 'dashicons-picker', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/dashicons-picker.js', array( 'jquery' ), $this->version, true );
 
 			// Pass $php_vars array to javascript as php object for channel ordering.
 			$ajax_url = array( 'ajax_url' => admin_url( 'admin-ajax.php' ) );

@@ -59,6 +59,7 @@ class Talkino_Deactivator {
 				if ( ! check_admin_referer( 'deactivate-plugin_' . self::$request['plugin'] ) ) {
 					exit;
 				}
+
 			} elseif ( isset( $_REQUEST['checked'] ) ) {
 				if ( ! check_admin_referer( 'bulk-plugins' ) ) {
 					exit;
@@ -98,6 +99,7 @@ class Talkino_Deactivator {
 					return self::$request;
 
 				}
+
 			} elseif ( isset( $_REQUEST['checked'] ) ) {
 				if ( false !== wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'bulk-plugins' ) ) {
 
@@ -108,6 +110,7 @@ class Talkino_Deactivator {
 
 				}
 			}
+			
 		} else {
 			return false;
 		}

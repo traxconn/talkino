@@ -5,8 +5,8 @@ Contributors: traxconn, yipchunmun, leesuijen
 Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
-Tested up to: 6.0.2
-Stable tag: 1.1.8
+Tested up to: 6.1
+Stable tag: 2.0.0
 Requires PHP: 7.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -39,8 +39,14 @@ Changing your online status is all about setting the right expectation for your 
 - **Editable text**
 Enable you to edit the text of Talkino's chatbox in different modes. These include online, away and offline modes.
 
+- **Chatbox animation**
+Change the animation of the chatbox whether fade in or slide up animation.
+
+- **Color templates**
+Color templates for the chatbox are ready for you to choose.
+
 - **Fully customizable style**
-Customize the theme color, icon, styles, text color, background and position of chatbox to meet your favorite style or theme design.
+Customize the theme color, chatbox icon, button icon, styles, text color, background and position of chatbox to meet your favorite style or theme design.
 
 - **WooCommerce compatible**
 Talkino is fully compatible with WooCommerce store.
@@ -164,11 +170,32 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 4. Agent's Contact Details
 5. Chatbox Online Status and Editable Text of Chatbox
 6. Customizable Styles of Chatbox
-7. Feature of Ordering for Chat Channels and Agents
-8. Feature to Display or Hide the Chatbox on Pages
-9. Advanced Setting to Control the Options of Reset Settings and Uninstallation 
+7. Customizable Styles of Chatbox
+8. Customizable Styles of Chatbox
+9. Feature of Ordering for Chat Channels and Agents
+10. Feature to Display or Hide the Chatbox on Pages
+11. Feature to Show or Hide credit of Talkino on Chatbox
+12. Advanced Setting to Control the Options of Reset Settings and Uninstallation 
 
 == Changelog ==
+
+= 2.0.0, Oct 26, 2022 =
+* Added: New WordPress official dashicons with search feature for chatbox icon.
+* Added: Option to show or hide chatbox on 404 page.
+* Added: New animation of chatbox and settings.
+* Added: Option to show chatbox only on mobile view for phone.
+* Added: New close button at the top of chatbox.
+* Added: New design of chatbox.
+* Added: New color templates for chatbox.
+* Added: New customization of color template.
+* Added: New settings of Styles.
+* Added: Premium link on plugin page.
+* Added: New settings of chatbox z-index field.
+* Added: New feature to display or hide credit of Talkino.
+* Fixed: Display chatbox under offline mode when all agents are not available or global schedule is offline.
+* Fixed: Scollbar background color on certain versions of web browsers.
+* Removed: Font Awesome icon for chatbox to prevent theme conflict in future.
+* Removed: The deprecated data of Font Awesome.
 
 = 1.1.8, Oct 10, 2022 =
 * Fixed: The bug of ordering for chat channels and agents.
