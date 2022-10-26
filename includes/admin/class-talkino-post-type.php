@@ -65,7 +65,7 @@ class Talkino_Post_Type {
 			'has_archive'           => false,
 			'show_in_menu'          => true,
 			'show_in_nav_menus'     => true,
-			'menu_icon'             => 'dashicons-admin-users',
+			'menu_icon'             => 'dashicons-format-chat',
 			'delete_with_user'      => false,
 			'exclude_from_search'   => true,
 			'capability_type'       => 'post',

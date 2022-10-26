@@ -30,14 +30,18 @@ if ( is_plugin_active( 'wpml-string-translation/plugin.php' ) ) {
 <input type="checkbox" id="check"> 
 <label class="talkino-chat-btn" for="check"> 
 	<div class="talkino-icon">
-		<i class="<?php echo esc_html( get_option( 'talkino_chatbox_icon' ) ); ?> round talkino"></i>
+		<i class="dashicons <?php echo esc_html( get_option( 'talkino_chatbox_icon' ) ); ?> round talkino"></i>
 	</div>
-	<div class="talkino-rectangle-label"><i class="<?php echo esc_html( get_option( 'talkino_chatbox_icon' ) ); ?> rectangle fa-xl talkino"></i> <?php echo esc_html( $talkino_chatbox_button_text ); ?></div>
-	<i class="fa fa-close talkino-close"></i> 
+	<div class="talkino-rectangle-label">
+		<?php echo esc_html( $talkino_chatbox_button_text ); ?><i class="dashicons <?php echo esc_html( get_option( 'talkino_chatbox_icon' ) ); ?> rectangle talkino"></i>
+	</div>
 </label>
 <div class="talkino-chat-wrapper">
 	<div class="talkino-chat-title">
-	<b><?php esc_html_e( 'Offline', 'talkino' ); ?></b>
+		<b><?php esc_html_e( 'Offline', 'talkino' ); ?></b>
+		<label class="talkino-chat-close" for="check">
+				<i class="dashicons dashicons-minus talkino-chat-close-btn"></i>
+		</label> 
 	</div>
 	<div class="talkino-chat-subtitle"> 
 		<span><?php echo esc_html( $talkino_chat_subtitle ); ?></span> 
@@ -45,4 +49,13 @@ if ( is_plugin_active( 'wpml-string-translation/plugin.php' ) ) {
 	<div class="talkino-information-wrapper">
 		<div class="talkino-notice"><i><?php echo esc_html( $talkino_offline_message ); ?></i></div>
 	</div>
+	<?php 
+	if ( get_option( 'talkino_credit' ) === 'on' ) {
+	?>
+	<div class="talkino-footer-wrapper">
+		<a class="talkino-credit-link" href="https://traxconn.com/plugins/talkino/" target=”_blank”>Powered by Talkino</a> 
+	</div>
+	<?php
+	}
+	?>
 </div>

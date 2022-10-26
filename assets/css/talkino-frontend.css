@@ -13,8 +13,12 @@
     display: none !important;
 }
 
-#check:checked~.talkino-chat-btn i {
+#check:checked~.talkino-chat-close .dashicons.dashicons-minus.talkino-chat-close-btn {
     display: block;
+}
+
+#check:checked~.talkino-chat-btn {
+    display: none;
 }
 
 #check:checked~.talkino-chat-btn .talkino-icon {
@@ -33,13 +37,11 @@
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     border: none;
     position: fixed;
-    z-index: 9999999 !important;
     cursor: pointer;
 }
 
 .talkino-chat-btn .talkino-icon {
     color: #fff;
-    font-size: 22px;
     left: 50%;
     top: 50%;
     position: absolute;
@@ -47,26 +49,25 @@
     transform: translate(-50%, -50%);
 }
 
+.round.talkino {
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+}
+
 .talkino-chat-btn .talkino-rectangle-label {
-    color: #fff;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     padding-left: 15px;
     padding-right: 15px;
     margin: 10px;
     white-space: nowrap;
 }
 
-.talkino-chat-btn .talkino-close {
-    color: #fff;
-    font-size: 22px;
-    left: 50%;
-    top: 50%;
-    position: absolute;
-    display: none;
-    transition: all 0.9s ease;
-    transform: translate(-50%, -50%);
+.rectangle.talkino {
+    font-size: 23px;
+    float: right;
 }
 
 label.talkino-chat-btn {
@@ -75,34 +76,45 @@ label.talkino-chat-btn {
 }
 
 .talkino-chat-wrapper {
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    width: 300px;
+    width: 350px;
+    bottom: 30px;
     position: fixed;
     display: none;
     transition: all 0.4s;
-    z-index: 9999999 !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .talkino-chat-title {
+    font-size: 25px;
+    line-height: 36px;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 15px;
 }
 
+.talkino-chat-close {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
 .talkino-chat-subtitle {
-    font-size: 13px;
-    padding: 10px 15px 5px 15px;
+    font-size: 16px;
+    padding-top: 13px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    padding-right: 15px;
 }
 
 .talkino-information-wrapper {
-    max-height: 295px;
+    max-height: 298px;
     overflow-y: auto;
 }
 
 .talkino-information-wrapper::-webkit-scrollbar {
     height: 12px;
     width: 5px;
-    background: #f1f1f1;
 }
 
 .talkino-information-wrapper::-webkit-scrollbar-thumb {
@@ -110,6 +122,7 @@ label.talkino-chat-btn {
 }
 
 .talkino-chat-avatar {
+    float: left;
     position: relative;
 }
 
@@ -121,14 +134,14 @@ label.talkino-chat-btn {
 }
 
 .talkino-channel-icon {
-    top: 22px;
-    left: 15px;
-    padding: 14px;
+    width: 35px !important;
+    top: 29px;
+    left: 28px;
     position: absolute;
 }  
 
 .talkino-notice {
-    font-size: 14px;
+    font-size: 16px;
     text-align: center; 
     margin-top: 25px; 
     margin-bottom: 25px;
@@ -140,48 +153,58 @@ a.talkino-chat-information {
     border-color: darkgray;
     border-radius: 3px;
     border-width: 1px;
-    padding: 7.5px 10px;
+    padding: 12px 0 12px 10px;
     margin: 10px 10px;
-    height: 85px;
     display: block;
     overflow: hidden;
 }
 
-a.talkino-chat-information:hover {
-    background: #f1f1f1;
-}
-
 .talkino-chat-info span {
     display: block;
+    height: 18px;
 }
 
 span.talkino-chat-name {
-    color: #222;
-    font-size: 15px;
+    font-size: 18px;
+    line-height: 27px;
     font-weight: 700;
-    margin: 5px 0 0;
-    height: 20px;
+    height: 25px;
 }
 
 span.talkino-chat-job-title {
-    color: #888;
-    font-size: 12px;
-    height: 15px;
+    font-size: 14px;
+    line-height: 21px;
 }
 
 span.talkino-chat-channel {
-    color: #888;
-    font-size: 12px;
-    height: 30px;
+    font-size: 14px;
+    line-height: 21px;
 }
 
-.rectangle.fa-xl.talkino{
-    font-size: 1.5em;
+.talkino-footer-wrapper {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.talkino-credit-link,.talkino-credit-link:hover {
+    text-decoration: none;
+    color: #888;
+}
+
+@media only screen and (max-width: 600px) {
+    .talkino-chat-wrapper {
+        width: 100%;
+        right: 0 !important;
+    }   
 }
 
 /********** Contact Form **********/
 #talkino_contact_form {
     padding: 0 10px 3px 10px;
+    margin-bottom: 10px;
 }
 
 .form-group.talkino {
@@ -195,7 +218,24 @@ span.talkino-chat-channel {
     border-color: darkgray;
     border-width: thin;
     border-radius: 4px;
+}
 
+#talkino_contact_form_name {
+    min-width: 90%;
+    height: 48px;
+    margin: 5px 0px 5px 0;
+}
+
+#talkino_contact_form_email {
+    min-width: 90%;
+    height: 48px;
+    margin: 5px 0px 5px 0;
+}
+
+#talkino_contact_form_message {
+    min-width: 90%;
+    height: 93px;
+    margin: 5px 0px 5px 0;
 }
 
 .spinner-border.talkino {
@@ -206,19 +246,21 @@ span.talkino-chat-channel {
     font-size: 13px;
     font-style: italic;
     color: green;
+    margin: 0;
+    height: 30px;
 }
 
-.btn.btn-primary.submit.talkino {
-    background-color: #0d6efd;
-    color: white;
-    font-size: 13px;
+.talkino-submit-button {
+    font-size: 15px;
+    font-weight: bold;
     text-align: center;
     text-transform: capitalize;
-    text-decoration: none;
+    line-height: 22px;
+    width: 100%;
+    padding: 13px 0 13px 0;
+    margin-bottom: 0;
     border: none;
-    padding: 10px;
-    margin: 4px 2px;
-    display: inline-block;
+    border-radius: 5px !important;  
 }
 
 .grecaptcha-badge {
@@ -227,4 +269,25 @@ span.talkino-chat-channel {
 
 .talkino-google-recaptcha-notice {
     font-size: 13px;
+}
+
+/********** Animation **********/
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+    0%,
+    20% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+     
+    40%,
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    
+    }
 }

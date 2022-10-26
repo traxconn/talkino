@@ -92,7 +92,7 @@ class Talkino_Agent_Manager {
 			'post_type'      => 'talkino_agents',
 			'post_status'    => 'publish',
 			'posts_per_page' => -1,
-			'meta_key'       => 'talkino_agent_ordering',// phpcs:ignore
+			'meta_key'       => 'talkino_agent_ordering',
 			'orderby'        => 'meta_value_num',
 			'order'          => 'ASC',
 		);
@@ -179,7 +179,7 @@ class Talkino_Agent_Manager {
 					}
 
 						$facebook_data .= "
-                        
+
                             <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/facebook-icon.png' . "' />
                         </div>
 
@@ -225,8 +225,8 @@ class Talkino_Agent_Manager {
 
 				}
 
-				// Ensure only query the data if there is phone number.
-				if ( wp_is_mobile() && ! empty( get_post_meta( $post_id, 'talkino_phone_number', true ) ) ) {
+				// Ensure only query the data if it is mobile view or it is desktop view and talkino_phone_show_only_on_mobile_status is off.
+				if ( ( wp_is_mobile() && ! empty( get_post_meta( $post_id, 'talkino_phone_number', true ) ) ) || ( ! wp_is_mobile() && ! empty( get_post_meta( $post_id, 'talkino_phone_number', true ) ) && ! empty( get_post_meta( $post_id, 'talkino_phone_show_only_on_mobile_status', true ) ) && get_post_meta( $post_id, 'talkino_phone_show_only_on_mobile_status', true ) === 'off'  ) ) {
 
 					$phone_number = get_post_meta( $post_id, 'talkino_phone_number', true );
 

@@ -12,6 +12,10 @@
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+// Declare the values of show on mobile status.
+$is_phone_show_only_on_mobile_status_checked = ( ! empty( $data['phone_show_only_on_mobile_status'] ) && 'on' === $data['phone_show_only_on_mobile_status'] ) ? 'checked' : '';
+
 ?>
 
 <div>
@@ -27,7 +31,7 @@ if ( ! defined( 'WPINC' ) ) {
 		<p class="talkino-whatsapp-title">
 			<label><b><?php esc_html_e( 'WhatsApp/ WhatsApp Business ID:', 'talkino' ); ?></b></label><br>
 			<input type="tel" name="talkino_whatsapp_id" class="talkino-whatsapp-input" value="<?php echo esc_attr( $data['whatsapp_id'] ); ?>" /><br>
-			<label><i><?php esc_html_e( 'Use full phone number in international format or leave it empty to deactivate WhatsApp.', 'talkino' ); ?></i></label>
+			<label><i><?php esc_html_e( 'Use full phone number in international format ( i.e. 12345678901 ) or leave it empty to deactivate WhatsApp.', 'talkino' ); ?></i></label>
 		</p>
 		<p class="talkino-whatsapp-prefilled-message-title">
 			<label><b><?php esc_html_e( 'WhatsApp Pre-filled Message:', 'talkino' ); ?></b></label><br>
@@ -56,6 +60,9 @@ if ( ! defined( 'WPINC' ) ) {
 		<p class="talkino-phone-title">
 			<label><b><?php esc_html_e( 'Phone Number:', 'talkino' ); ?></b></label><br>
 			<input type="tel" name="talkino_phone_number" class="talkino-phone-input" value="<?php echo esc_attr( $data['phone_number'] ); ?>" /><br>
+			<input name="talkino_phone_show_only_on_mobile_status" type="hidden" value='off' />
+			<input id="talkino_phone_show_only_on_mobile_status" name="talkino_phone_show_only_on_mobile_status" type="checkbox" <?php echo esc_attr( $is_phone_show_only_on_mobile_status_checked ); ?> value='on' />
+			<label class="show_only_on_mobile_view"><?php esc_html_e( 'Show only on mobile view?', 'talkino' ); ?></label><br>
 			<label><i><?php esc_html_e( 'Key in phone number or leave it empty if you want to deactivate it. Note: Only shown on mobile or tablet devices.', 'talkino' ); ?></i></label>
 		</p>
 	</div>	

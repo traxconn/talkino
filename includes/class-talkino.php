@@ -183,12 +183,7 @@ class Talkino {
 		$talkino_settings   = new Talkino_Settings();
 
 		// Enqueue all the scripts and stylesheets.
-		if ( get_option( 'talkino_load_font_awesome_deferred' ) === 'on' ) {
-			$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_styles', 999 );
-		} else {
-			$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_styles' );
-		}
-
+		$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_scripts' );
 
 		// Register hook to upgrade plugin data.
@@ -224,6 +219,9 @@ class Talkino {
 		// Register hook to change the notification message on bulk of custom post type.
 		$this->loader->add_filter( 'bulk_post_updated_messages', $talkino_customizer, 'edit_bulk_post_updated_messages', 10, 2 );
 
+		// Register hook to add premium plugin link.
+		$this->loader->add_filter( 'plugin_action_links_' . TALKINO_BASE_NAME, $talkino_customizer, 'add_premium_plugin_link' );
+
 		// Register hook to create settings of submenu page.
 		$this->loader->add_action( 'admin_menu', $talkino_settings, 'create_settings_submenu_page' );
 
@@ -252,16 +250,15 @@ class Talkino {
 		$talkino_frontend = new Talkino_Frontend( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
 		$talkino_chatbox  = new Talkino_Chatbox();
 
-		if ( get_option( 'talkino_load_font_awesome_deferred' ) === 'on' ) {
-			$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_styles', 9999 );
-		} else {
-			$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_styles' );
-		}
-
+		// Enqueue all the scripts and stylesheets.
+		$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_scripts' );
 
-		// Register hook to initialize chatbox.
-		$this->loader->add_filter( 'wp_head', $talkino_chatbox, 'chatbox_init' );
+		// Register hook to initialize chatbox if chatbox activation is active.
+		if (get_option( 'talkino_chatbox_activation' ) === 'active' )
+		{
+			$this->loader->add_filter( 'wp_head', $talkino_chatbox, 'chatbox_init' );
+		}
 
 		// Register bundle hook to initialize contact form.
 		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {

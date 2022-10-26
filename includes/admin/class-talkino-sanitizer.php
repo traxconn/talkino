@@ -113,4 +113,26 @@ class Talkino_Sanitizer {
 
 	}
 
+	/**
+	 * The function to sanitize checkbox of phone show only on mobile status.
+	 *
+	 * @since    2.0.0
+	 * @param    string $phone_show_only_on_mobile_status    The phone show only on mobile status.
+	 *
+	 * @return   string    The sanitized phone show only on mobile status.
+	 */
+	public function sanitize_phone_show_only_on_mobile_status( $phone_show_only_on_mobile_status ) {
+
+		if ( 'on' === $phone_show_only_on_mobile_status || 'off' === $phone_show_only_on_mobile_status ) {
+			$phone_show_only_on_mobile_status = $phone_show_only_on_mobile_status;
+
+		} else {
+			$phone_show_only_on_mobile_status = 'off';
+
+		}
+
+		return $phone_show_only_on_mobile_status;
+
+	}
+
 }

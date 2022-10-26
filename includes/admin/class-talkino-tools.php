@@ -104,12 +104,14 @@ class Talkino_Tools {
 	 */
 	public function dismiss_plugin_review_notice() {
 
-		if ( isset( $_GET['dismiss-plugin-review-notice'] ) && ! empty( $_GET['dismiss-plugin-review-notice'] ) ) { // phpcs:ignore
-			$dismiss = (int) $_GET['dismiss-plugin-review-notice']; // phpcs:ignore
+		if ( isset( $_GET['dismiss-plugin-review-notice'] ) && ! empty( $_GET['dismiss-plugin-review-notice'] ) ) {
+			
+			$dismiss = (int) $_GET['dismiss-plugin-review-notice'];
 
 			if ( 1 === $dismiss ) {
 				add_option( 'talkino_dismiss_plugin_review_notice', true );
 			}
+			
 		}
 
 	}

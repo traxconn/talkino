@@ -67,25 +67,27 @@ class Talkino_Meta_Boxes {
 		$post_id = $post->ID;
 
 		// Get the meta value to display on existing meta box.
-		$job_title                   = ( ! empty( get_post_meta( $post_id, 'talkino_job_title', true ) ) ) ? get_post_meta( $post_id, 'talkino_job_title', true ) : '';
-		$whatsapp_id                 = ( ! empty( get_post_meta( $post_id, 'talkino_whatsapp_id', true ) ) ) ? get_post_meta( $post_id, 'talkino_whatsapp_id', true ) : '';
-		$whatsapp_pre_filled_message = ( ! empty( get_post_meta( $post_id, 'talkino_whatsapp_pre_filled_message', true ) ) ) ? get_post_meta( $post_id, 'talkino_whatsapp_pre_filled_message', true ) : '';
-		$facebook_id                 = ( ! empty( get_post_meta( $post_id, 'talkino_facebook_id', true ) ) ) ? get_post_meta( $post_id, 'talkino_facebook_id', true ) : '';
-		$telegram_id                 = ( ! empty( get_post_meta( $post_id, 'talkino_telegram_id', true ) ) ) ? get_post_meta( $post_id, 'talkino_telegram_id', true ) : '';
-		$phone_number                = ( ! empty( get_post_meta( $post_id, 'talkino_phone_number', true ) ) ) ? get_post_meta( $post_id, 'talkino_phone_number', true ) : '';
-		$email                       = ( ! empty( get_post_meta( $post_id, 'talkino_email', true ) ) ) ? get_post_meta( $post_id, 'talkino_email', true ) : '';
+		$job_title                   	  = ( ! empty( get_post_meta( $post_id, 'talkino_job_title', true ) ) ) ? get_post_meta( $post_id, 'talkino_job_title', true ) : '';
+		$whatsapp_id                      = ( ! empty( get_post_meta( $post_id, 'talkino_whatsapp_id', true ) ) ) ? get_post_meta( $post_id, 'talkino_whatsapp_id', true ) : '';
+		$whatsapp_pre_filled_message      = ( ! empty( get_post_meta( $post_id, 'talkino_whatsapp_pre_filled_message', true ) ) ) ? get_post_meta( $post_id, 'talkino_whatsapp_pre_filled_message', true ) : '';
+		$facebook_id                      = ( ! empty( get_post_meta( $post_id, 'talkino_facebook_id', true ) ) ) ? get_post_meta( $post_id, 'talkino_facebook_id', true ) : '';
+		$telegram_id                      = ( ! empty( get_post_meta( $post_id, 'talkino_telegram_id', true ) ) ) ? get_post_meta( $post_id, 'talkino_telegram_id', true ) : '';
+		$phone_number                     = ( ! empty( get_post_meta( $post_id, 'talkino_phone_number', true ) ) ) ? get_post_meta( $post_id, 'talkino_phone_number', true ) : '';
+		$phone_show_only_on_mobile_status = ( ! empty( get_post_meta( $post_id, 'talkino_phone_show_only_on_mobile_status', true ) ) ) ? get_post_meta( $post_id, 'talkino_phone_show_only_on_mobile_status', true ) : 'off';
+		$email                            = ( ! empty( get_post_meta( $post_id, 'talkino_email', true ) ) ) ? get_post_meta( $post_id, 'talkino_email', true ) : '';
 
 		// Make sure the contents of the form came from the location on the current site and not somewhere else.
 		wp_nonce_field( basename( __FILE__ ), 'talkino_chatbox_nonce' );
 
 		$contact_data = array(
-			'job_title'                   => $job_title,
-			'whatsapp_id'                 => $whatsapp_id,
-			'whatsapp_pre_filled_message' => $whatsapp_pre_filled_message,
-			'facebook_id'                 => $facebook_id,
-			'telegram_id'                 => $telegram_id,
-			'phone_number'                => $phone_number,
-			'email'                       => $email,
+			'job_title'                        => $job_title,
+			'whatsapp_id'                      => $whatsapp_id,
+			'whatsapp_pre_filled_message'      => $whatsapp_pre_filled_message,
+			'facebook_id'                      => $facebook_id,
+			'telegram_id'                      => $telegram_id,
+			'phone_number'                     => $phone_number,
+			'phone_show_only_on_mobile_status' => $phone_show_only_on_mobile_status,
+			'email'                            => $email,
 		);
 
 		// Load html to render contact meta box.
@@ -184,7 +186,6 @@ class Talkino_Meta_Boxes {
 	 * @param    string  $post_id    Id of the post.
 	 * @param    WP_Post $post      Post object.
 	 */
-	// phpcs:disable
 	public function save_meta_box( $post_id, $post ) {
 
 		// Call the class to sanitize post meta.
@@ -204,13 +205,14 @@ class Talkino_Meta_Boxes {
 		}
 
 		// Sanitize the contact data.
-		$job_title                   = ( isset( $_POST['talkino_job_title'] ) ) ? sanitize_text_field( wp_unslash( $_POST['talkino_job_title'] ) ) : '';
-		$whatsapp_id                 = ( isset( $_POST['talkino_whatsapp_id'] ) ) ? $talkino_sanitizer->sanitize_whatsapp_phone_number( wp_unslash( $_POST['talkino_whatsapp_id'] ) ) : '';
-		$whatsapp_pre_filled_message = ( isset( $_POST['talkino_whatsapp_pre_filled_message'] ) ) ? sanitize_text_field( wp_unslash( $_POST['talkino_whatsapp_pre_filled_message'] ) ) : '';
-		$facebook_id                 = ( isset( $_POST['talkino_facebook_id'] ) ) ? sanitize_text_field( wp_unslash( $_POST['talkino_facebook_id'] ) ) : '';
-		$telegram_id                 = ( isset( $_POST['talkino_telegram_id'] ) ) ? sanitize_text_field( wp_unslash( $_POST['talkino_telegram_id'] ) ) : '';
-		$phone_number                = ( isset( $_POST['talkino_phone_number'] ) ) ? $talkino_sanitizer->sanitize_phone_number( wp_unslash( $_POST['talkino_phone_number'] ) ) : '';
-		$email                       = ( isset( $_POST['talkino_email'] ) ) ? sanitize_email( wp_unslash( $_POST['talkino_email'] ) ) : '';
+		$job_title                        = ( isset( $_POST['talkino_job_title'] ) ) ? sanitize_text_field( wp_unslash( $_POST['talkino_job_title'] ) ) : '';
+		$whatsapp_id                      = ( isset( $_POST['talkino_whatsapp_id'] ) ) ? $talkino_sanitizer->sanitize_whatsapp_phone_number( wp_unslash( $_POST['talkino_whatsapp_id'] ) ) : '';
+		$whatsapp_pre_filled_message      = ( isset( $_POST['talkino_whatsapp_pre_filled_message'] ) ) ? sanitize_text_field( wp_unslash( $_POST['talkino_whatsapp_pre_filled_message'] ) ) : '';
+		$facebook_id                      = ( isset( $_POST['talkino_facebook_id'] ) ) ? sanitize_text_field( wp_unslash( $_POST['talkino_facebook_id'] ) ) : '';
+		$telegram_id                      = ( isset( $_POST['talkino_telegram_id'] ) ) ? sanitize_text_field( wp_unslash( $_POST['talkino_telegram_id'] ) ) : '';
+		$phone_number                     = ( isset( $_POST['talkino_phone_number'] ) ) ? $talkino_sanitizer->sanitize_phone_number( wp_unslash( $_POST['talkino_phone_number'] ) ) : '';
+		$phone_show_only_on_mobile_status = ( isset( $_POST['talkino_phone_show_only_on_mobile_status'] ) ) ? $talkino_sanitizer->sanitize_phone_show_only_on_mobile_status( wp_unslash( $_POST['talkino_phone_show_only_on_mobile_status'] ) ) : 'off';
+		$email                            = ( isset( $_POST['talkino_email'] ) ) ? sanitize_email( wp_unslash( $_POST['talkino_email'] ) ) : '';
 
 		// Sanitize the options data.
 		$agent_schedule_activate_status = ( isset( $_POST['talkino_agent_schedule_activate_status'] ) ) ? $talkino_sanitizer->sanitize_agent_schedule_online_status( wp_unslash( $_POST['talkino_agent_schedule_activate_status'] ) ) : 'off';
@@ -250,6 +252,7 @@ class Talkino_Meta_Boxes {
 		update_post_meta( $post_id, 'talkino_facebook_id', $facebook_id );
 		update_post_meta( $post_id, 'talkino_telegram_id', $telegram_id );
 		update_post_meta( $post_id, 'talkino_phone_number', $phone_number );
+		update_post_meta( $post_id, 'talkino_phone_show_only_on_mobile_status', $phone_show_only_on_mobile_status );
 		update_post_meta( $post_id, 'talkino_email', $email );
 
 		// Update options post meta.
@@ -289,5 +292,5 @@ class Talkino_Meta_Boxes {
 		}
 
 	}
-	// phpcs:enable
+	
 }

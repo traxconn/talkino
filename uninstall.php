@@ -80,12 +80,12 @@ function remove_plugin_data() {
 		delete_option( 'talkino_version' );
 
 		// Settings options.
+		delete_option( 'talkino_chatbox_activation' );
 		delete_option( 'talkino_global_online_status' );
 		delete_option( 'talkino_global_schedule_online_status' );
 		delete_option( 'talkino_chatbox_online_subtitle' );
 		delete_option( 'talkino_chatbox_away_subtitle' );
 		delete_option( 'talkino_chatbox_offline_subtitle' );
-		delete_option( 'talkino_agent_not_available_message' );
 		delete_option( 'talkino_offline_message' );
 		delete_option( 'talkino_chatbox_button_text' );
 		delete_option( 'talkino_chatbox_exclude_pages' );
@@ -94,16 +94,25 @@ function remove_plugin_data() {
 		delete_option( 'talkino_chatbox_style' );
 		delete_option( 'talkino_chatbox_position' );
 		delete_option( 'talkino_chatbox_icon' );
-		delete_option( 'talkino_load_font_awesome_deferred' );
-		delete_option( 'talkino_show_on_desktop' );
-		delete_option( 'talkino_show_on_mobile' );
+		delete_option( 'talkino_chatbox_animation' );
 		delete_option( 'talkino_start_chat_method' );
+		delete_option( 'talkino_chatbox_z_index' );
 		delete_option( 'talkino_chatbox_online_theme_color' );
+		delete_option( 'talkino_chatbox_online_icon_color' );
 		delete_option( 'talkino_chatbox_away_theme_color' );
+		delete_option( 'talkino_chatbox_away_icon_color' );
 		delete_option( 'talkino_chatbox_offline_theme_color' );
+		delete_option( 'talkino_chatbox_offline_icon_color' );
 		delete_option( 'talkino_chatbox_background_color' );
 		delete_option( 'talkino_chatbox_title_color' );
 		delete_option( 'talkino_chatbox_subtitle_color' );
+		delete_option( 'talkino_chatbox_button_color' );
+		delete_option( 'talkino_chatbox_button_text_color' );
+		delete_option( 'talkino_agent_field_background_color' );
+		delete_option( 'talkino_agent_field_hover_background_color' );
+		delete_option( 'talkino_agent_name_text_color' );
+		delete_option( 'talkino_agent_job_title_text_color' );
+		delete_option( 'talkino_agent_channel_text_color' );
 
 		// Ordering options.
 		delete_option( 'talkino_channel_ordering' );
@@ -111,7 +120,11 @@ function remove_plugin_data() {
 		// Display options.
 		delete_option( 'talkino_show_on_post' );
 		delete_option( 'talkino_show_on_search' );
+		delete_option( 'talkino_show_on_404' );
 		delete_option( 'talkino_show_on_woocommerce_pages' );
+		delete_option( 'talkino_show_on_desktop' );
+		delete_option( 'talkino_show_on_mobile' );
+		delete_option( 'talkino_user_visibility' );
 
 		// Contact Form options.
 		delete_option( 'talkino_contact_form_status' );
@@ -125,6 +138,9 @@ function remove_plugin_data() {
 		delete_option( 'talkino_recaptcha_status' );
 		delete_option( 'talkino_recaptcha_site_key' );
 		delete_option( 'talkino_recaptcha_secret_key' );
+
+		// Credit options.
+		delete_option( 'talkino_credit' );
 
 		// Advanced options.
 		delete_option( 'talkino_reset_settings_status' );

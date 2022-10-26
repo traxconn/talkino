@@ -1,0 +1,73 @@
+.talkino-dashicon-picker-container {
+	position: absolute;
+	width: 220px;
+	height: 252px;
+	font-size: 14px;
+	background-color: #fff;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.talkino-dashicon-picker-container ul {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 10px;
+}
+
+.talkino-dashicon-picker-container ul .dashicons {
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+}
+
+.talkino-dashicon-picker-container ul li {
+	display: inline-block;
+	margin: 5px;
+}
+
+.talkino-dashicon-picker-container ul li a {
+	display: block;
+	text-decoration: none;
+	color: #373737;
+	padding: 5px 5px;
+	border: 1px solid #dfdfdf;
+}
+
+.talkino-dashicon-picker-container ul li a:hover {
+	border-color: #999;
+	background: #efefef;
+}
+
+.talkino-dashicon-picker-control {
+	height: 32px;
+}
+
+.talkino-dashicon-picker-control a {
+	padding: 5px;
+	text-decoration: none;
+	line-height: 32px;
+	width: 25px;
+}
+
+.talkino-dashicon-picker-control a span {
+	display: inline;
+	vertical-align: middle;
+}
+
+.talkino-dashicon-picker-control input {
+	font-size: 12px;
+	width: 140px;
+}
+
+#talkino-icon-container {
+    background: white;
+    text-align: center;
+    border-style: dashed;
+    width: 50px;
+    padding: 10px 0 10px 0;
+    margin-bottom: 10px;
+    display: block;
+}

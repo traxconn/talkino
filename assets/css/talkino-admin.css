@@ -87,6 +87,14 @@
     width: 30%;
 }
 
+.show_only_on_mobile_view {
+    padding-top: 10px;
+}
+  
+#talkino_phone_show_only_on_mobile_status {
+    margin-top: 10px;
+}
+
 .talkino-email-input {
     width: 40%;
 }
@@ -111,7 +119,7 @@
 }
 
 li.talkino_lineitem {
-    background-color: #7b68ee;
+    background-color: #375da4;
     color: #fff;
     font-size: 14px;
     font-weight: bold;
@@ -133,42 +141,24 @@ li.talkino_lineitem {
 }
 
 #talkino_facebook {
-    background: #1877f2;
+    background: #195199;;
 }
 
 #talkino_telegram {
-    background: #33a8d9;
+    background: #059ad9;
 }
 
 #talkino_phone {
-    background: #696969;
+    background: #474b5e;
 }
 
 #talkino_email {
-    background: #a9a9a9;
+    background: #5e5e5e;
 }
 
-.fab.fa-whatsapp.fa-xl.talkino {
-    padding: 0 5px 0 5px;
-}
-
-.fab.fa-facebook.fa-xl.talkino {
-    padding: 0 5px 0 5px;
-}
-
-.fab.fa-telegram.fa-xl.talkino {
-    padding: 0 5px 0 5px;
-}
-
-.fa.fa-phone.fa-lg.talkino {
-    padding: 0 5px 0 5px;
-}
-
-.fa.fa-envelope.fa-xl.talkino {
-    padding: 0 5px 0 5px;
-}
-
-.fa.fa-user.fa-xl.talkino {
+.talkino-ordering-icon,.dashicons.dashicons-admin-users.talkino {
+    height: 24px;
+    float: left;
     padding: 0 5px 0 5px;
 }
 
@@ -179,92 +169,6 @@ li.talkino_lineitem {
     padding: 2px 5px 2px 5px;
     height: 1.5em;
     line-height: 1.5em;  
-}
-
-/********** Font Awesome Icon Picker **********/
-.talkino-fa-browser-container {
-    background: rgba(0,0,0,0.5);
-    box-sizing: border-box;
-    top: 30px;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    padding: 1rem;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    display: flex;
-}
-
-.talkino-fa-browser-container > .talkino-window {
-    background: white;
-    box-sizing: border-box;
-    border-width: 10px;
-    border-style: solid;
-    border-radius: 10px;
-    position: relative;
-    max-width: 800px;
-    padding: 1rem;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    overflow: auto;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.talkino-fa-browser-container > .talkino-close {
-    color: white;
-    text-shadow: 0 0 10px black;
-    font-size: 36px;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 2;
-    cursor: pointer;
-}
-
-.talkino-fa-browser-container .talkino-icon {
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 1rem;
-    flex: 0 0 10%;
-    cursor: pointer
-}
-
-.talkino-fa-browser-container .talkino-icon:hover {
-    color: #8f8f8f;
-}
-
-#talkino-icon-container {
-    background: white;
-    text-align: center;
-    border-style: dashed;
-    width: 50px; 
-    padding: 10px 0 10px 0;
-    margin-bottom: 5px;
-    display: block;
-    cursor: pointer;
-}
-
-#talkino-icon-container:hover {
-    background: bottom;
-}
-
-.fa-2xl.talkino {
-    font-size: 2em;
-    line-height: 0.3125em;
-}
-
-/* xs */
-@media (max-width: 575px){
-    .talkino-fa-browser-container .talkino-icon {
-        flex: 0 0 20%;   
-    }
-    .talkino-fa-browser-container > .talkino-close {
-        top: .5rem;
-        right: .5rem;
-    }
 }
 
 /********** Extension **********/

@@ -22,6 +22,24 @@ if ( ! defined( 'WPINC' ) ) {
  */
 class Talkino_Chatbox {
 
+    /**
+	 * Determine whether there are agents online.
+	 *
+	 * @since     2.0.0
+	 * @access    private
+	 * @var       bool    $is_agents_online    Whether there are agents online.
+	 */
+    private $is_agents_online;
+
+    /**
+	 * Determine whether global schedule is online.
+	 *
+	 * @since     2.0.0
+	 * @access    private
+	 * @var       bool    $is_global_schedule_online    Whether global schedule is online.
+	 */
+    private $is_global_schedule_online;
+
 	/**
 	 * Initialize the chatbox.
 	 *
@@ -34,7 +52,8 @@ class Talkino_Chatbox {
 		$talkino_agent_manager = new Talkino_Agent_Manager();
 		$talkino_utility       = new Talkino_Utility();
 
-		$is_global_schedule_online_status = false;
+		$this->is_global_schedule_online = false;
+        $this->is_agents_online = true;
 
 		// Declare the bundle class to load html to render chatbox.
 		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
@@ -42,7 +61,7 @@ class Talkino_Chatbox {
 			$talkino_scheduler = new Talkino_Scheduler();
 
 			// Call the function to check schedule online status via current weekday and time.
-			$is_global_schedule_online_status = $talkino_scheduler->check_global_schedule_online_status();
+			$this->is_global_schedule_online = $talkino_scheduler->check_global_schedule_online_status();
 
 		}
 
@@ -58,6 +77,10 @@ class Talkino_Chatbox {
 
 		$show_chatbox = false;
 		$data         = array();
+
+        if ( $whatsapp_output === '' && $facebook_output === '' && $telegram_output === '' && $phone_output === '' && $email_output === '' ) {
+            $this->is_agents_online = false;
+        }
 
 		if ( empty( get_option( 'talkino_channel_ordering' ) ) ) {
 
@@ -231,6 +254,7 @@ class Talkino_Chatbox {
 			if ( get_option( 'talkino_show_on_mobile' ) === 'on' ) {
 				$show_chatbox = true;
 			}
+
 		} else {
 			if ( get_option( 'talkino_show_on_desktop' ) === 'on' ) {
 				$show_chatbox = true;
@@ -241,7 +265,7 @@ class Talkino_Chatbox {
 		// Get the page id.
 		$page_id = get_queried_object_id();
 
-		if ( ! empty( get_option( 'talkino_chatbox_exclude_pages' ) ) && in_array( $page_id, get_option( 'talkino_chatbox_exclude_pages' ) ) ) {// phpcs:ignore
+		if ( ! empty( get_option( 'talkino_chatbox_exclude_pages' ) ) && in_array( $page_id, get_option( 'talkino_chatbox_exclude_pages' ) ) ) {
 			$show_chatbox = false;
 		}
 
@@ -259,22 +283,33 @@ class Talkino_Chatbox {
 			$show_chatbox = false;
 		}
 
+        // Check whether is 404 page.
+        if ( is_404() && get_option( 'talkino_show_on_404' ) === 'off' ) {
+			$show_chatbox = false;
+		}
+
+        // Check whether is logged in users and user visibility is for logged in users only.
+        if ( ! is_user_logged_in() && get_option( 'talkino_user_visibility' ) === 'loggedin' ) {
+            $show_chatbox = false;
+        }
+
 		// Ensure that it is show on chatbox.
 		if ( true === $show_chatbox ) {
-			// Global online status is online and schedule is available.
-			if ( ( ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'Online' ) || ( get_option( 'talkino_global_online_status' ) === 'Online' && true === $is_global_schedule_online_status ) ) {
+			// Has agents, global online status is online and schedule is available.
+			if ( ( true === $this->is_agents_online && ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'online' ) || ( true === $this->is_agents_online && get_option( 'talkino_global_online_status' ) === 'online' && true === $this->is_global_schedule_online ) ) {
 				$talkino_file_loader->load_chatbox_template_file( 'chatbox-online.php', $data );
 
-				// Global online status is away and schedule is available.
-			} elseif ( ( ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'Away' ) || ( get_option( 'talkino_global_online_status' ) === 'Away' && true === $is_global_schedule_online_status ) ) {
+			// Has agents, global online status is away and schedule is available.
+			} elseif ( ( true === $this->is_agents_online && ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'away' ) || ( true === $this->is_agents_online && get_option( 'talkino_global_online_status' ) === 'away' && true === $this->is_global_schedule_online ) ) {
 				$talkino_file_loader->load_chatbox_template_file( 'chatbox-away.php', $data );
 
-				// Global online status if offline or schedule is not available.
+			// No agents, global online status if offline or schedule is not available.
 			} else {
 				// Function to show contact form when offline.
 				if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_contact_form_status' ) === 'on' ) {
 					$talkino_file_loader->load_chatbox_template_file( 'contact-form.php', $data );
-				} else {
+				
+                } else {
 					$talkino_file_loader->load_chatbox_template_file( 'chatbox-offline.php', $data );
 				}
 			}
@@ -290,12 +325,81 @@ class Talkino_Chatbox {
 	 *
 	 * @since    1.0.0
 	 */
-    // phpcs:disable
 	public function render_chatbox_style() {
+
+        $wrapper_animation = '';
+
+        // Get animation style.
+        if ( get_option( 'talkino_chatbox_animation' ) === 'fadein' ) {
+            $wrapper_animation = 'animation: fadein 1s;';
+        }
+        else if ( get_option( 'talkino_chatbox_animation' ) === 'slideup' ) {
+            $wrapper_animation = 'animation: slideUp 1s;';
+        }
+
+        
+        // Style for every scenario.
+        echo '<style>
+
+        .talkino-chat-btn {
+            z-index: ' . esc_attr( intval( get_option( 'talkino_chatbox_z_index' ) ) ) . ' !important;
+        }
+
+        .talkino-chat-wrapper {
+            z-index: ' . esc_attr( intval( get_option( 'talkino_chatbox_z_index' ) ) ) . ' !important;
+        }
+
+        .talkino-information-wrapper {
+            scrollbar-color: #c1c1c1 ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
+        }
+
+        .talkino-information-wrapper::-webkit-scrollbar {
+            background: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
+        }
+
+        .talkino-chat-close {
+            color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
+        }
+        
+        .talkino-chat-subtitle {
+            color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
+        }
+
+        .talkino-chat-information {
+            background-color: ' . esc_attr( get_option( 'talkino_agent_field_background_color' ) ) . ';
+        }
+
+        .talkino-chat-information:hover {
+            background-color: ' . esc_attr( get_option( 'talkino_agent_field_hover_background_color' ) ) . ';
+        }
+
+        span.talkino-chat-name {
+            color: ' . esc_attr( get_option( 'talkino_agent_name_text_color' ) ) . ';
+        }
+
+        span.talkino-chat-job-title {
+            color: ' . esc_attr( get_option( 'talkino_agent_job_title_text_color' ) ) . ';
+        }
+
+        span.talkino-chat-channel {
+            color: ' . esc_attr( get_option( 'talkino_agent_channel_text_color' ) ) . ';
+        }
+
+        .talkino-notice {
+            color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
+        }
+
+        #talkino_submit_button {
+            background-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
+            color: ' . esc_attr( get_option( 'talkino_chatbox_button_text_color' ) ) . ';
+        }
+
+        </style>';
+
 		// Chatbox under round style.
 		if ( get_option( 'talkino_chatbox_style' ) === 'round' ) {
 			if ( get_option( 'talkino_chatbox_position' ) === 'left' ) {
-				if ( get_option( 'talkino_global_online_status' ) === 'Online' ) {
+				if ( ( true === $this->is_agents_online && ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'online' ) || ( true === $this->is_agents_online && get_option( 'talkino_global_online_status' ) === 'online' && true === $this->is_global_schedule_online ) ) {
 
 					echo '<style>
                     .talkino-chat-btn {
@@ -307,6 +411,10 @@ class Talkino_Chatbox {
                         border-radius: 50px;
                     }
 
+                    .round.talkino {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_online_icon_color' ) ) . ';
+                    }
+
                     .talkino-rectangle-label {
                         display: none;
                     }
@@ -314,23 +422,19 @@ class Talkino_Chatbox {
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
-                        bottom: 100px;
                         border-radius: 10px 10px 0 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_online_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 10px 10px 0 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
 
-				} elseif ( get_option( 'talkino_global_online_status' ) === 'Away' ) {
+				} elseif ( ( true === $this->is_agents_online && ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'away' ) || ( true === $this->is_agents_online && get_option( 'talkino_global_online_status' ) === 'away' && true === $this->is_global_schedule_online ) ) {
 
 					echo '<style>
                     .talkino-chat-btn {
@@ -342,6 +446,10 @@ class Talkino_Chatbox {
                         border-radius: 50px;
                     }
 
+                    .round.talkino {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_away_icon_color' ) ) . ';
+                    }
+
                     .talkino-rectangle-label {
                         display: none;
                     }
@@ -349,18 +457,14 @@ class Talkino_Chatbox {
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
-                        bottom: 100px;
                         border-radius: 10px 10px 0 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_away_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 10px 10px 0 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
@@ -377,6 +481,10 @@ class Talkino_Chatbox {
                         border-radius: 50px;
                     }
 
+                    .round.talkino {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_offline_icon_color' ) ) . ';
+                    }
+
                     .talkino-rectangle-label {
                         display: none;
                     }
@@ -384,25 +492,22 @@ class Talkino_Chatbox {
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
-                        bottom: 100px;
                         border-radius: 10px 10px 0 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_offline_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 10px 10px 0 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
 
 				}
+
 			} else { // Right position.
-				if ( get_option( 'talkino_global_online_status' ) === 'Online' ) {
+				if ( ( true === $this->is_agents_online && ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'online' ) || ( true === $this->is_agents_online && get_option( 'talkino_global_online_status' ) === 'online' && true === $this->is_global_schedule_online ) ) {
 
 					echo '<style>
                     .talkino-chat-btn {
@@ -414,6 +519,10 @@ class Talkino_Chatbox {
                         border-radius: 50px;
                     }
 
+                    .round.talkino {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_online_icon_color' ) ) . ';
+                    }
+
                     .talkino-rectangle-label {
                         display: none;
                     }
@@ -421,23 +530,19 @@ class Talkino_Chatbox {
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
-                        bottom: 100px;
                         border-radius: 10px 10px 0 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_online_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 10px 10px 0 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
 
-				} elseif ( get_option( 'talkino_global_online_status' ) === 'Away' ) {
+				} elseif ( ( true === $this->is_agents_online && ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'away' ) || ( true === $this->is_agents_online && get_option( 'talkino_global_online_status' ) === 'away' && true === $this->is_global_schedule_online ) ) {
 
 					echo '<style>
                     .talkino-chat-btn {
@@ -449,6 +554,10 @@ class Talkino_Chatbox {
                         border-radius: 50px;
                     }
 
+                    .round.talkino {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_away_icon_color' ) ) . ';
+                    }
+
                     .talkino-rectangle-label {
                         display: none;
                     }
@@ -456,18 +565,14 @@ class Talkino_Chatbox {
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
-                        bottom: 100px;
                         border-radius: 10px 10px 0 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_away_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 10px 10px 0 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
@@ -484,6 +589,10 @@ class Talkino_Chatbox {
                         border-radius: 50px;
                     }
 
+                    .round.talkino {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_offline_icon_color' ) ) . ';
+                    }
+
                     .talkino-rectangle-label {
                         display: none;
                     }
@@ -491,18 +600,14 @@ class Talkino_Chatbox {
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
-                        bottom: 100px;
                         border-radius: 10px 10px 0 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_offline_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 10px 10px 0 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
@@ -510,83 +615,76 @@ class Talkino_Chatbox {
 				}
 			}
 		}
+
 		// Chatbox under rectangle style.
 		else {
 			if ( get_option( 'talkino_chatbox_position' ) === 'left' ) {
-				if ( get_option( 'talkino_global_online_status' ) === 'Online' ) {
+				if ( ( true === $this->is_agents_online && ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'online' ) || ( true === $this->is_agents_online && get_option( 'talkino_global_online_status' ) === 'online' && true === $this->is_global_schedule_online ) ) {
 
 					echo '<style>
                     .talkino-chat-btn {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_online_theme_color' ) ) . ';
-                        min-width: 80px;
+                        min-width: 230px;
                         height: 40px;
                         left: 15px;
                         bottom: 0;
-                        border-radius: 0;
+                        border-radius: 5px 5px 0 0;
                     }
 
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
+                    .talkino-rectangle-label {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_online_icon_color' ) ) . ';
+                    }
+
+                    .dashicons.' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
                         display: none;
-                    }
-
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.rectangle {
-                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
-                        bottom: 60px;
                         border-radius: 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_online_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
 
-				} elseif ( get_option( 'talkino_global_online_status' ) === 'Away' ) {
+				} elseif ( ( true === $this->is_agents_online && ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'away' ) || ( true === $this->is_agents_online && get_option( 'talkino_global_online_status' ) === 'away' && true === $this->is_global_schedule_online ) ) {
 
 					echo '<style>
                     .talkino-chat-btn {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_away_theme_color' ) ) . ';
-                        min-width: 80px;
+                        min-width: 230px;
                         height: 40px;
                         left: 15px;
                         bottom: 0;
-                        border-radius: 0;
+                        border-radius: 5px 5px 0 0;
                     }
 
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
+                    .talkino-rectangle-label {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_away_icon_color' ) ) . ';
+                    }
+
+                    .dashicons.' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
                         display: none;
-                    }
-
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.rectangle {
-                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
-                        bottom: 60px;
                         border-radius: 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_away_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
@@ -596,116 +694,105 @@ class Talkino_Chatbox {
 					echo '<style>
                     .talkino-chat-btn {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_offline_theme_color' ) ) . ';
-                        min-width: 80px;
+                        min-width: 230px;
                         height: 40px;
                         left: 15px;
                         bottom: 0;
-                        border-radius: 0;
+                        border-radius: 5px 5px 0 0;
                     }
 
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
+                    .talkino-rectangle-label {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_offline_icon_color' ) ) . ';
+                    }
+
+                    .dashicons.' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
                         display: none;
-                    }
-
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.rectangle {
-                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         left: 20px;
-                        bottom: 60px;
                         border-radius: 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_offline_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
 
 				}
+                
 			} else { // Right position.
-				if ( get_option( 'talkino_global_online_status' ) === 'Online' ) {
+				if ( ( true === $this->is_agents_online && ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'online' ) || ( true === $this->is_agents_online && get_option( 'talkino_global_online_status' ) === 'online' && true === $this->is_global_schedule_online ) ) {
 
 					echo '<style>
                     .talkino-chat-btn {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_online_theme_color' ) ) . ';
-                        min-width: 80px;
+                        min-width: 230px;
                         height: 40px;
                         right: 15px;
                         bottom: 0;
-                        border-radius: 0;
+                        border-radius: 5px 5px 0 0;
                     }
 
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
+                    .talkino-rectangle-label {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_online_icon_color' ) ) . ';
+                    }
+
+                    .dashicons.' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
                         display: none;
-                    }
-
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.rectangle {
-                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
-                        bottom: 60px;
                         border-radius: 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_online_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
 
-				} elseif ( get_option( 'talkino_global_online_status' ) === 'Away' ) {
+				} elseif ( ( true === $this->is_agents_online && ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_global_online_status' ) === 'away' ) || ( true === $this->is_agents_online && get_option( 'talkino_global_online_status' ) === 'away' && true === $this->is_global_schedule_online ) ) {
 
 					echo '<style>
                     .talkino-chat-btn {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_away_theme_color' ) ) . ';
-                        min-width: 80px;
+                        min-width: 230px;
                         height: 40px;
                         right: 15px;
                         bottom: 0;
-                        border-radius: 0;
+                        border-radius: 5px 5px 0 0;
                     }
 
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
+                    .talkino-rectangle-label {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_away_icon_color' ) ) . ';
+                    }
+
+                    .dashicons.' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
                         display: none;
-                    }
-
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.rectangle {
-                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
-                        bottom: 60px;
                         border-radius: 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_away_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
@@ -715,36 +802,32 @@ class Talkino_Chatbox {
 					echo '<style>
                     .talkino-chat-btn {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_offline_theme_color' ) ) . ';
-                        min-width: 80px;
+                        min-width: 230px;
                         height: 40px;
                         right: 15px;
                         bottom: 0;
-                        border-radius: 0;
+                        border-radius: 5px 5px 0 0;
                     }
 
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
+                    .talkino-rectangle-label {
+                        color: ' . esc_attr( get_option( 'talkino_chatbox_offline_icon_color' ) ) . ';
+                    }
+
+                    .dashicons.' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.round {
                         display: none;
-                    }
-
-                    .' . str_replace( ' ', '.', esc_attr( get_option( 'talkino_chatbox_icon' ) ) ) . '.rectangle {
-                        display: inline;;
                     }
 
                     .talkino-chat-wrapper {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
                         right: 20px;
-                        bottom: 60px;
                         border-radius: 0;
+                        ' . esc_attr( $wrapper_animation ) . '
                     }
 
                     .talkino-chat-title {
                         background-color: ' . esc_attr( get_option( 'talkino_chatbox_offline_theme_color' ) ) . ';
                         color: ' . esc_attr( get_option( 'talkino_chatbox_title_color' ) ) . ';
                         border-radius: 0;
-                    }
-
-                    .talkino-chat-subtitle {
-                        color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
                     }
 
                     </style>';
@@ -752,6 +835,6 @@ class Talkino_Chatbox {
 				}
 			}
 		}
-	} // phpcs:enable
+	}
 
 }
