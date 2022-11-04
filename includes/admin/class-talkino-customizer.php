@@ -138,14 +138,26 @@ class Talkino_Customizer {
 	}
 
 	/**
-	 * Add link to options page on plugins page
+	 * Add links to plugins page
 	 *
 	 * @since    2.0.0
 	 * @param    array $links    current plugin links.
 	 * 
 	 * @return   array    $links    new plugin links. 
 	 */
-	public function add_premium_plugin_link( $links ) {
+	public function add_plugin_links( $links ) {
+
+		$links['add_new_agent'] = sprintf(
+			'<a href="%1$s">%2$s</a>',
+			esc_url( admin_url() . "post-new.php?post_type=talkino_agents" ),
+			esc_html__( 'Add New Agent', 'talkino' )
+		);
+
+		$links['plugin_settings'] = sprintf(
+			'<a href="%1$s">%2$s</a>',
+			esc_url( admin_url() . "edit.php?post_type=talkino_agents&page=talkino_settings_page" ),
+			esc_html__( 'Settings', 'talkino' )
+		);
 
 		$links['premium'] = sprintf(
 			'<a href="%1$s" target="_blank" style="font-weight:bold; color:#f9603a; ">%2$s</a>',

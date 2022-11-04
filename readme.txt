@@ -6,7 +6,7 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 Requires PHP: 7.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -178,6 +178,11 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 12. Advanced Setting to Control the Options of Reset Settings and Uninstallation 
 
 == Changelog ==
+
+= 2.0.1, Nov 04, 2022 =
+* Added: Add new agent and settings links on plugin page.
+* Fixed: Issue of CSS conflicts with some themes.
+* Removed: Scripts of Talkino Bundle.
 
 = 2.0.0, Oct 26, 2022 =
 * Added: New WordPress official dashicons with search feature for chatbox icon.

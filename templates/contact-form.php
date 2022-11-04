@@ -68,8 +68,8 @@ if ( is_plugin_active( 'wpml-string-translation/plugin.php' ) ) {
 			?>
 			<div class="talkino-google-recaptcha-notice">
 			<small>This site is protected by reCAPTCHA and the Google 
-				<a href="https://policies.google.com/privacy">Privacy Policy</a> and
-				<a href="https://policies.google.com/terms">Terms of Service</a> apply.
+				<a class="talkino-google-recaptcha-link" href="https://policies.google.com/privacy">Privacy Policy</a> and
+				<a class="talkino-google-recaptcha-link" href="https://policies.google.com/terms">Terms of Service</a> apply.
 			</small>
 			<br>
 			</div>  

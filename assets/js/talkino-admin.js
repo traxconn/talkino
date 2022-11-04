@@ -34,6 +34,18 @@ jQuery( document ).ready( function( $ ) {
 
 		$( '#talkino_chatbox_button_text_color' ).val( '#fff' );
 		$( '#talkino_chatbox_button_text_color.color-picker' ).wpColorPicker( 'color', '#fff' );
+
+		$( '#talkino_contact_form_notice_text_color' ).val( '#008000' );
+		$( '#talkino_contact_form_notice_text_color.color-picker' ).wpColorPicker( 'color', '#008000' );
+
+		$( '#talkino_google_recaptcha_notice_text_color' ).val( '#000' );
+		$( '#talkino_google_recaptcha_notice_text_color.color-picker' ).wpColorPicker( 'color', '#000' );
+
+		$( '#talkino_google_recaptcha_link_text_color' ).val( '#0000ff' );
+		$( '#talkino_google_recaptcha_link_text_color.color-picker' ).wpColorPicker( 'color', '#0000ff' );
+
+		$( '#talkino_credit_text_color' ).val( '#888' );
+		$( '#talkino_credit_text_color.color-picker' ).wpColorPicker( 'color', '#888' );
 		
 		$( '#talkino_agent_field_background_color' ).val( '#fff' );
 		$( '#talkino_agent_field_background_color.color-picker' ).wpColorPicker( 'color', '#fff' );
@@ -87,6 +99,18 @@ jQuery( document ).ready( function( $ ) {
 		$( '#talkino_chatbox_button_text_color' ).val( '#fff' );
 		$( '#talkino_chatbox_button_text_color.color-picker' ).wpColorPicker( 'color', '#fff' );
 
+		$( '#talkino_contact_form_notice_text_color' ).val( '#008000' );
+		$( '#talkino_contact_form_notice_text_color.color-picker' ).wpColorPicker( 'color', '#008000' );
+
+		$( '#talkino_google_recaptcha_notice_text_color' ).val( '#000' );
+		$( '#talkino_google_recaptcha_notice_text_color.color-picker' ).wpColorPicker( 'color', '#000' );
+
+		$( '#talkino_google_recaptcha_link_text_color' ).val( '#0000ff' );
+		$( '#talkino_google_recaptcha_link_text_color.color-picker' ).wpColorPicker( 'color', '#0000ff' );
+
+		$( '#talkino_credit_text_color' ).val( '#888' );
+		$( '#talkino_credit_text_color.color-picker' ).wpColorPicker( 'color', '#888' );
+
 		$( '#talkino_agent_field_background_color' ).val( '#fff' );
 		$( '#talkino_agent_field_background_color.color-picker' ).wpColorPicker( 'color', '#fff' );
 
@@ -138,6 +162,18 @@ jQuery( document ).ready( function( $ ) {
 
 		$( '#talkino_chatbox_button_text_color' ).val( '#fff' );
 		$( '#talkino_chatbox_button_text_color.color-picker' ).wpColorPicker( 'color', '#fff' );
+
+		$( '#talkino_contact_form_notice_text_color' ).val( '#008000' );
+		$( '#talkino_contact_form_notice_text_color.color-picker' ).wpColorPicker( 'color', '#008000' );
+
+		$( '#talkino_google_recaptcha_notice_text_color' ).val( '#000' );
+		$( '#talkino_google_recaptcha_notice_text_color.color-picker' ).wpColorPicker( 'color', '#000' );
+
+		$( '#talkino_google_recaptcha_link_text_color' ).val( '#0000ff' );
+		$( '#talkino_google_recaptcha_link_text_color.color-picker' ).wpColorPicker( 'color', '#0000ff' );
+
+		$( '#talkino_credit_text_color' ).val( '#888' );
+		$( '#talkino_credit_text_color.color-picker' ).wpColorPicker( 'color', '#888' );
 
 		$( '#talkino_agent_field_background_color' ).val( '#fff' );
 		$( '#talkino_agent_field_background_color.color-picker' ).wpColorPicker( 'color', '#fff' );
@@ -191,6 +227,18 @@ jQuery( document ).ready( function( $ ) {
 		$( '#talkino_chatbox_button_text_color' ).val( '#fff' );
 		$( '#talkino_chatbox_button_text_color.color-picker' ).wpColorPicker( 'color', '#fff' );
 
+		$( '#talkino_contact_form_notice_text_color' ).val( '#008000' );
+		$( '#talkino_contact_form_notice_text_color.color-picker' ).wpColorPicker( 'color', '#008000' );
+
+		$( '#talkino_google_recaptcha_notice_text_color' ).val( '#000' );
+		$( '#talkino_google_recaptcha_notice_text_color.color-picker' ).wpColorPicker( 'color', '#000' );
+
+		$( '#talkino_google_recaptcha_link_text_color' ).val( '#0000ff' );
+		$( '#talkino_google_recaptcha_link_text_color.color-picker' ).wpColorPicker( 'color', '#0000ff' );
+
+		$( '#talkino_credit_text_color' ).val( '#888' );
+		$( '#talkino_credit_text_color.color-picker' ).wpColorPicker( 'color', '#888' );
+
 		$( '#talkino_agent_field_background_color' ).val( '#fff' );
 		$( '#talkino_agent_field_background_color.color-picker' ).wpColorPicker( 'color', '#fff' );
 
@@ -242,6 +290,18 @@ jQuery( document ).ready( function( $ ) {
 
 		$( '#talkino_chatbox_button_text_color' ).val( '#fff' );
 		$( '#talkino_chatbox_button_text_color.color-picker' ).wpColorPicker( 'color', '#fff' );
+
+		$( '#talkino_contact_form_notice_text_color' ).val( '#008000' );
+		$( '#talkino_contact_form_notice_text_color.color-picker' ).wpColorPicker( 'color', '#008000' );
+
+		$( '#talkino_google_recaptcha_notice_text_color' ).val( '#000' );
+		$( '#talkino_google_recaptcha_notice_text_color.color-picker' ).wpColorPicker( 'color', '#000' );
+
+		$( '#talkino_google_recaptcha_link_text_color' ).val( '#0000ff' );
+		$( '#talkino_google_recaptcha_link_text_color.color-picker' ).wpColorPicker( 'color', '#0000ff' );
+
+		$( '#talkino_credit_text_color' ).val( '#888' );
+		$( '#talkino_credit_text_color.color-picker' ).wpColorPicker( 'color', '#888' );
 
 		$( '#talkino_agent_field_background_color' ).val( '#fff' );
 		$( '#talkino_agent_field_background_color.color-picker' ).wpColorPicker( 'color', '#fff' );
@@ -295,6 +355,18 @@ jQuery( document ).ready( function( $ ) {
 		$( '#talkino_chatbox_button_text_color' ).val( '#fff' );
 		$( '#talkino_chatbox_button_text_color.color-picker' ).wpColorPicker( 'color', '#fff' );
 
+		$( '#talkino_contact_form_notice_text_color' ).val( '#008000' );
+		$( '#talkino_contact_form_notice_text_color.color-picker' ).wpColorPicker( 'color', '#008000' );
+
+		$( '#talkino_google_recaptcha_notice_text_color' ).val( '#000' );
+		$( '#talkino_google_recaptcha_notice_text_color.color-picker' ).wpColorPicker( 'color', '#000' );
+
+		$( '#talkino_google_recaptcha_link_text_color' ).val( '#0000ff' );
+		$( '#talkino_google_recaptcha_link_text_color.color-picker' ).wpColorPicker( 'color', '#0000ff' );
+
+		$( '#talkino_credit_text_color' ).val( '#888' );
+		$( '#talkino_credit_text_color.color-picker' ).wpColorPicker( 'color', '#888' );		
+
 		$( '#talkino_agent_field_background_color' ).val( '#fff' );
 		$( '#talkino_agent_field_background_color.color-picker' ).wpColorPicker( 'color', '#fff' );
 
@@ -346,6 +418,18 @@ jQuery( document ).ready( function( $ ) {
 
 		$( '#talkino_chatbox_button_text_color' ).val( '#fff' );
 		$( '#talkino_chatbox_button_text_color.color-picker' ).wpColorPicker( 'color', '#fff' );
+
+		$( '#talkino_contact_form_notice_text_color' ).val( '#008000' );
+		$( '#talkino_contact_form_notice_text_color.color-picker' ).wpColorPicker( 'color', '#008000' );
+
+		$( '#talkino_google_recaptcha_notice_text_color' ).val( '#000' );
+		$( '#talkino_google_recaptcha_notice_text_color.color-picker' ).wpColorPicker( 'color', '#000' );
+
+		$( '#talkino_google_recaptcha_link_text_color' ).val( '#0000ff' );
+		$( '#talkino_google_recaptcha_link_text_color.color-picker' ).wpColorPicker( 'color', '#0000ff' );
+
+		$( '#talkino_credit_text_color' ).val( '#888' );
+		$( '#talkino_credit_text_color.color-picker' ).wpColorPicker( 'color', '#888' );
 
 		$( '#talkino_agent_field_background_color' ).val( '#fff' );
 		$( '#talkino_agent_field_background_color.color-picker' ).wpColorPicker( 'color', '#fff' );
@@ -399,6 +483,18 @@ jQuery( document ).ready( function( $ ) {
 		$( '#talkino_chatbox_button_text_color' ).val( '#fff' );
 		$( '#talkino_chatbox_button_text_color.color-picker' ).wpColorPicker( 'color', '#fff' );
 
+		$( '#talkino_contact_form_notice_text_color' ).val( '#008000' );
+		$( '#talkino_contact_form_notice_text_color.color-picker' ).wpColorPicker( 'color', '#008000' );
+
+		$( '#talkino_google_recaptcha_notice_text_color' ).val( '#000' );
+		$( '#talkino_google_recaptcha_notice_text_color.color-picker' ).wpColorPicker( 'color', '#000' );
+
+		$( '#talkino_google_recaptcha_link_text_color' ).val( '#0000ff' );
+		$( '#talkino_google_recaptcha_link_text_color.color-picker' ).wpColorPicker( 'color', '#0000ff' );
+
+		$( '#talkino_credit_text_color' ).val( '#888' );
+		$( '#talkino_credit_text_color.color-picker' ).wpColorPicker( 'color', '#888' );
+
 		$( '#talkino_agent_field_background_color' ).val( '#fff' );
 		$( '#talkino_agent_field_background_color.color-picker' ).wpColorPicker( 'color', '#fff' );
 
@@ -451,6 +547,18 @@ jQuery( document ).ready( function( $ ) {
 		$( '#talkino_chatbox_button_text_color' ).val( '#fff' );
 		$( '#talkino_chatbox_button_text_color.color-picker' ).wpColorPicker( 'color', '#fff' );
 
+		$( '#talkino_contact_form_notice_text_color' ).val( '#008000' );
+		$( '#talkino_contact_form_notice_text_color.color-picker' ).wpColorPicker( 'color', '#008000' );
+
+		$( '#talkino_google_recaptcha_notice_text_color' ).val( '#000' );
+		$( '#talkino_google_recaptcha_notice_text_color.color-picker' ).wpColorPicker( 'color', '#000' );
+
+		$( '#talkino_google_recaptcha_link_text_color' ).val( '#0000ff' );
+		$( '#talkino_google_recaptcha_link_text_color.color-picker' ).wpColorPicker( 'color', '#0000ff' );
+
+		$( '#talkino_credit_text_color' ).val( '#888' );
+		$( '#talkino_credit_text_color.color-picker' ).wpColorPicker( 'color', '#888' );
+
 		$( '#talkino_agent_field_background_color' ).val( '#fff' );
 		$( '#talkino_agent_field_background_color.color-picker' ).wpColorPicker( 'color', '#fff' );
 
@@ -502,6 +610,18 @@ jQuery( document ).ready( function( $ ) {
 
 		$( '#talkino_chatbox_button_text_color' ).val( '#fff' );
 		$( '#talkino_chatbox_button_text_color.color-picker' ).wpColorPicker( 'color', '#fff' );
+
+		$( '#talkino_contact_form_notice_text_color' ).val( '#008000' );
+		$( '#talkino_contact_form_notice_text_color.color-picker' ).wpColorPicker( 'color', '#008000' );
+
+		$( '#talkino_google_recaptcha_notice_text_color' ).val( '#000' );
+		$( '#talkino_google_recaptcha_notice_text_color.color-picker' ).wpColorPicker( 'color', '#000' );
+
+		$( '#talkino_google_recaptcha_link_text_color' ).val( '#0000ff' );
+		$( '#talkino_google_recaptcha_link_text_color.color-picker' ).wpColorPicker( 'color', '#0000ff' );
+
+		$( '#talkino_credit_text_color' ).val( '#888' );
+		$( '#talkino_credit_text_color.color-picker' ).wpColorPicker( 'color', '#888' );
 
 		$( '#talkino_agent_field_background_color' ).val( '#fff' );
 		$( '#talkino_agent_field_background_color.color-picker' ).wpColorPicker( 'color', '#fff' );

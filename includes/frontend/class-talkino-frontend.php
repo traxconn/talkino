@@ -77,9 +77,6 @@ class Talkino_Frontend {
 
 		wp_enqueue_style( 'talkino-frontend', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/css/talkino-frontend.css', array(), $this->version, 'all' );
 
-		// Enqueue bootstrap css for chatbox.
-		//wp_enqueue_style( 'bootstrap-min', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/bootstrap-5.2.1-dist/css/bootstrap.min.css', array(), '5.2.1', 'all' );
-
 		// Enqueue dashicons for chatbox.
 		wp_enqueue_style( 'dashicons' );
 	
@@ -93,22 +90,6 @@ class Talkino_Frontend {
 	public function enqueue_scripts() {
 
 		wp_enqueue_script( 'talkino-frontend', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/talkino-frontend.js', array( 'jquery' ), $this->version, true );
-
-		// Enqueue the google recaptcha script if google recaptcha settings are activated.
-		if ( get_option( 'talkino_recaptcha_status' ) === 'on' && get_option( 'talkino_recaptcha_site_key' ) !== '' && get_option( 'talkino_recaptcha_secret_key' ) !== '' ) {
-			wp_enqueue_script( 'google-recaptcha-js', '//www.google.com/recaptcha/api.js?render=' . get_option( 'talkino_recaptcha_site_key' ), array( 'jquery' ), $this->version, true );
-		}
-
-		// Pass $php_vars array to javascript as php object for contact form.
-		$ajax_url = array(
-			'ajax_url'                  => admin_url( 'admin-ajax.php' ),
-			'activate_recaptcha_status' => get_option( 'talkino_recaptcha_status' ),
-			'recaptcha_site_key'        => get_option( 'talkino_recaptcha_site_key' ),
-			'recaptcha_secret_key'      => get_option( 'talkino_recaptcha_secret_key' ),
-			'invalid_site_key_message'  => esc_html__( 'Invalid Google reCaptcha v3 site key!', 'talkino' ),
-		);
-
-		wp_localize_script( 'talkino-frontend', 'ajax_object', $ajax_url );
 
 	}
 

@@ -389,9 +389,28 @@ class Talkino_Chatbox {
             color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
         }
 
+        #talkino-contact-form-notice {
+            color: ' . esc_attr( get_option( 'talkino_contact_form_notice_text_color' ) ) . ';
+        }
+
+        .talkino-google-recaptcha-notice {
+            color: ' . esc_attr( get_option( 'talkino_google_recaptcha_notice_text_color' ) ) . ';
+        }
+
+        .talkino-google-recaptcha-link ,
+        .talkino-google-recaptcha-link:hover {
+            color: ' . esc_attr( get_option( 'talkino_google_recaptcha_link_text_color' ) ) . ';
+        }
+
         #talkino_submit_button {
             background-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
+            background: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
             color: ' . esc_attr( get_option( 'talkino_chatbox_button_text_color' ) ) . ';
+            border-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
+        }
+
+        .talkino-credit-link,.talkino-credit-link:hover {
+            color: ' . esc_attr( get_option( 'talkino_credit_text_color' ) ) . ';
         }
 
         </style>';
