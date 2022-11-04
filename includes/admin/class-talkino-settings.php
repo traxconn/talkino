@@ -447,19 +447,19 @@ class Talkino_Settings {
 			'talkino_styles_page'
 		);
 
-		// Register chatbox color section in the talkino styles page.
+		// Register customization chatbox section in the talkino styles page.
 		add_settings_section(
-			'talkino_chatbox_color_section',
-			esc_html__( 'Chatbox Color', 'talkino' ),
-			array( $this, 'color_section_callback' ),
+			'talkino_customization_chatbox_section',
+			esc_html__( 'Customization of Chatbox (Advanced)', 'talkino' ),
+			array( $this, 'customization_chatbox_section_callback' ),
 			'talkino_styles_page'
 		);
 
-		// Register agent field color section in the talkino styles page.
+		// Register customization agent field section in the talkino styles page.
 		add_settings_section(
-			'talkino_agent_field_color_section',
-			esc_html__( 'Agent Field Color', 'talkino' ),
-			array( $this, 'agent_field_color_section_callback' ),
+			'talkino_customization_agent_field_section',
+			esc_html__( 'Customization of Agent Field (Advanced)', 'talkino' ),
+			array( $this, 'customization_agent_field_section_callback' ),
 			'talkino_styles_page'
 		);
 
@@ -821,7 +821,7 @@ class Talkino_Settings {
 			esc_html__( 'Theme Color for Online Status:', 'talkino' ),
 			array( $this, 'chatbox_online_theme_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_chatbox_color_section'
+			'talkino_customization_chatbox_section'
 		);
 
 		// Register chatbox icon color option field for online status.
@@ -839,7 +839,7 @@ class Talkino_Settings {
 			esc_html__( 'Icon Color for Online Status:', 'talkino' ),
 			array( $this, 'chatbox_online_icon_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_chatbox_color_section'
+			'talkino_customization_chatbox_section'
 		);
 
 		// Register chatbox theme color option field for away status.
@@ -857,7 +857,7 @@ class Talkino_Settings {
 			esc_html__( 'Theme Color for Away Status:', 'talkino' ),
 			array( $this, 'chatbox_away_theme_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_chatbox_color_section'
+			'talkino_customization_chatbox_section'
 		);
 
 		// Register chatbox icon color option field for away status.
@@ -875,7 +875,7 @@ class Talkino_Settings {
 			esc_html__( 'Icon Color for Away Status:', 'talkino' ),
 			array( $this, 'chatbox_away_icon_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_chatbox_color_section'
+			'talkino_customization_chatbox_section'
 		);
 
 		// Register chatbox theme color option field for offline status.
@@ -893,7 +893,7 @@ class Talkino_Settings {
 			esc_html__( 'Theme Color for Offline Status:', 'talkino' ),
 			array( $this, 'chatbox_offline_theme_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_chatbox_color_section'
+			'talkino_customization_chatbox_section'
 		);
 
 		// Register chatbox icon color option field for offline status.
@@ -911,7 +911,7 @@ class Talkino_Settings {
 			esc_html__( 'Icon Color for Offline Status:', 'talkino' ),
 			array( $this, 'chatbox_offline_icon_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_chatbox_color_section'
+			'talkino_customization_chatbox_section'
 		);
 
 		// Register chatbox background color option field.
@@ -929,7 +929,7 @@ class Talkino_Settings {
 			esc_html__( 'Background Color:', 'talkino' ),
 			array( $this, 'chatbox_background_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_chatbox_color_section'
+			'talkino_customization_chatbox_section'
 		);
 
 		// Register chatbox title color option field.
@@ -947,7 +947,7 @@ class Talkino_Settings {
 			esc_html__( 'Title Color:', 'talkino' ),
 			array( $this, 'chatbox_title_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_chatbox_color_section'
+			'talkino_customization_chatbox_section'
 		);
 
 		// Register chatbox subtitle color option field.
@@ -965,7 +965,7 @@ class Talkino_Settings {
 			esc_html__( 'Subtitle Color:', 'talkino' ),
 			array( $this, 'chatbox_subtitle_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_chatbox_color_section'
+			'talkino_customization_chatbox_section'
 		);
 
 		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
@@ -985,7 +985,7 @@ class Talkino_Settings {
 				esc_html__( 'Button Color:', 'talkino' ),
 				array( $this, 'chatbox_button_color_field_callback' ),
 				'talkino_styles_page',
-				'talkino_chatbox_color_section'
+				'talkino_customization_chatbox_section'
 			);
 
 			// Register button color option field.
@@ -1003,10 +1003,82 @@ class Talkino_Settings {
 				esc_html__( 'Button Text Color:', 'talkino' ),
 				array( $this, 'chatbox_button_text_color_field_callback' ),
 				'talkino_styles_page',
-				'talkino_chatbox_color_section'
+				'talkino_customization_chatbox_section'
+			);
+
+			// Register contact form notice text color option field.
+			register_setting(
+				'talkino_styles_page',
+				'talkino_contact_form_notice_text_color',
+				array(
+					'sanitize_callback' => 'sanitize_hex_color',
+				)
+			);
+
+			// Add contact form notice text color option field.
+			add_settings_field(
+				'talkino_contact_form_notice_text_color_id',
+				esc_html__( 'Contact Form Notice Text Color:', 'talkino' ),
+				array( $this, 'contact_form_notice_text_color_field_callback' ),
+				'talkino_styles_page',
+				'talkino_customization_chatbox_section'
+			);
+
+			// Register google recaptcha notice text color option field.
+			register_setting(
+				'talkino_styles_page',
+				'talkino_google_recaptcha_notice_text_color',
+				array(
+					'sanitize_callback' => 'sanitize_hex_color',
+				)
+			);
+
+			// Add google recaptcha notice text color option field.
+			add_settings_field(
+				'talkino_google_recaptcha_notice_text_color_id',
+				esc_html__( 'Google Recaptcha Notice Text Color:', 'talkino' ),
+				array( $this, 'google_recaptcha_notice_text_color_field_callback' ),
+				'talkino_styles_page',
+				'talkino_customization_chatbox_section'
+			);
+
+			// Register google recaptcha link text color option field.
+			register_setting(
+				'talkino_styles_page',
+				'talkino_google_recaptcha_link_text_color',
+				array(
+					'sanitize_callback' => 'sanitize_hex_color',
+				)
+			);
+
+			// Add google recaptcha link text color option field.
+			add_settings_field(
+				'talkino_google_recaptcha_link_text_color_id',
+				esc_html__( 'Google Recaptcha Link Text Color:', 'talkino' ),
+				array( $this, 'google_recaptcha_link_text_color_field_callback' ),
+				'talkino_styles_page',
+				'talkino_customization_chatbox_section'
 			);
 
 		}
+
+		// Register credit text color option field.
+		register_setting(
+			'talkino_styles_page',
+			'talkino_credit_text_color',
+			array(
+				'sanitize_callback' => 'sanitize_hex_color',
+			)
+		);
+
+		// Add google recaptcha link text color option field.
+		add_settings_field(
+			'talkino_credit_text_color_id',
+			esc_html__( 'Credit Text Color:', 'talkino' ),
+			array( $this, 'credit_text_color_field_callback' ),
+			'talkino_styles_page',
+			'talkino_customization_chatbox_section'
+		);
 
 		// Register agent field background color option field.
 		register_setting(
@@ -1023,7 +1095,7 @@ class Talkino_Settings {
 			esc_html__( 'Field Background Color:', 'talkino' ),
 			array( $this, 'agent_field_background_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_agent_field_color_section'
+			'talkino_customization_agent_field_section'
 		);
 
 		// Register agent field hover background color option field.
@@ -1041,7 +1113,7 @@ class Talkino_Settings {
 			esc_html__( 'Field Hover Background Color:', 'talkino' ),
 			array( $this, 'agent_field_hover_background_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_agent_field_color_section'
+			'talkino_customization_agent_field_section'
 		);
 
 		// Register agent name text color option field.
@@ -1059,7 +1131,7 @@ class Talkino_Settings {
 			esc_html__( 'Name Text Color:', 'talkino' ),
 			array( $this, 'agent_name_text_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_agent_field_color_section'
+			'talkino_customization_agent_field_section'
 		);
 
 		// Register agent job title text color option field.
@@ -1077,7 +1149,7 @@ class Talkino_Settings {
 			esc_html__( 'Job Title Text Color:', 'talkino' ),
 			array( $this, 'agent_job_title_text_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_agent_field_color_section'
+			'talkino_customization_agent_field_section'
 		);
 
 		// Register agent channel text color option field.
@@ -1095,7 +1167,7 @@ class Talkino_Settings {
 			esc_html__( 'Channel Text Color:', 'talkino' ),
 			array( $this, 'agent_channel_text_color_field_callback' ),
 			'talkino_styles_page',
-			'talkino_agent_field_color_section'
+			'talkino_customization_agent_field_section'
 		);
 
 		/** Ordering */
@@ -1603,12 +1675,12 @@ class Talkino_Settings {
 	}
 
 	/**
-	 * Callback function to render the chatbox color section.
+	 * Callback function to render the customization chatbox section.
 	 *
 	 * @since    2.0.0
-	 * @param    array $args    The arguments of chatbox color section.
+	 * @param    array $args    The arguments of customization chatbox section.
 	 */
-	public function color_section_callback( $args ) {
+	public function customization_chatbox_section_callback( $args ) {
 
 		?>
 		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Customize the colors of the chatbox.', 'talkino' ); ?></p>
@@ -1617,12 +1689,12 @@ class Talkino_Settings {
 	}
 
 	/**
-	 * Callback function to render the agent field color section.
+	 * Callback function to render the customization agent field section.
 	 *
 	 * @since    2.0.0
-	 * @param    array $args    The arguments of agent field color section.
+	 * @param    array $args    The arguments of customization agent field section.
 	 */
-	public function agent_field_color_section_callback( $args ) {
+	public function customization_agent_field_section_callback( $args ) {
 
 		?>
 		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Customize the colors of the agent field.', 'talkino' ); ?></p>
@@ -2753,6 +2825,66 @@ class Talkino_Settings {
 	}
 
 	/**
+	 * Callback function to render contact form notice text color.
+	 *
+	 * @since    2.0.1
+	 */
+	public function contact_form_notice_text_color_field_callback() {
+
+		$contact_form_notice_text_color_field = get_option( 'talkino_contact_form_notice_text_color' );
+
+		?>
+		<input type="text" id="talkino_contact_form_notice_text_color" name="talkino_contact_form_notice_text_color" class="color-picker" value="<?php echo isset( $contact_form_notice_text_color_field ) ? esc_attr( $contact_form_notice_text_color_field ) : '#008000'; ?>"/>
+		<?php
+
+	}
+
+	/**
+	 * Callback function to render google recaptcha notice text color.
+	 *
+	 * @since    2.0.1
+	 */
+	public function google_recaptcha_notice_text_color_field_callback() {
+
+		$google_recaptcha_notice_text_color_field = get_option( 'talkino_google_recaptcha_notice_text_color' );
+
+		?>
+		<input type="text" id="talkino_google_recaptcha_notice_text_color" name="talkino_google_recaptcha_notice_text_color" class="color-picker" value="<?php echo isset( $google_recaptcha_notice_text_color_field ) ? esc_attr( $google_recaptcha_notice_text_color_field ) : '#000'; ?>"/>
+		<?php
+
+	}
+
+	/**
+	 * Callback function to render google recaptcha link text color.
+	 *
+	 * @since    2.0.1
+	 */
+	public function google_recaptcha_link_text_color_field_callback() {
+
+		$google_recaptcha_link_text_color_field = get_option( 'talkino_google_recaptcha_link_text_color' );
+
+		?>
+		<input type="text" id="talkino_google_recaptcha_link_text_color" name="talkino_google_recaptcha_link_text_color" class="color-picker" value="<?php echo isset( $google_recaptcha_link_text_color_field ) ? esc_attr( $google_recaptcha_link_text_color_field ) : '#0000ff'; ?>"/>
+		<?php
+
+	}
+
+	/**
+	 * Callback function to render credit text color.
+	 *
+	 * @since    2.0.1
+	 */
+	public function credit_text_color_field_callback() {
+
+		$credit_text_color_field = get_option( 'talkino_credit_text_color' );
+
+		?>
+		<input type="text" id="talkino_credit_text_color" name="talkino_credit_text_color" class="color-picker" value="<?php echo isset( $credit_text_color_field ) ? esc_attr( $credit_text_color_field ) : '#888'; ?>"/>
+		<?php
+
+	}
+
+	/**
 	 * Callback function to render agent field background color.
 	 *
 	 * @since    2.0.0
@@ -3829,6 +3961,18 @@ class Talkino_Settings {
 
 			// Reset chatbox button text color.
 			update_option( 'talkino_chatbox_button_text_color', '#fff' );
+
+			// Reset contact form notice text color.
+			update_option( 'talkino_contact_form_notice_text_color', '#008000' );
+
+			// Reset google recaptcha notice text color.
+			update_option( 'talkino_google_recaptcha_notice_text_color', '#000' );
+
+			// Reset google recaptcha link text color.
+			update_option( 'talkino_google_recaptcha_link_text_color', '#0000ff' );
+
+			// Reset google recaptcha link text color.
+			update_option( 'talkino_credit_text_color', '#888' );
 
 			// Reset agent field background color.
 			update_option( 'talkino_agent_field_background_color', '#fff' );

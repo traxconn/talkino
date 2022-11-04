@@ -219,8 +219,8 @@ class Talkino {
 		// Register hook to change the notification message on bulk of custom post type.
 		$this->loader->add_filter( 'bulk_post_updated_messages', $talkino_customizer, 'edit_bulk_post_updated_messages', 10, 2 );
 
-		// Register hook to add premium plugin link.
-		$this->loader->add_filter( 'plugin_action_links_' . TALKINO_BASE_NAME, $talkino_customizer, 'add_premium_plugin_link' );
+		// Register hook to add plugin link.
+		$this->loader->add_filter( 'plugin_action_links_' . TALKINO_BASE_NAME, $talkino_customizer, 'add_plugin_links' );
 
 		// Register hook to create settings of submenu page.
 		$this->loader->add_action( 'admin_menu', $talkino_settings, 'create_settings_submenu_page' );

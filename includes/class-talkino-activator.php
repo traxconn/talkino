@@ -328,6 +328,26 @@ class Talkino_Activator {
 			add_option( 'talkino_chatbox_button_text_color', '#fff' );
 		}
 
+		// Add contact form notice text color if it does not exist.
+		if ( get_option( 'talkino_contact_form_notice_text_color' ) === false ) {
+			add_option( 'talkino_contact_form_notice_text_color', '#008000' );
+		}
+
+		// Add google recaptcha notice text color if it does not exist.
+		if ( get_option( 'talkino_google_recaptcha_notice_text_color' ) === false ) {
+			add_option( 'talkino_google_recaptcha_notice_text_color', '#000' );
+		}
+
+		// Add google recaptcha link text color if it does not exist.
+		if ( get_option( 'talkino_google_recaptcha_link_text_color' ) === false ) {
+			add_option( 'talkino_google_recaptcha_link_text_color', '#0000ff' );
+		}
+
+		// Add credit text color if it does not exist.
+		if ( get_option( 'talkino_credit_text_color' ) === false ) {
+			add_option( 'talkino_credit_text_color', '#888' );
+		}
+
 		// Add agent field background color if it does not exist.
 		if ( get_option( 'talkino_agent_field_background_color' ) === false ) {
 			add_option( 'talkino_agent_field_background_color', '#fff' );

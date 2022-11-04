@@ -108,6 +108,10 @@ function remove_plugin_data() {
 		delete_option( 'talkino_chatbox_subtitle_color' );
 		delete_option( 'talkino_chatbox_button_color' );
 		delete_option( 'talkino_chatbox_button_text_color' );
+		delete_option( 'talkino_contact_form_notice_text_color' );
+		delete_option( 'talkino_google_recaptcha_notice_text_color' );
+		delete_option( 'talkino_google_recaptcha_link_text_color' );
+		delete_option( 'talkino_credit_text_color' );
 		delete_option( 'talkino_agent_field_background_color' );
 		delete_option( 'talkino_agent_field_hover_background_color' );
 		delete_option( 'talkino_agent_name_text_color' );

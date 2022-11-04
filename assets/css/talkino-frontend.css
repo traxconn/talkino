@@ -87,24 +87,25 @@ label.talkino-chat-btn {
 .talkino-chat-title {
     font-size: 25px;
     line-height: 36px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 15px;
+    height: 45px;
+    padding-top: 5px !important;
+    padding-left: 15px !important;
 }
 
 .talkino-chat-close {
     float: right;
-    margin-top: 10px;
-    margin-right: 10px;
+    margin-top: 10px !important;
+    margin-right: 10px !important;
     cursor: pointer;
 }
 
 .talkino-chat-subtitle {
     font-size: 16px;
-    padding-top: 13px;
-    padding-left: 15px;
-    padding-bottom: 5px;
-    padding-right: 15px;
+    line-height: 20px;
+    padding-top: 13px !important;
+    padding-left: 15px !important;
+    padding-bottom: 5px !important;
+    padding-right: 15px !important;
 }
 
 .talkino-information-wrapper {
@@ -129,7 +130,7 @@ label.talkino-chat-btn {
 .talkino-chat-avatar img {
     width: 60px;
     float: left;
-    margin: 0 10px 0 0;
+    margin: 0 10px 0 0 !important;
     border-radius: 100%;
 }
 
@@ -153,8 +154,8 @@ a.talkino-chat-information {
     border-color: darkgray;
     border-radius: 3px;
     border-width: 1px;
-    padding: 12px 0 12px 10px;
-    margin: 10px 10px;
+    padding: 12px 0 12px 10px !important;
+    margin: 10px 10px !important;
     display: block;
     overflow: hidden;
 }
@@ -183,15 +184,14 @@ span.talkino-chat-channel {
 
 .talkino-footer-wrapper {
     text-align: center;
-    padding-top: 5px;
-    padding-bottom: 10px;
+    padding-top: 5px !important;
+    padding-bottom: 10px !important;
     font-size: 14px;
     font-style: italic;
 }
 
 .talkino-credit-link,.talkino-credit-link:hover {
     text-decoration: none;
-    color: #888;
 }
 
 @media only screen and (max-width: 600px) {
@@ -207,10 +207,6 @@ span.talkino-chat-channel {
     margin-bottom: 10px;
 }
 
-.form-group.talkino {
-    padding: 2px 0 2px 0;
-}
-
 .form-control.talkino {
     font-size: 15px;
     padding: 12px;
@@ -221,21 +217,26 @@ span.talkino-chat-channel {
 }
 
 #talkino_contact_form_name {
-    min-width: 90%;
+    width: 100%;
     height: 48px;
     margin: 5px 0px 5px 0;
+    box-sizing: border-box;
 }
 
 #talkino_contact_form_email {
-    min-width: 90%;
+    width: 100%;
     height: 48px;
     margin: 5px 0px 5px 0;
+    box-sizing: border-box;
 }
 
 #talkino_contact_form_message {
-    min-width: 90%;
+    width: 100%;
     height: 93px;
+    min-height: 93px;
     margin: 5px 0px 5px 0;
+    resize: none;
+    box-sizing: border-box;
 }
 
 .spinner-border.talkino {
@@ -245,7 +246,6 @@ span.talkino-chat-channel {
 #talkino-contact-form-notice {
     font-size: 13px;
     font-style: italic;
-    color: green;
     margin: 0;
     height: 30px;
 }
@@ -255,9 +255,9 @@ span.talkino-chat-channel {
     font-weight: bold;
     text-align: center;
     text-transform: capitalize;
-    line-height: 22px;
-    width: 100%;
-    padding: 13px 0 13px 0;
+    line-height: 22px !important;
+    width: 100% !important;
+    padding: 13px 0 13px 0 !important;
     margin-bottom: 0;
     border: none;
     border-radius: 5px !important;  
@@ -268,7 +268,9 @@ span.talkino-chat-channel {
 }
 
 .talkino-google-recaptcha-notice {
-    font-size: 13px;
+    font-size: 17px;
+    line-height: 20px;
+    margin-bottom: 10px !important;
 }
 
 /********** Animation **********/
