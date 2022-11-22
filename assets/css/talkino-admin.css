@@ -105,6 +105,11 @@
     }
 }
 
+/********** Setting **********/
+.talkino-settings-spacing {
+    margin-bottom: 30px !important;
+}
+
 /********** Ordering Setting **********/
 #talkino_channel_ordering_list, #talkino_agent_ordering_list {
     background-color: #fff;
