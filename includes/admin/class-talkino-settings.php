@@ -1860,8 +1860,13 @@ class Talkino_Settings {
 			<option value="away" <?php selected( 'away', $global_online_status_field ); ?>><?php esc_html_e( 'Away', 'talkino' ); ?></option>
 			<option value="offline" <?php selected( 'offline', $global_online_status_field ); ?>><?php esc_html_e( 'Offline', 'talkino' ); ?></option>
 		</select>
-		<?php
 
+		<?php
+		if ( ! is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
+		?>
+			<p class="talkino-settings-spacing"></p>
+		<?php
+		}
 	}
 
 	/**
@@ -2609,6 +2614,7 @@ class Talkino_Settings {
 		?>
 		<input type="text" name="talkino_chatbox_z_index" class="regular-text" value="<?php echo isset( $chatbox_z_index_field ) ? esc_attr( $chatbox_z_index_field ) : '9999999'; ?>" />
 		<p><?php esc_html_e( 'The z-index property specifies the stack order of an element (which element should be placed in front of, or behind the others). Increase the z-index so that the chatbox will be displayed in front of other elements.', 'talkino' ); ?></p>
+		<p class="talkino-settings-spacing"></p>
 		<?php
 
 	}
@@ -2655,6 +2661,7 @@ class Talkino_Settings {
 		<button type="button" id="talkino_template_color_coffee" style="background-color: #863d26; border-color: #863d26; margin-left: 4px;" class="button button-primary" name="talkino_template_color_coffee" /><?php esc_html_e( 'Coffee', 'talkino' ); ?></button>
 		<button type="button" id="talkino_template_color_midnight" style="background-color: #2b2827; border-color: #2b2827; margin-left: 4px;" class="button button-primary" name="talkino_template_color_midnight" /><?php esc_html_e( 'Midnight', 'talkino' ); ?></button>
 		<p><?php esc_html_e( 'Select the color template to change the chatbox layout or you can customize your own color template with below settings.', 'talkino' ); ?></p>
+		<p class="talkino-settings-spacing"></p>
 		<?php
 
 	}
@@ -2880,6 +2887,7 @@ class Talkino_Settings {
 
 		?>
 		<input type="text" id="talkino_credit_text_color" name="talkino_credit_text_color" class="color-picker" value="<?php echo isset( $credit_text_color_field ) ? esc_attr( $credit_text_color_field ) : '#888'; ?>"/>
+		<p class="talkino-settings-spacing"></p>
 		<?php
 
 	}
@@ -3270,6 +3278,11 @@ class Talkino_Settings {
 		<input name="talkino_show_on_404" type="hidden" value='off'/>
 		<input name="talkino_show_on_404" type="checkbox" <?php echo esc_attr( $is_show_on_404_checked ); ?> value='on' /> <?php esc_html_e( 'Enable Talkino chatbox to show on 404 page.', 'talkino' ); ?>
 		<?php
+		if ( ! class_exists( 'WooCommerce' ) ) {
+		?>
+			<p class="talkino-settings-spacing"></p>
+		<?php
+		}
 
 	}
 
@@ -3316,6 +3329,11 @@ class Talkino_Settings {
 		<input name="talkino_show_on_woocommerce_pages" type="hidden" value='off'/>
 		<input name="talkino_show_on_woocommerce_pages" type="checkbox" <?php echo esc_attr( $is_show_on_woocommerce_pages_checked ); ?> value='on' /> <?php esc_html_e( 'Enable Talkino chatbox to show on WooCommerce shop, product, product category and tag pages.', 'talkino' ); ?>
 		<?php
+		if ( class_exists( 'WooCommerce' ) ) {
+		?>
+			<p class="talkino-settings-spacing"></p>
+		<?php
+		}
 
 	}
 
@@ -3629,6 +3647,7 @@ class Talkino_Settings {
 
 		?>
 		<input type="text" name="talkino_fail_email_message" class="regular-text" value="<?php echo isset( $fail_email_message ) ? esc_attr( $fail_email_message ) : ''; ?>" />
+		<p class="talkino-settings-spacing"></p>
 		<?php
 
 	}
