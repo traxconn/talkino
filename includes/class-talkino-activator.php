@@ -75,6 +75,9 @@ class Talkino_Activator {
 		// Call the function to add plugin default data.
 		self::add_plugin_default_data();
 
+		// Call the function to create default database table.
+		self::create_db_table();
+
 		// Call the function to add plugin installation time.
 		self::save_plugin_activation_time();
 
@@ -415,6 +418,17 @@ class Talkino_Activator {
 			add_option( 'talkino_user_visibility', 'all' );
 		}
 
+		// Integration options.
+		// Add typebot status if it does not exist.
+		if ( get_option( 'talkino_typebot_status' ) === false ) {
+			add_option( 'talkino_typebot_status', 'off' );
+		}
+
+		// Add typebot link if it does not exist.
+		if ( get_option( 'talkino_typebot_link' ) === false ) {
+			add_option( 'talkino_typebot_link', '' );
+		}
+
 		// Contact Form options.
 		// Add contact form status if it does not exist.
 		if ( get_option( 'talkino_contact_form_status' ) === false ) {
@@ -471,12 +485,6 @@ class Talkino_Activator {
 			add_option( 'talkino_recaptcha_secret_key', '' );
 		}
 
-		// Credit options.
-		// Add credit data if it does not exist.
-		if ( get_option( 'talkino_credit' ) === false ) {
-			add_option( 'talkino_credit', 'on' );
-		}
-
 		// Advanced options.
 		// Add reset settings status data if it does not exist.
 		if ( get_option( 'talkino_reset_settings_status' ) === false ) {
@@ -486,6 +494,11 @@ class Talkino_Activator {
 		// Add data uninstall status if it does not exist.
 		if ( get_option( 'talkino_data_uninstall_status' ) === false ) {
 			add_option( 'talkino_data_uninstall_status', 'off' );
+		}
+
+		// Add credit data if it does not exist.
+		if ( get_option( 'talkino_credit' ) === false ) {
+			add_option( 'talkino_credit', 'on' );
 		}
 
 	}
@@ -500,6 +513,31 @@ class Talkino_Activator {
 		$activation_time = strtotime( 'now' );
 		add_option( 'talkino_activation_time', $activation_time );
 
+	}
+
+	/**
+	 * Create mySQL database table.
+	 *
+	 * @since    2.0.3
+	 */
+	private static function create_db_table() {
+
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'talkino_chatbox_log';
+		$charset_collate = $wpdb->get_charset_collate();
+
+		$sql = "CREATE TABLE IF NOT EXISTS $table_name (
+			`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+			`chat_channel` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+			`is_member` TINYINT(2) NOT NULL DEFAULT '0',
+			`agent` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+			`country` VARCHAR(100) NOT NULL,
+			`date` DATE NOT NULL,
+			PRIMARY KEY (`id`)
+		);";
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );	
 	}
 
 }

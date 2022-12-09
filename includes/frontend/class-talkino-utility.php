@@ -69,4 +69,21 @@ class Talkino_Utility {
 
 	}
 
+	/**
+	 * Function to determine the country of the visitor by using geoplugin.
+	 *
+	 * @since     2.0.3
+	 *
+	 * @return    string    Country.
+	 */
+	public function get_country() {
+		
+		$result = file_get_contents('http://www.geoplugin.net/json.gp'); 
+  		$resultArr = json_decode($result); 
+  		$country = $resultArr->geoplugin_countryName; 
+	
+		return $country;
+
+	}
+
 }

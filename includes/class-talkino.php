@@ -130,6 +130,7 @@ class Talkino {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-chatbox.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-agent-manager.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-utility.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-database-handler.php';
 
 		// The class responsible for defining all bundle actions that occur in the frontend side of the site.
 		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
@@ -249,6 +250,7 @@ class Talkino {
 
 		$talkino_frontend = new Talkino_Frontend( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
 		$talkino_chatbox  = new Talkino_Chatbox();
+		$talkino_database_handler = new Talkino_Database_Handler();
 
 		// Enqueue all the scripts and stylesheets.
 		$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_styles' );
@@ -270,6 +272,10 @@ class Talkino {
 			$this->loader->add_action( 'wp_ajax_nopriv_submit_talkino_contact_form', $talkino_contact_form_handler, 'submit_talkino_contact_form' );
 
 		}
+
+		// Register hook to process data inserting via ajax actions.
+		$this->loader->add_action( 'wp_ajax_insert_chatbox_log_data', $talkino_database_handler, 'insert_chatbox_log_data' );
+		$this->loader->add_action( 'wp_ajax_nopriv_insert_chatbox_log_data', $talkino_database_handler, 'insert_chatbox_log_data' );
 
 	}
 

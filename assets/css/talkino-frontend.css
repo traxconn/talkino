@@ -273,6 +273,27 @@ span.talkino-chat-channel {
     margin-bottom: 10px !important;
 }
 
+.talkino-chat-channel-type {
+    display: none !important;
+}
+
+/********** Typebot **********/
+.talkino-start-chat-button, .talkino-back-button {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
+    line-height: 22px !important;
+    width: 90% !important;
+    padding: 13px 0 13px 0 !important;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px !important;  
+    cursor: pointer;
+}
+
 /********** Animation **********/
 @keyframes fadein {
     from { opacity: 0; }

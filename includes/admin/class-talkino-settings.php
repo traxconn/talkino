@@ -57,7 +57,7 @@ class Talkino_Settings {
 			<!-- Tabs of settings. -->
 			<nav class="nav-tab-wrapper">
 				<a href="?post_type=talkino_agents&page=talkino_settings_page" class="nav-tab <?php if ( null === $tab ) : ?>
-					nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Settings', 'talkino' ); ?></a>
+					nav-tab-active<?php endif; ?>"><?php esc_html_e( 'General', 'talkino' ); ?></a>
 				<a href="?post_type=talkino_agents&page=talkino_settings_page&tab=styles" class="nav-tab <?php if ( 'styles' === $tab ) : ?>
 					nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Styles', 'talkino' ); ?></a>
 				<a href="?post_type=talkino_agents&page=talkino_settings_page&tab=ordering" class="nav-tab <?php if ( 'ordering' === $tab ) : ?>
@@ -65,16 +65,17 @@ class Talkino_Settings {
 				<a href="?post_type=talkino_agents&page=talkino_settings_page&tab=display" class="nav-tab <?php if ( 'display' === $tab ) : ?>
 					nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Display', 'talkino' ); ?></a>
 				<?php
-				// Display contact form tab for talkino bundle.
+				// Display integration and contact form tab for talkino bundle.
 				if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
 					?>
+					<a href="?post_type=talkino_agents&page=talkino_settings_page&tab=integration" class="nav-tab <?php if ( 'integration' === $tab ) : ?>
+						nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Integration', 'talkino' ); ?></a>
+
 					<a href="?post_type=talkino_agents&page=talkino_settings_page&tab=contact-form" class="nav-tab <?php if ( 'contact-form' === $tab ) : ?>
 						nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Contact Form', 'talkino' ); ?></a>
 					<?php
 				}
 				?>
-				<a href="?post_type=talkino_agents&page=talkino_settings_page&tab=credit" class="nav-tab <?php if ( 'credit' === $tab ) : ?>
-				nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Credit', 'talkino' ); ?></a>
 				<a href="?post_type=talkino_agents&page=talkino_settings_page&tab=advanced" class="nav-tab <?php if ( 'advanced' === $tab ) : ?>
 					nav-tab-active<?php endif; ?>"><?php esc_html_e( 'Advanced', 'talkino' ); ?></a>
 			</nav>			
@@ -150,6 +151,27 @@ class Talkino_Settings {
 							<?php
 							break;
 
+						case 'integration':
+							?>
+							<div class="wrap">
+								<form action="options.php" method="post">
+									<?php
+									// Show error or update message.
+									settings_errors();
+
+									// Output security fields for the registered integration page.
+									settings_fields( 'talkino_integration_page' );
+
+									// Output integration sections and fields.
+									do_settings_sections( 'talkino_integration_page' );
+									submit_button( esc_html__( 'Save Settings', 'talkino' ) );
+
+									?>
+								</form>
+							</div>
+							<?php
+							break;
+
 						case 'contact-form':
 							?>
 							<div class="wrap">
@@ -165,28 +187,6 @@ class Talkino_Settings {
 									do_settings_sections( 'talkino_contact_form_page' );
 									submit_button( esc_html__( 'Save Settings', 'talkino' ) );
 
-									?>
-								</form>
-							</div>
-							<?php
-							break;
-
-						case 'credit':
-							?>
-							<div class="wrap">
-								<form action="options.php" method="post">
-									<?php
-									// Show error or update message.
-									settings_errors();
-
-									// Output security fields for the registered advanced page.
-									settings_fields( 'talkino_credit_page' );
-
-									// Output advanced sections and fields.
-									do_settings_sections( 'talkino_credit_page' );
-
-									// Output save settings button.
-									submit_button( esc_html__( 'Save Settings', 'talkino' ) );
 									?>
 								</form>
 							</div>
@@ -223,11 +223,11 @@ class Talkino_Settings {
 								// Show error or update message.
 								settings_errors();
 
-								// Output security fields for the registered setting page.
-								settings_fields( 'talkino_settings_page' );
+								// Output security fields for the registered general page.
+								settings_fields( 'talkino_general_page' );
 
 								// Output setting sections and fields.
-								do_settings_sections( 'talkino_settings_page' );
+								do_settings_sections( 'talkino_general_page' );
 
 								// Output save settings button.
 								submit_button( esc_html__( 'Save Settings', 'talkino' ) );
@@ -308,28 +308,6 @@ class Talkino_Settings {
 							<?php
 							break;
 
-						case 'credit':
-							?>
-							<div class="wrap">
-								<form action="options.php" method="post">
-									<?php
-									// Show error or update message.
-									settings_errors();
-
-									// Output security fields for the registered advanced page.
-									settings_fields( 'talkino_credit_page' );
-
-									// Output advanced sections and fields.
-									do_settings_sections( 'talkino_credit_page' );
-
-									// Output save settings button.
-									submit_button( esc_html__( 'Save Settings', 'talkino' ) );
-									?>
-								</form>
-							</div>
-							<?php
-							break;
-
 							case 'advanced':
 								?>
 								<div class="wrap">
@@ -360,11 +338,11 @@ class Talkino_Settings {
 								// Show error or update message.
 								settings_errors();
 
-								// Output security fields for the registered setting page.
-								settings_fields( 'talkino_settings_page' );
+								// Output security fields for the registered general page.
+								settings_fields( 'talkino_general_page' );
 
 								// Output setting sections and fields.
-								do_settings_sections( 'talkino_settings_page' );
+								do_settings_sections( 'talkino_general_page' );
 
 								// Output save settings button.
 								submit_button( esc_html__( 'Save Settings', 'talkino' ) );
@@ -415,20 +393,20 @@ class Talkino_Settings {
 		$talkino_utility = new Talkino_Utility();
 
 		/** Sections */
-		// Register global online status section in the talkino settings page.
+		// Register global online status section in the talkino general page.
 		add_settings_section(
 			'talkino_global_online_status_section',
 			esc_html__( 'Chatbox Online Status', 'talkino' ),
 			array( $this, 'global_online_status_section_callback' ),
-			'talkino_settings_page'
+			'talkino_general_page'
 		);
 
-		// Register text section in the talkino settings page.
+		// Register text section in the talkino general page.
 		add_settings_section(
 			'talkino_text_section',
 			esc_html__( 'Chatbox Text', 'talkino' ),
 			array( $this, 'text_section_callback' ),
-			'talkino_settings_page'
+			'talkino_general_page'
 		);
 
 		// Register style section in the talkino styles page.
@@ -487,6 +465,14 @@ class Talkino_Settings {
 			'talkino_display_page'
 		);
 
+		// Register typebot integration section in the talkino integration page.
+		add_settings_section(
+			'talkino_typebot_integration_section',
+			esc_html__( 'Typebot Integration', 'talkino' ),
+			array( $this, 'typebot_integration_section_callback' ),
+			'talkino_integration_page'
+		);
+
 		// Register contact form section in the talkino contact form page.
 		add_settings_section(
 			'talkino_contact_form_section',
@@ -503,14 +489,6 @@ class Talkino_Settings {
 			'talkino_contact_form_page'
 		);
 
-		// Register credit section in the talkino credit page.
-		add_settings_section(
-			'talkino_credit_section',
-			esc_html__( 'Credit', 'talkino' ),
-			array( $this, 'credit_section_callback' ),
-			'talkino_credit_page'
-		);
-
 		// Register advanced section in the talkino advanced page.
 		add_settings_section(
 			'talkino_advanced_section',
@@ -522,7 +500,7 @@ class Talkino_Settings {
 		/** Settings */
 		// Register chatbox activation field.
 		register_setting(
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_chatbox_activation',
 			array(
 				'type'              => 'string',
@@ -536,13 +514,13 @@ class Talkino_Settings {
 			'chatbox_activation_id',
 			esc_html__( 'Chatbox Activation Status:', 'talkino' ),
 			array( $this, 'chatbox_activation_field_callback' ),
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_global_online_status_section'
 		);
 
 		// Register global online status field.
 		register_setting(
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_global_online_status',
 			array(
 				'type'              => 'string',
@@ -556,7 +534,7 @@ class Talkino_Settings {
 			'global_online_status_id',
 			esc_html__( 'Global Online Status:', 'talkino' ),
 			array( $this, 'global_online_status_field_callback' ),
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_global_online_status_section'
 		);
 
@@ -565,7 +543,7 @@ class Talkino_Settings {
 
 			// Register global schedule online status option field.
 			register_setting(
-				'talkino_settings_page',
+				'talkino_general_page',
 				'talkino_global_schedule_online_status',
 				array(
 					'type'              => 'array',
@@ -578,7 +556,7 @@ class Talkino_Settings {
 				'global_schedule_id',
 				esc_html__( 'Online Schedule:', 'talkino' ),
 				array( $this, 'global_schedule_online_status_field_callback' ),
-				'talkino_settings_page',
+				'talkino_general_page',
 				'talkino_global_online_status_section'
 			);
 
@@ -586,7 +564,7 @@ class Talkino_Settings {
 
 		// Register chatbox online subtitle field.
 		register_setting(
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_chatbox_online_subtitle',
 			array(
 				'type'              => 'array',
@@ -599,13 +577,13 @@ class Talkino_Settings {
 			'talkino_chatbox_online_subtitle_id',
 			esc_html__( 'Subtitle Text for Online Status:', 'talkino' ),
 			array( $this, 'chatbox_online_subtitle_field_callback' ),
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_text_section'
 		);
 
 		// Register chatbox away subtitle field.
 		register_setting(
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_chatbox_away_subtitle',
 			array(
 				'type'              => 'array',
@@ -618,13 +596,13 @@ class Talkino_Settings {
 			'talkino_chatbox_away_subtitle_id',
 			esc_html__( 'Subtitle Text for Away Status:', 'talkino' ),
 			array( $this, 'chatbox_away_subtitle_field_callback' ),
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_text_section'
 		);
 
 		// Register chatbox away subtitle field.
 		register_setting(
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_chatbox_offline_subtitle',
 			array(
 				'type'              => 'array',
@@ -637,13 +615,13 @@ class Talkino_Settings {
 			'talkino_chatbox_offline_subtitle_id',
 			esc_html__( 'Subtitle Text for Offline Status:', 'talkino' ),
 			array( $this, 'chatbox_offline_subtitle_field_callback' ),
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_text_section'
 		);
 
 		// Register offline message option field.
 		register_setting(
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_offline_message',
 			array(
 				'type'              => 'string',
@@ -656,13 +634,13 @@ class Talkino_Settings {
 			'offline_message_id',
 			esc_html__( 'Offline Message:', 'talkino' ),
 			array( $this, 'offline_message_field_callback' ),
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_text_section'
 		);
 
 		// Register chatbox button text option field.
 		register_setting(
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_chatbox_button_text',
 			array(
 				'type'              => 'string',
@@ -675,7 +653,7 @@ class Talkino_Settings {
 			'chatbox_button_text_message_id',
 			esc_html__( 'Chatbox Button Text:', 'talkino' ),
 			array( $this, 'chatbox_button_text_field_callback' ),
-			'talkino_settings_page',
+			'talkino_general_page',
 			'talkino_text_section'
 		);
 
@@ -1345,6 +1323,44 @@ class Talkino_Settings {
 			'talkino_visibility_section'
 		);
 
+		/** Integration **/
+		// Register typebot status option field.
+		register_setting(
+			'talkino_integration_page',
+			'talkino_typebot_status',
+			array(
+				'type'              => 'string',
+				'sanitize_callback' => array( $this, 'sanitize_typebot_status' ),
+			)
+		);
+		
+		// Add typebot status option field.
+		add_settings_field(
+			'talkino_contact_form_status_id',
+			esc_html__( 'Activate Typebot:', 'talkino' ),
+			array( $this, 'typebot_status_field_callback' ),
+			'talkino_integration_page',
+			'talkino_typebot_integration_section'
+		);
+
+		// Register typebot link field.
+		register_setting(
+			'talkino_integration_page',
+			'talkino_typebot_link',
+			array(
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_url',
+			)
+		);
+
+		// Add typebot link field.
+		add_settings_field(
+			'talkino_typebot_link_id',
+			esc_html__( 'Typebot link:', 'talkino' ),
+			array( $this, 'typebot_link_field_callback' ),
+			'talkino_integration_page',
+			'talkino_typebot_integration_section'
+		);
 
 		/** Contact Form */
 		// Register contact form status option field.
@@ -1556,26 +1572,6 @@ class Talkino_Settings {
 			'talkino_google_recaptcha_section'
 		);
 
-		/** Credit */
-		// Register credit option field.
-		register_setting(
-			'talkino_credit_page',
-			'talkino_credit',
-			array(
-				'type'              => 'string',
-				'sanitize_callback' => array( $this, 'sanitize_credit' ),
-			)
-		);
-
-		// Add credit option field.
-		add_settings_field(
-			'credit_id',
-			esc_html__( 'Enable credit display:', 'talkino' ),
-			array( $this, 'credit_field_callback' ),
-			'talkino_credit_page',
-			'talkino_credit_section'
-		);
-
 		/** Advanced */
 		// Register reset settings status option field.
 		register_setting(
@@ -1611,6 +1607,25 @@ class Talkino_Settings {
 			'data_uninstall_status_id',
 			esc_html__( 'Remove Data on Uninstall:', 'talkino' ),
 			array( $this, 'data_uninstall_status_field_callback' ),
+			'talkino_advanced_page',
+			'talkino_advanced_section'
+		);
+
+		// Register credit option field.
+		register_setting(
+			'talkino_advanced_page',
+			'talkino_credit',
+			array(
+				'type'              => 'string',
+				'sanitize_callback' => array( $this, 'sanitize_credit' ),
+			)
+		);
+
+		// Add credit option field.
+		add_settings_field(
+			'credit_id',
+			esc_html__( 'Enable credit display:', 'talkino' ),
+			array( $this, 'credit_field_callback' ),
 			'talkino_advanced_page',
 			'talkino_advanced_section'
 		);
@@ -1745,6 +1760,20 @@ class Talkino_Settings {
 	}
 
 	/**
+	 * Callback function to render the chatbot integration section.
+	 *
+	 * @since    2.0.3
+	 * @param    array $args    The arguments of chatbot integration section.
+	 */
+	public function typebot_integration_section_callback( $args ) {
+
+		?>
+		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'Settings to activate and handle integration with Typebot, a chatbot that allows you to create conversational forms such as lead qualification, product launch, user onboarding, and customer support.', 'talkino' ); ?></p>
+		<?php
+
+	}
+
+	/**
 	 * Callback function to render the contact form section.
 	 *
 	 * @since    1.0.0
@@ -1776,20 +1805,6 @@ class Talkino_Settings {
 	}
 
 	/**
-	 * Callback function to render the credit section.
-	 *
-	 * @since    2.0.0
-	 * @param    array $args    The arguments of credit section.
-	 */
-	public function credit_section_callback( $args ) {
-
-		?>
-		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'The credit settings to control the option of displaying credit on the chatbox.', 'talkino' ); ?></p>
-		<?php
-
-	}
-
-	/**
 	 * Callback function to render the advanced section.
 	 *
 	 * @since    1.0.0
@@ -1798,7 +1813,7 @@ class Talkino_Settings {
 	public function advanced_section_callback( $args ) {
 
 		?>
-		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'The advanced settings to control the option of reset settings and uninstallation.', 'talkino' ); ?></p>
+		<p id="<?php echo esc_attr( $args['id'] ); ?>"><?php esc_html_e( 'The advanced settings to control the option of reset settings, uninstallation and credit display.', 'talkino' ); ?></p>
 		<?php
 
 	}
@@ -3499,6 +3514,69 @@ class Talkino_Settings {
 
 	}
 
+	/********************************* Integration *********************************/
+	/**
+	 * Callback function to render typebot status field.
+	 *
+	 * @since    1.0.0
+	 */
+	public function typebot_status_field_callback() {
+
+		$typebot_status_field      = get_option( 'talkino_typebot_status' );
+		$is_typebot_status_checked = ( ! empty( $typebot_status_field ) && 'on' === $typebot_status_field ) ? 'checked' : '';
+
+		?>
+		<input name="talkino_typebot_status" type="hidden" value='off'/>
+		<input name="talkino_typebot_status" type="checkbox" <?php echo esc_attr( $is_typebot_status_checked ); ?> value='on' /> <?php esc_html_e( 'Activate the integration of Typebot.', 'talkino' ); ?>
+		<?php
+
+	}
+
+	/**
+	 * Sanitize function to validate the typebot status field.
+	 *
+	 * @since     1.0.0
+	 * @param     string $typebot_status    The typebot status.
+	 *
+	 * @return    string    The validated value of typebot status.
+	 */
+	public function sanitize_typebot_status( $typebot_status ) {
+
+		// Sanitize the checkbox.
+		if ( ! empty( $typebot_status ) ) {
+			if ( 'on' === $typebot_status || 'off' === $typebot_status ) {
+				$typebot_status = $typebot_status;
+
+			} else {
+
+				$typebot_status = 'off';
+
+				// Notify the user on invalid input.
+				add_settings_error( 'talkino_typebot_status', 'invalid_typebot_status_value', esc_html__( 'Oops, you have inserted invalid input of Typebot status field!', 'talkino' ), 'error' );
+
+			}
+		}
+
+		return $typebot_status;
+
+	}
+
+	/**
+	 * Callback function to render text field of typebot link.
+	 *
+	 * @since    1.0.0
+	 */
+	public function typebot_link_field_callback() {
+
+		$typebot_link = get_option( 'talkino_typebot_link' );
+
+		?>
+		<input type="text" name="talkino_typebot_link" class="regular-text" placeholder="https://typebot.io/customer-support-copy-rlxqg28" value="<?php echo isset( $typebot_link ) ? esc_attr( $typebot_link ) : ''; ?>" />
+		<p> <i> <?php esc_html_e( 'Click ', 'talkino' ); ?> <a href="https://app.typebot.io/register" target="_blank"><?php esc_html_e( 'here', 'talkino' ); ?></a> <?php esc_html_e( ' to register a Typebot account in order to get your Typebot link. ', 'talkino' ); ?> </i> </p>
+		<?php
+
+	}
+
 	/********************************* Contact Form *********************************/
 	/**
 	 * Callback function to render contact form status field.
@@ -3725,53 +3803,6 @@ class Talkino_Settings {
 		?>
 		<input type="text" name="talkino_recaptcha_secret_key" class="regular-text" value="<?php echo isset( $recaptcha_secret_key ) ? esc_attr( $recaptcha_secret_key ) : ''; ?>" />
 		<?php
-
-	}
-
-	/********************************* Credit *********************************/
-	/**
-	 * Callback function to render credit field.
-	 *
-	 * @since    2.0.0
-	 */
-	public function credit_field_callback() {
-
-		$credit_field      = get_option( 'talkino_credit' );
-		$is_credit_checked = ( ! empty( $credit_field ) && 'on' === $credit_field ) ? 'checked' : '';
-
-		?>
-		<input name="talkino_credit" type="hidden" value='off'/>
-		<input name="talkino_credit" type="checkbox" <?php echo esc_attr( $is_credit_checked ); ?> value='on' /> <?php esc_html_e( 'Enable Talkino plugin to display credit on the chatbox.', 'talkino' ); ?>
-		<?php
-
-	}
-
-	/**
-	 * Sanitize function to validate the credit field.
-	 *
-	 * @since     2.0.0
-	 * @param     string $credit_field    The credit.
-	 *
-	 * @return    string    The validated value of credit.
-	 */
-	public function sanitize_credit( $credit_field ) {
-
-		// Sanitize the checkbox.
-		if ( ! empty( $credit_field ) ) {
-			if ( 'on' === $credit_field || 'off' === $credit_field ) {
-				$credit_field = $credit_field;
-
-			} else {
-
-				$credit_field = 'on';
-
-				// Notify the user on invalid input.
-				add_settings_error( 'talkino_credit', 'invalid_credit_value', esc_html__( 'Oops, you have inserted invalid input of credit field!', 'talkino' ), 'error' );
-
-			}
-		}
-
-		return $credit_field;
 
 	}
 
@@ -4034,6 +4065,13 @@ class Talkino_Settings {
 			// Reset user visibility data.
 			update_option( 'talkino_user_visibility', 'all' );
 
+			/** Integration */
+			// Reset typebot status.
+			update_option( 'talkino_typebot_status', 'off' );
+
+			// Reset typebot link.
+			update_option( 'talkino_typebot_link', '' );
+
 			/** Contact Form */
 			// Reset contact form status.
 			update_option( 'talkino_contact_form_status', 'off' );
@@ -4069,15 +4107,14 @@ class Talkino_Settings {
 			update_option( 'talkino_recaptcha_secret_key', '' );
 
 			/** Advanced */
-			// Reset credit.
-			update_option( 'talkino_credit', 'on' );
-
-			/** Advanced */
 			// Reset data uninstall status.
 			update_option( 'talkino_reset_settings_status', 'off' );
 
 			// Reset data uninstall status.
 			update_option( 'talkino_data_uninstall_status', 'off' );
+
+			// Reset credit.
+			update_option( 'talkino_credit', 'on' );
 
 			// Call to display the message of reset settings successfully.
 			$message = esc_html__( 'All settings data of Talkino has been reset successfully!', 'talkino' );
@@ -4086,6 +4123,52 @@ class Talkino_Settings {
 			new Talkino_Notifier( $message, $class );
 
 		}
+
+	}
+
+	/**
+	 * Callback function to render credit field.
+	 *
+	 * @since    2.0.0
+	 */
+	public function credit_field_callback() {
+
+		$credit_field      = get_option( 'talkino_credit' );
+		$is_credit_checked = ( ! empty( $credit_field ) && 'on' === $credit_field ) ? 'checked' : '';
+
+		?>
+		<input name="talkino_credit" type="hidden" value='off'/>
+		<input name="talkino_credit" type="checkbox" <?php echo esc_attr( $is_credit_checked ); ?> value='on' /> <?php esc_html_e( 'Enable Talkino plugin to display credit on the chatbox.', 'talkino' ); ?>
+		<?php
+
+	}
+
+	/**
+	 * Sanitize function to validate the credit field.
+	 *
+	 * @since     2.0.0
+	 * @param     string $credit_field    The credit.
+	 *
+	 * @return    string    The validated value of credit.
+	 */
+	public function sanitize_credit( $credit_field ) {
+
+		// Sanitize the checkbox.
+		if ( ! empty( $credit_field ) ) {
+			if ( 'on' === $credit_field || 'off' === $credit_field ) {
+				$credit_field = $credit_field;
+
+			} else {
+
+				$credit_field = 'on';
+
+				// Notify the user on invalid input.
+				add_settings_error( 'talkino_credit', 'invalid_credit_value', esc_html__( 'Oops, you have inserted invalid input of credit field!', 'talkino' ), 'error' );
+
+			}
+		}
+
+		return $credit_field;
 
 	}
 

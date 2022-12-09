@@ -125,7 +125,17 @@ class Talkino_Upgrader {
 			add_option( 'talkino_show_on_404', 'on' );
 		}
 
-		// Add user visibility data if it does not exist when upgrade from old version.
+		// Add typebot status data if it does not exist when upgrade from old version.
+		if ( get_option( 'talkino_typebot_status' ) === false ) {
+			add_option( 'talkino_typebot_status', 'off' );
+		}
+
+		// Add typebot link data if it does not exist when upgrade from old version.
+		if ( get_option( 'talkino_typebot_link' ) === false ) {
+			add_option( 'talkino_typebot_link', '' );
+		}
+
+		// Add typebot status data if it does not exist when upgrade from old version.
 		if ( get_option( 'talkino_user_visibility' ) === false ) {
 			add_option( 'talkino_user_visibility', 'all' );
 		}

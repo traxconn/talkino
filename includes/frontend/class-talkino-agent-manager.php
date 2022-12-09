@@ -154,10 +154,11 @@ class Talkino_Agent_Manager {
                         <div class='talkino-chat-info'>
                             <span class='talkino-chat-name'>" . $name . "</span>
                             <span class='talkino-chat-job-title'>" . $job_title . "</span>
-                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on WhatsApp', 'talkino' ) . '</span>
+                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on WhatsApp', 'talkino' ) . "</span>
+							<span class='talkino-chat-channel-type'>whatsapp</span>
                         </div>
                     </a>
-                    ';
+                    ";
 
 				}
 
@@ -186,10 +187,11 @@ class Talkino_Agent_Manager {
                         <div class='talkino-chat-info'>
                             <span class='talkino-chat-name'>" . $name . "</span>
                             <span class='talkino-chat-job-title'>" . $job_title . "</span>
-                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Facebook', 'talkino' ) . '</span>
+                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Facebook', 'talkino' ) . "</span>
+							<span class='talkino-chat-channel-type'>facebook</span>
                         </div>
                     </a>
-                    ';
+                    ";
 
 				}
 
@@ -218,10 +220,11 @@ class Talkino_Agent_Manager {
                         <div class='talkino-chat-info'>
                             <span class='talkino-chat-name'>" . $name . "</span>
                             <span class='talkino-chat-job-title'>" . $job_title . "</span>
-                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Telegram', 'talkino' ) . '</span>
+                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Telegram', 'talkino' ) . "</span>
+							<span class='talkino-chat-channel-type'>telegram</span>
                         </div>
                     </a>
-                    ';
+                    ";
 
 				}
 
@@ -250,10 +253,11 @@ class Talkino_Agent_Manager {
                         <div class='talkino-chat-info'>
                             <span class='talkino-chat-name'>" . $name . "</span>
                             <span class='talkino-chat-job-title'>" . $job_title . "</span>
-                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Phone', 'talkino' ) . '</span>
+                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Phone', 'talkino' ) . "</span>
+							<span class='talkino-chat-channel-type'>phone</span>
                         </div>
                     </a>
-                    ';
+                    ";
 
 				}
 
@@ -282,10 +286,11 @@ class Talkino_Agent_Manager {
                         <div class='talkino-chat-info'>
                             <span class='talkino-chat-name'>" . $name . "</span>
                             <span class='talkino-chat-job-title'>" . $job_title . "</span>
-                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Email', 'talkino' ) . '</span>
+                            <span class='talkino-chat-channel'>" . esc_html__( 'Chat on Email', 'talkino' ) . "</span>
+							<span class='talkino-chat-channel-type'>email</span>
                         </div>
                     </a>
-                    ';
+                    ";
 
 				}
 			}

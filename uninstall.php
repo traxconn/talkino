@@ -130,6 +130,10 @@ function remove_plugin_data() {
 		delete_option( 'talkino_show_on_mobile' );
 		delete_option( 'talkino_user_visibility' );
 
+		// Integration options.
+		delete_option( 'talkino_typebot_status' );
+		delete_option( 'talkino_typebot_link' );
+
 		// Contact Form options.
 		delete_option( 'talkino_contact_form_status' );
 		delete_option( 'talkino_email_recipient' );
@@ -143,16 +147,20 @@ function remove_plugin_data() {
 		delete_option( 'talkino_recaptcha_site_key' );
 		delete_option( 'talkino_recaptcha_secret_key' );
 
-		// Credit options.
-		delete_option( 'talkino_credit' );
-
 		// Advanced options.
 		delete_option( 'talkino_reset_settings_status' );
 		delete_option( 'talkino_data_uninstall_status' );
+		delete_option( 'talkino_credit' );
 
 		// Admin plugin review notice options.
 		delete_option( 'talkino_activation_time' );
 		delete_option( 'talkino_dismiss_plugin_review_notice' );
+
+		// Remove database table.
+		global $wpdb;
+    	$table_name = $wpdb->prefix . 'talkino_chatbox_log'; 
+    	$sql = "DROP TABLE IF EXISTS $table_name";
+    	$result = $wpdb->query($sql);
 
 	}
 

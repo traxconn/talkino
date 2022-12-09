@@ -329,7 +329,7 @@ class Talkino_Chatbox {
 
         $wrapper_animation = '';
 
-        // Get animation style.
+        // Animation style.
         if ( get_option( 'talkino_chatbox_animation' ) === 'fadein' ) {
             $wrapper_animation = 'animation: fadein 1s;';
         }
@@ -337,6 +337,36 @@ class Talkino_Chatbox {
             $wrapper_animation = 'animation: slideUp 1s;';
         }
 
+        // Typebot style.
+        // When talkino bundle is installed, typebot is activated and typebot link is not empty
+        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_typebot_status' ) === 'on' && ! empty( get_option( 'talkino_typebot_link' ) ) ) {
+           
+            echo '<style>
+
+            .talkino-agent-wrapper {
+                display: none;
+            }  
+            
+            .talkino-start-chat-button, .talkino-back-button {
+                background-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
+                background: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
+                color: ' . esc_attr( get_option( 'talkino_chatbox_button_text_color' ) ) . ';
+                border-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
+            }
+
+            </style>';
+
+        } else {
+
+            echo '<style>
+
+            .talkino-agent-wrapper {
+                display: block;
+            }            
+
+            </style>';
+
+        }
         
         // Style for every scenario.
         echo '<style>
