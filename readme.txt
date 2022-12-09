@@ -1,4 +1,4 @@
-=== Talkino - Click to Chat for Multi Channels ===
+=== Talkino - Click to Chat for WhatsApp, Facebook Messenger and Telegram ===
 Author URI: https://traxconn.com/
 Plugin URI: https://traxconn.com/plugins/talkino/
 Contributors: traxconn, yipchunmun, leesuijen
@@ -6,18 +6,20 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.1.1
-Stable tag: 2.0.2
+Stable tag: 2.0.4
 Requires PHP: 7.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Click to chat plugin to show your agents’ multiple messengers, phone and emails on the chatbox of your site.
+Let your customers contact you through WhatsApp, Facebook Messenger, Telegram, phone and email.
 
 == Description ==
 
 It's time to let your customers reach you via different chat channels such as [WhatsApp](https://www.whatsapp.com/), [Facebook Messenger](https://www.messenger.com/) and [Telegram](https://web.telegram.org/k/) on WordPress site or WooCommerce online store by using Talkino! 
 
-Talkino is the best click to chat plugin to show your agents’ multiple social messengers, phone and emails on the chatbox of your site. With a single click, customers can connect with you in their preferred way. It's indeed an effective way for you to increase engagement between you and your customers.
+Talkino is the best click to chat plugin to show your agents’ WhatsApp, Facebook Messenger, Telegram, phone and email on the chatbox of your site. 
+
+With a single click, customers can connect with you in their preferred way. It's indeed an effective way for you to increase engagement between you and your customers.
 
 Here are some of the supported features:
 
@@ -178,6 +180,13 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 12. Advanced Setting to Control the Options of Reset Settings and Uninstallation 
 
 == Changelog ==
+
+= 2.0.4, Dec 08, 2022 =
+* Added: Support Typebot integration for Talkino Bundle.
+* Updated: The text of setting tab.
+* Updated: Move the credit setting to advanced tab. 
+* Fixed: Extension page display.
+* Fixed: Critical error on database inserting.
 
 = 2.0.2, Nov 22, 2022 =
 * Improvement: Beautify the setting page.
