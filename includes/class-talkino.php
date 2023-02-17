@@ -114,30 +114,39 @@ class Talkino {
 		// The class responsible for loading template file of the plugin.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-talkino-file-loader.php';
 
+		// The class responsible for handle the utility functions of the plugin.
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-talkino-utility-manager.php';
+
 		// The class responsible for defining all actions that occur in the admin area.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-upgrader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-remover.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-admin.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-post-type.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/meta-boxes/class-talkino-meta-boxes.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-customizer.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-settings.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-tools.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-sanitizer.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-notifier.php';
-
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/class-talkino-cron-manager.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/admin/reports/class-talkino-reporter.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-talkino-email-manager.php';
+		
 		// The class responsible for defining all actions that occur in the frontend side of the site.
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-frontend.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-chatbox.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-agent-manager.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-utility.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-ordering-manager.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/frontend/class-talkino-database-handler.php';
-
+		
 		// The class responsible for defining all bundle actions that occur in the frontend side of the site.
 		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
 
-			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-scheduler.php';
-			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-contact-form-handler.php';
-			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-email-manager.php';
+			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-bundle-scheduler.php';
+			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-bundle-contact-form-handler.php';
+			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/class-talkino-bundle-email-manager.php';
+			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/admin/reports/class-talkino-bundle-reporter.php';
+			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/class-talkino-bundle-file-loader.php';
+			require_once ABSPATH . '/wp-content/plugins/talkino-bundle/includes/frontend/class-talkino-bundle-blocker.php';
 
 		}
 
@@ -175,29 +184,34 @@ class Talkino {
 	private function define_admin_hooks() {
 
 		// Declare all the classes objects.
-		$talkino_admin      = new Talkino_Admin( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
-		$talkino_upgrader   = new Talkino_Upgrader();
-		$talkino_tools      = new Talkino_Tools();
-		$talkino_post_type  = new Talkino_Post_Type();
-		$talkino_meta_boxes = new Talkino_Meta_Boxes();
-		$talkino_customizer = new Talkino_Customizer();
-		$talkino_settings   = new Talkino_Settings();
+		$talkino_admin           = new Talkino_Admin( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
+		$talkino_upgrader        = new Talkino_Upgrader();
+		$talkino_remover         = new Talkino_Remover();
+		$talkino_utility_manager = new Talkino_Utility_Manager();
+		$talkino_post_type       = new Talkino_Post_Type();
+		$talkino_meta_boxes      = new Talkino_Meta_Boxes();
+		$talkino_customizer      = new Talkino_Customizer();
+		$talkino_settings        = new Talkino_Settings();
+		$talkino_cron_manager    = new Talkino_Cron_Manager();
 
 		// Enqueue all the scripts and stylesheets.
 		$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $talkino_admin, 'enqueue_scripts' );
 
 		// Register hook to upgrade plugin data.
-		$this->loader->add_action( 'init', $talkino_upgrader, 'upgrade_plugin_data' );
+		$this->loader->add_action( 'plugins_loaded', $talkino_upgrader, 'upgrade_plugin_data' );
 
+		// Register hook to remove reporting data.
+		$this->loader->add_action( 'plugins_loaded', $talkino_remover, 'remove_reporting_data' );
+		
 		// Register hook to create custom post type.
 		$this->loader->add_action( 'init', $talkino_post_type, 'create_custom_post_type' );
 
-		// Register hook to check plugin installation time. (Not ready yet!).
-		// $this->loader->add_action( 'admin_init', $talkino_tools, 'request_plugin_review' );.
+		// Register hook to check plugin installation time. ( Not ready yet! ).
+		// $this->loader->add_action( 'admin_init', $talkino_utility_manager, 'request_plugin_review' );.
 
-		// Register hook to dismiss plugin notice for review. (Not ready yet!).
-		// $this->loader->add_action( 'admin_init', $talkino_tools, 'dismiss_plugin_review_notice', 5 );.
+		// Register hook to dismiss plugin notice for review. ( Not ready yet! ).
+		// $this->loader->add_action( 'admin_init', $talkino_utility_manager, 'dismiss_plugin_review_notice', 5 );.
 
 		// Register hook to create meta boxes.
 		$this->loader->add_action( 'add_meta_boxes_talkino_agents', $talkino_meta_boxes, 'add_meta_boxes' );
@@ -232,6 +246,11 @@ class Talkino {
 		// Register hook to reset plugin data of settings.
 		$this->loader->add_action( 'init', $talkino_settings, 'reset_settings' );
 
+		// Register hook to schedule cron job.
+		$this->loader->add_action( 'init', $talkino_cron_manager, 'init_cron_reporting' );
+		$this->loader->add_filter( 'cron_schedules', $talkino_cron_manager, 'talkino_cron_reporting' );
+		$this->loader->add_action( 'talkino_cron_reporting', $talkino_cron_manager, 'talkino_cron_reporting_action' );
+
 		// Register hook to process channel ordering via ajax actions.
 		$this->loader->add_action( 'wp_ajax_talkino_update_channel_order_list', $talkino_settings, 'talkino_update_channel_order_list' );
 
@@ -251,31 +270,35 @@ class Talkino {
 		$talkino_frontend = new Talkino_Frontend( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
 		$talkino_chatbox  = new Talkino_Chatbox();
 		$talkino_database_handler = new Talkino_Database_Handler();
+		$talkino_agent_manager = new Talkino_Agent_Manager();
 
 		// Enqueue all the scripts and stylesheets.
 		$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $talkino_frontend, 'enqueue_scripts' );
 
 		// Register hook to initialize chatbox if chatbox activation is active.
-		if (get_option( 'talkino_chatbox_activation' ) === 'active' )
-		{
+		if ( get_option( 'talkino_chatbox_activation' ) === 'active' ) {
 			$this->loader->add_filter( 'wp_head', $talkino_chatbox, 'chatbox_init' );
 		}
 
 		// Register bundle hook to initialize contact form.
 		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
 
-			$talkino_contact_form_handler = new Talkino_Contact_Form_Handler();
+			$talkino_bundle_contact_form_handler = new Talkino_Bundle_Contact_Form_Handler();
 
 			// Register hook to process contact form submission via ajax actions.
-			$this->loader->add_action( 'wp_ajax_submit_talkino_contact_form', $talkino_contact_form_handler, 'submit_talkino_contact_form' );
-			$this->loader->add_action( 'wp_ajax_nopriv_submit_talkino_contact_form', $talkino_contact_form_handler, 'submit_talkino_contact_form' );
+			$this->loader->add_action( 'wp_ajax_submit_talkino_contact_form', $talkino_bundle_contact_form_handler, 'submit_talkino_contact_form' );
+			$this->loader->add_action( 'wp_ajax_nopriv_submit_talkino_contact_form', $talkino_bundle_contact_form_handler, 'submit_talkino_contact_form' );
 
 		}
 
 		// Register hook to process data inserting via ajax actions.
-		$this->loader->add_action( 'wp_ajax_insert_chatbox_log_data', $talkino_database_handler, 'insert_chatbox_log_data' );
-		$this->loader->add_action( 'wp_ajax_nopriv_insert_chatbox_log_data', $talkino_database_handler, 'insert_chatbox_log_data' );
+		$this->loader->add_action( 'wp_ajax_talkino_insert_chatbox_log_data', $talkino_database_handler, 'talkino_insert_chatbox_log_data' );
+		$this->loader->add_action( 'wp_ajax_nopriv_talkino_insert_chatbox_log_data', $talkino_database_handler, 'talkino_insert_chatbox_log_data' );
+
+		// Register hook to draw modern chatbox via ajax actions.
+		$this->loader->add_action( 'wp_ajax_talkino_draw_agent_profile', $talkino_agent_manager, 'talkino_draw_agent_profile' );
+		$this->loader->add_action( 'wp_ajax_nopriv_talkino_draw_agent_profile', $talkino_agent_manager, 'talkino_draw_agent_profile' );
 
 	}
 

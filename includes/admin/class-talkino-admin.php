@@ -115,9 +115,12 @@ class Talkino_Admin {
 			// Enqueue jquery for dashicons picker.
 			wp_enqueue_script( 'dashicons-picker', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/dashicons-picker.js', array( 'jquery' ), $this->version, true );
 
+			// Enqueue jquery for talkino report.
+			wp_enqueue_script( 'talkino-report', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/talkino-report.js', array( 'jquery' ), $this->version, true );
+
 			// Pass $php_vars array to javascript as php object for channel ordering.
 			$ajax_url = array( 'ajax_url' => admin_url( 'admin-ajax.php' ) );
-			wp_localize_script( 'talkino-admin', 'ajax_object', $ajax_url );
+			wp_localize_script( 'talkino-admin', 'talkino_admin_ajax_object', $ajax_url );
 
 		}
 

@@ -47,7 +47,7 @@ class Talkino_Deactivator {
 	/**
 	 * Activate the plugin.
 	 *
-	 * Checks if the plugin was (safely) activated.
+	 * Checks if the plugin was ( safely ) activated.
 	 * Place to add any custom action during plugin activation.
 	 *
 	 * @since    1.0.0
@@ -72,8 +72,10 @@ class Talkino_Deactivator {
 		 * Perform deactivation actions here.
 		 */
 
-		// Call the function to unregister custom post type.
-		self::unregister_custom_post_type();
+		// Call the function to unregister plugin data.
+		self::unregister_plugin_data();
+
+		
 
 	}
 
@@ -160,17 +162,20 @@ class Talkino_Deactivator {
 	}
 
 	/**
-	 * Unregister post type when deactivate plugin.
+	 * Unregister plugin data when deactivate plugin.
 	 *
 	 * @since    1.0.0
 	 */
-	private static function unregister_custom_post_type() {
+	private static function unregister_plugin_data() {
 
 		// Unregister the post type, so the rules are no longer in memory.
 		unregister_post_type( 'talkino_agents' );
 
 		// Clear the permalinks to remove post type's rules from the database.
 		flush_rewrite_rules();
+
+		// Clear scheduled reporting hook.
+		wp_clear_scheduled_hook( "talkino_cron_reporting" );
 
 	}
 

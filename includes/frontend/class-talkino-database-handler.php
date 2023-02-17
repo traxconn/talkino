@@ -27,45 +27,56 @@ class Talkino_Database_Handler {
 	 *
 	 * @since    2.0.3
 	 */
-	public function insert_chatbox_log_data() {
+	public function talkino_insert_chatbox_log_data() {
 
-        global $wpdb;
-        $table_name = $wpdb->prefix . 'talkino_chatbox_log';
-
-        // Call utility class to get country name.
-        $talkino_utility = new Talkino_Utility();
-        $country = $talkino_utility->get_country();
+        $talkino_utility_manager = new Talkino_Utility_Manager();
         
-        $wpdb->show_errors();
-
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'talkino_log';
+        
         // Check whether the user has logged in.
         if ( is_user_logged_in() ) {
-            $is_member = 1;
+            $is_member = "Member";
         }
         else {
-            $is_member = 0;
+            $is_member = "Guest";
+        }
+
+        $country = "";
+
+        // Get user ip address and check its location.
+        $ip = $talkino_utility_manager->get_user_ip();
+
+        $response = $talkino_utility_manager->check_location( $ip );        
+        $response = json_decode( $response, 1 );
+
+        if ( is_array( $response ) && ! is_wp_error( $response ) ) {
+            
+            $country =  $response['country_name'];
+            $country = ucwords( strtolower( $country ) );
+
         }
 
         // Get the data from jquery.
+        $agent_id = $_POST['agent_id'];
         $chat_channel = $_POST['chat_channel'];
+        $chat_method = $_POST['chat_method'];
         $agent = $_POST['agent'];         
         $date = date( 'Y-m-d' );   
-        
         
         if( $wpdb->get_var( "SHOW TABLES LIKE '$table_name'" ) == $table_name ) {
 
             $wpdb->insert( $table_name, array(
+                'agent_id' => $agent_id,
+                'agent' => $agent,
                 'chat_channel' => $chat_channel, 
+                'chat_method' => $chat_method, 
                 'is_member' => $is_member, 
-                'agent' => $agent, 
+                'ip' => $ip,  
                 'country' => $country, 
-                'date' => $date
+                'chat_date' => $date
                 )
             ); 
-
-            if( $wpdb->last_error !== '' ) {
-            $wpdb->print_error();
-            }
 
         }	
            

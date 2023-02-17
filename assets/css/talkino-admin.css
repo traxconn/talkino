@@ -14,12 +14,22 @@
     border-radius: 5px;
 }
 
+.talkino-contact-details-section b, .talkino-contact-details-section i, .talkino-contact-details-section label {
+    cursor: text;
+}
+
 .talkino-admin-channel-icon {
     width: 40px;
     padding: 10px 0 0 10px;
 }
 
 .talkino-job-title {
+    font-size: 15px;
+    margin-bottom: 20px;
+    padding: 10px 0 10px 10px;
+}
+
+.talkino-welcome-message {
     font-size: 15px;
     margin-bottom: 20px;
     padding: 10px 0 10px 10px;
@@ -37,7 +47,7 @@
     padding: 0 0 10px 10px;
 }
 
-.talkino-facebook-title {
+.talkino-messenger-title {
     font-size: 14px;
     margin-top: 0;
     padding: 0 0 10px 10px;
@@ -67,6 +77,10 @@
     width: 40%;
 }
 
+.talkino-welcome-message-input {
+    width: 40%;
+}
+
 .talkino-whatsapp-input {
     width: 30%;
 }
@@ -75,7 +89,7 @@
     width: 80%;
 }
 
-.talkino-facebook-input {
+.talkino-messenger-input {
     width: 40%;
 }
 
@@ -87,11 +101,11 @@
     width: 30%;
 }
 
-.show_only_on_mobile_view {
+.show-only-on-mobile-view {
     padding-top: 10px;
 }
   
-#talkino_phone_show_only_on_mobile_status {
+#talkino-phone-show-only-on-mobile-status {
     margin-top: 10px;
 }
 
@@ -99,19 +113,68 @@
     width: 40%;
 }
 
-@media (max-width: 1024px) {
-    .talkino-job-title-input,.talkino-whatsapp-input,.talkino-whatsapp-prefilled-message-input,.talkino-facebook-input,.talkino-telegram-input,.talkino-phone-input,.talkino-email-input {
+.talkino-options-section p, .talkino-options-section label {
+    cursor: text;
+}
+
+@media ( max-width: 1024px ) {
+    .talkino-job-title-input, .talkino-job-title-input, 
+    .talkino-whatsapp-input, .talkino-whatsapp-prefilled-message-input,
+    .talkino-messenger-input, .talkino-telegram-input,
+    .talkino-phone-input, .talkino-email-input {
         width: 90%;
     }
 }
 
 /********** Setting **********/
+#talkino-advanced-customization-settings {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.talkino-customization-chatbox-section, .talkino-hidden-customization-section {
+    display: none;
+}
+
 .talkino-settings-spacing {
     margin-bottom: 30px !important;
 }
 
+.talkino-setting-description {
+    font-style: italic;
+    float: left;
+    padding-right: 5px;
+}
+
+.talkino-tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+.talkino-tooltip .talkino-tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: #444242;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+}
+
+.talkino-tooltip-icon {
+    width: 15px;
+    padding-top: 3px;
+    cursor: pointer;
+}
+  
+.talkino-tooltip:hover .talkino-tooltiptext {
+    visibility: visible;
+}
+
 /********** Ordering Setting **********/
-#talkino_channel_ordering_list, #talkino_agent_ordering_list {
+#talkino-channel-ordering-list, #talkino-agent-ordering-list {
     background-color: #fff;
     width: 200px; 
     border: 1px solid #b2b2b2; 
@@ -123,7 +186,7 @@
     list-style: none;
 }
 
-li.talkino_lineitem {
+li.talkino-lineitem {
     background-color: #375da4;
     color: #fff;
     font-size: 14px;
@@ -138,26 +201,25 @@ li.talkino_lineitem {
     height: 1.5em;
     line-height: 1.5em;
     cursor: move;
-
 }   
 
-#talkino_whatsapp {
+#talkino-whatsapp {
     background: #47c357;
 }
 
-#talkino_facebook {
+#talkino-messenger {
     background: #195199;;
 }
 
-#talkino_telegram {
+#talkino-telegram {
     background: #059ad9;
 }
 
-#talkino_phone {
+#talkino-phone {
     background: #474b5e;
 }
 
-#talkino_email {
+#talkino-email {
     background: #5e5e5e;
 }
 
@@ -167,7 +229,7 @@ li.talkino_lineitem {
     padding: 0 5px 0 5px;
 }
 
-.talkino_sortable_placeholder{ 
+.talkino-sortable-placeholder{ 
     border: 1px dashed #b2b2b2;
     margin-top: 5px;
     margin-bottom: 5px; 
@@ -185,13 +247,8 @@ li.talkino_lineitem {
     color: #0d6efd;
 }
 
-.original-price.talkino {
-    text-decoration: line-through;
-    color: gray;
-}
-
-.card-title.pricing-card-title.talkino {
-    color: red;
+.row.g-4.py-5.row-cols-1.row-cols-lg-3.talkino {
+    padding-bottom: 0 !important;
 }
 
 /********** Review **********/

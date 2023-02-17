@@ -91,6 +91,7 @@ function remove_plugin_data() {
 		delete_option( 'talkino_chatbox_exclude_pages' );
 
 		// Styles options.
+		delete_option( 'talkino_chatbox_layout' );
 		delete_option( 'talkino_chatbox_style' );
 		delete_option( 'talkino_chatbox_position' );
 		delete_option( 'talkino_chatbox_icon' );
@@ -108,6 +109,7 @@ function remove_plugin_data() {
 		delete_option( 'talkino_chatbox_subtitle_color' );
 		delete_option( 'talkino_chatbox_button_color' );
 		delete_option( 'talkino_chatbox_button_text_color' );
+		delete_option( 'talkino_bubble_background_color' );
 		delete_option( 'talkino_contact_form_notice_text_color' );
 		delete_option( 'talkino_google_recaptcha_notice_text_color' );
 		delete_option( 'talkino_google_recaptcha_link_text_color' );
@@ -129,10 +131,16 @@ function remove_plugin_data() {
 		delete_option( 'talkino_show_on_desktop' );
 		delete_option( 'talkino_show_on_mobile' );
 		delete_option( 'talkino_user_visibility' );
+		delete_option( 'talkino_show_offline_agents' );
+		delete_option( 'talkino_activate_country_block' );
+		delete_option( 'talkino_country_restriction' );
 
 		// Integration options.
 		delete_option( 'talkino_typebot_status' );
 		delete_option( 'talkino_typebot_link' );
+		delete_option( 'talkino_ga_status' );
+		delete_option( 'talkino_ga_measurement' );
+		delete_option( 'talkino_ga_api' );
 
 		// Contact Form options.
 		delete_option( 'talkino_contact_form_status' );
@@ -141,6 +149,7 @@ function remove_plugin_data() {
 		delete_option( 'talkino_sender_message' );
 		delete_option( 'talkino_sender_name' );
 		delete_option( 'talkino_sender_email' );
+		delete_option( 'talkino_sender_phone' );
 		delete_option( 'talkino_success_email_message' );
 		delete_option( 'talkino_fail_email_message' );
 		delete_option( 'talkino_recaptcha_status' );
@@ -151,6 +160,8 @@ function remove_plugin_data() {
 		delete_option( 'talkino_reset_settings_status' );
 		delete_option( 'talkino_data_uninstall_status' );
 		delete_option( 'talkino_credit' );
+		delete_option( 'talkino_report_storage_duration' );
+		delete_option( 'talkino_receive_weekly_report' );
 
 		// Admin plugin review notice options.
 		delete_option( 'talkino_activation_time' );
@@ -158,9 +169,10 @@ function remove_plugin_data() {
 
 		// Remove database table.
 		global $wpdb;
-    	$table_name = $wpdb->prefix . 'talkino_chatbox_log'; 
+    	$table_name = $wpdb->prefix . 'talkino_log'; 
     	$sql = "DROP TABLE IF EXISTS $table_name";
-    	$result = $wpdb->query($sql);
+		
+    	$result = $wpdb->query( $sql );
 
 	}
 

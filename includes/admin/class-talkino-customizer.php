@@ -102,7 +102,7 @@ class Talkino_Customizer {
 			2  => esc_html__( 'Agent field updated.', 'talkino' ),
 			3  => esc_html__( 'Agent field deleted.', 'talkino' ),
 			4  => esc_html__( 'Agent updated.', 'talkino' ),
-			5  => isset( $_GET['revision'] ) ? sprintf( esc_html__( 'Agent restored to revision from %s', 'talkino' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+			5  => isset( $_GET['revision'] ) ? sprintf( esc_html__( 'Agent restored to revision from %s', 'talkino' ), wp_post_revision_title( ( int ) $_GET['revision'], false ) ) : false,
 			6  => esc_html__( 'Agent published. Please clear your cache if you are using any caching plugin.', 'talkino' ),
 			7  => esc_html__( 'Agent saved.', 'talkino' ),
 			8  => esc_html__( 'Agent submitted.', 'talkino' ),
@@ -128,7 +128,7 @@ class Talkino_Customizer {
 		$bulk_messages['talkino_agents'] = array(
 			'updated'   => _n( '%s agent updated.', '%s agents updated.', $bulk_counts['updated'], 'talkino' ),
 			'locked'    => _n( '%s agent not updated, somebody is editing it.', '%s agents not updated, somebody is editing them.', $bulk_counts['locked'], 'talkino' ),
-			'deleted'   => _n( '%s agent permanently deleted.', '%s agents permanently deleted.', $bulk_counts['deleted'], 'talkino'),
+			'deleted'   => _n( '%s agent permanently deleted.', '%s agents permanently deleted.', $bulk_counts['deleted'], 'talkino' ),
 			'trashed'   => _n( '%s agent moved to the Trash. Please clear your cache if you are using any caching plugin.', '%s agents moved to the Trash. Please clear your cache if you are using any cache plugin.', $bulk_counts['trashed'], 'talkino' ),
 			'untrashed' => _n( '%s agent restored from the Trash.', '%s agents restored from the Trash.', $bulk_counts['untrashed'], 'talkino' ),
 		);

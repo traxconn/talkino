@@ -48,206 +48,67 @@ class Talkino_Chatbox {
 	public function chatbox_init() {
 
 		// Declare the class to load html to render chatbox.
-		$talkino_file_loader   = new Talkino_File_Loader();
-		$talkino_agent_manager = new Talkino_Agent_Manager();
-		$talkino_utility       = new Talkino_Utility();
+		$talkino_file_loader     = new Talkino_File_Loader();
+		$talkino_agent_manager   = new Talkino_Agent_Manager();
+		$talkino_utility_manager = new Talkino_Utility_Manager();
+        $talkino_ordering_manager = new Talkino_Ordering_Manager();
 
 		$this->is_global_schedule_online = false;
         $this->is_agents_online = true;
+        $is_user_block = false;
+        $show_chatbox = false;
+        $data         = array();
 
 		// Declare the bundle class to load html to render chatbox.
 		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) ) {
 
-			$talkino_scheduler = new Talkino_Scheduler();
+            $talkino_bundle_file_loader   = new Talkino_Bundle_File_Loader();
+			$talkino_bundle_scheduler = new Talkino_Bundle_Scheduler();
+            $talkino_bundle_blocker = new Talkino_Bundle_Blocker();
 
 			// Call the function to check schedule online status via current weekday and time.
-			$this->is_global_schedule_online = $talkino_scheduler->check_global_schedule_online_status();
+			$this->is_global_schedule_online = $talkino_bundle_scheduler->check_global_schedule_online_status();
+
+            // Call the function to check whether to block user.
+            $is_user_block = $talkino_bundle_blocker->is_user_block();
 
 		}
 
-		// Call to query agent data.
-		$talkino_agent_manager->query_agent_data();
+        // Direct layout.
+        if ( get_option( 'talkino_chatbox_layout' ) == 'direct' ){
 
-		// Retrieve the channel output from agents.
-		$whatsapp_output = $talkino_agent_manager->get_whatsapp_output();
-		$facebook_output = $talkino_agent_manager->get_facebook_output();
-		$telegram_output = $talkino_agent_manager->get_telegram_output();
-		$phone_output    = $talkino_agent_manager->get_phone_output();
-		$email_output    = $talkino_agent_manager->get_email_output();
+            // Call to query agent data by direct layout.
+            $talkino_agent_manager->query_agent_direct_data();
 
-		$show_chatbox = false;
-		$data         = array();
+            // Retrieve the channel output from agents.
+            $whatsapp_output = $talkino_agent_manager->get_whatsapp_output();
+            $messenger_output = $talkino_agent_manager->get_messenger_output();
+            $telegram_output = $talkino_agent_manager->get_telegram_output();
+            $phone_output    = $talkino_agent_manager->get_phone_output();
+            $email_output    = $talkino_agent_manager->get_email_output();
 
-        if ( $whatsapp_output === '' && $facebook_output === '' && $telegram_output === '' && $phone_output === '' && $email_output === '' ) {
-            $this->is_agents_online = false;
+            // Check whether there is no agent.
+            if ( $whatsapp_output === '' && $messenger_output === '' && $telegram_output === '' && $phone_output === '' && $email_output === '' ) {
+                $this->is_agents_online = false;
+            }
+
+            // Sort ordering of chat channels.
+            $data = $talkino_ordering_manager->sort_chat_channels_ordering( $whatsapp_output, $messenger_output, $telegram_output, $phone_output, $email_output );
+        
         }
 
-		if ( empty( get_option( 'talkino_channel_ordering' ) ) ) {
+        // Modern layout.
+        else {
 
-			// Assign the data from agents and pass it to html rendering file.
-			$data = array(
-				'first_output'  => $whatsapp_output,
-				'second_output' => $facebook_output,
-				'third_output'  => $telegram_output,
-				'fourth_output' => $phone_output,
-				'fifth_output'  => $email_output,
-			);
+            // Call to query agent data by modern layout.
+            $data = $talkino_agent_manager->query_agent_modern_data();
 
-		} else {
+            // Check whether there is no agent.
+            if ( $data == '' ) {
+                $this->is_agents_online = false;
+            }
 
-			$order = explode( ',', get_option( 'talkino_channel_ordering' ) );
-
-			$first_output  = '';
-			$second_output = '';
-			$third_output  = '';
-			$fourth_output = '';
-			$fifth_output  = '';
-
-			switch ( $order[0] ) {
-
-				case 'talkino_whatsapp':
-					$first_output = $whatsapp_output;
-					break;
-
-				case 'talkino_facebook':
-					$first_output = $facebook_output;
-					break;
-
-				case 'talkino_telegram':
-					$first_output = $telegram_output;
-					break;
-
-				case 'talkino_phone':
-					$first_output = $phone_output;
-					break;
-
-				case 'talkino_email':
-					$first_output = $email_output;
-					break;
-
-				default:
-					$first_output = $whatsapp_output;
-
-			}
-
-			switch ( $order[1] ) {
-
-				case 'talkino_whatsapp':
-					$second_output = $whatsapp_output;
-					break;
-
-				case 'talkino_facebook':
-					$second_output = $facebook_output;
-					break;
-
-				case 'talkino_telegram':
-					$second_output = $telegram_output;
-					break;
-
-				case 'talkino_phone':
-					$second_output = $phone_output;
-					break;
-
-				case 'talkino_email':
-					$second_output = $email_output;
-					break;
-
-				default:
-					$second_output = $facebook_output;
-
-			}
-
-			switch ( $order[2] ) {
-
-				case 'talkino_whatsapp':
-					$third_output = $whatsapp_output;
-					break;
-
-				case 'talkino_facebook':
-					$third_output = $facebook_output;
-					break;
-
-				case 'talkino_telegram':
-					$third_output = $telegram_output;
-					break;
-
-				case 'talkino_phone':
-					$third_output = $phone_output;
-					break;
-
-				case 'talkino_email':
-					$third_output = $email_output;
-					break;
-
-				default:
-					$third_output = $telegram_output;
-
-			}
-
-			switch ( $order[3] ) {
-
-				case 'talkino_whatsapp':
-					$fourth_output = $whatsapp_output;
-					break;
-
-				case 'talkino_facebook':
-					$fourth_output = $facebook_output;
-					break;
-
-				case 'talkino_telegram':
-					$fourth_output = $telegram_output;
-					break;
-
-				case 'talkino_phone':
-					$fourth_output = $phone_output;
-					break;
-
-				case 'talkino_email':
-					$fourth_output = $email_output;
-					break;
-
-				default:
-					$fourth_output = $phone_output;
-
-			}
-
-			switch ( $order[4] ) {
-
-				case 'talkino_whatsapp':
-					$fifth_output = $whatsapp_output;
-					break;
-
-				case 'talkino_facebook':
-					$fifth_output = $facebook_output;
-					break;
-
-				case 'talkino_telegram':
-					$fifth_output = $telegram_output;
-					break;
-
-				case 'talkino_phone':
-					$fifth_output = $phone_output;
-					break;
-
-				case 'talkino_email':
-					$fifth_output = $email_output;
-					break;
-
-				default:
-					$fifth_output = $email_output;
-
-			}
-
-			// Assign the data from agents and pass it to html rendering file.
-			$data = array(
-				'first_output'  => $first_output,
-				'second_output' => $second_output,
-				'third_output'  => $third_output,
-				'fourth_output' => $fourth_output,
-				'fifth_output'  => $fifth_output,
-			);
-
-		}
+        }
 
 		// Check whether is mobile.
 		if ( wp_is_mobile() ) {
@@ -269,12 +130,12 @@ class Talkino_Chatbox {
 			$show_chatbox = false;
 		}
 
-		if ( get_option( 'talkino_show_on_post' ) === 'off' && $talkino_utility->is_blog() ) {
+		if ( get_option( 'talkino_show_on_post' ) === 'off' && $talkino_utility_manager->is_blog() ) {
 			$show_chatbox = false;
 		}
 
 		// Check whether woocommerce is activated and whether is woocommerce page.
-		if ( $talkino_utility->is_woocommerce_activated() && get_option( 'talkino_show_on_woocommerce_pages' ) === 'off' && is_woocommerce() ) {
+		if ( $talkino_utility_manager->is_woocommerce_activated() && get_option( 'talkino_show_on_woocommerce_pages' ) === 'off' && is_woocommerce() ) {
 			$show_chatbox = false;
 		}
 
@@ -293,6 +154,11 @@ class Talkino_Chatbox {
             $show_chatbox = false;
         }
 
+        // Check whether the user's country is blocked.
+        if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_activate_country_block' ) === 'on' && $is_user_block == true ) {
+            $show_chatbox = false;
+        }
+
 		// Ensure that it is show on chatbox.
 		if ( true === $show_chatbox ) {
 			// Has agents, global online status is online and schedule is available.
@@ -307,7 +173,7 @@ class Talkino_Chatbox {
 			} else {
 				// Function to show contact form when offline.
 				if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_contact_form_status' ) === 'on' ) {
-					$talkino_file_loader->load_chatbox_template_file( 'contact-form.php', $data );
+					$talkino_bundle_file_loader->load_chatbox_template_file( 'contact-form.php', $data );
 				
                 } else {
 					$talkino_file_loader->load_chatbox_template_file( 'chatbox-offline.php', $data );
@@ -331,10 +197,10 @@ class Talkino_Chatbox {
 
         // Animation style.
         if ( get_option( 'talkino_chatbox_animation' ) === 'fadein' ) {
-            $wrapper_animation = 'animation: fadein 1s;';
+            $wrapper_animation = 'animation: talkino-fade-in 1.5s;';
         }
         else if ( get_option( 'talkino_chatbox_animation' ) === 'slideup' ) {
-            $wrapper_animation = 'animation: slideUp 1s;';
+            $wrapper_animation = 'animation: talkino-slide-up 1.5s;';
         }
 
         // Typebot style.
@@ -347,11 +213,18 @@ class Talkino_Chatbox {
                 display: none;
             }  
             
-            .talkino-start-chat-button, .talkino-back-button {
-                background-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
-                background: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
-                color: ' . esc_attr( get_option( 'talkino_chatbox_button_text_color' ) ) . ';
-                border-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
+            .talkino-start-chat-button, .talkino-typebot-back-button {
+                background-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
+                background: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
+                color: ' . esc_attr( get_option( 'talkino_chatbox_button_text_color' ) ) . ' !important;
+                border-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
+            }
+
+            .talkino-start-chat-button:hover, .talkino-typebot-back-button:hover {
+                background-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
+                background: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
+                color: ' . esc_attr( get_option( 'talkino_chatbox_button_text_color' ) ) . ' !important;
+                border-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
             }
 
             </style>';
@@ -395,12 +268,62 @@ class Talkino_Chatbox {
             color: ' . esc_attr( get_option( 'talkino_chatbox_subtitle_color' ) ) . ';
         }
 
-        .talkino-chat-information {
+        .talkino-chat-direct-information {
             background-color: ' . esc_attr( get_option( 'talkino_agent_field_background_color' ) ) . ';
         }
 
-        .talkino-chat-information:hover {
+        .talkino-chat-direct-information:hover {
             background-color: ' . esc_attr( get_option( 'talkino_agent_field_hover_background_color' ) ) . ';
+        }
+
+        .talkino-chat-direct-information-offline {
+            background-color: ' . esc_attr( get_option( 'talkino_agent_field_background_color' ) ) . ';
+        }
+
+        .talkino-chat-direct-information-offline:hover {
+            background-color: ' . esc_attr( get_option( 'talkino_agent_field_hover_background_color' ) ) . ';
+        }
+
+        .talkino-chat-modern-information {
+            background-color: ' . esc_attr( get_option( 'talkino_agent_field_background_color' ) ) . ';
+        }
+
+        .talkino-chat-modern-information:hover {
+            background-color: ' . esc_attr( get_option( 'talkino_agent_field_hover_background_color' ) ) . ';
+        }
+
+        .talkino-chat-modern-information-offline {
+            background-color: ' . esc_attr( get_option( 'talkino_agent_field_background_color' ) ) . ';
+        }
+
+        .talkino-chat-modern-information-offline:hover {
+            background-color: ' . esc_attr( get_option( 'talkino_agent_field_hover_background_color' ) ) . ';
+        }
+
+        .talkino-agent-profile-wrapper {
+            background: ' . esc_attr( get_option( 'talkino_chatbox_background_color' ) ) . ';
+        }
+
+        .talkino-talk-bubble {
+            background-color: ' . esc_attr( get_option( 'talkino_bubble_background_color' ) ) . ';
+        }
+
+        .talkino-tri-right.left-top:after {
+            border-color: ' . esc_attr( get_option( 'talkino_bubble_background_color' ) ) . ' transparent transparent transparent;
+        }
+
+        .talkino-back-button {
+            background-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
+            background: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
+            color: ' . esc_attr( get_option( 'talkino_chatbox_button_text_color' ) ) . ' !important;
+            border-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
+        }
+
+        .talkino-back-button:hover {
+            background-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
+            background: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
+            color: ' . esc_attr( get_option( 'talkino_chatbox_button_text_color' ) ) . ' !important;
+            border-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ' !important;
         }
 
         span.talkino-chat-name {
@@ -432,7 +355,7 @@ class Talkino_Chatbox {
             color: ' . esc_attr( get_option( 'talkino_google_recaptcha_link_text_color' ) ) . ';
         }
 
-        #talkino_submit_button {
+        #talkino-contact-form-submit-button {
             background-color: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
             background: ' . esc_attr( get_option( 'talkino_chatbox_button_color' ) ) . ';
             color: ' . esc_attr( get_option( 'talkino_chatbox_button_text_color' ) ) . ';

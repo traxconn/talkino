@@ -20,7 +20,6 @@
 			'admin-comments',
 			'admin-appearance',
 			'admin-plugins',
-			'admin-users',
 			'admin-tools',
 			'admin-settings',
 			'admin-network',
@@ -342,8 +341,8 @@
 					list = popup.find( '.talkino-dashicon-picker-list' );
 
 				for ( var i in icons ) {
-					if ( icons.hasOwnProperty(i) ) {
-						list.append('<li data-icon="' + icons[i] + '"><a href="#" title="' + icons[i] + '"><span class="dashicons dashicons-' + icons[i] + '"></span></a></li>');
+					if ( icons.hasOwnProperty( i ) ) {
+						list.append( '<li data-icon="' + icons[i] + '"><a href="#" title="' + icons[i] + '"><span class="dashicons dashicons-' + icons[i] + '"></span></a></li>' );
 					}
 				}
 
@@ -352,7 +351,7 @@
 					var title = $( this ).attr( 'title' );
 					target.val( 'dashicons-' + title );
 					preview
-						.prop('class', 'dashicons')
+						.prop( 'class', 'dashicons' )
 						.addClass( 'dashicons-' + title );
 					removePopup();
 				} );
@@ -368,9 +367,9 @@
 				$( 'a', control ).on( 'click', function ( e ) {
 					e.preventDefault();
 					if ( $( this ).data( 'direction' ) === 'back' ) {
-						$( 'li:gt(' + ( icons.length - 26 ) + ')', list ).prependTo( list );
+						$( 'li:gt( ' + ( icons.length - 26 ) + ' )', list ).prependTo( list );
 					} else {
-						$( 'li:lt(25)', list ).appendTo( list );
+						$( 'li:lt( 25 )', list ).appendTo( list );
 					}
 				} );
 
@@ -379,7 +378,7 @@
 				$( 'input', control ).on( 'keyup', function ( e ) {
 					var search = $( this ).val();
 					if ( search === '' ) {
-						$( 'li:lt(25)', list ).show();
+						$( 'li:lt( 25 )', list ).show();
 					} else {
 						$( 'li', list ).each( function () {
 							if ( $( this ).data( 'icon' ).toLowerCase().indexOf( search.toLowerCase() ) !== -1 ) {
@@ -403,7 +402,7 @@
 				$( document ).off( '.dashicons-picker' );
 
 				// Preview icon.
-				var icon_class = document.getElementById( "talkino_dashicons_picker" ).value;
+				var icon_class = document.getElementById( "talkino-dashicons-picker" ).value;
                 $( '#talkino-icon-preview' ).replaceWith( '<i id="talkino-icon-preview" class="dashicons '+icon_class+' talkino"></i></div>' );
 
 			}

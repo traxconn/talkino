@@ -34,7 +34,7 @@
 }
 
 .talkino-chat-btn {
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 10px rgba( 0, 0, 0, 0.2 );
     border: none;
     position: fixed;
     cursor: pointer;
@@ -81,7 +81,7 @@ label.talkino-chat-btn {
     position: fixed;
     display: none;
     transition: all 0.4s;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 10px rgba( 0, 0, 0, 0.2 );
 }
 
 .talkino-chat-title {
@@ -135,9 +135,9 @@ label.talkino-chat-btn {
 }
 
 .talkino-channel-icon {
-    width: 35px !important;
-    top: 29px;
-    left: 28px;
+    width: 30px !important;
+    top: 35px;
+    left: 35px;
     position: absolute;
 }  
 
@@ -148,7 +148,8 @@ label.talkino-chat-btn {
     margin-bottom: 25px;
 }
 
-a.talkino-chat-information {
+a.talkino-chat-direct-information, a.talkino-chat-direct-information-offline, 
+a.talkino-chat-modern-information, a.talkino-chat-modern-information-offline {
     text-decoration: none !important;
     border-style: solid;
     border-color: darkgray;
@@ -158,6 +159,11 @@ a.talkino-chat-information {
     margin: 10px 10px !important;
     display: block;
     overflow: hidden;
+    cursor: pointer;
+}
+
+a.talkino-chat-direct-information-offline, a.talkino-chat-modern-information-offline {
+    cursor: pointer;
 }
 
 .talkino-chat-info span {
@@ -184,132 +190,145 @@ span.talkino-chat-channel {
 
 .talkino-footer-wrapper {
     text-align: center;
-    padding-top: 5px !important;
-    padding-bottom: 10px !important;
     font-size: 14px;
     font-style: italic;
+    padding-top: 5px !important;
+    padding-bottom: 10px !important;
 }
 
-.talkino-credit-link,.talkino-credit-link:hover {
+.talkino-credit-link, .talkino-credit-link:hover {
     text-decoration: none;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and ( max-width: 600px ) {
     .talkino-chat-wrapper {
         width: 100%;
         right: 0 !important;
+        left: 0 !important;
     }   
 }
 
-/********** Contact Form **********/
-#talkino_contact_form {
-    padding: 0 10px 3px 10px;
+/********** Modern layout **********/
+.talkino-agent-profile-wrapper {
     margin-bottom: 10px;
-}
-
-.form-control.talkino {
-    font-size: 15px;
-    padding: 12px;
-    border: solid;
-    border-color: darkgray;
-    border-width: thin;
-    border-radius: 4px;
-}
-
-#talkino_contact_form_name {
-    width: 100%;
-    height: 48px;
-    margin: 5px 0px 5px 0;
-    box-sizing: border-box;
-}
-
-#talkino_contact_form_email {
-    width: 100%;
-    height: 48px;
-    margin: 5px 0px 5px 0;
-    box-sizing: border-box;
-}
-
-#talkino_contact_form_message {
-    width: 100%;
-    height: 93px;
-    min-height: 93px;
-    margin: 5px 0px 5px 0;
-    resize: none;
-    box-sizing: border-box;
-}
-
-.spinner-border.talkino {
+    max-height: 298px;
+    overflow-y: auto;
     display: none;
 }
 
-#talkino-contact-form-notice {
-    font-size: 13px;
-    font-style: italic;
-    margin: 0;
-    height: 30px;
+.talkino-agent-bubble-chat-wrapper {
+    display: inline-flex;
 }
 
-.talkino-submit-button {
+.talkino-back-button {
     font-size: 15px;
     font-weight: bold;
     text-align: center;
     text-transform: capitalize;
-    line-height: 22px !important;
-    width: 100% !important;
+    line-height: 22px !important; 
+    width: 90%;
+    height: 50px;
     padding: 13px 0 13px 0 !important;
-    margin-bottom: 0;
-    border: none;
-    border-radius: 5px !important;  
-}
-
-.grecaptcha-badge {
-    visibility: hidden;
-}
-
-.talkino-google-recaptcha-notice {
-    font-size: 17px;
-    line-height: 20px;
+    margin-left: 5% !important;
+    margin-right: 5% !important;
     margin-bottom: 10px !important;
-}
-
-.talkino-chat-channel-type {
+    border: none !important;
+    border-radius: 5px !important;  
+    cursor: pointer !important;
     display: none !important;
 }
 
-/********** Typebot **********/
-.talkino-start-chat-button, .talkino-back-button {
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    text-transform: capitalize;
-    line-height: 22px !important;
-    width: 90% !important;
-    padding: 13px 0 13px 0 !important;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px !important;  
-    cursor: pointer;
+.talkino-talk-bubble {
+	margin: 15px 30px !important;
+    width: 235px;
+    height: auto;
+    position: relative;
+    display: inline-block;
+}
+
+.talkino-talk-bubble.talkino-tri-right.left-top {
+    animation: talkino-slide-up 1.5s;
+}
+
+/* Right triangle placed top left flush. */
+.talkino-tri-right.border.left-top:before {
+	content: ' ';
+	border: 32px solid;
+	width: 0;
+	height: 0;
+    left: -40px;
+	right: auto;
+    top: -8px;
+	bottom: auto;
+    position: absolute;
+}
+
+.talkino-tri-right.left-top:after {
+	content: ' ';
+    border: 22px solid;
+	border-color: #f4f4f4 transparent transparent transparent;
+	width: 0;
+	height: 0;
+    left: -20px;
+	right: auto;
+    top: 0px;
+	bottom: auto;
+	position: absolute;
+}
+
+.talkino-talktext {
+    color: #808080;
+    font-size: 16px;
+    text-align: left;
+    line-height: 1.5em;
+    padding: 20px 20px !important;
+}
+
+.talkino-talktext p {
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+}
+
+.talkino-agent-profile-avatar img {
+    width: 40px;
+    border-radius: 100%;
+    border-style: solid;
+    border-width: thin;
+    border-color: white;
+    float: left;
+    margin: 0 0 0 10px !important;
+}
+
+.talkino-agent-profile-channel-icon {
+    width: 34px;
+    display: inline;
+}  
+
+.talkino-hidden-agent-id, .talkino-hidden-full-name, .talkino-hidden-chat-channel-type {
+    display: none !important;
+}
+
+/********** Reporting **********/
+.talkino-hidden-chat-channel-type {
+    display: none !important;
 }
 
 /********** Animation **********/
-@keyframes fadein {
+@keyframes talkino-fade-in {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
 
-@keyframes slideUp {
+@keyframes talkino-slide-up {
     0%,
     20% {
-      transform: translateY(100%);
+      transform: translateY( 100% );
       opacity: 0;
     }
      
     40%,
     100% {
-      transform: translateY(0);
+      transform: translateY( 0 );
       opacity: 1;
     
     }

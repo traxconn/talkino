@@ -48,13 +48,19 @@ if ( is_plugin_active( 'wpml-string-translation/plugin.php' ) ) {
 	<div class="talkino-agent-wrapper">
 		<div class="talkino-information-wrapper">
 			<?php
-			
-			echo wp_kses_post( $data['first_output'] );
-			echo wp_kses_post( $data['second_output'] );
-			echo wp_kses_post( $data['third_output'] );
-			echo wp_kses_post( $data['fourth_output'] );
-			echo wp_kses_post( $data['fifth_output'] );
 
+			if ( get_option( 'talkino_chatbox_layout' ) == 'direct' ) {
+
+				echo wp_kses_post( $data['first_output'] );
+				echo wp_kses_post( $data['second_output'] );
+				echo wp_kses_post( $data['third_output'] );
+				echo wp_kses_post( $data['fourth_output'] );
+				echo wp_kses_post( $data['fifth_output'] );
+			}
+			else {
+				echo wp_kses_post( $data );
+			}
+			
 			?>
 
 		</div>
@@ -62,19 +68,28 @@ if ( is_plugin_active( 'wpml-string-translation/plugin.php' ) ) {
 		// Add back button to agent wrapper when talkino bundle is installed, typebot is activated and typebot link is not empty
 		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_typebot_status' ) === 'on' && ! empty( get_option( 'talkino_typebot_link' ) ) ) {
 			?>
-			<button type="button" id="talkino_back_button" class="talkino-back-button" name="talkino_back_button"/><?php esc_html_e( 'Back', 'talkino' ); ?></button>
+			<button type="button" id="talkino-typebot-back-button" class="talkino-typebot-back-button" name="talkino_typebot_back_button"/><?php esc_html_e( 'Back', 'talkino' ); ?></button>
 		<?php
 		}
 		?>
 	</div>
 
 	<?php
+
+	// Agent profile wrapper for modern layout.
+	if ( get_option( 'talkino_chatbox_layout' ) === 'modern' ) {
+		?>
+			<div id="talkino-agent-profile-wrapper" class="talkino-agent-profile-wrapper"></div>
+			<button type="button" id="talkino-back-button" class="talkino-back-button" name="talkino_back_button"/><?php esc_html_e( 'Back', 'talkino' ); ?></button>
+		<?php
+	}
+
 	// Add typebot wrapper when talkino bundle is installed, typebot is activated and typebot link is not empty
 	if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_typebot_status' ) === 'on' && ! empty( get_option( 'talkino_typebot_link' ) ) ) {
 	?>
 		<div class="talkino-typebot-wrapper">
-			<iframe src="<?php echo wp_kses_post( get_option( 'talkino_typebot_link' ) );?>" width="100%" height="350px" style="border: none"></iframe>
-			<button type="button" id="talkino_start_chat_button" class="talkino-start-chat-button" name="talkino_start_chat_button"/><?php esc_html_e( 'Start Chat', 'talkino' ); ?></button>
+			<iframe class="talkino-typebot-iframe" src="https://viewer.typebot.io/<?php echo wp_kses_post( get_option( 'talkino_typebot_link' ) );?>" width="100%" height="350px" style="border: none"></iframe>
+			<button type="button" id="talkino-start-chat-button" class="talkino-start-chat-button" name="talkino_start_chat_button"/><?php esc_html_e( 'Start Chat', 'talkino' ); ?></button>
 		</div>
 	<?php
 	}
