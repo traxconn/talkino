@@ -54,7 +54,7 @@ if ( is_plugin_active( 'wpml-string-translation/plugin.php' ) ) {
 		// Add back button to agent wrapper when talkino bundle is installed, typebot is activated and typebot link is not empty
 		if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_typebot_status' ) === 'on' && ! empty( get_option( 'talkino_typebot_link' ) ) ) {
 			?>
-			<button type="button" id="talkino_back_button" class="talkino-back-button" name="talkino_back_button"/><?php esc_html_e( 'Back', 'talkino' ); ?></button>
+			<button type="button" id="talkino-typebot-back-button" class="talkino-typebot-back-button" name="talkino_typebot_back_button"/><?php esc_html_e( 'Back', 'talkino' ); ?></button>
 		<?php
 		}
 		?>
@@ -65,8 +65,8 @@ if ( is_plugin_active( 'wpml-string-translation/plugin.php' ) ) {
 	if ( is_plugin_active( 'talkino-bundle/talkino-bundle.php' ) && get_option( 'talkino_typebot_status' ) === 'on' && ! empty( get_option( 'talkino_typebot_link' ) ) ) {
 	?>
 		<div class="talkino-typebot-wrapper">
-			<iframe src="<?php echo wp_kses_post( get_option( 'talkino_typebot_link' ) );?>" width="100%" height="350px" style="border: none"></iframe>
-			<button type="button" id="talkino_start_chat_button" class="talkino-start-chat-button" name="talkino_start_chat_button"/><?php esc_html_e( 'Start Chat', 'talkino' ); ?></button>
+			<iframe class="talkino-typebot-iframe" src="https://viewer.typebot.io/<?php echo wp_kses_post( get_option( 'talkino_typebot_link' ) );?>" width="100%" height="350px" style="border: none"></iframe>
+			<button type="button" id="talkino-start-chat-button" class="talkino-start-chat-button" name="talkino_start_chat_button"/><?php esc_html_e( 'Start Chat', 'talkino' ); ?></button>
 		</div>
 	<?php
 	}

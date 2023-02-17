@@ -101,7 +101,7 @@ class Talkino_Loader {
 	 * @param    string $tag                 The filter hook to which the function to be removed is hooked.
 	 * @param    string $class_name          Class name registering the filter callback.
 	 * @param    string $method_to_remove    Method name for the filter's callback.
-	 * @param    int    $priority            The priority of the method (default 10).
+	 * @param    int    $priority            The priority of the method ( default 10 ).
 	 *
 	 * @return   bool    Whether the function is removed.
 	 */
@@ -133,7 +133,7 @@ class Talkino_Loader {
 	 * @param    string $tag                 The filter hook to which the function to be removed is hooked.
 	 * @param    string $class_name          Class name registering the filter callback.
 	 * @param    string $method_to_remove    Method name for the filter's callback.
-	 * @param    int    $priority            The priority of the method (default 10).
+	 * @param    int    $priority            The priority of the method ( default 10 ).
 	 *
 	 * @return   bool    Whether the function is removed.
 	 */
@@ -161,7 +161,7 @@ class Talkino_Loader {
 	 *
 	 * @since     1.0.0
 	 * @access    private
-	 * @param     array  $hooks            The collection of hooks that is being registered (that is, actions or filters).
+	 * @param     array  $hooks            The collection of hooks that is being registered ( that is, actions or filters ).
 	 * @param     string $hook             The name of the WordPress filter that is being registered.
 	 * @param     object $component        A reference to the instance of the object on which the filter is defined.
 	 * @param     string $callback         The name of the function definition on the $component.

@@ -47,7 +47,7 @@ class Talkino_Activator {
 	/**
 	 * Activate the plugin.
 	 *
-	 * Checks if the plugin was (safely) activated.
+	 * Checks if the plugin was ( safely ) activated.
 	 * Place to add any custom action during plugin activation.
 	 *
 	 * @since    1.0.0
@@ -175,7 +175,7 @@ class Talkino_Activator {
 		// Global options.
 		// Add talkino version if it does not exist.
 		if ( get_option( 'talkino_version' ) === false ) {
-			add_option( 'talkino_version', '1.2' );
+			add_option( 'talkino_version', '2.0' );
 		}
 
 		// Settings options.
@@ -246,6 +246,11 @@ class Talkino_Activator {
 		}
 
 		// Styles options.
+		// Add chatbox layout data if it does not exist.
+		if ( get_option( 'talkino_chatbox_layout' ) === false ) {
+			add_option( 'talkino_chatbox_layout', 'modern' );
+		}
+
 		// Add chatbox style data if it does not exist.
 		if ( get_option( 'talkino_chatbox_style' ) === false ) {
 			add_option( 'talkino_chatbox_style', 'round' );
@@ -308,7 +313,7 @@ class Talkino_Activator {
 
 		// Add chatbox background color if it does not exist.
 		if ( get_option( 'talkino_chatbox_background_color' ) === false ) {
-			add_option( 'talkino_chatbox_background_color', '#f0f0f1' );
+			add_option( 'talkino_chatbox_background_color', '#fff' );
 		}
 
 		// Add chatbox title color if it does not exist.
@@ -329,6 +334,11 @@ class Talkino_Activator {
 		// Add chatbox button text color if it does not exist.
 		if ( get_option( 'talkino_chatbox_button_text_color' ) === false ) {
 			add_option( 'talkino_chatbox_button_text_color', '#fff' );
+		}
+
+		// Add bubble background color if it does not exist.
+		if ( get_option( 'talkino_bubble_background_color' ) === false ) {
+			add_option( 'talkino_bubble_background_color', '#f4f4f4' );
 		}
 
 		// Add contact form notice text color if it does not exist.
@@ -379,7 +389,7 @@ class Talkino_Activator {
 		// Ordering options.
 		// Add agent ordering if it does not exist.
 		if ( get_option( 'talkino_channel_ordering' ) === false ) {
-			add_option( 'talkino_channel_ordering', 'talkino_whatsapp,talkino_facebook,talkino_telegram,talkino_phone,talkino_email' );
+			add_option( 'talkino_channel_ordering', 'talkino-whatsapp,talkino-messenger,talkino-telegram,talkino-phone,talkino-email' );
 		}
 
 		// Display options.
@@ -418,6 +428,25 @@ class Talkino_Activator {
 			add_option( 'talkino_user_visibility', 'all' );
 		}
 
+		// Add show offline agents data if it does not exist.
+		if ( get_option( 'talkino_show_offline_agents' ) === false ) {
+			add_option( 'talkino_show_offline_agents', 'hide' );
+		}
+
+		// Add activate country block if it does not exist.
+		if ( get_option( 'talkino_activate_country_block' ) === false ) {
+			add_option( 'talkino_activate_country_block', 'off' );
+		}
+
+		// Add country restriction data if they do not exist.
+		if ( get_option( 'talkino_country_restriction' ) === false ) {
+
+			$country_restriction_data = array();
+
+			add_option( 'talkino_country_restriction', $country_restriction_data );
+
+		}
+
 		// Integration options.
 		// Add typebot status if it does not exist.
 		if ( get_option( 'talkino_typebot_status' ) === false ) {
@@ -427,6 +456,21 @@ class Talkino_Activator {
 		// Add typebot link if it does not exist.
 		if ( get_option( 'talkino_typebot_link' ) === false ) {
 			add_option( 'talkino_typebot_link', '' );
+		}
+
+		// Add Google Analytics status if it does not exist.
+		if ( get_option( 'talkino_ga_status' ) === false ) {
+			add_option( 'talkino_ga_status', 'off' );
+		}
+
+		// Add Google Analytics measurement id if it does not exist.
+		if ( get_option( 'talkino_ga_measurement' ) === false ) {
+			add_option( 'talkino_ga_measurement', '' );
+		}
+
+		// Add Google Analytics api secret if it does not exist.
+		if ( get_option( 'talkino_ga_api' ) === false ) {
+			add_option( 'talkino_ga_api', '' );
 		}
 
 		// Contact Form options.
@@ -458,6 +502,11 @@ class Talkino_Activator {
 		// Add sender email if it does not exist.
 		if ( get_option( 'talkino_sender_email' ) === false ) {
 			add_option( 'talkino_sender_email', 'Sender\'s Email: %%sender_email%%' );
+		}
+
+		// Add sender phone number if it does not exist.
+		if ( get_option( 'talkino_sender_phone' ) === false ) {
+			add_option( 'talkino_sender_phone', 'Sender\'s Phone: %%sender_phone%%' );
 		}
 
 		// Add successful email sent message if it does not exist.
@@ -501,6 +550,16 @@ class Talkino_Activator {
 			add_option( 'talkino_credit', 'on' );
 		}
 
+		// Add report storage duration if it does not exist.
+		if ( get_option( 'talkino_report_storage_duration' ) === false ) {
+			add_option( 'talkino_report_storage_duration', '24-months' );
+		}
+
+		// Add receive weekly report if it does not exist.
+		if ( get_option( 'talkino_receive_weekly_report' ) === false ) {
+			add_option( 'talkino_receive_weekly_report', 'active' );
+		}
+
 	}
 
 	/**
@@ -522,22 +581,28 @@ class Talkino_Activator {
 	 */
 	private static function create_db_table() {
 
+		// Add new database table.
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'talkino_chatbox_log';
+		$table_name = $wpdb->prefix . 'talkino_log';
+		
 		$charset_collate = $wpdb->get_charset_collate();
 
-		$sql = "CREATE TABLE IF NOT EXISTS $table_name (
-			`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-			`chat_channel` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-			`is_member` TINYINT(2) NOT NULL DEFAULT '0',
-			`agent` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-			`country` VARCHAR(100) NOT NULL,
-			`date` DATE NOT NULL,
-			PRIMARY KEY (`id`)
-		);";
+		$sql = "CREATE TABLE {$table_name} (
+			id bigint(20) NOT NULL auto_increment,
+			agent_id bigint(20) NOT NULL,
+			agent varchar(255) NOT NULL,
+			chat_channel varchar(100) NOT NULL,
+			chat_method varchar(100) NOT NULL,
+			is_member varchar(100) NOT NULL,
+			ip varchar(255) NOT NULL,
+			country varchar(255) NOT NULL,
+			chat_date date NOT NULL,
+			PRIMARY KEY  id (id)
+		) {$charset_collate};";
 
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-		dbDelta( $sql );	
+		dbDelta( $sql );
+
 	}
 
 }

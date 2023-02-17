@@ -1,91 +1,114 @@
-=== Talkino - Click to Chat for WhatsApp, Facebook Messenger and Telegram ===
+=== Talkino ===
 Author URI: https://traxconn.com/
 Plugin URI: https://traxconn.com/plugins/talkino/
 Contributors: traxconn, yipchunmun, leesuijen
 Donate link: https://traxconn.com/
-Tags: click to chat, whatsapp, whatsapp business, facebook messenger, telegram
+Tags: click to chat, whatsapp, whatsapp business, messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.1.1
-Stable tag: 2.0.4
-Requires PHP: 7.3
+Stable tag: 2.0.5
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Let your customers contact you through WhatsApp, Facebook Messenger, Telegram, phone and email.
+Let your customers contact you through WhatsApp, Messenger, Telegram, phone and email.
 
 == Description ==
 
-It's time to let your customers reach you via different chat channels such as [WhatsApp](https://www.whatsapp.com/), [Facebook Messenger](https://www.messenger.com/) and [Telegram](https://web.telegram.org/k/) on WordPress site or WooCommerce online store by using Talkino! 
+Take your customer engagement to the next level with Talkino, the ultimate click-to-chat plugin for WordPress sites and WooCommerce online stores. With Talkino, your customers can reach you on their favorite chat channels, including WhatsApp, Messenger, and Telegram, all from one convenient location.
 
-Talkino is the best click to chat plugin to show your agents’ WhatsApp, Facebook Messenger, Telegram, phone and email on the chatbox of your site. 
+Talkino offers the best solution for showcasing your agents' WhatsApp, Messenger, Telegram, phone, and email on your website. The best part? There's no limit to the number of agents you can add!
 
-With a single click, customers can connect with you in their preferred way. It's indeed an effective way for you to increase engagement between you and your customers.
+With a simple click, your customers can connect with you on the channel they prefer, leading to increased engagement and conversion rates. Say goodbye to missed connections and hello to happier customers with Talkino.
 
-Here are some of the supported features:
+Unlock a world of possibilities with Talkino's powerful feature set as below:
 
 - **Multi chat**
-Integrate multiple social messengers and contact methods such as [WhatsApp](https://www.whatsapp.com/), [Facebook Messenger](https://www.messenger.com/), [Telegram](https://web.telegram.org/k/), phone and email into your WordPress & WooCommerce site.
+With multi-chat support for popular social messengers like [WhatsApp](https://www.whatsapp.com/), [Messenger](https://www.messenger.com/), and [Telegram](https://web.telegram.org/k/), as well as phone and email integration, you can provide your customers with a truly streamlined experience. Say goodbye to juggling multiple channels, and hello to a more efficient way of communicating with your customers. 
 
-- **Unlimited agents' accounts**
-Support unlimited agents with multiple social messengers and contacts.
+- **Unlimited agents**
+Unique feature of unlimited agents supports multiple social messengers and other chat channels. This powerful tool allows you to add as many agents as you want, enabling seamless communication and efficient customer support.
+
+- **Stylish layouts** 
+We offer our customers the freedom to customize the display of Talkino to match their site's look and feel. You can choose between the "Direct" and "Modern" layouts to create a seamless workflow that enhances your customers' chat experience.
 
 - **Ordering list** 
-Drag and drop to arrange the ordering of chat channels and agents.
+You can easily drag and drop to arrange the chat channels and agents. This feature allows you to prioritize and manage the display of chat channels and agents according to your business needs.
 
-- **Display or hide chatbox on any pages** 
-Manage the pages, post, search and WooCommerce pages to display or hide chatbox.
+- **Visibility** 
+Have full control over where Talkino is displayed on your website. Choose which pages, posts, search, and WooCommerce pages to show or hide it, and control its visibility for mobile and desktop users.
 
 - **Online modes**
-Changing your online status is all about setting the right expectation for your customers. Talkino provides 3 default modes which include Online, Away, and Offline modes for the chatbox.
+Talkino offers three default modes - Online, Away, and Offline. Set your agents to Online mode when they are available to chat, to Away mode when they are temporarily unavailable, and to Offline mode when they are fully unavailable.
 
 - **Editable text**
-Enable you to edit the text of Talkino's chatbox in different modes. These include online, away and offline modes.
+Customize your text label with Talkino. Edit the text which includes for Online, Away, and Offline modes to match your brand's tone and voice.
 
-- **Chatbox animation**
-Change the animation of the chatbox whether fade in or slide up animation.
+- **Engaging Animation**
+Catch the eye of your website visitors with engaging animations. Choose between a fade-in or slide-up animation to add visual interest and impact.
 
 - **Color templates**
-Color templates for the chatbox are ready for you to choose.
+Elevate your customer's chat experience with ready-to-use color templates. Choose a color theme that aligns with your brand or website design.
 
 - **Fully customizable style**
-Customize the theme color, chatbox icon, button icon, styles, text color, background and position of chatbox to meet your favorite style or theme design.
+Make Talkino fit seamlessly into your website's style and branding with customizable theme color, icon, button icon, styles, text color, background, position and many more.
+
+- **Weekly visitor report**
+Stay on top of your customer engagement with a weekly report on how visitors are reaching you. Use the insights to enhance their experience and drive sales.
 
 - **WooCommerce compatible**
-Talkino is fully compatible with WooCommerce store.
+Boost your sales and support by seamlessly integrating Talkino into your WooCommerce store.
 
-- **Translation ready**
-Talkino is open to translating into any language by using a plugin.
+- **Translation support**
+Expand your reach to a global audience by translating Talkino into any language with the help of a plugin.
 
-- **Mobile responsive**
-Mobile responsive for the chatbox.
+- **Mobile-friendly**
+Ensure your customers can connect with you from any device with Talkino's fully responsive design for mobile and tablet view.
 
-**Compatible Plugins**
+**COMPATIBLE PLUGINS**
 
-Talkino supports most plugins which includes [WooCommerce](https://wordpress.org/plugins/woocommerce/), [WPML](https://wpml.org/) and more.
+Talkino is compatible with a range of popular plugins, including [WooCommerce](https://wordpress.org/plugins/woocommerce/), [WPML](https://wpml.org/) and many more.
 
-**Talkino Bundle**
+**PREMIUM IS AVAILABLE**
 
-Let's check out our [Talkino Bundle](https://traxconn.com/plugins/talkino/) for more advanced features as below!
+Upgrade to Talkino Premium for an exceptional customer experience. Get access to a range of powerful features that will take your customer support to the next level, including:
 
-- **All features of Talkino.**
-- **Online time schedule** - Online time schedule of chatbox and able to cater for different agents and global business opening hours.
-- **Contact form** - Support contact form to let users email to admin when chatbox is under offline mode.
-- **Google reCaptcha v3** - Support Google reCaptcha v3 for the contact form to protect the form from spam.
+- **Automated Reply**
+Save time and money by integrating with [Typebot](https://typebot.io/) virtual assistant, which can answer frequently asked questions 24/7, making your customers happier and more satisfied.
+
+- **Shortcode Widget**
+Easily display the agent's widget with their chat channels inside any post or WooCommerce page using a shortcode. Use our shortcode generator or manually create the shortcode with its attributes to seamlessly integrate Talkino widgets into your website.
+
+- **Reporting**
+Gain valuable insights into customer communication and behavior with our reporting feature. Analyze how customers are reaching your agents and which chat channels they are using the most to enhance your overall customer experience.
+
+- **Country Block**
+Effortlessly restrict users in certain countries from reaching you with the fantastic blocking feature, especially useful in countries where your service is not provided.
+
+- **Online schedule**
+Customize online schedules for different agents and cater to global business opening hours. Configure each agent's online schedule time to display different agents on your site at different times.
+
+- **Contact form**
+Talkino's built-in contact form allows you to stay connected with your customers even when you're offline. It's a great way to continue supporting your customers and to receive messages from them while you're unavailable. The contact form supports integration with Google reCaptcha v3, which helps protect it from spam. With this feature, you can ensure that all messages you receive are from genuine customers and not spam bots. 
+
+- **Premium Support**
+Get premium support from our team through a support ticket system. We're ready to resolve any issues or bugs you encounter to ensure you have the best experience possible.
+
 - **And many more!**
+
+>Let's check out our [Talkino Premium](https://traxconn.com/plugins/talkino/) to take advantage of these powerful features to deliver an exceptional customer experience!
 
 [Demo](https://talkino.traxconn.com/)  |  [Documentation](https://traxconn.com/plugins/talkino/docs/)  |  [Support](https://traxconn.com/contact/)
 
-**Contribute to Talkino**
+**CONTRIBUTION**
 
 We welcome you to contribute to Talkino by participating in the development of Talkino in the GitHub repository. If you have a suggestion, problem, pull request, or bug to report, please share it [here](https://github.com/traxconn/talkino).
 
-**Support Us**
+**SUPPORT US**
 
 If you enjoy using Talkino, we would appreciate it if you could leave us a review. Your reviews help encourage us to keep developing new features for the plugin. If you encounter any problems or bugs while using Talkino, please report them [here](https://github.com/traxconn/talkino/issues?state=open) or [contact us](https://traxconn.com/contact/) directly so we can help resolve the issue.
 
 == Installation ==
-
-**Minimum Requirements**
 
 * PHP version 7.3 or greater (PHP 7.3 or greater is recommended)
 * MySQL version 5.0 or greater (MySQL 5.6 or greater is recommended)
@@ -105,7 +128,7 @@ The manual installation method involves downloading our plugin and uploading it 
 
 = What social messengers does Talkino support? =
 
-Talkino is a plugin that allows you to integrate multi social messengers and contact methods into your WordPress and WooCommerce site. Currently, Talkino supports WhatsApp, Facebook Messenger, Telegram, phone and email to be displayed on chatbox to allow your customers to contact you.
+Talkino is a plugin that allows you to integrate multi social messengers and contact methods into your WordPress and WooCommerce site. Currently, Talkino supports WhatsApp, Facebook Messenger, Telegram, phone and email to be displayed on Talkino to allow your customers to contact you.
 
 = Where can I find the complete documentation?  =
 
@@ -113,13 +136,13 @@ We have prepared the full documentation which includes the basic and bundle vers
 
 = What is an agent and how can I add an agent's information?  =
 
-The agent in Talkino is an account of a support representative and all these agents will be displayed on Talkino's chatbox. Talkino supports agents to add their social messengers, email, or phone number for end users to contact them. 
+The agent in Talkino is an account of a support representative and all these agents will be displayed on Talkino. Talkino supports agents to add their social messengers, email, or phone number for end users to contact them. 
 Kindly please follow the following steps to add an agent's information:
 
 1. Go To WordPress Admin > Talkino > Add New.
-2. Set the agent’s details and social messenger and these will be displayed on Talkino's chatbox.
+2. Set the agent’s details and social messenger and these will be displayed on Talkino.
 
-= What are the formats of social messengers' contact numbers such as WhatsApp, Facebook messenger and Telegram? =
+= What are the formats of social messengers' contact numbers such as WhatsApp, Messenger and Telegram? =
 
 The followings are the formats:
 
@@ -129,11 +152,15 @@ The followings are the formats:
 
 = What is the online status of Talkino? =
 
-There are 3 statuses of your chatbox which are online, away and offline. You can change the global online status in Talkino -> Settings to show your current status of the chatbox.
+There are 3 statuses of Talkino which are online, away and offline. You can change the global online status in Talkino -> Settings to show your current status of Talkino.
 
-= Can I change the style of Talkino's chatbox? =
+= What are the differences between "Direct" and "Modern" layout? =
 
-In Talkino -> Settings under Styles tab, you are able to customize the chatbox style to meet your favorite design. It includes the round or rectangle style of chatbox, left or right position display, whether to show on desktop or mobile, the method to start chat, the color of theme, background color, different online status, and text display. For more details, please visit [here](https://traxconn.com/plugins/talkino/docs/styles/).
+"Direct" layout displays agents with all their chat channels and "Modern" layout displays agents first before displaying the respective agent's chat channels. 
+
+= Can I change the style of Talkino? =
+
+In Talkino -> Settings under Styles tab, you are able to customize the Talkino's style to meet your favorite design. It includes the round or rectangle style of Talkino, left or right position display, whether to show on desktop or mobile, the method to start chat, the color of theme, background color, different online status, and text display. For more details, please visit [here](https://traxconn.com/plugins/talkino/docs/styles/).
 
 = Is Talkino compatible with WooCommerce? =
 
@@ -141,7 +168,7 @@ Yes, Talkino is fully compatible with WooCommerce and other plugins or themes. K
 
 = Why is the phone number as one of the contact methods does not display on the desktop? =
 
-Since the phone number can only be called on mobile, therefore our team has hidden the phone number on the Talkino chatbox on mobile.
+Since the phone number can only be called on mobile, therefore our team has hidden the phone number on the Talkino on mobile.
 
 = Can I translate Talkino to another language? =
 
@@ -166,27 +193,49 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 
 == Screenshots ==
 
-1. Chatbox of Talkino
-2. List of Support Agents
-3. Agent's Contact Details
-4. Agent's Contact Details
-5. Chatbox Online Status and Editable Text of Chatbox
-6. Customizable Styles of Chatbox
-7. Customizable Styles of Chatbox
-8. Customizable Styles of Chatbox
-9. Feature of Ordering for Chat Channels and Agents
-10. Feature to Display or Hide the Chatbox on Pages
-11. Feature to Show or Hide credit of Talkino on Chatbox
-12. Advanced Setting to Control the Options of Reset Settings and Uninstallation 
+1. Talkino
+2. List of all your support agents
+3. Add agent with contact details 
+4. Add agent with contact details 
+5. Schedule the working hours for agent (Premium)
+6. Setup the activation and global online status of Talkino together with the premium feature of online schedule
+7. Edit the text label of Talkino which includes online, away and offline modes
+8. Customize the styles of Talkino to meet your favorite design
+9. Ready color templates for you to choose according to your taste
+10. Sort the order of chat channels and agents according to your favorite order
+11. Display or hide the Talkino on any pages included on mobile and desktop view
+12. Manage the country restriction to hide the display of Talkino on certain countries (Premium)
+13. Integrate the Typebot and Google Analytics (GA4) with Talkino (Premium)
+14. Support built-in contact form when the Talkino is offline (Premium)
+15. Google reCaptcha v3 for the contact form to prevent spam (Premium)
+16. Control the options of reset settings, uninstallation and reporting settings
+17. View reports on how customers are reaching your agents by duration (Premium)
+18. View reports on how customers are reaching your agents by duration (Premium)
+19. Different types of shortcode widget that can be created (Premium)
+20. Shortcode widget displayed in the sidebar (Premium)
+21. Shortcode widget displayed in the WooCommerce single product page (Premium)
+22. Generate the shortcode widget using shortcode generator (Premium)
 
 == Changelog ==
+
+= 2.0.5, Feb 11, 2023 =
+* Added: New layout of Talkino.
+* Added: Support shorcode widget function for Talkino Bundle.
+* Added: Support Google Analytics integration for Talkino Bundle.
+* Added: Support Typebot integration for Talkino Bundle.
+* Added: Support reporting function for Talkino Bundle.
+* Added: New feature of weekly reporting email.
+* Updated: Pot file.
+* Updated: Add default value for title and job title when they are empty.
+* Updated: Optimize performance of upgrading data.
+* Fixed: Fixed some of the CSS issues.
+* Removed: Old classes and database table.
 
 = 2.0.4, Dec 08, 2022 =
 * Added: Support Typebot integration for Talkino Bundle.
 * Updated: The text of setting tab.
 * Updated: Move the credit setting to advanced tab. 
 * Fixed: Extension page display.
-* Fixed: Critical error on database inserting.
 
 = 2.0.2, Nov 22, 2022 =
 * Improvement: Beautify the setting page.
@@ -197,21 +246,21 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 * Removed: Scripts of Talkino Bundle.
 
 = 2.0.0, Oct 26, 2022 =
-* Added: New WordPress official dashicons with search feature for chatbox icon.
-* Added: Option to show or hide chatbox on 404 page.
-* Added: New animation of chatbox and settings.
-* Added: Option to show chatbox only on mobile view for phone.
-* Added: New close button at the top of chatbox.
-* Added: New design of chatbox.
-* Added: New color templates for chatbox.
+* Added: New WordPress official dashicons with search feature for Talkino icon.
+* Added: Option to show or hide Talkino on 404 page.
+* Added: New animation of Talkino and settings.
+* Added: Option to show Talkino only on mobile view for phone.
+* Added: New close button at the top of Talkino.
+* Added: New design of Talkino.
+* Added: New color templates for Talkino.
 * Added: New customization of color template.
 * Added: New settings of Styles.
 * Added: Premium link on plugin page.
-* Added: New settings of chatbox z-index field.
+* Added: New settings of Talkino's z-index field.
 * Added: New feature to display or hide credit of Talkino.
-* Fixed: Display chatbox under offline mode when all agents are not available or global schedule is offline.
+* Fixed: Display Talkino under offline mode when all agents are not available or global schedule is offline.
 * Fixed: Scrollbar background color on certain versions of web browsers.
-* Removed: Font Awesome icon for chatbox to prevent theme conflict in future.
+* Removed: Font Awesome icon for Talkino to prevent theme conflict in future.
 * Removed: The deprecated data of Font Awesome.
 
 = 1.1.8, Oct 10, 2022 =
@@ -221,23 +270,23 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 * Fixed: The conflict of Font Awesome on some themes.
 
 = 1.1.6, Oct 08, 2022 =
-* Added: New feature to edit the text of chatbox button(Rectangle style).
+* Added: New feature to edit the text of Talkino button(Rectangle style).
 * Added: New setting to allow users to load Font Awesome deferred.
-* Fixed: The conflict of Font Awesome version 4.7 for some themes when browsing chatbox icons on settings.
+* Fixed: The conflict of Font Awesome version 4.7 for some themes when browsing Talkino icons on settings.
 
 = 1.1.5, Oct 06, 2022 =
-* Improvement: Beautify the icon picker of chatbox.
+* Improvement: Beautify the icon picker of Talkino.
 * Improvement: Use the WordPress core function to remove custom post type instead of direct call by SQL statement when performing uninstallation.
 * Improvement: Increase the security for comparison of values using Yoda standard.
 * Improvement: Boost the security for date which has been changed to gmdate. 
 * Updated: Pot file.
-* Fixed: Compatibility issue with WPML on editable text of chatbox.
+* Fixed: Compatibility issue with WPML on editable text of Talkino.
 * Removed: The deprecated data of plugin.
 
 = 1.1.4, Sep 29, 2022 =
-* Added: New feature to select Font Awesome icon to chatbox button included round and rectangle styles. 
-* Improvement: Update the styles of chatbox.
-* Improvement: Reduce the width of scrollbar on the chatbox when using Chromium based web browser.
+* Added: New feature to select Font Awesome icon for Talkino's button included round and rectangle styles. 
+* Improvement: Update the styles of Talkino.
+* Improvement: Reduce the width of scrollbar on the Talkino when using Chromium based web browser.
 * Improvement: Only enqueue the required JavaScript and CSS files when on the pages of Talkino.
 
 = 1.1.3, Sep 26, 2022 =
@@ -255,7 +304,7 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 
 = 1.1.0, Sep 21, 2022 =
 * Added: New interface for post type of agents and ordering setting.
-* Fixed: Issue of chatbox CSS.
+* Fixed: Issue of Talkino CSS.
 * Removed: The deprecated functions and data of plugin.  
 
 = 1.0.3, Sep 20, 2022 =
@@ -263,7 +312,7 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 
 = 1.0.2, Sep 19, 2022 =
 * Added: Ordering feature to arrange ordering of chat channels and agents.
-* Added: Display feature to display or hide chatbox on any pages including WooCommerce, search page, and blog page.
+* Added: Display feature to display or hide Talkino on any pages including WooCommerce, search page, and blog page.
 * Fixed: Issue of saving an empty value of global online schedule field. 
 
 = 1.0.1, Sep 17, 2022 =

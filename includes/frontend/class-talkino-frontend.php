@@ -91,9 +91,9 @@ class Talkino_Frontend {
 
 		wp_enqueue_script( 'talkino-frontend', plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/js/talkino-frontend.js', array( 'jquery' ), $this->version, true );
 
-		// Pass $php_vars array to javascript as php object for inserting table.
+		// Ajax script for frontend and pass the Google Analytics data.
 		$ajax_url = array( 'ajax_url' => admin_url( 'admin-ajax.php' ) );
-		wp_localize_script( 'talkino-frontend', 'ajax_object', $ajax_url );
+		wp_localize_script( 'talkino-frontend', 'talkino_frontend_ajax_object', $ajax_url );
 
 	}
 

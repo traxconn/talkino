@@ -55,28 +55,6 @@ class Talkino_File_Loader {
 	}
 
 	/**
-	 * Load the external email template file for the frontend.
-	 *
-	 * @since     1.0.0
-	 * @param     string $template_file    The file name of template.
-	 * @param     array  $data             The data of email.
-	 *
-	 * @return    string    The body of email.
-	 */
-	public function get_email_template_file( $template_file, $data ) {
-
-		ob_start();
-
-		$this->load_template( $template_file, $data );
-		$email_body = ob_get_contents();
-
-		ob_end_clean();
-
-		return $email_body;
-
-	}
-
-	/**
 	 * Load the template file.
 	 *
 	 * @since    1.0.0
@@ -127,6 +105,29 @@ class Talkino_File_Loader {
 		endif;
 
 		return apply_filters( 'get_locate_template', $file, $file_name, $template_path, $plugin_path );
+
+	}
+
+	/**
+	 * Load the external template file for the reporting email.
+	 *
+	 * @since     2.0.5
+	 * @param     string $template_file    The file name of template.
+	 * @param     array  $data             The data of report.
+	 *
+	 * @return    string    The body of report.
+	 */
+	public function get_report_email_template_file( $template_file, $data ) {
+
+		ob_start();
+
+		include plugin_dir_path( __FILE__ ) . 'admin/reports/views/' . $template_file;
+
+		$report_body = ob_get_contents();
+
+		ob_end_clean();
+
+		return $report_body;
 
 	}
 
