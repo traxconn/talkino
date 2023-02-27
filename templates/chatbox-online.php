@@ -97,7 +97,7 @@ if ( is_plugin_active( 'wpml-string-translation/plugin.php' ) ) {
 	if ( get_option( 'talkino_credit' ) === 'on' ) {
 	?>
 	<div class="talkino-footer-wrapper">
-		<a class="talkino-credit-link" href="https://traxconn.com/plugins/talkino/" target=”_blank”>Powered by Talkino</a> 
+		<a class="talkino-credit-link" href="https://traxconn.com/plugins/talkino/" rel="nofollow" target=”_blank”>Powered by Talkino</a> 
 	</div>
 	<?php
 	}

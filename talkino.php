@@ -10,7 +10,7 @@
  * Plugin Name:       Talkino
  * Plugin URI:        https://traxconn.com/
  * Description:       Talkino allows you to integrate multi social messengers and contact into your website and enable your users to contact you using multi social messengers' accounts.
- * Version:           2.0.5
+ * Version:           2.0.6
  * Author:            Traxconn
  * Requires at least: 4.9
  * Requires PHP:      7.3
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin version.
  */
-define( 'TALKINO_VERSION', '2.0.5' );
+define( 'TALKINO_VERSION', '2.0.6' );
 
 /**
  * Define the Plugin basename.

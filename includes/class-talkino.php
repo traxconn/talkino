@@ -278,7 +278,7 @@ class Talkino {
 
 		// Register hook to initialize chatbox if chatbox activation is active.
 		if ( get_option( 'talkino_chatbox_activation' ) === 'active' ) {
-			$this->loader->add_filter( 'wp_head', $talkino_chatbox, 'chatbox_init' );
+			$this->loader->add_filter( 'wp_footer', $talkino_chatbox, 'chatbox_init' );
 		}
 
 		// Register bundle hook to initialize contact form.
