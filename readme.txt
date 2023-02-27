@@ -1,4 +1,4 @@
-=== Talkino ===
+=== Talkino - WordPress Click to Chat Plugin ===
 Author URI: https://traxconn.com/
 Plugin URI: https://traxconn.com/plugins/talkino/
 Contributors: traxconn, yipchunmun, leesuijen
@@ -6,20 +6,20 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.1.1
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Let your customers contact you through WhatsApp, Messenger, Telegram, phone and email.
+Let users contact you via WhatsApp, Messenger, Telegram, and other chat channels on WordPress. 
 
 == Description ==
 
-Take your customer engagement to the next level with Talkino, the ultimate click-to-chat plugin for WordPress sites and WooCommerce online stores. With Talkino, your customers can reach you on their favorite chat channels, including WhatsApp, Messenger, and Telegram, all from one convenient location.
+Talkino is a WordPress click-to-chat plugin that lets users contact you via WhatsApp, Messenger, Telegram, and other chat channels.
 
-Talkino offers the best solution for showcasing your agents' WhatsApp, Messenger, Telegram, phone, and email on your website. The best part? There's no limit to the number of agents you can add!
+Boost your website's engagement by showcasing your agents' WhatsApp, Messenger, Telegram, phone, and email information using Talkino's superior solution. The best part? There's no limit to the number of agents you can add!
 
-With a simple click, your customers can connect with you on the channel they prefer, leading to increased engagement and conversion rates. Say goodbye to missed connections and hello to happier customers with Talkino.
+With a simple click, your customers can connect with you on the channel they prefer, leading to increased interaction and conversion rates. Say goodbye to missed connections and hello to happier customers with Talkino.
 
 Unlock a world of possibilities with Talkino's powerful feature set as below:
 
@@ -217,6 +217,10 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 22. Generate the shortcode widget using shortcode generator (Premium)
 
 == Changelog ==
+
+= 2.0.6, Feb 22, 2023 =
+* Updated: Change the credit link to "nofollow".
+* Fixed: The rendering issue on mobile view.
 
 = 2.0.5, Feb 11, 2023 =
 * Added: New layout of Talkino.
