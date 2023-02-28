@@ -152,15 +152,15 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$whatsapp_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$whatsapp_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$whatsapp_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$whatsapp_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$whatsapp_data .= "
 
-                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/whatsapp-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/whatsapp-icon.png' . "' alt='WhatsApp icon' />
                         </div>
 
                         <div class='talkino-chat-info'>
@@ -187,15 +187,15 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$messenger_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$messenger_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$messenger_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$messenger_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$messenger_data .= "
 
-                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/messenger-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/messenger-icon.png' . "' alt='Messenger icon' />
                         </div>
 
                         <div class='talkino-chat-info'>
@@ -222,15 +222,15 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$telegram_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$telegram_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$telegram_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$telegram_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$telegram_data .= "
 
-                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/telegram-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/telegram-icon.png' . "' alt='Telegram icon' />
                         </div>
 
                         <div class='talkino-chat-info'>
@@ -257,15 +257,15 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$phone_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$phone_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$phone_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$phone_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$phone_data .= "
 
-                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/phone-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/phone-icon.png' . "' alt='Phone icon' />
                         </div>
 
                         <div class='talkino-chat-info'>
@@ -292,15 +292,15 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$email_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$email_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$email_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$email_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$email_data .= "
 
-                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/email-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/email-icon.png' . "' alt='Email icon' />
                         </div>
 
                         <div class='talkino-chat-info'>
@@ -329,15 +329,15 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$whatsapp_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$whatsapp_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$whatsapp_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$whatsapp_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$whatsapp_data .= "
 
-                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/whatsapp-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/whatsapp-icon.png' . "' alt='WhatsApp icon' />
                         </div>
 
                         <div class='talkino-chat-info'>
@@ -359,15 +359,15 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$messenger_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$messenger_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$messenger_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$messenger_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$messenger_data .= "
 
-                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/messenger-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/messenger-icon.png' . "' alt='Messenger icon' />
                         </div>
 
                         <div class='talkino-chat-info'>
@@ -389,15 +389,15 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$telegram_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$telegram_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$telegram_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$telegram_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$telegram_data .= "
 
-                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/telegram-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/telegram-icon.png' . "' alt='Telegram icon' />
                         </div>
 
                         <div class='talkino-chat-info'>
@@ -419,15 +419,15 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$phone_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$phone_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$phone_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$phone_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$phone_data .= "
 
-                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/phone-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/phone-icon.png' . "' alt='Phone icon' />
                         </div>
 
                         <div class='talkino-chat-info'>
@@ -449,15 +449,15 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$email_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$email_data .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$email_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$email_data .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$email_data .= "
 
-                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/email-icon.png' . "' />
+                            <img class='talkino-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/email-icon.png' . "' alt='Email icon' />
                         </div>
 
                         <div class='talkino-chat-info'>
@@ -621,10 +621,10 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$output .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$output .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$output .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$output .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$output .= "
@@ -657,10 +657,10 @@ class Talkino_Agent_Manager {
 
 						// Check if contains avatar image.
 					if ( has_post_thumbnail() ) {
-						$output .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' />";
+						$output .= "<img src='" . get_the_post_thumbnail_url( $post_id, array( 70, 70 ) ) . "' alt='" . $name . "' />";
 
 					} else {
-						$output .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' />";
+						$output .= "<img src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/default.png' . "' alt='Avatar icon' />";
 					}
 
 						$output .= "
@@ -738,7 +738,7 @@ class Talkino_Agent_Manager {
 				
 				$whatsapp_output = "
 					<a class='talkino-agent-profile-link' href='" . $whatsapp_url . $whatsapp_id . '?text=' . $whatsapp_pre_filled_message . "' target='" . $target . "' title='" . esc_html__( 'Chat on WhatsApp', 'talkino' ) . "'>
-						<img class='talkino-agent-profile-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/agent-whatsapp-icon.png' . "' /><span class='talkino-hidden-agent-id'>" . $post_id . " </span><span class='talkino-hidden-full-name'>" . $full_name . " </span><span class='talkino-hidden-chat-channel-type'>Whatsapp</span></a>";
+						<img class='talkino-agent-profile-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/agent-whatsapp-icon.png' . "' alt='WhatsApp icon' /><span class='talkino-hidden-agent-id'>" . $post_id . " </span><span class='talkino-hidden-full-name'>" . $full_name . " </span><span class='talkino-hidden-chat-channel-type'>Whatsapp</span></a>";
 
 			}
 
@@ -749,7 +749,7 @@ class Talkino_Agent_Manager {
 
 				$messenger_output = "
 					<a class='talkino-agent-profile-link' href='https://m.me/" . $facebook_id . "' target='" . $target . "' title='" . esc_html__( 'Chat on Messenger', 'talkino' ) . "'>
-						<img class='talkino-agent-profile-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/agent-messenger-icon.png' . "' /><span class='talkino-hidden-agent-id'>" . $post_id . " </span><span class='talkino-hidden-full-name'>" . $full_name . " </span><span class='talkino-hidden-chat-channel-type'>Messenger</span></a>";
+						<img class='talkino-agent-profile-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/agent-messenger-icon.png' . "' alt='Messenger icon' /><span class='talkino-hidden-agent-id'>" . $post_id . " </span><span class='talkino-hidden-full-name'>" . $full_name . " </span><span class='talkino-hidden-chat-channel-type'>Messenger</span></a>";
 		
 			}
 
@@ -760,7 +760,7 @@ class Talkino_Agent_Manager {
 
 				$telegram_output = "
 						<a class='talkino-agent-profile-link' href='https://t.me/" . $telegram_id . "' target='" . $target . "' title='" . esc_html__( 'Chat on Telegram', 'talkino' ) . "'>
-							<img class='talkino-agent-profile-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/agent-telegram-icon.png' . "' /><span class='talkino-hidden-agent-id'>" . $post_id . " </span><span class='talkino-hidden-full-name'>" . $full_name . " </span><span class='talkino-hidden-chat-channel-type'>Telegram</span></a>";
+							<img class='talkino-agent-profile-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/agent-telegram-icon.png' . "' alt='Telegram icon' /><span class='talkino-hidden-agent-id'>" . $post_id . " </span><span class='talkino-hidden-full-name'>" . $full_name . " </span><span class='talkino-hidden-chat-channel-type'>Telegram</span></a>";
 
 			}
 
@@ -771,7 +771,7 @@ class Talkino_Agent_Manager {
 
 				$phone_output = "
 						<a class='talkino-agent-profile-link' href='tel:" . $phone_number . "' title='" . esc_html__( 'Chat on Phone', 'talkino' ) . "'>
-							<img class='talkino-agent-profile-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/agent-phone-icon.png' . "' /><span class='talkino-hidden-agent-id'>" . $post_id . " </span><span class='talkino-hidden-full-name'>" . $full_name . " </span><span class='talkino-hidden-chat-channel-type'>Phone</span></a>";
+							<img class='talkino-agent-profile-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/agent-phone-icon.png' . "' alt='Phone icon' /><span class='talkino-hidden-agent-id'>" . $post_id . " </span><span class='talkino-hidden-full-name'>" . $full_name . " </span><span class='talkino-hidden-chat-channel-type'>Phone</span></a>";
 
 			}
 
@@ -782,7 +782,7 @@ class Talkino_Agent_Manager {
 
 				$email_output = "
 						<a class='talkino-agent-profile-link' href='mailto:" . $email . "' title='" . esc_html__( 'Chat on Email', 'talkino' ) . "'>
-							<img class='talkino-agent-profile-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/agent-email-icon.png' . "' /><span class='talkino-hidden-agent-id'>" . $post_id . " </span><span class='talkino-hidden-full-name'>" . $full_name . " </span><span class='talkino-hidden-chat-channel-type'>Email</span></a>";
+							<img class='talkino-agent-profile-channel-icon' src='" . plugin_dir_url( TALKINO_BASE_NAME ) . 'assets/images/agent-email-icon.png' . "' alt='Email icon' /><span class='talkino-hidden-agent-id'>" . $post_id . " </span><span class='talkino-hidden-full-name'>" . $full_name . " </span><span class='talkino-hidden-chat-channel-type'>Email</span></a>";
 
 			}
 			

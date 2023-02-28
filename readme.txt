@@ -6,7 +6,7 @@ Donate link: https://traxconn.com/
 Tags: click to chat, whatsapp, whatsapp business, messenger, telegram
 Requires at least: 4.9
 Tested up to: 6.1.1
-Stable tag: 2.0.6
+Stable tag: 2.0.7
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -217,6 +217,9 @@ Kindly please visit  [here](https://traxconn.com/plugins/talkino/) to explore Ta
 22. Generate the shortcode widget using shortcode generator (Premium)
 
 == Changelog ==
+
+= 2.0.7, Feb 28, 2023 =
+* Fixed: Added alt text to images to prevent missing alt in SEO.
 
 = 2.0.6, Feb 22, 2023 =
 * Updated: Change the credit link to "nofollow".
